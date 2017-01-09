@@ -1,11 +1,18 @@
-Title: About the blog
+Title: About
 Date: 2016-12-06 20:20
+Category: Pages
+Slug: about
 Author: John Nduli
 
-# WHO AM I? #
-Well, I am a recent graduate. I believe I have great skills,
-problem is, I did not invest time in showing them off. Thats part
-of the reason I am creating this blog, to show off ... hehe.
+## Who Am I? ##
+
+I am a lover of technology. I like linux, vim and open source
+tools. I'm also really into hardware design. I can make electrical
+circuits and mechanical stuff. Which is why I did Mechatronics in
+University. 
+
+And then there's books. I love books (reading them btw). I love
+movies too.
 
 ## WHY THE BLOG ##
 
@@ -16,9 +23,12 @@ I usually work on a wide range of technologies and sometimes I
 find a fix here and there that needs to be recorded for future
 purposes.
 
+Also it will work as a place to let my opinions loose. Perhaps on
+a book here, a movie there, some policy, etc.
+
 ## WHY PELICAN ##
 The main reason for using pelican is because I'm a vim fan. Being
 a vim fan means I like using the terminal alot. I do most of my
-work from the terminal, so why not just add bloggin too.
+work from the terminal, so why not just add blogging too.
 
 
