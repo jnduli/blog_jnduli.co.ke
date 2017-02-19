@@ -1,14 +1,12 @@
 Title: Org Mode in Vim
-Date: 2016-12-07 07:20
+Date: 2017-01-09 20:20
 Category: Computer
 Tags: computer, vim, org
 Slug: org-mode-in-vim
 Author: John Nduli
-status: draft
-Summary: Emacs has org mode. It is a really great tool. This is
-how I use the same in vim.
+status: published
+Summary: Emacs has org mode. It is a really great tool. This is how I use the same in vim.
 
-# Org Mode in Vim #
 So emacs has this awesome tool called orgmode that I recently
 saw in use. It really impressed me, especially the versatility of
 it. Problem is, its emacs and I'm already a vim fan boy.
@@ -20,8 +18,8 @@ It isn't perfect, heck I'd even suggest that you use the original
 orgmode if you really want it. But here's how I go about using
 orgmode:
 
-First insall it. When using vundle, just place the line below in
-the .vimrc file.
+First install it. When using vundle( I use vundle as my plugin
+manager), just place the line below in the .vimrc file.
 
     ::vim
     Plugin 'jceb/vim-orgmode'

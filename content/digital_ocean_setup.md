@@ -1,23 +1,28 @@
 Title: Digital Ocean Server Setup
-Date: 2016-12-13 07:20
+Date: 2017-01-22 07:20
 Category: Computer
 Tags: computer, servers
 Slug: digital-ocean-server-setup
-status:draft
+status: published
 Author: John Nduli
 Summary: step by step guide on how I setup digital ocean droplet
 
-There is an easy html page set up tool that helps set up the
+
+Setting up a digital ocean server is pretty straight forward.
+First you have to pay some amount via paypal or credit card ( I
+paid $5). Then there is an easy html page set up tool that helps set up the
 account. In my case, I did not choose to use ipv6 or to use ssh
 key on login. However most of the options can be changed later on
-as I learnt.
+as I learnt. I chose Ubuntu 16.04 as my preffered OS of choice.
+Everything wasthen setup automatically and I just had to connect
+to my server.
 
 The first thing I did was add public key authentification for my
 root user. I did that by:
 
     ::console
     ssh root@server-ip
-    answer yes to question
+    answer yes to question that appears
     input password
 
 This just confirms that I can log into the system. I then exit ssh
@@ -31,7 +36,7 @@ After this process I can now login to my server without the need
 for my password.
 
 I then add another user to the system who will have root
-priviledges:
+privileges:
 
     ::console
     ssh root@server-ip
@@ -44,7 +49,9 @@ Add public key authentification:
     ssh-keygen
     ssh-copy-id username@server_ip
 
-Disable passwd, however I did not do this step
+I then diabled password access via ssh. This makes it more secure
+as it prevents people guessing my server password.ie. You either
+have the key to access my server or not.
 
     ::console
     sudo vi /etc/ssh/sshd_config
@@ -69,11 +76,12 @@ And then added it to my firewall:
 
     ::console
     sudo ufw app list
-    //only enable HTTP because we onoly have port 80 enabled
-    //when port 443 set, we can enable HTTPS / Nginx Full
     sudo ufw enable 'Nginx HTTP'
     sudo ufw status
     systemctl status nginx
+
+I only enable Nginx HTTP because I have not yet got an SSL
+cerificate, so port 43 for HTTPS is not currently in use.
 
 This is a neat trick I got about how to get your ip address from
 the terminal
@@ -82,7 +90,7 @@ the terminal
     ip addr show eth0 | grep inet | awk '{ print $2; }' | sed
     's/\/.*$//'
 
-    or
+or
 
     ::console
     sudo apt-get install curl
