@@ -3,3 +3,4 @@ pelican/include/
 pelican/lib/
 output
 __pycache__/
+env
