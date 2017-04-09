@@ -4,8 +4,7 @@ Category: Computer
 Tags: vim, computer 
 Slug: know-thy-editor-well
 Author: John Nduli
-status:draft
-Summary: Why one should invest the time to know their editor
+status: published
 
 Someone once told me that I should really know my editor, and know
 it well. I did not take this advice into consideration but lately,
@@ -31,6 +30,7 @@ Here is a list of some of the things I use vim for:
     * Blogging
     * Server setup and management
     * Documentation
+    * Make presentations
 
 As can be seen, knowing vim well will greatly optimize my time and
 also effectively manage my life well. It should not only be vim,

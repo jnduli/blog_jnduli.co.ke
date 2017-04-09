@@ -4,3 +4,4 @@ pelican/lib/
 output
 __pycache__/
 env
+*.swp
