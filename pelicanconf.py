@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+import os
 
 AUTHOR = 'John Nduli'
 SITENAME = "Nduli's World"
@@ -34,5 +35,5 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-THEME = '/home/rookie/Documents/projects/mincss_pelican_theme'
+THEME = os.getenv('HOME') +'/documents/letter_theme'
 #THEME ='/home/rookie/Documents/projects/tutorials/pelican_tut/pelican-themes/gum'
