@@ -17,3 +17,8 @@ git checkout -b <name> : create branch name and switch to it
 
 git push --set-upstream origin eeprom_kp
 
+
+When you get clone, to list all branches even those in remote
+server, do:
+
+git branch -a
