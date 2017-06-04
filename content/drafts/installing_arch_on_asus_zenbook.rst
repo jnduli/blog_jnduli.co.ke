@@ -99,3 +99,67 @@ Install xfce4 and xfce4-goodies
 
 Install i3
 Install firefox and chromium
+
+Setting up xdg-dirs 
+        
+    sudo pacman -S xdg-user-dirs
+    run xdg-user-dirs-update
+    edit .config/user-dirs.dirs
+    cp /etc/xdg/user-dirs.conf ~/.config/
+    edit it and change enabled=False
+    create all the directories as per user-dirs.dirs folders manually with mkdir
+
+Installing python
+
+    sudo pacman -S python python2 python-pip python2-pip
+
+Installing vim and tmux
+    sudo pacman -S gvim tmux
+    THen I follow instructions from
+    https://github.com/jnduli/dotfiles to set up my dotfile
+    I also set up powerline fonts as found in link to vim_airline
+    setup
+
+Installing zsh
+    sudo pacman -S zsh zsh-completions
+    //setup oh my zsh
+    sudo pacman -S curl wget
+    //github page for ohmyzsh has instructions on how to install
+    this
+    //set up zshrc file from the dotfiles configs 
+    chsh -l //lists all 
+    chsh -s /path/to.shell
+
+Installing yaourt
+    instructions found at :https://archlinux.fr/yaourt-en
+
+Having yaourt I can now install some other packagers:
+    yaourt -S ledger
+
+Fixing my Audio Problem
+    I installed alsa-utils
+    sudo pacman -S alas-utils
+    alsamixer
+    went to master and unmuted by pressing m
+
+Other installs 
+    sudo pacman -S kicad kicad-library kicad-library-3d
+
+Added somw shortcuts to xfce4:
+    exo-open --launch TerminalEmulator  Super+Return
+    xfce4-terminal --drop-down F12
+
+    REmoved bottom panel from xfce4
+
+ Installed ssh
+    sudo pacman -S openssh
+
+ Installations required to work with my i3 config file
+    sudo pacman -S redshift feh scrot dmenu
+    sudo pacman -S python-gobject python-xdg librsvg #required for
+    redshift-gtk
+
+TO fix the capslock and escape switching, I added this to my
+.xinitrc:
+    
+    setxkbmap -option caps:swapescape
