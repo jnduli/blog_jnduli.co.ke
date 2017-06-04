@@ -20,11 +20,12 @@ much I had achieved.
 
 So I created the file. It had the following syntax:
 
+.. code-block:: lua
 
-| Week | Total | Achieved | %    | Comments                        |
-|------|-------|----------|------|---------------------------------|
-| 1    | 13    | 1        | 7.69 | setting up lap  took up time    |
-| 2    | 20    | 9        |      |                                 |
+    | Week | Total | Achieved | %    | Comments                        |
+    |------|-------|----------|------|---------------------------------|
+    | 1    | 13    | 1        | 7.69 | setting up lap  took up time    |
+    | 2    | 20    | 9        |      |                                 |
 
 
 This table has a percentage column that I wanted to be
@@ -58,23 +59,26 @@ Will yank the selected word and store it in the named register p.
 With this I can get the variable from the register. So to get the
 number 13 in the first row, this was the function:
 
-function! TodoPercentage()
-    normal ^3viw"py
-    let total = str2float(getreg("p"))
-endfunction
+.. code-block:: lua
+
+    function! TodoPercentage()
+        normal ^3viw"py
+        let total = str2float(getreg("p"))
+    endfunction
 
 The getreg() function just gets the values stored in a register,
 and the str2float function converts a string to a float variable.
 
 To get the achieved value, I also did the same.
 
+.. code-block:: lua
 
-function! TodoPercentage()
-    normal ^3wviw"py
-    let total = str2float(getreg("p"))
-    normal ^5wviw"py
-    let achieved = str2float(getreg("p"))
-endfunction
+    function! TodoPercentage()
+        normal ^3wviw"py
+        let total = str2float(getreg("p"))
+        normal ^5wviw"py
+        let achieved = str2float(getreg("p"))
+    endfunction
 
 Since I had these two variables, I could now do the arithmetic.
 
@@ -86,6 +90,7 @@ Since I had these two variables, I could now do the arithmetic.
 
 And since I just wanted to display the number in maximum of 2
 decimal places, I used printf command.
+
     let per = printf("%.2f", percentage)
 
 printf also converted the float into a string.
@@ -93,6 +98,7 @@ printf also converted the float into a string.
 To display the number in the appropriate section, I decided to use
 the execute command. THis would basically run a string as though
 it was in the terminal.
+
     execute "normal! ^6wa ".per."\<esc>"
 
 In the command above, normal! means run the commands in normal
@@ -107,16 +113,18 @@ mode, and mappings of keys shuld not be used. After that:
     the actual characters.
 
 So at the end of it all this was my function:
-   
-function! TodoPercentage()
-    normal ^3wviw"py
-    let total = str2float(getreg("p"))
-    normal ^5wviw"py
-    let achieved = str2float(getreg("p"))
-    let percentage = (achieved / total) * 100
-    let per = printf("%.2f", percentage)
-    execute "normal! ^6wa ".per."\<esc>"
-endfunction
+
+.. code-block:: lua
+  
+    function! TodoPercentage()
+        normal ^3wviw"py
+        let total = str2float(getreg("p"))
+        normal ^5wviw"py
+        let achieved = str2float(getreg("p"))
+        let percentage = (achieved / total) * 100
+        let per = printf("%.2f", percentage)
+        execute "normal! ^6wa ".per."\<esc>"
+    endfunction
 
 
 Now to run this function I decided to map it to <leader>cp meaning
