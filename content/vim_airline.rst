@@ -1,10 +1,12 @@
-Title: Vim Airline SetUp
-Date: 2017-03-19 08:20
-Category: Computer
-Tags: vim, computer
-Slug: vim-airline-setup
-Author: John Nduli
-status: draft
+#################
+Vim Airline Setup
+#################
+:date: 2017-06-12 08:20
+:category: Computer
+:tags: vim, computer
+:slug: vim-airline-setup
+:author: John Nduli
+:status: published
 
 I was watching this video on how to use vim+tmux effectively (`Video Link <https://www.youtube.com/watch?v=5r6yzFEXajQ>`_), and
 this guy had some really awesome looking vim. I decided to try it
@@ -29,7 +31,7 @@ needs some special fonts so that it can display some things
 properly, like the > and <. To do this, I had to install powerline
 fonts. I followed the instruction found `here: powerine fonts <https://github.com/powerline/fonts>`_ and ended up installing the powerline fonts.
 
-I then switched to a powerline font in Xfce4-terminal. I cuse
+I then switched to a powerline font in Xfce4-terminal. I use
 DejaVu Sans Mono for Powerline Book.
 
 But still this was not enough. I then had to go to my .vimrc and
@@ -45,7 +47,7 @@ add some few more sections.
     let g:airline_powerline_fonts=1
 
 With all this I had almost reached my goal. However, I have a
-10.1" screen laptop, and the status bar seemed to be hidding some
+10.1" screen laptop, and the status bar seemed to be hiding some
 details because of the little screen landscape. So I decided to
 change some sections. After some digging I added this to my .vimrc
 
