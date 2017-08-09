@@ -1,6 +1,14 @@
-##########
-Using Pass
-##########
+#########################################
+Using Pass - A Password Manager/Generator
+#########################################
+
+
+:date: 2017-08-09 15:00
+:tags: pass, linux
+:category: Computer
+:slug: password-manager-pass
+:author: John Nduli
+:status: draft
 
 First install pass:
 
