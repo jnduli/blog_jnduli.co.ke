@@ -1,12 +1,12 @@
 #####################
 My First Vim Function
 #####################
-:date: 2017-07-16 08:20
+:date: 2017-08-09 08:20
 :category: Computer
 :tags: vim,computer,programming
 :slug: my-first-vim-function
 :author: John Nduli
-:status: draft
+:status: published
 
 
 I finally got down to writing my first vim function. It was a
@@ -16,6 +16,7 @@ solution.
 
 Problem Statement
 =================
+
 I usually keep a to do list of things I should do during the day
 and week. Over time, tasks get lost as I remove some lines and I
 can't keep a track of my progress in terms of planning and
@@ -65,8 +66,6 @@ What this does is this:
 With this I had the number in total column selected, so I had to
 find out how to store the number for later use. Thats when
 registers came into play. So adding:
-
-.. code-block:: vim
 
     "py
 
