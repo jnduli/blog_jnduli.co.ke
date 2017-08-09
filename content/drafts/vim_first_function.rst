@@ -1,8 +1,13 @@
 #####################
 My First Vim Function
 #####################
+:date: 2017-07-16 08:20
+:category: Computer
+:tags: vim,computer,programming
+:slug: my-first-vim-function
+:author: John Nduli
+:status: draft
 
-Hi.
 
 I finally got down to writing my first vim function. It was a
 gruelling journey but I finally got through it. So I'll write down
@@ -13,14 +18,22 @@ Problem Statement
 =================
 I usually keep a to do list of things I should do during the day
 and week. Over time, tasks get lost as I remove some lines and I
-can't keep a track of my progress in terms of planning and doing.
+can't keep a track of my progress in terms of planning and
+implementation.
 So basically I wanted a means for later on in the year or in my
 life, I could have a file that showed how much I planned and how
 much I had achieved.
 
-So I created the file. It had the following syntax:
+So I created the file. It had the following syntax. I use vimwiki,
+so to generate the table I just type:
 
-.. code-block:: lua
+.. code-block:: vim
+
+    :VimwikiTable 5 3
+
+The file looks like this:
+
+.. code-block:: vim
 
     | Week | Total | Achieved | %    | Comments                        |
     |------|-------|----------|------|---------------------------------|
@@ -47,11 +60,13 @@ What this does is this:
 
     ^ goes to beginning of line
     3w goes 3 words ahead after going to beginning of line
-    viw selects the current word
+    viw selects the current word, which happens to be the total
 
 With this I had the number in total column selected, so I had to
-just find out a means to save the number to a variable. Thats wehn
+find out how to store the number for later use. Thats when
 registers came into play. So adding:
+
+.. code-block:: vim
 
     "py
 
@@ -71,7 +86,7 @@ and the str2float function converts a string to a float variable.
 
 To get the achieved value, I also did the same.
 
-.. code-block:: lua
+.. code-block:: vim
 
     function! TodoPercentage()
         normal ^3wviw"py
@@ -82,39 +97,43 @@ To get the achieved value, I also did the same.
 
 Since I had these two variables, I could now do the arithmetic.
 
+.. code-block:: vim
+
     let percentage = (achieved/total) * 100
 
-Since I had these two variables, I could now do the arithmetic.
-
-        let percentage = (achieved/total) * 100
 
 And since I just wanted to display the number in maximum of 2
-decimal places, I used printf command.
+decimal places, I used printf command, which sets the variable to
+2 decimal places and also saves it in the per variable as a
+string.
+
+.. code-block:: vim
 
     let per = printf("%.2f", percentage)
 
-printf also converted the float into a string.
 
 To display the number in the appropriate section, I decided to use
-the execute command. THis would basically run a string as though
-it was in the terminal.
+the execute command. This would execute the string, converting
+special characters to vim commands e.g. \<esc> to actually
+pressing escape. The "normal!" executes the commands in normal
+mode, the ! eliminates the custom mappings made.
+
+.. code-block:: vim
 
     execute "normal! ^6wa ".per."\<esc>"
 
-In the command above, normal! means run the commands in normal
-mode, and mappings of keys shuld not be used. After that:
-
+After the "normal!" the following happens:
     ^6w : moves to the start of the line, then 6 words after
     a : appends characters, enter insert mode
     .per. : concatenates the percentage string. Thus it will be
-    typed characger by character
+    typed character by character
     "\<esc>" : initiates the esc sequence leaving insert mode. The
     \ is used to signify that the key ESC is what is meant and not
     the actual characters.
 
 So at the end of it all this was my function:
 
-.. code-block:: lua
+.. code-block:: vim
   
     function! TodoPercentage()
         normal ^3wviw"py
@@ -130,4 +149,8 @@ So at the end of it all this was my function:
 Now to run this function I decided to map it to <leader>cp meaning
 calculate percentage.
 
+.. code-block:: vim
+
     autocmd FileType vimwiki nnoremap <leader>cp :call TodoPercentage() <Cr>
+
+You can find this function implemented in my .vimrc file `here <https://github.com/jnduli/dotfiles>`_
