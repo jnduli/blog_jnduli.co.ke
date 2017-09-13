@@ -1,10 +1,10 @@
-############################################################
-Asus Zenbook Keyboard and Screen Brightness Issues Fix On i3
-############################################################
+###################################################
+Asus Zenbook Keyboard & Screen Brightness Fix On i3
+###################################################
 :date: 2017-09-01 14:00
 :tags: asus, archlinux, linux
 :category: Computer
-:slug: git-branches-basics
+:slug: asus-zenbook-keyboard-screen-issues-fix
 :author: John Nduli
 :status: published
 
@@ -58,9 +58,9 @@ Media Keys Usage Fix
 
 For this, I first had to install pulseaudio.
 
- .. code-block:: vim
+.. code-block:: vim
 
-   sudo pacman -S pulseaudio
+    sudo pacman -S pulseaudio
 
 Then I added this to my i3 config files:
 
