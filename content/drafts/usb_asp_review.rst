@@ -1,17 +1,39 @@
-I recently got some usb asps to use in programming my avrs. I've
-never used this, so it was a bit difficult to set up. 
+I recently got some USBasps to use in programming my avr
+microcontrollers. I'd never used this before, so it a nice
+experience with then. To learn more about it checkout 
+`this link <http://www.fischl.de/usbasp/>`_
+
+.. include image of usb asp
 
 First I got it with the 10 pin connector, so I went online and
 found its schematic.
 
-I then connected it to the attiny13 and burned the firmware into
-it. Note that the image is where it plugs into, so one connects
-wires to it as though a mirror image.
+.. include image of connector found online
 
-I also burned code into the atmega8 and it too worked.
+I had some attiny13 and atmega8 chips around, so I experimented
+with these. Note that the image above is an mirror image of how
+you should wire the usb asp. To help me with this, I imagined I
+was pluggin the connector into the screen and attached jumper
+wires to the correct position.
 
-For its price, this is a cheap and awesome product to help one
-play around with avrs.
+I then wrote a simple program that I wanted to burn into both
+chips. The program just blinks LEDs.
 
-TODO: include code samples
-TODO: include images and how to burn
+.. TODO include programs
+
+To compile the source code, I did this from the terminal:
+
+.. TODO research compiling from terminal
+
+After compilation, to burn it into the chip, I did this from the
+terminal
+
+.. TODO research burning firmware to chip
+
+For this to work with atmega8, I changed the two commands to run
+as follows:
+
+.. TODO include commands from atmega8
+
+For this price, the product works really great, and I will be
+using it for a lot of my hobby projects.
