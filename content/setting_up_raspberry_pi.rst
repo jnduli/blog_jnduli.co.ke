@@ -6,7 +6,7 @@ Setting Up Raspberry Pi
 :tags: raspberry pi
 :slug: setting-up-raspberry-pi
 :author: John Nduli
-:status: draft
+:status: published
 
 The raspberry pi is a mini computer with GPIO pins that can be
 used to interface with various sensors and actuators. More
