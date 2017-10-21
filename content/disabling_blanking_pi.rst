@@ -7,7 +7,7 @@ Disabling Blanking in Raspberry Pi
 :category: Engineering
 :slug: disabling-blanking-raspberry-pi
 :author: John Nduli
-:status: draft
+:status: published
 
 Blanking is whereby a screen just goes blank (i.e. black screen).
 This usually happens after some time of no usage on the raspberry
