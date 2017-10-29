@@ -14,11 +14,13 @@ def check_drafts(directory):
     for key, value in sorted(files.items(), key=operator.itemgetter(1)):
         days_since_last_edit = (time.time() - value)/86400
         s = ''
+        # colors picked from answer on stackoverflow
+        # https://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python
         if days_since_last_edit > 60:
-            s += '\x1b[6;30;41m'
+            s += '\x1b[0;31;40m'
             #  print('\x1b[6;30;41m' + 'Success!' + '\x1b[0m')
         elif days_since_last_edit < 14:
-            s += '\x1b[6;30;42m'
+            s += '\x1b[0;36;40m'
             #  print("{0}: {1:3.0f} days ago".format(key, (time.time() - value)/86400))
         s += "{0}: {1:3.0f} days ago".format(key, (time.time() - value)/86400) + '\x1b[0m'
 
