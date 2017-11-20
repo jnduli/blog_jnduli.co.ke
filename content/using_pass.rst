@@ -3,53 +3,85 @@ Using Pass - A Password Manager/Generator
 #########################################
 
 
-:date: 2017-08-09 15:00
-:tags: pass, linux
+:date: 2017-11-16 14:00
+:tags: linux
 :category: Computer
 :slug: password-manager-pass
 :author: John Nduli
-:status: draft
+:status: published
 
-First install pass:
+Pass is a password manager that stores passwords locally on the
+host machine. Since the passwords are stored locally there is
+minimal risk on your passwords being exposed after some data
+breach occurring. Also, you can use git to version control the
+passwords, and set them up in a repo on any machine.
 
-    sudo pacman -S pass
+To install:
 
-Then:
+.. code-block:: bash
+
+   sudo pacman -S pass
+
+Then to initialize the password store:
+
+.. code-block:: bash
 
     pass init email
 
-To insert,
+To insert a password into the store:
+
+.. code-block:: bash
+
     pass insert /email/email@dns.com
 
-If you get 
-gpg: yohanaizraeli@gmail.com: skipped: No public key                                          
-gpg: [stdin]: encryption failed: No public key                                                
-Password encryption aborted. 
+If you get  the following error:
 
-THen you have to first generate the gpg keys:
+.. code-block:: bash
 
-   gpg --full-gen-key 
+    gpg: email@dns.com: skipped: No public key
+    gpg: [stdin]: encryption failed: No public key
+    Password encryption aborted.
 
-This will take you through the process step by step.
+Then you have to first generate the gpg keys:
 
-TO generate a password:
+.. code-block:: bash
+
+    gpg --full-gen-key
+
+This will take you through the process step by step. All someone
+has to do is follow the prompts.
+
+To generate a password, do:
+
+.. code-block:: bash
+
     pass generate name/of/service 10
 
-will generate a password 10 characrers long
+which will generate a password 10 characters long
+
+.. code-block:: bash
 
     pass -n generate name/of/service 10
 
-will generate password without special symbols
+will generate password without special symbols i.e. only
+alphanumeric characters.
 
-TO edit or overwirte password
+To edit or overwrite password
+
+.. code-block:: bash
+
     password edit name/of/service or pass inserte
 
-pass name/of/service : displays the password
-pass -c name/of/service : coopies the password to xclip
+Other commands include:
 
-pass rm name/of/sercie :removes password
-pass rm -r name : removes full directory
+.. code-block:: bash
 
-pass git init : sets up git in pass folder
-gpg: yohanaizraeli@gmail.com: skipped: No public key                                          
-gpg: [stdin]: encryption failed: No public key                                                
+    pass name/of/service # displays the password
+    pass -c name/of/service # copies the password to xclip
+
+    pass rm name/of/sercie # removes password
+    pass rm -r name # removes full directory
+
+    pass git init # sets up git in pass folder
+
+To find out more about pass, you can check `here <https://www.passwordstore.org/>`_
