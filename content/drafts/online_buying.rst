@@ -1,6 +1,13 @@
-#############
-Buying Online
-#############
+########################
+Buying Online From Kenya
+########################
+
+:date: 2017-11-14 14:00
+:tags: linux
+:category: Random
+:slug: buying-online-from-kenya
+:author: John Nduli
+:status: draft
 
 From ebay and aliexpress, just use your postal address in Kenya.
 They will be delivered there.
