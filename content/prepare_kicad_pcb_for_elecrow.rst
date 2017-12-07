@@ -2,11 +2,11 @@
 Prepare Kicad PCB for Elecrow Production
 ########################################
 
-:date: 2017-10-21 08:00
+:date: 2017-12-07 08:00
 :category: Engineering
 :slug: prepare-kicad-pcb-elecrow
 :author: John Nduli
-:status: draft
+:status: published
 
 
 Before designing the PCB, set the following design rules:
