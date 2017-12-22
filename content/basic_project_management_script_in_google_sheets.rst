@@ -3,10 +3,11 @@ Project Management in Google Sheets
 ###################################
 
 :date: 2017-12-16 08:00
+:tags: projects
 :category: Computer
 :slug: project-management-in-google-sheets
 :author: John Nduli
-:status: draft
+:status: published
 
 Outline of Project
 ==================
@@ -20,7 +21,7 @@ that I could use to achieve my means.
 Sending notifications for Late Tasks
 ------------------------------------
 For this I first had to set a trigger. There are 2 methods of
-doing this that I know of currently:
+doing this that I currently know of.
 
 + Using the menu bar by going to:
   Edit > Current project's triggers > Add a new trigger
@@ -42,7 +43,7 @@ following trigger:
     }
 
 This will run the function 'mainFunction' once per day. To
-activate the trigger, click on Run >> Run Function >>
+activate the trigger, click on Run > Run Function >
 createTimeDrivenTriggers. The trigger can now be seen in the
 triggers list menu. When running the trigger for the first time, a
 page will pop up requesting for some permissions to be allowed.
@@ -60,9 +61,9 @@ message.
       }
     }
 
-The emails are set in a sheet called 'lookup'. So once the script
-loops through all the sheet and once the sheet with the name
-'lookup' is found, the following script runs:
+The emails are set in a sheet called 'lookup'. So the script will
+find this sheet and read the emails from it. The emails are stored
+in a column named 'Emails'.
 
 .. code-block:: javascript
 
@@ -80,7 +81,7 @@ loops through all the sheet and once the sheet with the name
       return emails;                 
     }
 
-For my script, the preconditions I set for it to be able to run
+For the script, the preconditions I set for it to be able to run
 was that the first row should have the following names in the
 various cells:
 
@@ -88,7 +89,7 @@ various cells:
 + Status
 + DateDue
 
-This means that each sheet has to follow this pattern. To do this
+This means that each sheet has to follow this pattern. To enforce this
 I wrote the following script:
 
 .. code-block:: javascript
@@ -170,7 +171,7 @@ activeSheet and the DataRange.
 
    function onEdit(e) {
        var activeSheet = e.source.getActiveSheet();
-       var sheetName = activeSheet.getDataRange();
+       var sheetName = activeSheet.getName();
        var range = activeSheet.getDataRange();
    }
 
@@ -207,12 +208,12 @@ values we get.
 
 From the above code snippet, we first look for the columns named
 'DateDue' and 'Status'. If they are not existent, the script stops
-working ans the sheet is not editted properly. Afterwards we just
-format the sheet appropriately based off this:
+working because the sheet is not properly formatted. Afterwards we just
+format the sheet appropriately based off these rules:
 
 + If the date input is older than the current date, color the row
   red since it is a late task
-+ If date input is later than current task, rest the background
++ If date input is later than current task, reset the background
   color to white.
 + If status input is done, color the row green
 + If status is something other than done, do the date formatting.
