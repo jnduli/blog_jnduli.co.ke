@@ -28,7 +28,11 @@ a book here, a movie there, some policy, etc.
 
 ## WHY PELICAN ##
 The main reason for using pelican is because I'm a vim fan. Being
-a vim fan means I like using the terminal alot. I do most of my
+a vim fan means I like using the terminal a lot. I do most of my
 work from the terminal, so why not just add blogging too.
 
+## DISCLAIMER ##
+Please keep this in mind while reading the blog:
+
+_Stuff just is. My mental model of how the world works is incomplete. It has boundaries. I'm constantly relearning stuff. That, there, is the thing. Knowing that I'm limited in how I perceive stuff. There is strength in these "limits" though, they enable you to filter noise and make decisions. ~ Bonface Munyoki_
 
