@@ -19,7 +19,7 @@ Zener diode
 ESD protections: choose voltage higher / to maximum allowed for
 chip / board
 - Place these on USB devices
-  - There are special ESDs for USB
+- There are special ESDs for USB
 
 
 
