@@ -1,27 +1,26 @@
-#######
+
 Ansible
 #######
 
-:date: 2017-12-26 15:00
+:date: 2017-01-06 18:00
 :tags: computer, programming, servers
 :category: Computer
 :slug: ansible
 :author: John Nduli
-:status: draft
+:status: published
 
-Ansible is an automation tool that easens work a lot. It's kind of
-a do it once and repeat thereafter scenario, whereby zero effort
-or thought is put into the repeat.
+Ansible is an automation tool that easens work a lot. I just set
+it up once and from then on I can forget about configurations and
+settings for my projects. It's really great for doing repeatable
+tasks like setting up nginx for subdomains, redeploying django
+projects, updating the OS, etc.
 
-I learnt ansible some time back and I've been using it to set up
-servers and configuration on the servers. Also for deployment I've
-been using it too. It actually helps a lot.
-
-For example, if I want to update my server, this is how I do it:
+For example, to set up a script that updates the server:
 
 .. code-block:: yml
    
     ---
+
     - hosts: my_server
        vars_files:
          - vars.yml
@@ -36,23 +35,33 @@ For example, if I want to update my server, this is how I do it:
            - debug: var=result.stdout_lines
 
 I store my variables in the vars.yml file. In the example above,
-the user variable is found here.
+the user variable is found here. The file looks like this:
 
 .. code-block:: yml
 
    ---
+
    user: thisuser
 
+The my_server variable is set in /etc/ansible/hosts file and looks
+like this:
+
+.. code-block:: ini
+
+    [my_server]
+    random_url.co.ke
 
 Since updating the system requires admin priviledges, make sure
-the user has those permissions. Also ansible will need to run with
-these priviledges, so to do so:
+the user has those permissions. This is why the script has
+remote_user and become in its body. Also ansible will need to run
+with these priviledges, so to do so:
 
 .. code-block:: bash
 
    ansible-playbook --ask-become-pass updates.yml
 
-And just like that the system gets updated.
+And just like that the system gets updated. This asks for the
+server password for the elevated user.
 
 Let's say I want to update my nginx config files to enable another
 subdomain. Ansible should upload my config file to my server and
@@ -84,7 +93,9 @@ also restart nginx so that these changes are accepted.
 
 Since ansible supports jinja templating, the nginx config file is
 written in this format. Also the variables project_name and user
-are found from the vars.yml file.
+are found from the vars.yml file. What the above does is copy the
+nginx config file to /etc/nginx/sites-enabled/project_name 
+restarts nginx.
 
 Here is the template used. You can also use variables defined in
 the vars.yml in the template too, which is really helpful.
@@ -131,3 +142,5 @@ deal with the two configs above, I'd have:
     nginx:
         #(ANSIBLE_SUDO) nginx_setup.yml
 
+
+You can find moer about ansible `here <https://www.ansible.com/>`_
