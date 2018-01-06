@@ -2,7 +2,7 @@
 Ansible
 #######
 
-:date: 2017-01-06 18:00
+:date: 2018-01-06 18:00
 :tags: computer, programming, servers
 :category: Computer
 :slug: ansible
