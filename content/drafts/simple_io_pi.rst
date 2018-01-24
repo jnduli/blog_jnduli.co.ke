@@ -30,3 +30,6 @@ To run the code, do:
 
    python3 gpio.py
 
+
+Here is the reference for the gpio zero library: `gpiozero
+<https://gpiozero.readthedocs.io/en/stable/index.html>`_
