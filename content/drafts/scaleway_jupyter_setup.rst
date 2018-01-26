@@ -67,3 +67,15 @@ Then start jupyter with:
     nohup jupyter notebook
 
 The jupyter can be accessed from : ip_address:8888 using any browser.
+
+To install libraries:
+
+kaggle-cli
+
+sudo apt-get install libxml2-dev libxslt1-dev python3-lxml
+python3 -m pip install --user kaggle-cli
+
+Numpy, Scipy, matplotlib, etc
+
+python3 -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose seaborn
+
