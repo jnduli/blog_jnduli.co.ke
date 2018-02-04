@@ -2,7 +2,7 @@
 System Clock Prescalers and Their Hazards
 #########################################
 
-:date: 2018-01-28 15:00
+:date: 2018-02-04 15:00
 :tags: projects
 :category: Engineering
 :slug: system_clock_prescalers_and_their_hazards
