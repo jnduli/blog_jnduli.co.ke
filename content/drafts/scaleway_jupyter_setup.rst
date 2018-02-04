@@ -21,9 +21,10 @@ before anything else.
 Create a user and switch to the user:
 
 .. code-block:: bash
-   useradd -m -s /bin/bash user
-   usermod -aG sudo username
-   su - user
+
+    useradd -m -s /bin/bash user
+    usermod -aG sudo username
+    su - user
 
 The install pip using python3 environment
 
@@ -78,6 +79,7 @@ python3 -m pip install --user kaggle-cli
 Numpy, Scipy, matplotlib, etc
 
 # dependencies for pillow
+
 sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev \
     libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
 
