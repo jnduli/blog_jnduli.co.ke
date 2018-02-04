@@ -4,9 +4,9 @@ Summary of 2017
 
 :date: 2018-01-01 15:00
 :category: Random
-:slug: summary_of_2017
+:slug: summary-of-2017
 :author: John Nduli
-:status: draft
+:status: published
 
 2017 was an interesting year in my life. I achieved a lot during
 this time despite starting off on a low note. It started off on a
