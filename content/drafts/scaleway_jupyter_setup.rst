@@ -85,4 +85,18 @@ sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev \
 
 python3 -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose seaborn pillow keras tensorflow
 
+Had to run this for scipy to install
+sudo apt-get install gcc gfortran python-dev libopenblas-dev liblapack-dev
 
+pythom3 -m pip install --user scikit-learn scikit-image
+
+
+TensorFlow for arm can be found here:
+https://github.com/lherman-cs/tensorflow-aarch64
+
+Instructions are basically to: 
+curl -L
+https://github.com/lherman-cs/tensorflow-aarch64/releases/download/r1.4/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whl
+> /tmp/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whlpython3 -m
+pip inst
+all /tmp/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whl
