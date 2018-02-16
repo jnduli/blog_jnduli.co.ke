@@ -9,19 +9,23 @@ SSH AND SERVERS
 :author: John Nduli
 :status: draft
 
-SSH provides a secure means of remote login to another computer.
-When setting up linux servers, it is usually provided by the OS.
-The default means of loggin in is by:
+SSH provides a secure means of remote login from one computer to
+another computer. When setting up linux servers, the OS usually
+provides ssh by default. To login:
 
 .. code-block:: bash
 
     ssh user@ipaddress
 
 This prompts for a password, after which you have access to a
-remote terminal. However, this is not really secure as someone can
-try to guess the password. A better method is to set up ssh-keys
-on the server, and disable password login. This means that someone
-can only access your server if they have the private ssh-key.
+remote terminal. Sometimes, no password is requested, and you are
+required to set one up after your first login. 
+
+The password login method is not really secure. This is because
+someone can try to guess it. A more secure method is to disable
+the password login and set up ssh-keys on the server. Therefore,
+someone will need to have the private ssh-key to be able to access
+your server.
 
 To generate a key:
     
@@ -29,14 +33,14 @@ To generate a key:
 
     ssh-keygen -t rsa -b 4096 -C 'comment'
 
-There will be some prompts that guide you through the process. To
-set up the default key that will be used, save this in the default
-file suggested. Otherwise, you can save it to a custom location.
-Care should be taken, especially if you already had another ssh
-key, because you can easily override this. The command generates
-to file, the private key and a public key ( has a .pub suffix).
+There will be some prompts that guide you through the process. If
+you choose to save the key in the default location, this key will
+be used wheneve a custom key is not provided. You should take care
+however, since you can easily overwrite a key that was in use.
+The command generates two files, the private key and a public key
+( has a .pub suffix).
 
-To set up the key in a server, do:
+To set up the key, copy the public key to the server by:
 
 .. code-block:: bash
 
@@ -73,9 +77,10 @@ SSH Forwarding
 ==============
 SSH forwarding is where the private key used to login to the
 server, can be used by the server to perform some tasks. This is
-useful in CI/CD, or when working with git on some server.
+useful in CI/CD, or when working with git on a server(Need to
+push to a repository on github).
 
-To enable this, edit the ~/.ssh/config file from the locatl
+To enable this, edit the ~/.ssh/config file from the local
 machine and add:
 
 .. code-block:: bash
@@ -104,11 +109,11 @@ repositories, other servers, etc.
 Frozen ssh session
 ==================
 
-Sometimes after connecting to the server, the internet connection
-is lost or your computer sleeps. The ssh prompt after this will be
-frozen, with no commands running. To fix this, you have to leave
-the prompt and log in again to the server. To do this, press the
-following keys in order from the prompt:
+Sometimes after connecting to the server, you might lose your
+internet connection or hibernate/sleep you computer. The ssh
+prompt after this will be frozen, with no commands running. To fix
+this, you have to leave the prompt and log in again to the server.
+To do this, press the following keys in order from the prompt:
 
 .. code-block:: bash
 
