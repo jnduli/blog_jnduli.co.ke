@@ -7,7 +7,7 @@ SSH AND SERVERS
 :category: Computer
 :slug: ssh-and-servers
 :author: John Nduli
-:status: draft
+:status: published
 
 SSH provides a secure means of remote login from one computer to
 another computer. When setting up linux servers, the OS usually
