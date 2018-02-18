@@ -35,5 +35,9 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-THEME = os.getenv('HOME') +'/documents/letter_theme'
+THEME = os.getenv('HOME') +'/documents/pelican_requirements/letter_theme'
 #THEME ='/home/rookie/Documents/projects/tutorials/pelican_tut/pelican-themes/gum'
+
+PLUGIN_PATHS = [os.getenv('HOME')+'/documents/pelican_requirements/pelican-plugins']
+print(PLUGIN_PATHS)
+PLUGINS = ['render_math']
