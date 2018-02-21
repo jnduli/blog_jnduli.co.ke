@@ -3,14 +3,12 @@ Control: Controllability and Observability
 ##########################################
 
 
-:date: 2017-06-28 15:00
+:date: 2018-02-21 15:00
 :tags: control
 :category: Engineering
 :slug: control-controllability-and-observability
 :author: John Nduli
-:status: draft
-
-
+:status: published
 
 The state space equations are given by:
 
@@ -35,10 +33,10 @@ changing the inputs.
 Using the discretized equation, we can come up with the following:
 
 .. math::
-    x(1) = A_dx(0) + B_du(0)\\
-    x(2) = A_dx(1) + B_du(1) = A_d^2 x(0) + A_dB_du(0) + B_du(1)\\
+    x(1) &= A_dx(0) + B_du(0)\\
+    x(2) &= A_dx(1) + B_du(1) = A_d^2 x(0) + A_dB_du(0) + B_du(1)\\
     .\\
-    x(n) = A_d^n x(0) + A_d^{n-1}B_du(0) + A_d^{n-2}B_du(1) + ...
+    x(n) &= A_d^n x(0) + A_d^{n-1}B_du(0) + A_d^{n-2}B_du(1) + ...
     + B_du(n-1)
 
 The last equation can be written as:
@@ -52,14 +50,14 @@ The last equation can be written as:
     u(n-1) \\ . \\ . \\ . \\u(2) \\ u(1) \\ u(0)
     \end{bmatrix}
 
-Replacing the controllability matrix with C, we get:
+Replacing with the controllability matrix with C, we get:
 
 .. math::
     x(n) - A_d^n x(0) = C * U \\
     \therefore\\
-    U = C^{-1} * {x(n) - A_d^n x(0)}
+    U = C^{-1} * (x(n) - A_d^n x(0))
 
-This means that the equation is solvable when $C^{-1}$ exists,
+This means that the equation is solvable when :math:`C^{-1}` exists,
 i.e. its a non singular matrix.
 
 Therefore a system is controllable when: 
