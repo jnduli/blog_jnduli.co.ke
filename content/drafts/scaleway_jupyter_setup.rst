@@ -1,14 +1,17 @@
-##################################
-Jupyter Notebook Setup in Scaleway
-##################################
+################################
+Jupyter Notebook Setup on a VPS
+################################
 
 
 :date: 2017-06-04 15:00
 :tags: projects
 :category: Computer
-:slug: jupyter-notebook-setup-in-scaleway
+:slug: jupyter-notebook-setup-in-vps
 :author: John Nduli
 :status: draft
+
+These steps have been tested on Digital Ocean server and a
+scaleway server.
 
 Get a server and set up ubuntu in it. Afterwards, update ubuntu
 before anything else.
@@ -24,6 +27,7 @@ Create a user and switch to the user:
 
     useradd -m -s /bin/bash user
     usermod -aG sudo username
+    sudo passwd username
     su - user
 
 The install pip using python3 environment
@@ -32,12 +36,34 @@ The install pip using python3 environment
 
    sudo apt install python3-pip
 
-Install jupyter notebook
+Install various ml libraries:
 
 .. code-block:: bash
 
-    pip3 install -U 'ipython[notebook]'
-    pip3 install -U jupyter
+    python3 -m pip install --user numpy scipy matplotlib pandas sympy nose seaborn pillow keras tensorflow scikit-learn scikit-image
+
+When setting up scaleay, some of the libraries might fail to
+install. Here are the dependenices I had to install for pillow:
+
+.. code-block:: bash
+
+    sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+
+And here are the dependencies I had to install for scikit:
+
+.. code-block:: bash
+
+    sudo apt-get install gcc gfortran python-dev libopenblas-dev liblapack-dev
+
+
+Add this to the ~/.profile file to be able to use jupyter from the
+terminal:
+
+.. code-block:: bash
+
+    if [ -d "$HOME/.local/bin" ] ; then
+            PATH="$HOME/.local/bin:$PATH"
+    fi
 
 
 Set up jupyter notebook:
@@ -52,8 +78,8 @@ Enter the file and change the following:
 
 .. code-block:: python
 
-    c.Notebook.open_browser = false
-    c.Notebook.ip = '0.0.0.0'
+    c.NotebookApp.open_browser = False
+    c.NotebookApp.ip = '0.0.0.0'
 
 To set up the password to be used on logging in do:
 
@@ -69,34 +95,28 @@ Then start jupyter with:
 
 The jupyter can be accessed from : ip_address:8888 using any browser.
 
-To install libraries:
+I then install kaggle-cli to be used to get data from kaggle:
 
-kaggle-cli
+.. code-block:: bash
 
-sudo apt-get install libxml2-dev libxslt1-dev python3-lxml
-python3 -m pip install --user kaggle-cli
+    python3 -m pip install --user kaggle-cli
 
-Numpy, Scipy, matplotlib, etc
+On scaleway, I had to install the following first before
+kaggle-cli:
 
-# dependencies for pillow
+.. code-block:: bash
 
-sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev \
-    libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+    sudo apt-get install libxml2-dev libxslt1-dev python3-lxml
 
-python3 -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose seaborn pillow keras tensorflow
+To install Tensorflow on scaleway's arm processors, I found
+instructions for a custom build `here <https://github.com/lherman-cs/tensorflow-aarch64>`_.
 
-Had to run this for scipy to install
-sudo apt-get install gcc gfortran python-dev libopenblas-dev liblapack-dev
+The instructions are to:
 
-pythom3 -m pip install --user scikit-learn scikit-image
+.. code-block:: bash
 
-
-TensorFlow for arm can be found here:
-https://github.com/lherman-cs/tensorflow-aarch64
-
-Instructions are basically to: 
-curl -L
-https://github.com/lherman-cs/tensorflow-aarch64/releases/download/r1.4/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whl
-> /tmp/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whlpython3 -m
-pip inst
-all /tmp/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whl
+    curl -L
+    https://github.com/lherman-cs/tensorflow-aarch64/releases/download/r1.4/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whl
+    > /tmp/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whlpython3 -m
+    pip inst
+    all /tmp/tensorflow-1.4.0rc0-cp35-cp35m-linux_aarch64.whl
