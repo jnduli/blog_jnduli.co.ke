@@ -46,6 +46,7 @@ I then install various ml libraries I'll use later:
 .. code-block:: bash
 
     python3 -m pip install --user numpy scipy matplotlib pandas sympy nose seaborn pillow keras tensorflow scikit-learn scikit-image kaggle-cli
+    pythom3 -m pip install ipython[notebook] jupyter
 
 
 
