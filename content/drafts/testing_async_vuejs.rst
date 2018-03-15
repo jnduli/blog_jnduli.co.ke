@@ -8,16 +8,15 @@ Testing Asynchronous Calls in VueJS
 :author: John Nduli
 :status: draft
 
-When coding in vuejs, I use asynchronous calls a lot, especially
-when getting and sending data to an online api. Initially, testing
-this was really difficult but as I leaned more and more, it's
-become almost painless. I'll detail the options of testing
-promises and async calls which I use with vuejs.
-
+I frequently use asynchronous calls when coding in vuejs,
+especially when I get and send data to an online api. Initially, I
+found it difficult to test the asynchronous calls, but as I
+learned more, asynchronous tests are now almost painless. I detail the methods I use to test promises and async calls in this article.
 The snippets here assume you are using axios for http requests and
 the vuejs project uses vuex for state management.
 
-Let's take this as our store:
+This is a simple vuex store that can get a random quote or a list
+of quotes from `this online api <http://quotesondesign.com/>`.
 
 .. code-block:: javascript
 
@@ -61,7 +60,8 @@ Let's take this as our store:
 
 
 
-And this is one of our views that gets random quotes:
+
+This is vue component that will display the list of random quotes got:
 
 .. code-block:: javascript
 
@@ -82,9 +82,6 @@ And this is one of our views that gets random quotes:
 
     export default {
       name: 'GetQuotes',
-      // created: function () {
-      // this.$store.dispatch('getRandomQuote')
-      // },
       computed: mapState({
         randomQuote: state => state.randomQuote
       }),
@@ -96,20 +93,20 @@ And this is one of our views that gets random quotes:
     }
     </script>
 
-To test the getQuotes methods will be a bit tricky. This is
-because we first have a call to an api server, and this call is
-asynchronous. Luckily, there is a library called `moxios
-<https://github.com/axios/moxios>`_. To set it up on the project,
-do:
+If I want to test the getQuote method, I'll have to figure out how
+to make the asyc ajax call to the server. Since the call happens
+in another thread, it becomes tricky, because I have to wait for
+that thread to finish before testing the result. Luckily, there is
+a library called `moxios <https://github.com/axios/moxios>`_. To
+set it up on the project, do:
 
 .. code-block:: bash
 
    npm install moxios --save-dev
 
-Moxios provides a pretty neat way of mocking axios calls so that
-we get dummy content that can be rendered as though it was the
-real thing. It also provides a means on waiting for axios promises
-to finish. So to test the above component using moxios:
+With moxios, I can mock the ajax calls (from axios). With this, I
+get dummy content that the test can treat similarly to how the
+component will treat server results. Moxios also has a wait function, which will pause execution of test until the promise completes. To test the above component with moxios:
 
 .. code-block:: javascript
 
@@ -161,13 +158,14 @@ to finish. So to test the above component using moxios:
       })
     })
 
-From the above, we can see the stubRequest whicn mocks the axios
-api call. Furthermore, we find the moxios.wait() call which waits
-for the call to complete before testing the contents of the random
-quote. I really like this method because it means I can also test
-the store indirectly when testing the components.
+From the above, I use stubRequest to mock the http request. In the
+actual test, I use moxios.wait(), which will wait until the api
+call completes before testing the contents of the random quote. I
+like this method because it means I get to test the store
+indirectly while testing my components.
 
-We could also use nextTick to test the promise like this:
+Instead of moxios.call(), I could use vue's nextTick(), which
+also waits for the promise to complete.
 
 .. code-block:: javascript
 
@@ -284,6 +282,23 @@ this for example the test would look like this:
 
    it('should show quotes on created', async () => {
      await flushPromises()
+     let quotes = wrapper.findAll('#quotes')
+     console.log(quotes)
+     expect(quotes.length).toEqual(2)
+   })
+
+The advantage flushPromises has is that if the component has
+multiple asynchronous calls at the same time e.g. call to user api
+to confirm if logged in, get list of quotes, get comments, and
+from some reason the test does not work, we can just add other
+flushPromises in the test.
+
+
+.. code-block:: javascript
+
+   it('should show quotes on created', async () => {
+     await flushPromises()
+     await flustPromises()
      let quotes = wrapper.findAll('#quotes')
      console.log(quotes)
      expect(quotes.length).toEqual(2)
