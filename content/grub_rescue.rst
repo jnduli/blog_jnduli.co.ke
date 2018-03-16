@@ -42,9 +42,9 @@ Assuming its (hd0,gpt3), I then did:
 
 .. code-block:: bash
 
-   sudo root=(hd0,gpt3)
+   set root=(hd0,gpt3)
    set prefix=(hd0,gpt3)/boot/grub
-   insmode normal
+   insmod normal
    normal
 
 With this, I was able to load the normal grub menu and boot into
