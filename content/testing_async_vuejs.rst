@@ -2,21 +2,23 @@
 Testing Asynchronous Calls in VueJS
 ###################################
 
-:date: 2018-01-14 15:00
+:date: 2018-03-16 15:00
 :category: Computer
+:tags: projects, programming
 :slug: testing-asynchronous-calls-in-vue
 :author: John Nduli
-:status: draft
+:status: published
 
 I frequently use asynchronous calls when coding in vuejs,
 especially when I get and send data to an online api. Initially, I
 found it difficult to test the asynchronous calls, but as I
-learned more, asynchronous tests are now almost painless. I detail the methods I use to test promises and async calls in this article.
+learned more, asynchronous tests became painless. I detail the
+methods I use to test promises and async calls in this article.
 The snippets here assume you are using axios for http requests and
 the vuejs project uses vuex for state management.
 
 This is a simple vuex store that can get a random quote or a list
-of quotes from `this online api <http://quotesondesign.com/>`.
+of quotes from `this online api <http://quotesondesign.com/>`_.
 
 .. code-block:: javascript
 
@@ -179,127 +181,32 @@ also waits for the promise to complete.
    })
 
 
-Suppose our component had a created hook, and within this an
-asychronous task was called that returned quotes like:
-
-.. code-block:: javascript
-
-    <template>
-      <div>
-        <h2>Quotes</h2>
-        <div v-for="item in quotes" :key="item.ID">
-          <h2>{{ item.title }}</h2>
-          {{ item.content }}
-        </div>
-        <h2>Random Quote</h2>
-        <div id='random-quote' v-for="item in randomQuote" :key="item.ID">
-          <h2>{{ item.title }}</h2>
-          {{ item.content }}
-        </div>
-        <div v-if="randomQuote === null">It is null</div>
-        <button id='get-random' v-on:click="getQuote">GetRandomQuote</button>
-      </div>
-    </template>
-    <script>
-    import { mapState } from 'vuex'
-
-    export default {
-      name: 'GetQuotes',
-      created: function () {
-        this.$store.dispatch('getQuotes')
-      },
-      computed: mapState({
-        randomQuote: state => state.randomQuote,
-        quotes: state => state.quotes
-      }),
-      methods: {
-        getQuote: function () {
-          this.$store.dispatch('getRandomQuote')
-        }
-      }
-    }
-    </script>
-
-Testing the created function is easy. We just stub the getQuotes
-url in our beforeEach call like:
-
-.. code-block:: javascript
-
-   beforeEach(() => {
-     moxios.install()
-
-     moxios.stubRequest('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1', {
-       status: 200,
-       response: [
-         {
-           ID: 1622,
-           title: 'Stephen Anderson',
-           content: '<p>At this point in experience design evolution, satisfaction ought to be the norm, and delight out to be the goal.</p>\n'
-         }
-       ]
-     })
-
-     moxios.stubRequest('http://quotesondesign.com/wp-json/posts', {
-       status: 200,
-       response: [
-         {
-           ID: 2328,
-           content: '<p>Everything we do communicates.</p>\n',
-           title: 'Pete Episcopo'
-         },
-         {
-           ID: 2326,
-           content: '<p>The only &#8220;intuitive&#8221; interface is the nipple. After that it&#8217;s all learned.</p>\n',
-           title: 'Bruce Ediger'
-         }
-       ]
-     })
-
-     wrapper = mount(RandomQuote, {
-       store
-     })
-   })
-
-And to test it, we have this method:
-
-.. code-block:: javascript
-
-   it('should show quotes on created', (done) => {
-     moxios.wait(() => {
-       let quotes = wrapper.findAll('#quotes')
-       console.log(quotes)
-       expect(quotes.length).toEqual(2)
-       done()
-     })
-   })
-
 Another cleaner method of testing promises is using the library
 `flush-promises <https://github.com/kentor/flush-promises>`_. With
-this for example the test would look like this:
-
+flush-promises, the test would look like:
 
 .. code-block:: javascript
 
-   it('should show quotes on created', async () => {
+   it('should show random quote when clicked', async () => {
+     wrapper.find('#get-random').trigger('click')
      await flushPromises()
-     let quotes = wrapper.findAll('#quotes')
-     console.log(quotes)
-     expect(quotes.length).toEqual(2)
+     let randomQuote = wrapper.find('#random-quote')
+     expect(randomQuote.text()).toContain('At this point in experience design evolution, satisfaction ought to be the norm, and delight out to be the goal.')
    })
 
 The advantage flushPromises has is that if the component has
 multiple asynchronous calls at the same time e.g. call to user api
 to confirm if logged in, get list of quotes, get comments, and
-from some reason the test does not work, we can just add other
+for some reason the test does not work, we can just add multiple
 flushPromises in the test.
 
 
 .. code-block:: javascript
 
-   it('should show quotes on created', async () => {
+   it('should show random quote when clicked', async () => {
+     wrapper.find('#get-random').trigger('click')
      await flushPromises()
-     await flustPromises()
-     let quotes = wrapper.findAll('#quotes')
-     console.log(quotes)
-     expect(quotes.length).toEqual(2)
+     await flushPromises()
+     let randomQuote = wrapper.find('#random-quote')
+     expect(randomQuote.text()).toContain('At this point in experience design evolution, satisfaction ought to be the norm, and delight out to be the goal.')
    })
