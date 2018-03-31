@@ -1,20 +1,19 @@
 ######################################
 Jogging Time Tracking In Google Sheets
 ######################################
-:date: 2018-03-27 19:00
+:date: 2018-03-31 19:00
 :tags: projects
 :category: Computer
 :slug: joggin-time-tracking=in-google-sheets
 :author: John Nduli
-:status: draft
+:status: published
 
-I go for jogging alot. However I needed a method of tracking the
-various times I make that would be convenient. I tried various
-android apps, but their biggest failing is that I had to carry a
-bulky phone with me when going for jogging, which is a huge NOO.
-
-So I decided to store my times using google sheets. A sample table
-would look like:
+I jog frequently. I needed to track the various times I spend
+jogging my various routes. There are pretty awesome android apps
+for this but carrying a phone with me while jogging did not work.
+I was ok with a wrist watch though. So I jog and afterwards store
+the time and route taken in google sheets. A sample table would
+look like this:
 
 +------------+---------+----------+
 | A          | B       | C        |
@@ -26,22 +25,29 @@ would look like:
 | 2018-01-05 | Route A | 21.78.80 |
 +------------+---------+----------+
 
-There isn't a default function I could find that would take the
-Time in my formatting and provide the average or best time. So I
-had to write my own google functions.
+It becomes hard to gain insight into this table if it becomes too
+long. So I needed a method of getting basic metrics from this
+data. This was the average times I spend on a route and the best
+time recorded on a route.
+
+I could not find a function I could easily use to get this
+information. This was because I store my times in a weird format,
+that is Minutes.Seconds.Centiseconds. I used this because it is
+what my wrist watch gave me. So I had to write my own custom
+functions.
 
 Before doing calculations in time, it is best to convert it all to
-the smallest unit you have (in my case it was milliseconds). This
+the smallest unit you have (in my case it was centiseconds). This
 is the function I came up with:
 
 .. code-block:: javascript
 
     function getTimeInMicroSeconds(timeGiven) {
       var time = String(timeGiven).split('.');
-      return parseInt(time[0])*60000 + parseInt(time[1])*100 + parseInt(time[2]);
+      return parseInt(time[0])*6000 + parseInt(time[1])*100 + parseInt(time[2]);
     }
 
-So to get the average of mutliple times, you just add up the
+So to get the average of a group of times, you just add up the
 times in milliseconds, then find the average in milliseconds, and
 convert the average back to minutes, seconds and hours. To do
 that:
@@ -63,11 +69,14 @@ that:
       var microseconds = average_time % 100;
       var seconds = Math.floor(average_time/100) % 60;
       var minutes = Math.floor(average_time/60000);
-      return minutes+"."+seconds+"."+microseconds;
+      return correctSizeString(minutes,2)+"."+correctSizeString(seconds,2)+"."+correctSizeString(microseconds,2);
     }
 
-To find the best time, I converted the same, but this time
-maintained the index of the least time.
+The function correctSizeString just ensures the times are
+appropriately sized e.g. instead of showing 6 in seconds time, it
+will show 06.
+
+To find the best time, I came up with this function:
 
 .. code-block:: javascript
 
@@ -95,5 +104,8 @@ And this is one of the functions I use to get average time:
 
    =AVERAGETIME(FILTER($C$2:$C,$B$2:$B=$E2))
 
+The function filters the input based on what is in row B (which is
+the route) and finds the average of the times of a particular
+route.
 
-
+The complete script can be viewed from this `gist <https://gist.github.com/jnduli/9805e638c5da083070df033592fb1b13>`_.
