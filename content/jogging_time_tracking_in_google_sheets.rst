@@ -4,7 +4,7 @@ Jogging Time Tracking In Google Sheets
 :date: 2018-03-31 19:00
 :tags: projects
 :category: Computer
-:slug: joggin-time-tracking=in-google-sheets
+:slug: jogging-time-tracking=in-google-sheets
 :author: John Nduli
 :status: published
 
