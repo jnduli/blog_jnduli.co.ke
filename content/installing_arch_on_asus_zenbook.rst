@@ -117,7 +117,7 @@ I set the time zone for my system:
 .. code-block:: bash
 
     ln -sf /usr/share/zoneinfo/Africa/Nairobi /etc/localtime
-    hwclock -systohc
+    hwclock --systohc
 
 For the time zone once '/user/share/zoneinfo' has been type,
 clicking tab will autocomplete.
