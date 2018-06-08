@@ -1,15 +1,19 @@
 #########################
 When Memory is not enough
 #########################
-:date: 2018-05-24 16:00
-:tags: archlinux, linux
+:date: 2018-05-31 16:00
+:tags: archlinux, linux, server
 :category: Computer
 :slug: when-memory-is-not-enough
 :author: John Nduli
+:status: published
 
-Sometimes you are doing a task on a computer, when it suddenly
-freezes or an application crashes. This has occured to me
-multiple times, most recently being installing tor using yaourt,
+A computer or server suddenly freezes or crashes. You don't know
+what the problem is and you really need to complete this task. One
+of the options is to consider memory. You might have just run out.
+To confirm this, you can monitor memory usage using the htop
+command while the operation is running. This has occured to me
+multiple times, most recently while installing tor using yaourt,
 compiling a nodejs project and compiling hledger.
 
 To fix this, one needs to increase the size of swap. Swap is the
@@ -39,5 +43,26 @@ To do that:
 
     swapoff -a
     rm -f /swapfile
+
+To improve performance, one can try to experiment with the virtual
+memory subsystem. More on this can be found in the documentation
+for `vm
+<https://www.kernel.org/doc/Documentation/sysctl/vm.txt>`_. For
+example, I tried this:
+
+.. code-block:: lua
+
+    sudo sysctl vm.swappiness=10
+    sudo sysctl vm.vfs_cache_pressure=50
+
+To make the changes permanent, one can try this:
+
+.. code-block:: bash
+
+    sudo cp /etc/fstab /etc/fstab.bak #create backup just in case something fails
+    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+    echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
+    echo 'vm.vfs_cache_pressure=50' | sudo tee -a /etc/sysctl.conf
+
 
 The source for these commands is from the `archlinux_wiki <https://wiki.archlinux.org/index.php/Swap>`_
