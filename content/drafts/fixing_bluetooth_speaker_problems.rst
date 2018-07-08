@@ -6,6 +6,7 @@ Bluetooth Speakers Problems
 :category: Computer
 :slug: fixing-bluetooth-speaker-problems
 :author: John Nduli
+:status: draft
 
 Audacity could not link up with my bluetooth speakers during
 playback. However, the bluetooth speakesrs were visible from
