@@ -1,8 +1,33 @@
-First install the sane package:
+##############################
+Document Scaning in Arch Linux
+##############################
+:date: 2018-07-08 15:00
+:tags: computer, linux
+:category: Computer
+:slug: document-scaning-in-archgit-branches-basics
+:author: John Nduli
+:status: published
+
+Using a scanner in arch is pretty perplexing at first, especially
+if you want to try it from the command line. Here are my steps to
+end up with something that works.
+
+First install the sane package. Sane provides a command line tool
+for using scanners.
 
 .. code-block:: bash
 
     sudo pacman -S sane
+
+If the scanner is a hp brand, setting up hp-lip also helps out.
+
+.. code-block:: bash
+
+    sudo pacman -S hplip
+
+This gives features that help setting up the printer or scanner
+easily like hp-setup. Using it and the various prompts, one can
+set up the printer and scanner easily.
 
 Assuming the device has already been set up, find a list of
 devices using:
@@ -35,7 +60,6 @@ This in my case outputs:
 
 .. code-block:: bash
 
-
     All options specific to device `hpaio:/net/HP_LaserJet_Pro_MFP_M127fw?ip=192.168.1.27':
       Scan mode:
         --mode Lineart|Gray|Color [Lineart]
@@ -65,6 +89,7 @@ This in my case outputs:
         -y 0..296.926mm [296.926]
             Height of scan-area.
 
+
 And using this information I can scan the document. For example to
 output to a tiff file, I'll do:
 
@@ -84,8 +109,14 @@ tiffcp.
     tiffcp 1.tiff 2.tiff 3.tiff output.tiff
     tiffpdf -j output.tiff -o output.pdf
 
-However this method is error prone because libtiff has set and
-upper limit of memory to be used by libjpeg. So if I had really
+A more advanced example is:
+
+.. code-block:: bash
+
+   tiff2pdf -p letter -j -q 75 -t "title" -f -o title.pdf doc.tiff
+
+However using tiff2pdf occasionally fails because libtiff has set and
+upper limit of memory to be used by libjpeg. So if I have really
 large tiff files, I'll most likely get the following error:
 
 .. code-block:: bash
@@ -97,27 +128,12 @@ large tiff files, I'll most likely get the following error:
 I could not find a fix for this. So I just made sure my tiff files
 were less than 10MB. If a file became more than that size, I
 reduced the resolution of scanning. Also while combining files
-using tiffcp, I took great care of the sizes too.
-
-To fix this, I combined less files and later added them to one pdf
-file using pdfunite.
+using tiffcp, if the eventual tiff file is too big, I convert the
+individual tiff files into pdfs and combine the pdfs using the
+following command:
 
 .. code-block:: bash
 
     pdfunite 1.pdf 2.pdf output.pdf
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+And that is how I scan document in my arch setup.
