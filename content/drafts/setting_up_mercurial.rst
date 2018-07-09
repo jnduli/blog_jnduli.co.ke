@@ -13,28 +13,43 @@ I've always wanted to use mercurial.
 
 Set it up both on the server and my laptop:
 
+.. code-block:: bash
+
     sudo pacman -S mercurial
     sudo apt install mercurial
     
 Create a new repo on the server with:
     
+.. code-block:: bash
+
     cd /path/to/hg/repo
     hg init trial
 
 On the local machine, I use ssh to clone from the server.
 
+.. code-block:: bash
+
     hg clone ssh://user@example.com:3300/path/to/hg/repo/trial
 
-     hg clone ssh://rookie@jnduli.co.ke/hg/trial
+    hg clone ssh://rookie@jnduli.co.ke/hg/trial
 
 This adds the link as the default remote repo. It can be viewed by
 doing:
+
+.. code-block:: bash
+
     hg paths
 
 And we get this:
+
+.. code-block:: bash
+
     default = ssh://rookie@jnduli.co.ke/hg/trial
 
 Basic usage commands:
+
+.. code-block:: bash
+
     hg status
     hg add <file_name>
     hg commit -m "message"

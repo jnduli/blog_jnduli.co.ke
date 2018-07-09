@@ -19,7 +19,7 @@ basics: `tutorial
 Basically the GA is an iterative process that works in the
 following way:
 
-.. code-block:: 
+.. code-block:: bash
 
     Initialize the population
     set terminal condition and maximum generations for use
