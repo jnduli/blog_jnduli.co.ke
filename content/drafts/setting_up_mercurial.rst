@@ -31,8 +31,6 @@ On the local machine, I use ssh to clone from the server.
 
     hg clone ssh://user@example.com:3300/path/to/hg/repo/trial
 
-    hg clone ssh://rookie@jnduli.co.ke/hg/trial
-
 This adds the link as the default remote repo. It can be viewed by
 doing:
 
@@ -44,7 +42,7 @@ And we get this:
 
 .. code-block:: bash
 
-    default = ssh://rookie@jnduli.co.ke/hg/trial
+    default = ssh://email@example.com/path/to/hg/trial
 
 Basic usage commands:
 
@@ -53,3 +51,24 @@ Basic usage commands:
     hg status
     hg add <file_name>
     hg commit -m "message"
+
+If you did not set up the repository on the server before creating
+the local repo, you can solve this by doing this:
+
+Edit the .hg/hgrc file and add the following:
+
+.. code-block:: python
+
+    [paths]
+    default = ssh://random@example.com/path/folder
+
+    [ui]
+    username = name <email@example.com>
+
+Also make sure the server has this folder and that its set up
+
+.. code-block:: bash
+
+   mkdir /path/to/hg/folder
+   cd /path/to/hg/folder
+   hg init
