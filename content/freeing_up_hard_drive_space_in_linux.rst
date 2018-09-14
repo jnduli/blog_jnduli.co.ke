@@ -106,7 +106,8 @@ if they are unnecessary. This can be done with:
 
 Another option is to figure out the packages that take up the most
 space. This command (found `here
-<https://www.commandlinefu.com/commands/view/7613/arch-linux-sort-installed-packages-by-size>`_
+<https://www.commandlinefu.com/commands/view/7613/arch-linux-sort-installed-packages-by-size>`_)
+lists packages from the smallest to the largest.
 
 .. code-block:: bash
 
