@@ -1,12 +1,12 @@
 ###########################
 Bluetooth Speakers Problems
 ###########################
-:date: 2018-05-30 08:00
+:date: 2018-09-14 08:00
 :tags: linux
 :category: Computer
 :slug: fixing-bluetooth-speaker-problems
 :author: John Nduli
-:status: draft
+:status: published
 
 
 Connecting to Device
