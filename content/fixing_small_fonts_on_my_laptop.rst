@@ -7,9 +7,9 @@ Fixing Small Fonts on My Laptop
 :category: Computer
 :slug: fixing-small-fonts-on-my-laptop
 :author: John Nduli
-:status: drafts
+:status: published
 
-I have been having this bugging problem with my laptop where the
+I have been having this problem with my laptop where the
 fonts seem too small. To fix this, I first had to check out my
 laptop's screen configurations:
 
@@ -65,4 +65,4 @@ output from the xdpyinfo command shows:
      dimensions:    1920x1080 pixels (290x170 millimeters)
      resolution:    168x161 dots per inch
 
-
+I got most of the information to fix this `here <https://bbs.archlinux.org/viewtopic.php?id=195327>`_.
