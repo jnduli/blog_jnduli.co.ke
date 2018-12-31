@@ -2,7 +2,7 @@
 Fixing Small Fonts on My Laptop
 ###############################
 
-:date: 2918-09-17 16:20
+:date: 2018-09-17 16:20
 :tags: computer, linux
 :category: Computer
 :slug: fixing-small-fonts-on-my-laptop
