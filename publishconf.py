@@ -21,6 +21,6 @@ DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
 
-#DISQUS_SITENAME = ""
+DISQUS_SITENAME = "jnduli-co-ke"
 GOOGLE_ANALYTICS = "UA-89300561-1"
 #THEME = "/home/rookie/Documents/projects/mincss_pelican_theme"
