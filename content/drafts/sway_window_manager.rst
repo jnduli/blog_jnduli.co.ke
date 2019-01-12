@@ -65,11 +65,6 @@ The problems I have with sway are:
       bindsym $mod+F12 exec xfce4-terminal --drop-down --title=dropdown
       for_window [title="dropdown"] floating enable
 
-
-- When connecting an external monitor to my laptop, I expect it to be on
-  the right of the laptop screen. However, sway defaults with it on the
-  left. I've tried a couple of settings in my config, but I haven't been
-  able to set this up.
 - Switching between keyboard layouts is tricky. The options I've got
   involve restarting sway with the new keyboard layout I intend to use,
   for example:
@@ -77,3 +72,13 @@ The problems I have with sway are:
    .. code-block:: bash
 
       export XKB_DEFAULT_LAYOUT=us; export XKB_DEFAULT_VARIANT=qwerty; sway
+
+- When connecting an external monitor to my laptop, I expect it to be on
+  the right of the laptop screen. However, sway defaults with it on the
+  left. To fix this, I set up both screens and their index as shown
+  below:
+
+   .. code-block:: bash
+
+      output eDP-1 resolution 1920x1080 position 0,0
+      output HDMI-A-1 resolution 1280x1024 position 1920,0
