@@ -1,12 +1,12 @@
 ###################
 Sway Window Manager
 ###################
-:date: 2017-10-21 08:00
+:date: 2019-01-12 08:00
 :tags: window-managers
 :category: Computer
 :slug: sway-window-manager
 :author: John Nduli
-:status: draft
+:status: published
 
 Wayland is a display server that should work as a replacement for X.
 I've been thinking of trying it out for some time now. Detailed
