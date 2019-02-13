@@ -7,7 +7,7 @@ Courage To Be Disliked: A Review
 :category: Random
 :slug: courage-to-be-disliked-a-review
 :author: John Nduli
-:status: draft
+:status: published
 
 Courage to be disliked is a book that explains Adlerian psychology. It
 does so in the form of a dialog, between a student and a master. Here
