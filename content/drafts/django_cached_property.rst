@@ -1,6 +1,19 @@
+########################
+Django's Cached Property
+########################
+
+:date: 2019-02-27 14:30
+:tags: computer
+:category: Computer
+:slug: django-cached-property-explanation
+:author: John Nduli
+:status: draft
+
+
 I've been racking my brain trying to understand how django's decorator
 `@cached_property` works and I think I've found it. Here is the class
-definition:
+definition `original file
+<https://github.com/django/django/blob/2.1/django/utils/functional.py>`_:
 
 .. code-block:: python
 
@@ -9,34 +22,13 @@ definition:
        """
        Decorator that converts a method with a single self argument into a
        property cached on the instance.
-
-       A cached property can be made out of an existing method:
-       (e.g. ``url = cached_property(get_absolute_url)``).
-       The optional ``name`` argument is obsolete as of Python 3.6 and will be
-       deprecated in Django 4.0 (#30127).
+       Optional ``name`` argument allows you to make cached properties of other
+       methods. (e.g.  url = cached_property(get_absolute_url, name='url') )
        """
-       name = None
-
-       @staticmethod
-       def func(instance):
-           raise TypeError(
-               'Cannot use cached_property instance without calling '
-               '__set_name__() on it.'
-           )
-
        def __init__(self, func, name=None):
-           self.real_func = func
+           self.func = func
            self.__doc__ = getattr(func, '__doc__')
-
-       def __set_name__(self, owner, name):
-           if self.name is None:
-               self.name = name
-               self.func = self.real_func
-           elif name != self.name:
-               raise TypeError(
-                   "Cannot assign the same cached_property to two different names "
-                   "(%r and %r)." % (self.name, name)
-               )
+           self.name = name or func.__name__
 
        def __get__(self, instance, cls=None):
            """
@@ -48,6 +40,7 @@ definition:
                return self
            res = instance.__dict__[self.name] = self.func(instance)
            return res
+
 
 
 This will be used in a class as follows:
@@ -98,8 +91,3 @@ method is still accessing the cached value. To update this, the
 Clearing this will force a recomputation of the square variable.
 However, its really easy to skip this, so I think the `cached_property`
 should be used where the objects parameters are not expected to change.
-
-The owner parameter is the `__get__` method refers to the class, similar
-to the `__set_name__` method. The `name` parameter is the function name.
-The `__set_name__` method is called immediately after `__init__` in this
-case.
