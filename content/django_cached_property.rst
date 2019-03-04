@@ -2,18 +2,17 @@
 Django's Cached Property
 ########################
 
-:date: 2019-02-27 14:30
-:tags: computer
+:date: 2019-02-28 14:30
+:tags: programming
 :category: Computer
 :slug: django-cached-property-explanation
 :author: John Nduli
-:status: draft
+:status: published
 
 
-I've been racking my brain trying to understand how django's decorator
-`@cached_property` works and I think I've found it. Here is the class
-definition `original file
-<https://github.com/django/django/blob/2.1/django/utils/functional.py>`_:
+I've been trying to understand how django's decorator `@cached_property`
+works. Here is the class definition (`original source
+<https://github.com/django/django/blob/2.1/django/utils/functional.py>`_):
 
 .. code-block:: python
 
@@ -60,14 +59,15 @@ This will be used in a class as follows:
    d.square # Prints 4. Uses the cached value
 
 
-When the instance d of double first access the `square` property, the
-`__get__` from the `cached_property` class is called. This method
-receives the instance d as one of its parameters and stores the result
-in the instance's `__dict__[square]` variable. The next time the `square`
-property is accessed, it picks up the appropriate value from its
-`__dict__` and the function is not called. I think this is because the
-python's internals check the `__dict__` first before proceeding to the
-`__get__` method.
+When the instance `d` of `Double` first accesses the `square` property,
+the `__get__` from the `cached_property` class is called. This method
+receives the instance `d` as one of its parameters. It then calls the
+actual function and stores the result in the instance's
+`__dict__[square]` variable. The next time the `square` property is
+accessed, it picks up the appropriate value from its `__dict__` and the
+function is not called. This is because `d` has a lookup chain starting
+from `b.__dict__['square']` as explained `here
+<https://docs.python.org/3.7/howto/descriptor.html#id3>`_.
 
 However should the object be changed, for example:
 
@@ -89,5 +89,5 @@ method is still accessing the cached value. To update this, the
 
 
 Clearing this will force a recomputation of the square variable.
-However, its really easy to skip this, so I think the `cached_property`
+However, it's really easy to skip this, so I think the `cached_property`
 should be used where the objects parameters are not expected to change.
