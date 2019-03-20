@@ -44,7 +44,7 @@ To set up the key, copy the public key to the server by:
 
 .. code-block:: bash
 
-    ssh-copy-id user@ipaddress -i file.pub
+    ssh-copy-id -i file.pub user@ipaddress
 
 If you are copying the keys found in the default location i.e.
 ~/.ssh/id_rsa.pub, the -i option can be ignored.
