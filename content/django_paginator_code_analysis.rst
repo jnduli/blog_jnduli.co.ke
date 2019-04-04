@@ -1,5 +1,13 @@
-.. Define pagination
-.. Explain basic implementation btn django and pelican
+###########################################################
+Pagination: Review of Django's and Pelican's Implementation
+###########################################################
+
+:date: 2019-03-09 17:30
+:tags: programming
+:category: Computer
+:slug: pagination-review-of-django-pelican-implementation
+:author: John Nduli
+:status: published
 
 Pagination is the process of dividing up a document into discrete pages
 (`wikipedia <https://en.wikipedia.org/wiki/Pagination>`_). Django and
@@ -75,3 +83,7 @@ though. It also has some useful methods like:
 With these one can effectively get the contents of a page by looping
 through the paginator (in django only) and have various logic on which
 page numbers to display.
+
+The example provided in the `django docs here
+<https://docs.djangoproject.com/en/2.1/topics/pagination/#using-paginator-in-a-view>`_
+shows a really good usage of the various methods.
