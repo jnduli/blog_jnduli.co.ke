@@ -1,6 +1,12 @@
 ####################
 Ansible and SSH Port
 ####################
+:date: 2019-04-16 09:00
+:tags: programming, server
+:category: Computer
+:slug: ansible-and-ssh-ports
+:author: John Nduli
+:status: published
 
 Hackers and bots try to log into servers all the time. They do this by
 trying random ssh logins into your server. A deterrent to this is to
@@ -8,8 +14,16 @@ disable the default ssh port and set it to something else. Also, disable
 root login as this is the most common user attempt I've seen on my
 server.
 
-After disabling port 22, ansible did not work as expected. This is
-because it uses this port number by default. To fix this, the url used
+To disable the port globally, just edit the `/etc/ssh/sshd_config` file
+to have the line shown below (the `1234` should be any number you wish below 65535):
+
+.. code-block:: bash
+    
+    Port 1234
+
+
+After disabling port 22, ansible did not work as expected because if
+uses this port by default. To fix this, the url used
 with my playbooks was changed from the terminal, as shown below.
 
 .. code-block:: bash
