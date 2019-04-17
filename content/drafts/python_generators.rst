@@ -2,27 +2,24 @@
 Python Generators
 #################
 
-:date: 2019-04-04 14:30
+:date: 2019-04-20 14:30
 :tags: programming
 :category: Computer
-:slug: python_generators
+:slug: python-generators
 :author: John Nduli
 :status: draft
 
-Generators are functions that behave like iterators. This means that
-they can be used in for loops.
-
-For example, to implement a generator that generates even numbers:
+Generators are functions that behave like iterators, thus can be used in
+for loops. For example, a generator that produces even numbers will look
+like:
 
 .. code-block:: python
 
-    def even_numbers(max):
+    def even_numbers(upperlimit):
         current = 0
-        while current < max:
-            if not (current % 2):
-                yield current
-            current += 1
-
+        while current < upperlimit:
+            yield current
+            current += 2
 
 Another method to create a generators is using a syntax similar to list
 comprehension:
@@ -31,7 +28,7 @@ comprehension:
 
     even_numbers = (n for n in range(0, 50, 2))
 
-Generators use lazy loading, which means that a value is generated only
+Generators are lazy loading, which means that a value is generated only
 when it's needed. This can best be observed in the even_numbers function
 above. It is used as shown below:
 
