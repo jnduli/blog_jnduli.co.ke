@@ -1,3 +1,6 @@
 [submodule "letter_theme"]
 	path = letter_theme
 	url = https://github.com/jnduli/letter_theme.git
+[submodule "pelican-plugins"]
+	path = pelican-plugins
+	url = https://github.com/getpelican/pelican-plugins.git
