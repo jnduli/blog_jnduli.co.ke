@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
-import os
 
 AUTHOR = 'John Nduli'
 SITENAME = "Nduli's World"
@@ -33,11 +32,9 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# RELATIVE_URLS = True
 
-THEME = os.getenv('HOME') +'/documents/pelican_requirements/letter_theme'
-#THEME ='/home/rookie/Documents/projects/tutorials/pelican_tut/pelican-themes/gum'
+THEME = './letter_theme'
 
-PLUGIN_PATHS = [os.getenv('HOME')+'/documents/pelican_requirements/pelican-plugins']
-print(PLUGIN_PATHS)
+PLUGIN_PATHS = ['./pelican-plugins']
 PLUGINS = ['render_math']
