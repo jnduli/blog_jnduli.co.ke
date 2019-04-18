@@ -1,3 +1,10 @@
+########################
+VueJS Django ToDo Part 2
+########################
+
+:date: 2019-03-04
+
+
 I start creating the django backed. To do this I first set up a
 virtual environment.
 

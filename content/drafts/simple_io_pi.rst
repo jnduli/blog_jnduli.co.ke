@@ -1,3 +1,14 @@
+#####################
+Simple IO RaspberryPi
+#####################
+
+:date: 2019-03-04 15:00
+:tags: projects
+:category: Engineering
+:slug: simple-io-raspberrypi
+:author: John Nduli
+:status: draft
+
 Set up the pi using: 
 
 .. code-block:: bash

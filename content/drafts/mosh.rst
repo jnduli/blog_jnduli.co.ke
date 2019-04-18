@@ -2,6 +2,13 @@
 Mosh
 ####
 
+:date: 2018-03-04 15:00
+:tags: linux
+:category: Computer
+:slug: mosh
+:author: John Nduli
+:status: draft
+
 On local machine:
 
     pacman -S mosh

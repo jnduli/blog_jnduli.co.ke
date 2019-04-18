@@ -1,6 +1,7 @@
 #####################
 Using FPGA Cyclone II
 #####################
+:date: 2019-03-04
 :tags: hardware
 :category: Computer
 :slug: using-fpga-cyclone-II

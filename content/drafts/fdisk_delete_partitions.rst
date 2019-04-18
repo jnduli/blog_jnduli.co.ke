@@ -1,3 +1,14 @@
+#######################
+Fdisk Delete Partitions
+#######################
+
+:date: 2019-03-04 15:00
+:tags: linux
+:category: Computer
+:slug: fdisk-delete-partitions
+:author: John Nduli
+:status: draft
+
 Get the device by using fdisk -l
 
 Then do: fdisk /dev/sdb

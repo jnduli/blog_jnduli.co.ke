@@ -2,6 +2,8 @@
 VueJS Djanog APP part 3 : linking up server with front end
 ##########################################################
 
+:date: 2018-03-04 15:00
+
 Install axios and axios-mock-adapter
 
 .. code-block:: bash

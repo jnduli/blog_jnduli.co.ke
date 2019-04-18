@@ -1,12 +1,13 @@
 #################
 Atmega8 with FTDI
 #################
+
 :date: 2018-03-04 15:00
 :tags: avr, projects
 :category: Engineering
 :slug: atmega8-with-ftdi
 :author: John Nduli
-:status: drafts
+:status: draft
 
 Connect the atmega8 to the ftdi breakout board using UART pins as
 follows:

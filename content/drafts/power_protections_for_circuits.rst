@@ -2,6 +2,13 @@
 Power Protection
 ################
 
+:date: 2018-03-04 15:00
+:tags: projects
+:category: Engineering
+:slug: power-protection
+:author: John Nduli
+:status: draft
+
 Protection against shorts or over currents
 ------------------------------------------
 Fuse

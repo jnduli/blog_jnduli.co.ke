@@ -1,3 +1,10 @@
+######################
+Huion 420 driver setup
+######################
+
+:date: 2019-04-19
+
+
 Install llinux headers:
 
 sudo pacman -S linux-headers
@@ -19,13 +26,15 @@ sudo pacman -S xf86-input-wacom
 
 Config file:
 
-Section "InputClass"
-	#Identifier "ELAN1300:00 04F3:3028 Touchpad"
-	Identifier "Huion on wacom"
-	MatchProduct "HUION"
-	MatchDevicePath "/dev/input/event*"
-	Driver "wacom"
-EndSection
+.. code-block:: lua
+
+    Section "InputClass"
+        #Identifier "ELAN1300:00 04F3:3028 Touchpad"
+        Identifier "Huion on wacom"
+        MatchProduct "HUION"
+        MatchDevicePath "/dev/input/event*"
+        Driver "wacom"
+    EndSection
 
 Restart laptop and do:
 
@@ -38,3 +47,4 @@ Edit pressure using gimp tool.
 References:
 https://github.com/DIGImend/digimend-kernel-drivers
 https://wiki.archlinux.org/index.php/Wacom_tablet
+

@@ -1,3 +1,15 @@
+##############
+USB ASP review
+##############
+
+:date: 2018-03-04 15:00
+:tags: avr, projects
+:category: Engineering
+:slug: usb-asp-review
+:author: John Nduli
+:status: draft
+
+
 I recently got some USBasps to use in programming my avr
 microcontrollers. I'd never used this before, so it a nice
 experience with then. To learn more about it checkout 

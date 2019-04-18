@@ -1,3 +1,10 @@
+#######################
+Setting up Media Server
+#######################
+
+:date: 2019-04-18
+
+
 Install samba on the drive 
 
 https://askubuntu.com/questions/789978/how-to-setup-nas-drive-on-ubuntu-desktop-16-04
