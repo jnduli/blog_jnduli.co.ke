@@ -1,11 +1,13 @@
 ###############
 GRUB RESCUE FiX
 ###############
+
 :date: 2017-09-21 15:00
 :tags: linux, archlinux
 :category: Computer
 :slug: grub_rescue_fix
 :author: John Nduli
+:status: published
 
 So I found myself in windows some time this week, and it started
 updating. The process had one major consequence, grub could not

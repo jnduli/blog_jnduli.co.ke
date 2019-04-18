@@ -3,6 +3,7 @@ Date: 2016-12-06 20:20
 Category: Pages
 Slug: about
 Author: John Nduli
+Status: published
 
 ## Who Am I? ##
 
