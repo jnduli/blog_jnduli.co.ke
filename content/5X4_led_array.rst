@@ -30,7 +30,7 @@ us out in choosing which LED to use.
 
 The following is the schematic I then came up with:
 
-.. image:: {filename}/images/5_by_4_led_array.png
+.. image:: {static}/images/5_by_4_led_array.png
     :alt: 5_by_4 led array image
 
 To have the scrolling effect, I then wrote code that turns on and
@@ -41,7 +41,7 @@ for this can be found `here:githublink <https://github.com/jnduli/led_array_atme
 
 Here is the image of the final fabricated circuit:
 
-.. image:: {filename}/images/5_by_4_led_physical_circuit.jpg
+.. image:: {static}/images/5_by_4_led_physical_circuit.jpg
     :alt: 5_by_4 led array image
 
 You can find the video of the working circuit here. The text being
