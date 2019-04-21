@@ -7,7 +7,7 @@ Python Generators
 :category: Computer
 :slug: python-generators
 :author: John Nduli
-:status: draft
+:status: published
 
 Generators are functions that behave like iterators, thus can be used in
 for loops. For example, a generator that produces even numbers will look
@@ -21,7 +21,7 @@ like:
             yield current
             current += 2
 
-Another method to create a generators is using a syntax similar to list
+Generators are also created using a syntax similar to list
 comprehension:
 
 .. code-block:: python
@@ -72,11 +72,10 @@ Communication can be done with generators using `send`. For example:
     def even_numbers(upper):
         current = 0
         while current < upper:
-            if not (current % 2):
-                new_max = (yield current)
-                if new_max is not None:
-                    upper = new_max
-            current += 1
+            new_max = (yield current)
+            if new_max is not None:
+                upper = new_max
+            current += 2
 
 In the above example, the upper limit can be changed while iterating
 through the generator. This is shown below:
@@ -89,5 +88,7 @@ through the generator. This is shown below:
         if i == 4:
             print(even.send(10))
 
-The `generator.send()` command kinda calls next, so that is why in the
-example I print it out (so as not to mix the even number after 4 i.e. 6)
+The `generator.send()` works similar to next, in that it resumes the
+generator. This means that at it also produces the next result in the
+iteration. This is why the result of the `even.send(10)` is also printed
+out, otherwise the above operation would skip printing `6`.
