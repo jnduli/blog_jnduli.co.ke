@@ -7,13 +7,13 @@ Huion 420 driver setup
 :category: Computer
 :slug: huion-420-driver-setup
 :author: John Nduli
-:status: draft
+:status: published
 
 I bought the Huion 420 because I wanted to experiment with graphics
 tablet and drawing on linux. I chose this primarily because of its cost.
 Out of the box, the device worked on my archlinux setup, however it
 behaved more like a mouse, with pressure sensitivity not detected. I did
-some research and here are the steps to fix this:
+some research and this is how I fixed this.
 
 I first had to install the digimend drivers. To do that:
 
@@ -22,18 +22,17 @@ I first had to install the digimend drivers. To do that:
     sudo pacman -S linux-headers
     yay -S digimend-kernel-drivers-dkms-git
 
-From the digimend docs, I then had to run this (this enables various
-kernel modules that relate to a huge range of graphics tablets):
+I had to unload previous versions of the drivers using modprobe.
 
 .. code-block:: bash
 
     sudo modprobe -r hid-kye hid-uclogic hid-polostar hid-viewsonic
 
 
-The default settings were not to my liking and I found out that wacom
-had a tool for configuring graphics tablets. It is a hit or miss whether
-this tool will work with your tablet, but in my case, it worked
-perfectly. To install the tool:
+The default settings were not to my liking and I found out there exists
+a tool that configures wacom tablets that can work with other models. It
+is a hit or miss whether this tool will work with your tablet, but in my
+case, it worked perfectly. To install the tool:
 
 .. code-block:: bash
 
