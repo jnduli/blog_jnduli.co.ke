@@ -1,7 +1,7 @@
 Title: Airtel Money and Paypal
 Date: 2016-12-20 20:50
 Category: Random
-Tags: airtel, paypal
+Tags: money
 Slug: airtel-money-and-paypal
 Author: John Nduli
 status: published
