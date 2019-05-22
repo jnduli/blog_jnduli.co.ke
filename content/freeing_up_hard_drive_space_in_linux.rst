@@ -9,12 +9,14 @@ Freeing up Space in my Linux Machine
 :author: John Nduli
 :status: published
 
-I have a 256GB SSD on my hard drive. This is rather small and I
-tend to have less than 10GB space. However, when the problem
-becomes critical, I have to figure out what is taking up all my
-space and fix this. This usually prompts some form of search and
-cleaning up the culprits. The following lists the process and
-commands I usually run for this to happen.
+I have a 256GB SSD on my laptop. This is rather constrained and I
+occasionally end up with less than 10GB drive space. When this happens,
+I have to figure out what is taking up all my space and fix this. This
+prompts some form of search and cleaning up of the culprits. This
+article lists the process and commands I usually run for this to
+happen.
+
+To get a general feel of how much space I have:
 
 .. code-block:: bash
 
@@ -35,16 +37,18 @@ Some sample output from this command is:
    tmpfs           787M   20K  787M   1% /run/user/1000
 
 
-As can be seen it provides really useful information, for example
-the size of a mounted drive and how much space has been used. The
-'-h' tag helps in making the sizes easier to read.
+This provides key information like what is the size of a partition and
+how much space has been used up. The '-h' tag helps in making the sizes
+easier to read.
+
+To list the various folders in root folder '/' and
+their sizes, I use:
 
 .. code-block:: bash
 
    du -sch /* | sort -h
 
-This command will list the various folders in root folder '/' and
-their sizes.  If permissions become a problem, you can run it with
+If permissions become a problem, you can run it with
 sudo.
 
 .. code-block:: bash
@@ -58,11 +62,13 @@ sudo.
 
 The above shows part of the output of the above command. You can
 change the folders as you try to figure out what is consuming
-space. The 'du' command ignores files and folders that start with
+space.
+
+The `du` command ignores files and folders that start with
 a '.'. This can become troublesome because it will not give you
 enough information about what is consuming space especially in the
-home directly, which in my case is riddled with such. To fix that,
-tun this command instead:
+home directory, which in my case is riddled with such. To fix that,
+run this command instead:
 
 .. code-block:: bash
 
@@ -76,36 +82,27 @@ generic one is:
 
    du -sch /folder/path/[\!.]* * | sort -h
 
-I can also find the sizes of files using the 'ls' command like:
+The `ls` command is another alternative for finding the sizes of files:
 
 .. code-block:: lua
 
    ls -lah
 
-With the above commands I usually get a good feeling of how my
-disk space has been consumed.
+Using the above commands, a general idea of where and how disk space is
+used can be formed.
 
 
 Cleaning Disk Space
 ===================
-Some of the good things to try is to clear up the cache of whatever
-installer you use:
+Clearing up the cache of whatever installer I'm using is usually a good
+place to start:
 
 .. code-block:: bash
 
    sudo pacman -Scc
    sudo yay -Scc
 
-Another option is to find files hogging up space and delete them
-if they are unnecessary. This can be done with:
-
-.. code-block:: bash
-
-   rm file
-   rm -r directory
-
-Another option is to figure out the packages that take up the most
-space. This command (found `here
+Some installed packages take up a log of space. This command (found `here
 <https://www.commandlinefu.com/commands/view/7613/arch-linux-sort-installed-packages-by-size>`_)
 lists packages from the smallest to the largest.
 
@@ -119,15 +116,37 @@ You can also remove orphans. To find them:
 
     sudo pacman -Qtd
 
-Look through the list and remove what is not needed. If you want to
-remove all orphans, do:
+Look through the list and remove what is not needed. To remove all
+orphans:
 
 .. code-block:: bash
 
     sudo pacman -Rns $(pacman -Qtdq)
 
-I also use docker a lot. So it tends to eat up a lot of disk
-space. The following commands help me out here:
+Delete unnecessary files that are hogging up space. These can be found
+using the `dh` or `ls` commands and deleted using:
+
+.. code-block:: bash
+
+   rm file
+   rm -r directory
+
+Another huge disk space hog is my cache folder. I typically delete this
+folder using:
+
+.. code-block:: bash
+
+    rm -r ./cache/*
+
+But if you want to be safe, you can delete only the files in that folder
+that haven't been used in a year using:
+
+.. code-block:: bash
+
+    find ~/.cache/ -type f -atime +365 -delete
+
+I use docker a lot. So it tends to eat up a lot of disk space. The
+following commands help me out here:
 
 .. code-block:: bash
 
@@ -161,19 +180,3 @@ folloing command:
 
 With this I can effectively remove files until I feel comfortable
 with the remaining disk space.
-
-
-Another huge disk space hog is my cache folder. I typically delete this
-folder using:
-
-.. code-block:: bash
-
-    rm -r ./cache/*
-
-But if you want to be safe, you can delete only the files in that folder
-that haven't been used in a year using:
-
-.. code-block:: bash
-
-    find ~/.cache/ -type f -atime +365 -delete
-
