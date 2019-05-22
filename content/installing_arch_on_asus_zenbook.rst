@@ -2,7 +2,7 @@
 ASUS ZenBook UX330UA ArchLinux Setup
 ####################################
 :date: 2017-06-28 15:00
-:tags: asus, archlinux, linux
+:tags: linux
 :category: Computer
 :slug: asus-zenbook-archlinux-setup
 :author: John Nduli

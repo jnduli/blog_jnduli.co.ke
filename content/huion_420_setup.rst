@@ -3,7 +3,7 @@ Huion 420 driver setup
 ######################
 
 :date: 2019-04-27 19:00
-:tags: archlinux, product, review
+:tags: linux, product, review
 :category: Computer
 :slug: huion-420-driver-setup
 :author: John Nduli

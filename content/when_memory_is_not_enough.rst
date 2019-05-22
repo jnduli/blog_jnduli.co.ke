@@ -2,7 +2,7 @@
 When Memory is not enough
 #########################
 :date: 2018-05-31 16:00
-:tags: archlinux, linux, server
+:tags: linux, server
 :category: Computer
 :slug: when-memory-is-not-enough
 :author: John Nduli

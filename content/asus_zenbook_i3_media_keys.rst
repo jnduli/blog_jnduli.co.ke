@@ -2,7 +2,7 @@
 Asus Zenbook Keyboard & Screen Brightness Fix On i3
 ###################################################
 :date: 2017-09-01 14:00
-:tags: asus, archlinux, linux
+:tags: linux
 :category: Computer
 :slug: asus-zenbook-keyboard-screen-issues-fix
 :author: John Nduli
