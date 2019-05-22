@@ -1,7 +1,7 @@
 Title: Changing Menu Icon MinCss
 Date: 2017-02-12 08:55
 Category: Computer
-Tags: mincss, css
+Tags: projects
 Author: John Nduli
 status: published
 
