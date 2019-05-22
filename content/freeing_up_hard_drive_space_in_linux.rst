@@ -113,6 +113,19 @@ lists packages from the smallest to the largest.
 
    pacman -Qi | grep 'Name\|Size\|Description' | cut -d: -f2 | paste - - - | awk -F'\t' 'BEGIN{ s["MiB"]=1024; s["KiB"]=1;} {split($3, a, " "); print a[1] * s[a[2]], "KiB", $1}' | sort -n
 
+You can also remove orphans. To find them:
+
+.. code-block:: bash
+
+    sudo pacman -Qtd
+
+Look through the list and remove what is not needed. If you want to
+remove all orphans, do:
+
+.. code-block:: bash
+
+    sudo pacman -Rns $(pacman -Qtdq)
+
 I also use docker a lot. So it tends to eat up a lot of disk
 space. The following commands help me out here:
 
@@ -148,4 +161,19 @@ folloing command:
 
 With this I can effectively remove files until I feel comfortable
 with the remaining disk space.
+
+
+Another huge disk space hog is my cache folder. I typically delete this
+folder using:
+
+.. code-block:: bash
+
+    rm -r ./cache/*
+
+But if you want to be safe, you can delete only the files in that folder
+that haven't been used in a year using:
+
+.. code-block:: bash
+
+    find ~/.cache/ -type f -atime +365 -delete
 
