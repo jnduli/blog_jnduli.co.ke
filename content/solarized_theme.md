@@ -1,7 +1,7 @@
 Title: Solarized Theme
 Date: 2017-02-26 08:20
 Category: Computer
-Tags: vim, tmux, terminal
+Tags: vim, linux
 Slug: solarized-theme
 Author: John Nduli
 status: published
