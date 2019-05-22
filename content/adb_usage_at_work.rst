@@ -3,7 +3,7 @@ Adb Usage at Work
 #################
 :date: 2017-04-09 08:20
 :category: Computer
-:tags: adb, computer
+:tags: linux
 :slug: adb-usage-at-work
 :author: John Nduli
 :status: published

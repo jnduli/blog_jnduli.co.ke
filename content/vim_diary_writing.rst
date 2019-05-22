@@ -3,7 +3,7 @@ Keeping a Diary in Vim
 ######################
 
 :date: 2017-11-05 09:00
-:tags: computer,vim
+:tags: vim
 :category: Computer
 :slug: keeping-diary-in-vim
 :author: John Nduli

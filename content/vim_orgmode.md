@@ -1,7 +1,7 @@
 Title: Org Mode in Vim
 Date: 2017-01-09 20:20
 Category: Computer
-Tags: computer, vim, org
+Tags: vim
 Slug: org-mode-in-vim
 Author: John Nduli
 status: published

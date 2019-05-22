@@ -2,7 +2,7 @@
 Document Scaning in Arch Linux
 ##############################
 :date: 2018-07-08 15:00
-:tags: computer, linux
+:tags: linux
 :category: Computer
 :slug: document-scaning-in-archgit-branches-basics
 :author: John Nduli

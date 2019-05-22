@@ -3,7 +3,7 @@ Ansible
 #######
 
 :date: 2018-01-06 18:00
-:tags: computer, programming, servers
+:tags: programming, servers
 :category: Computer
 :slug: ansible
 :author: John Nduli

@@ -3,7 +3,7 @@ My First Vim Function
 #####################
 :date: 2017-08-09 08:20
 :category: Computer
-:tags: vim,computer,programming
+:tags: vim, programming
 :slug: my-first-vim-function
 :author: John Nduli
 :status: published

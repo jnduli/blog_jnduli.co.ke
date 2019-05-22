@@ -1,7 +1,7 @@
 Title: Tmux Usage
 Date: 2017-02-05 08:20
 Category: Computer
-Tags: tmux, computer 
+Tags: linux 
 Slug: tmux-usage
 Author: John Nduli
 status: published

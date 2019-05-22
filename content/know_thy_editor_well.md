@@ -1,7 +1,7 @@
 Title: Know Thy Editor Well
 Date: 2017-02-19 08:20
 Category: Computer
-Tags: vim, computer 
+Tags: vim 
 Slug: know-thy-editor-well
 Author: John Nduli
 status: published

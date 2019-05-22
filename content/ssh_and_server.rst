@@ -3,7 +3,7 @@ SSH AND SERVERS
 ###############
 
 :date: 2018-02-16 15:00
-:tags: linux, server, computer
+:tags: linux, server
 :category: Computer
 :slug: ssh-and-servers
 :author: John Nduli

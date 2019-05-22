@@ -1,7 +1,7 @@
 Title: Remapping Keyboard Keys(Esc and Caps)
 Date: 2016-12-06 20:20
 Category: Computer
-Tags: keyboard, computer, vim
+Tags: linux, vim
 Slug: remapping-keyboard-keys-esc-caps
 Author: John Nduli
 status: published

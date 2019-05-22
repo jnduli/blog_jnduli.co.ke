@@ -3,7 +3,7 @@ Vim Airline Setup
 #################
 :date: 2017-06-12 08:20
 :category: Computer
-:tags: vim, computer
+:tags: vim
 :slug: vim-airline-setup
 :author: John Nduli
 :status: published
