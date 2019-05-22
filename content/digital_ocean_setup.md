@@ -1,7 +1,7 @@
 Title: Digital Ocean Server Setup
 Date: 2017-01-22 07:20
 Category: Computer
-Tags: linux, servers
+Tags: linux, server
 Slug: digital-ocean-server-setup
 status: published
 Author: John Nduli
