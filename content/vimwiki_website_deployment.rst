@@ -2,12 +2,12 @@
 Vimwiki Website Deployment using Git Hooks
 ##########################################
 
-:date: 2019-06-03
+:date: 2019-06-09
 :tags: projects, vim
 :category: Computer
 :slug: vimwiki-website-deployment-using-git-hooks
 :author: John Nduli
-:status: draft
+:status: published
 
 I use vimwiki to keep a track of my notes. This includes book summaries,
 linux commands, recipes and miscellanous content. It's an amazing vim
@@ -30,8 +30,8 @@ I configured vimwiki to generate the website at my preferred location using:
 I also needed a means of syncing the website with my notes. So anytime I
 add a new note or change some content, the website would also get
 updated with this. To solve this, I used `git hooks` (I version control my
-notes). I added a `post-commit` hook, which builds the html content
-using vim and uploads it to the server.
+notes). I added a `post-commit` hook, which would build the html content
+using vim and upload it to the server.
 
 To generate the html content:
 
