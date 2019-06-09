@@ -1,88 +1,71 @@
-#########################################
-Vimwiki Website Deployment with Git Hooks
-#########################################
-
+##########################################
+Vimwiki Website Deployment using Git Hooks
+##########################################
 
 :date: 2019-06-03
 :tags: projects, vim
 :category: Computer
-:slug: vimwiki-website-deployment-with-git-hooks
+:slug: vimwiki-website-deployment-using-git-hooks
 :author: John Nduli
 :status: draft
 
+I use vimwiki to keep a track of my notes. This includes book summaries,
+linux commands, recipes and miscellanous content. It's an amazing vim
+plugin that provides easy access and navigation to the content. This
+however works well only within vim.
 
-Introduction: vimwiki and what I use it for
+I occasionally need to access these notes outside vim and my laptop. One
+of the solutions for this is to have the content online as html, thus I
+can easily access this using any device that has a browser. Vimwiki
+supports note to html conversion using `VimwikiAll2HTML` command.
+Running that command in vim will generate a website on the specified
+directory.
 
-I use vimwikie to keep a track of my notes. These notes contains a lot
-of things from book notes, linux commands and recipes. Its an amazing
-tool that provides easy navigation to various notes and snippets I had
-wriiten donw.
-
-HOwever, I sometimes need to access these notes outside vim. This
-necessitates having some sort of webiste. Luckily, vimwiki supports
-conversion of the notes using 'VimwikiAll2HTML' command. Running that
-command in vim will generate a website on the specified path. In my
-case, I had to configure vimwiki properly to set up the website at my
-preferred location using:
-
-.. code-block:: bash
-
-    let g:vimwiki_list = [{"path": "~/vimwiki", "path_html": "~/vimwiki/public_html"},
-            \ {"path":"~/todo", "path_html": "~/todo/public_html"}]
-
-
-I needed a means of updating the website automatically each time another
-wiki page was added or content was changed. Luckily, my wiki is version
-controlled using git, so I could fix this with git hooks. Git hooks work by performing the specified action when the commit is done. In my case, I tested this concept by showing the contents of the folder in the post-commit hook.
+I configured vimwiki to generate the website at my preferred location using:
 
 .. code-block:: bash
 
-    touch .git/hooks/post-commit
-    chmod +x .git/hooks/post-commit
+    let g:vimwiki_list = [{"path": "~/vimwiki", "path_html": "~/vimwiki/public_html"}]
 
-And add the following contents:
+I also needed a means of syncing the website with my notes. So anytime I
+add a new note or change some content, the website would also get
+updated with this. To solve this, I used `git hooks` (I version control my
+notes). I added a `post-commit` hook, which builds the html content
+using vim and uploads it to the server.
 
-.. code-block:: bash
-
-    #!/bin/sh
-    ls
-
-After committing a file with `git commit`, the contents of the folder
-will be shown.
-
-The next step was figuring out how to generate the html from vimwiki.
-The command shown is run within vim. Luckily vim has some commandline
-options that help run the same from a bash script. For example, running
-
-Look for example for this
-
-In my case, I first passed the `-R` option which ensure vim opens
-whatever file in readonly mode. This is because you might have the
-index wiki file open, while the command is running. 
-
-For vimwiki docs, the `VimwikiIndex` opens up the first wiki file. With
-the wiki file open, I can then run `VimwikiAll2HTML` which compiles the
-html files. I then close vim using `qa!`. 
-
-However, running this raised a warning from vim, resulting in the
-terminal output being mungled. A fix for this is to append ` < /dev/tty`
-to the end of the command as discussed here :https://stackoverflow.com/questions/16517568/vim-exec-command-in-command-line-and-vim-warning-input-is-not-from-a-terminal
+To generate the html content:
 
 .. code-block:: bash
 
     vim -R -c ':VimwikiIndex' -c ':VimwikiAll2HTML' -c 'qa!' < /dev/tty
 
-I also needed to upload the new files to my server. For that I use
-rsync.
+The `-R` option ensures the file is open in `ReadOnly` mode. This is
+because the `index wiki` file might be open on another vim instance
+while this command runs.
+
+The `VimwikiIndex` command opens up the first wiki file in the
+`vimwiki_list` variable.
+
+The `VimwikiAll2HTML` command will generate the html files.
+
+`qa!` exits vim.
+
+Running this command from `post-commit` hook raised a warning, resulting
+in the output being mungled. To fix this, `< /dev/tty` is appended to
+the command. This discussion can be found `here on stackoverflow
+<https://stackoverflow.com/questions/16517568/vim-exec-command-in-command-line-and-vim-warning-input-is-not-from-a-terminal>`_
+
+To upload the files to my server, I use `rsync`. Here's the command
+used:
 
 .. code-block:: bash
 
     rsync -rav -e "ssh -p 1233" public_html/ username@example.co.ke:/home/username/vimwiki
 
-
-Combined, the post-commit file should contain:
+Combined, the `post-commit` file contains:
 
 .. code-block:: bash
+
     #!/bin/sh
 
     vim -R -c ':VimwikiIndex' -c ':VimwikiAll2HTML' -c 'qa!' < /dev/tty
@@ -91,4 +74,5 @@ Combined, the post-commit file should contain:
 Now every time I commit to the repo, the online version of my wiki is
 also updated automatically. Serving this directory is just a matter of
 setting up nginx properly (or the webserver being used). For security, I
-use `.htpasswd` files using the guide found here: https://www.digitalocean.com/community/tutorials/how-to-set-up-password-authentication-with-nginx-on-ubuntu-14-04
+use `.htpasswd` files using the guide found `here
+<https://www.digitalocean.com/community/tutorials/how-to-set-up-password-authentication-with-nginx-on-ubuntu-14-04>`_.
