@@ -1,114 +1,138 @@
-##########################
-Working With Bad CodeBases
-##########################
+###########################
+Working With A Bad Codebase
+###########################
 
 :date: 2019-06-10
 :tags: random
 :category: Computer
-:slug: working-with-bad-code-bases
+:slug: working-with-a-bad-code-base
 :author: John Nduli
 :status: draft
 
-I've worked with codebases that made me really frustrated. Some of the
-`features` I've seen include:
+I've worked with codebases that have made me frustrated. Some of the
+`**features**` I've seen include:
 
 - Naming the variables returned by a function `$this` and `$return`.
-  These variables belong the great great grandparent of the current class, so
-  before figuring out what they do, I ended up traversing some crazy
-  tree. And what did I get, the `$return` was an error string when the
-  call is not an ajax call.
-- Having multiple different languages in the same program. For example,
-  I got one which had `php`, `python`, `perl`, `javascript (node in the
-  backend)` and `c#`. I remember asking what some of these scripts were
-  doing there, only to be told no one had any idea.
-- Using 5 different ways to load javascript resources on the client. And
-  worst of this was that all these methods were being used in the same
-  template files. Worse still, some one decided to duplicate resources
-  using each method in the individual files.
-- God functions. I found a couple of functions that are more than 150
-  lines. These functions are so complicated that they have their own
-  internal functions, do database calls, handle web requests and even
-  authentication.
+- Having different languages in the same project. For example, I got one
+  which had `PHP`, `Python`, `Perl`, `JavaScript (node in the backend)`
+  and `c#`. Each language did not solve a unique and niche problem in
+  this case.
+- Using 5 different ways to load JavaScript and CSS resources on the
+  client on the same project.
+- God functions. These are functions that do everything and are
+  impossible to debug.
 
+Fixing such a codebase needs a lot of thought put into it. I found that
+the following process works best for me.
 
-My default reactions is usually flight, but sometimes I decide to fight.
-This entails getting my hands dirty before I can clean up things.
-However, for this to work, there needs to a proper process (I've found
-having good processes helps versus focussing on the product).
+Forgetting your ego
+-------------------
+The first reaction I have tends to be my ego talking. This is because I
+find better ways to fix the problems at hand. This is usually because I
+don't have the context nor understand the problem.
 
-Before anything else, make sure your first reaction to the codebase was
-the right one. This means going into the code base to have a rough idea
-of how things are implemented. There might just be the chance that the
-scary lines are scarcer than you initially thought. This also helps you
-have a rough overview of the code organisation and whatever styles (if
-any) have been used.
+What I do is take a break, walk around and look at the codebase again
+once I've cooled down. This provides some fresh perspective and I
+sometimes find that the code is pretty decent. This occurs when I had
+started looking at the worst done sections of the codebase. I also get
+to see the code organisation and styles used by doing this.
 
-Have an honest discussion with management or your supervisor. If the
-code is bad, it means that feature addition or bug fixes take a
-significant amount of time even for simple things. I remember having to
-fix a js problem that was within a 1500 line function. This took a lot
-of patience and perseverance, and when I finally fixed this, another
-problem occured. This is especially true if you're new to the code base
-or if there is no one to help you understand what's going on (this has
-happened to me a few times :<).
+Discuss with Management
+-----------------------
+Have an honest discussion with management. If the code is bad, it means
+that feature addition or bug fixes take a significant amount of time
+even for simple things. This is worse still if you're new to the code
+base but don't have someone to guide you through it (This has happened
+once for me).
 
-Documentation will save your life. This takes many forms but primarily,
-it involves comments, issues and actual system docs.
+Also make it clear that things will occasionally break, especially if
+the project did not have tests.
 
-I have a policy of not working on any thing if there isn't an issue for
-it. Furthermore, how the issue is created is a huge time saver. In my
-case, issues should have the following:
+Try to come up with a good enough workflow that will prevent the same
+thing happening again.
+
+Documentation
+-------------
+Document everything. In my case, documentation means issues, code
+comments and API docs.
+
+Issues
+^^^^^^
+I have a policy of not working on anything if there isn't an issue for
+it. This helps me keep track of all the problems discovered in the
+system.
+
+The basic requirements I have for issues are:
 
 - Clear unambiguous title
-- The title should be prepended with the class of issue. I usually have
-  Bug, Refactor, Feature, Documentation.
+- Prepend the title with the type of issue. I usually have Bug,
+  Refactor, Feature, Documentation.
 - The description of the issue should explain the problem
   comprehensively. If it is a bug, include a method of replication.
-- An implementation plan: This is where I write a draft of how I think
-  the problem will be solved. It doesn't need to be accurate, but at
-  least the next time I get this issue I won't start from scratch.
+- An implementation plan: This is where I draft an initial solution to
+  the problem. This doesn't need to be accurate, but at least the next
+  time I look at this issue I won't start from scratch.
 
-Lastly, create issues for each and every problem you encounter, no
-matter how simple it seems. 
+I create issues for every problem I encounter, no matter how simple it
+seems. 
 
-Anytime you analyze a God function, comment out what you've understood
-to be happening. This prevents you from starting all over again the next
-time you have to fix something related to this. Also when you eventually
-get to refactoring out this, you comments can guide you to get what
-should be made into its own functions, class, etc.
+Comments
+^^^^^^^^
+If you spend more time than necessary figuring out what a function does,
+take the time to comment this out. The next time you deal with the
+function, the comments will help you out.
 
+If the problem is in the function design, the comments can be a huge
+time saver when refactoring it.
+
+For God functions, I try to comment blocks that do one specific thing.
+When refactoring, I'll try to make these blocks into individual
+functions.
+
+Coding Standard
+---------------
 Choose a coding standard and stick to it. Even better yet, you can look
-for tools that ensure your code follows this standard. In my case, I use pre-commit
-hooks to either block commits or lint my code before committing
-anything. This also has the added advantage of preventing mistakes when
-you're in a hurry or there is a lot of pressure for something.
+for tools that ensure your code follows this standard. In my case, I use
+pre-commit hooks to either block commits or lint my code before
+committing anything. This prevents mistakes when I'm in a hurry or there
+is a lot of pressure.
 
+CI/CD
+-----
+I try to set up CI/CD for automatic testing and deployment of my
+projects. This catches some problems like linting errors and failing
+tests. It also reduces normal access to production/testing servers.
+This reduces the likelihood of making changes live.
 
+Testing
+-------
+Testing is the best thing I've found when improving codebases. This is
+because it forces good coding practices by default. For example, if you
+encounter a God function, trying to test this will force you to break it
+down into manageable blocks.
 
-
-
-If possible, use CI/CD pipelines to prevent problems that can occur.
-This includes merging things that breaks tests (that is if the system
-has tests).
-
-Next comes testing. This ends up being one of the best things on
-improving a code base. This is because it forces you to follow good
-coding practices just by the intent to test. For example, if you want to
-test a really large function with lambda functions within it, you'll be
-forced to break this up into small components that can be individually
-tested. If the same function has database calls, you'll be forced to
-test the returns of the database, thus removing this from the function.
-
+Database Modification
+---------------------
 I tend to avoid changing the database at first. This is because there
 are a lot of things that could have been done there that you might mess
-up. Also, unless you're a database pro, its safer to deal with the code
-base first. FOr example, I met a database with virtual tables,
-procedures, triggers that seemed to be fixable from the code side.
-Trying to change any of this led to a disaster that took me days to fix
-(I didn't even fix this, but reverted the database back to the original
-form). There are a lot of hidden things in databases that cannot be
-easilty found out.
+up. Also, unless you're a database pro, it's safer to deal with the code
+base first.
 
-If removing something, try to use 'grep' to make sure it isn't reference
-somewhere. I've found controller functions used in the weirdest of
-places on some codebases.
+For example, I met a database with virtual tables, procedures and
+triggers. I only knew of these features, but had never actively used
+them. The problem at hand seemed fixable from the db side, but I had not
+factored in that the affected table linked up with multiple virtual
+tables and triggers. Trying to change the database led to a disaster
+that took me days to fix (I didn't even fix this, but reverted the
+database back to the original form).
+
+Others
+------
+If removing or renaming something, try to use `grep` to make sure it
+isn't referenced somewhere. This is especially true for tightly coupled
+systems. I've found controller functions used in the weirdest of places
+on some codebases.
+
+Try to check code quality using `code climate`. Analyzing the json
+provided, helps figure out the more problematic sections of code. Better
+yet, you can use this as a step in your CI workflow.
