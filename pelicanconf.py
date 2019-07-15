@@ -9,6 +9,7 @@ SITEURL = ''
 PATH = 'content'
 
 TIMEZONE = 'Africa/Nairobi'
+DEFAULT_DATE_FORMAT = '%b %Y'
 
 DEFAULT_LANG = 'en'
 
