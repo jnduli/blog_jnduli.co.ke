@@ -7,7 +7,7 @@ Working With A Bad Codebase
 :category: Computer
 :slug: working-with-a-bad-code-base
 :author: John Nduli
-:status: draft
+:status: published
 
 I've worked with codebases that have made me frustrated. Some of the
 `**features**` I've seen include:
