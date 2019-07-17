@@ -26,6 +26,9 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
          ('You can modify those links in your config file', '#'),)
 
+MENUITEMS = (('Comics', 'https://comics.jnduli.co.ke/'),
+             ('Projects', '#'))
+
 # Social widget
 SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
@@ -37,7 +40,7 @@ DEFAULT_METADATA = {
 }
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# RELATIVE_URLS = True
 
 THEME = './letter_theme'
 
