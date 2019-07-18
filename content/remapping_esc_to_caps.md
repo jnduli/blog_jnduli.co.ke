@@ -7,14 +7,16 @@ Author: John Nduli
 status: published
 Summary: Run this in terminal:xmodmap -e "clear Lock" -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock" -e "keycode 66 = Escape NoSymbol Escape"
 
-I use vim as an editor, and I use it a lot. With that comes some curse. I press
-"ESC" a lot. And yet that key is located at a very inconvenient location. Its located at the top row on my keyboard. For a key that I use that much, I would rather it occurs somewhere closer to the home row.
+I use vim as an editor, and this comes with some curse. I press "ESC" a
+lot. And yet this key is located at an inconvenient location, at the top
+row of my keyboard. For a key I often use, I would rather it occurs
+somewhere closer to the home row.
 
-The "CapsLock" key is one that I rarely use. Yet its located at
+The "CapsLock" key is one that I rarely use, yet its located at
 the home row. Furthermore, its use is redundant because I can
-always use the SHIFT key to do the same work.
+always use the "SHIFT" key to do the same work.
 
-So I found a nifty trick on how to remap these keys on my keyboard
+I found a nifty trick on how to remap these keys on my keyboard
 in linux. 
 
 Open the terminal and type:
@@ -35,13 +37,22 @@ To make the changes permanent within the system:
 
     ::bash
     xmodmap -pke >~/.xmodmap
-    touch ~/.xinitrc #create file
+    # Add this line to ~/.xinitrc
     xmodmap .xmodmap
 
-This switch is not all hymns and praises.
 
-* My laptop just became more unusable to mugles
+Another alternative is to use `setxkbmap`:
+
+    ::bash
+    # replaces caps with escape functionality
+    setxkbmap -option caps:escape
+    # swaps capslock and escape
+    setxkbmap -option caps:swapescape
+
+Add whatever command to the `.xinitrc` file to work.
+
+This switch is not all hymns and praises because:
+
+* My laptop just became more unusable to others
 * My muscle memory has already got this new configuration. This
- makes it difficult to work with other machines or even in
- windows.
-
+ makes it difficult to work with other machines. 
