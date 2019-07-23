@@ -6,12 +6,12 @@ Python Timeit with Partial
 :category: Computer
 :slug: python-timeit-with-partial
 :author: John Nduli
-:status: draft
+:status: published
 
 
 The `timeit module <https://docs.python.org/3.7/library/timeit.html>`_
 provides an easy way to time python code. I use it to check if a new
-implementation runs faster than an older implementation. 
+code implementation runs faster than an older implementation. 
 
 Example usage of this is:
 
