@@ -26,8 +26,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
          ('You can modify those links in your config file', '#'),)
 
-MENUITEMS = (('Comics', 'https://comics.jnduli.co.ke/'),
-             ('Projects', '#'))
+MENUITEMS = (('Comics', 'https://comics.jnduli.co.ke/'),)
 
 # Social widget
 SOCIAL = (('You can add links in your config file', '#'),
@@ -38,6 +37,8 @@ DEFAULT_PAGINATION = 10
 DEFAULT_METADATA = {
     'status': 'draft',
 }
+
+PAGE_ORDER_BY = 'reversed-title'
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
