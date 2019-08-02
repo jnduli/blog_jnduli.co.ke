@@ -1,39 +1,44 @@
 Title: About
-Date: 2016-12-06 20:20
+Date: 2016-12-06
 Category: Pages
 Slug: about
 Author: John Nduli
 Status: published
 
-## Who Am I? ##
+## WHO AM I? ##
 
-I am a lover of technology. I like linux, vim and open source
-tools. I'm also really into hardware design. I can make electrical
-circuits and mechanical stuff. Which is why I did Mechatronics in
-University. 
+I'm Nduli and this is my small bit on the internet. I love technology,
+using it, building and discovering it. The best discovery I've had is
+linux and vim. Linux because it's easy to customize, for example window
+managers (there are tiling, dynamic and stacking window managers). Vim
+because it's light and powerful (although it took some time to get used
+to). And more FOSS tech I've used along my journey.
 
-And then there's books. I love books (reading them btw). I love
-movies too.
+I sometimes design circuits and mechanisms. I put these on
+[github](https://github.com/jnduli) or
+[grabcad](https://grabcad.com/john.nduli-1).
+
+And then there's books. I love books (reading them). My current
+favorites include _Behind the Beautiful Forevers_, _Axiomatic_ and
+_Courage To Be Disliked_.
 
 ## WHY THE BLOG ##
 
-This is a blog that is used to self document the problems I
-experience while working in my environments of choice. 
-
-I usually work on a wide range of technologies and sometimes I
-find a fix here and there that needs to be recorded for future
-purposes.
+I use this to self document the problems I experience while working on
+various problems. I work on a wide range of technologies and sometimes I
+find a fix here and there that needs recording for future purposes.
 
 Also it will work as a place to let my opinions loose. Perhaps on
 a book here, a movie there, some policy, etc.
 
 ## WHY PELICAN ##
-The main reason for using pelican is because I'm a vim fan. Being
-a vim fan means I like using the terminal a lot. I do most of my
-work from the terminal, so why not just add blogging too.
+
+Pelican is easy to use and set up. I even created my own theme for it
+([letter_theme](https://github.com/jnduli/letter_theme)). I also get to
+edit my articles using vim, and generate the blog using my terminal. I
+do most of my work from the terminal, so why not add blogging too.
 
 ## DISCLAIMER ##
 Please keep this in mind while reading the blog:
 
 _Stuff just is. My mental model of how the world works is incomplete. It has boundaries. I'm constantly relearning stuff. That, there, is the thing. Knowing that I'm limited in how I perceive stuff. There is strength in these "limits" though, they enable you to filter noise and make decisions. ~ Bonface Munyoki_
-
