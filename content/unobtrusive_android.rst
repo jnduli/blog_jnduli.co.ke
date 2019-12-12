@@ -6,23 +6,23 @@ Unobtrusive Android
 :category: Computer
 :slug: distraction-free-laucher-android
 :author: John Nduli
-:status: draft
+:status: published
 
 
-Phones are an amazing technology that aids me in my day to day
-activities. However, if I'm not careful, the phone can be a dangerous
-distraction too. This is because applications are readily available to
-be tapped whenever I look at my phone and looking at an app icon
-sometimes causes me to just want to open it. Another distration is the
-amount of notifications you get.
+Phones are an amazing technology that aid us in our day to day
+activities. However, if not careful, the phone can be a dangerous
+distraction. This is because applications are readily available to be
+tapped whenever I look at my phone and looking at an app icon sometimes
+causes me to just want to open it. Another distration is the amount of
+notifications you get.
 
 Dummy and feature-less phones have popped up as a solution to this
 distraction. Another option I've seen is trying to reduce distractions
 on your phone as shown
-[here](https://medium.com/make-time/the-distraction-free-android-2fd595c77747).
+`here <https://medium.com/make-time/the-distraction-free-android-2fd595c77747>`_.
 I found an interesting way of dealing with this though. It involves
 installing and using
-[TUI](https://github.com/fAndreuzzi/TUI-ConsoleLauncher), a weird
+`TUI <https://github.com/fAndreuzzi/TUI-ConsoleLauncher>`_, a weird
 android launcher that is minimalistic and distraction free. 
 
 Out of the box, this provides you a clean non-intrusive UI where you can
