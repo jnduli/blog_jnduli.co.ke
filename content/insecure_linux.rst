@@ -11,7 +11,7 @@ Fast Linux Setup - Adding Grub Menu[Insecure]
 I got the idea of setting this up from this `article on making linux
 fast again
 <https://linuxreviews.org/HOWTO_make_Linux_run_blazing_fast_(again)_on_Intel_CPUs>`_.
-The problem was that I did not want to set up these flags on my default
+Contrary to the above article,  I did not want to set up the flags mentioned in there on my default
 grub menu entry. I also did not understand what risks I'd be exposing
 myself to, but I could get their names by running:
 
