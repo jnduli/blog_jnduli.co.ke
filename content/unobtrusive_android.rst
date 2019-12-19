@@ -51,7 +51,7 @@ information that I did not care about. So I changed them using:
     config -set fullscreen true
 
 
-To set up aliases for common functionality, you just do:
+To set up aliases for common functionality, run:
 
 .. code-block:: bash
 
