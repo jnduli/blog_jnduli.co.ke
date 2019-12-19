@@ -66,7 +66,7 @@ just hide it with:
 
     apps -hide Youtube
 
-After applying those configurations, this is what I see when I unlock my
+After applying these configurations, this is what I see when I unlock my
 phone every time:
 
 
