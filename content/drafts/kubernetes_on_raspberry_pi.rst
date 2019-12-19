@@ -55,7 +55,8 @@ In my case I had:
 You can refer the PI's by hostname because they have avahi mdns stack
 installed (it ships with raspbian). For you to do the same from your
 machine, you have to have it installed in your workstation to. This
-doesn't ship by default on arch so I had to `install avahi suing <https://wiki.archlinux.org/index.php/Avahi>`_:
+doesn't ship by default on arch so I had to `install avahi using
+<https://wiki.archlinux.org/index.php/Avahi>`_:
 
 
 .. code-block:: bash
