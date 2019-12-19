@@ -17,8 +17,10 @@ most of the functionality of kubernetes.
 
 I had three raspberry pis from previous projects (one v2 and two v3s)
 lying around, so I decided to set up kubernetes and try it out. I used
-raspbian buster lite as the linux version on all the raspberry pis. The
-base command to set this up on my sd cards was:
+`raspbian buster lite
+<https://www.raspberrypi.org/downloads/raspbian/>`_ as the linux version
+on all the raspberry pis. The base command to set this up on my sd cards
+was:
 
 .. code-block:: bash
 
@@ -26,7 +28,7 @@ base command to set this up on my sd cards was:
 
 For each of the pis, I enabled wifi and ssh (in the interface setting)
 using the `raspi-config` command. However, I had some problems with the
-pi v2 because I used an external USB dongle for wifi. I found tips on
+pi v2 because it used an external USB dongle for wifi. I found tips on
 how to fix this on `saitetu's blog here
 <https://saitetu.net/en/entry/2019/09/15/001352>`_.
 
@@ -41,7 +43,7 @@ how to fix this on `saitetu's blog here
     sudo systemctl enable wpa_supplicant.service
 
     
-I also changed the hostname on each of the pi's to reflect their roles.
+I also changed the hostname of each of the pi's to reflect their roles.
 In my case I had:
 
 .. code-block:: bash
@@ -50,11 +52,10 @@ In my case I had:
     pi-node1
     pi-node2
 
-This is useful because when sshing into the pis, one can just use the
-hostname instead on the ip addresses (which are difficult to remember).
-This is because raspbian has avahi mdns stack installed. However, for my
-archlinux setup, I had to set `avahi up to work
-<https://wiki.archlinux.org/index.php/Avahi>`_.
+You can refer the PI's by hostname because they have avahi mdns stack
+installed (it ships with raspbian). For you to do the same from your
+machine, you have to have it installed in your workstation to. This
+doesn't ship by default on arch so I had to `install avahi suing <https://wiki.archlinux.org/index.php/Avahi>`_:
 
 
 .. code-block:: bash
@@ -91,8 +92,8 @@ address show`.
 To get the master-token, run :code:`cat
 /var/lib/rancher/k3s/server/node-token1`.
 
-Another useful option is to change permissions of the `k3s.yaml` file so
-that you don't have to run kubernetes commands with escalated permission.
+Another useful option is to update the permissions of the `k3s.yaml` file so
+that you aren't needed to run kubernetes commands with escalated permission.
 
 .. code-block:: bash
 
