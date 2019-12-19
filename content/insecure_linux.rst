@@ -13,7 +13,7 @@ fast again
 <https://linuxreviews.org/HOWTO_make_Linux_run_blazing_fast_(again)_on_Intel_CPUs>`_.
 Contrary to the above article,  I did not want to set up the flags mentioned in there on my default
 grub menu entry. Also, I did not understand what risks I'd be exposing
-myself to, but I could get their names by running:
+myself to. To list these risks:
 
 .. code-block:: bash
 
