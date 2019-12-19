@@ -1,5 +1,5 @@
 ################################################
-Fast But Insecure Linux Setup - Adding Grub Menu
+Fast Linux Setup - Adding Grub Menu[Insecure]
 ################################################
 :date: 2019-10-19
 :tags: linux
