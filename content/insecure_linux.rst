@@ -12,7 +12,7 @@ I got the idea of setting this up from this `article on making linux
 fast again
 <https://linuxreviews.org/HOWTO_make_Linux_run_blazing_fast_(again)_on_Intel_CPUs>`_.
 Contrary to the above article,  I did not want to set up the flags mentioned in there on my default
-grub menu entry. I also did not understand what risks I'd be exposing
+grub menu entry. Also, I did not understand what risks I'd be exposing
 myself to, but I could get their names by running:
 
 .. code-block:: bash
