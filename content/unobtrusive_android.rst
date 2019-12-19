@@ -27,7 +27,7 @@ android launcher that is minimalistic and distraction free.
 
 Out of the box, this provides you a clean non-intrusive UI where you can
 access whatever you want (so long as you remember the name). This is a
-cool way to prevent you from tapping on some app you did not even think
+cool way to prevent you from tapping on some random app
 of using before seeing its icon. Also I've found its faster to use,
 especially when I use aliases for common functionalities.
 
