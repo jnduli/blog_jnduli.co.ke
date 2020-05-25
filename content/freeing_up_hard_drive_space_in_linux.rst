@@ -151,6 +151,8 @@ following commands help me out here:
 .. code-block:: bash
 
    sudo docker system df -v
+   sudo docker system prune
+   sudo docker volume prune
 
 Without the '-v' option, the command offers a summary of the
 disk space used by docker.
