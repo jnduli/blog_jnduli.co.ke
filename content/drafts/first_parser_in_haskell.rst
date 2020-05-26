@@ -15,7 +15,7 @@ file. I wanted a way to parse it and filter out the content I wanted.
 I also wanted to work on a parser in haskell, so this was a great
 opportunity to get my hands dirty.
 
-I used stack to manage the project by running the commands:
+I used stack to manage the project by running:
 
 .. code-block:: bash
 
