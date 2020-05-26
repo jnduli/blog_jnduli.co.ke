@@ -162,5 +162,5 @@ This returns:
 
 `Right [["Axiomatic (Greg Egan)","mind; maybe some dreams take shape only in the","3722","3722"],["Axiomatic (Greg Egan)","mind; maybe some dreams take shape only in the","3722","3722"]]`
 
-The kindle format has more nuts than what the above demonstrates, but I
-had a lot of fun working with this.
+The kindle format has more nuts than what the above demonstrates, but
+nevertheless I had a lot of fun working with this.
