@@ -84,9 +84,9 @@ All the groups can be got by building on this through:
 
 which results in `Right ["this\nis\ngood\n","anther\ngroup\n"]`.
 Groups gets a group from the string, and passes the rest of the string
-to the remainingGroups function. This in turn checks if the first
+to the `remainingGroups` function. This in turn checks if the first
 character in the string is `\n` after which it calls groups on the
-string.
+string less the starting `\n`.
 
 The above gave me a good framework for working on the kindle highlighter
 which has the general form:
