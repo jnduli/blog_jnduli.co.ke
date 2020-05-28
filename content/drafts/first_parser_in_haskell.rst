@@ -2,16 +2,16 @@
 First Haskell Parser (for Kindle Highlights)
 ############################################
 
-:date: 2019-04-27 19:00
-:tags: linux, product, review
+:date: 2020-05-26
+:tags: linux, project
 :category: Computer
-:slug: huion-420-driver-setup
+:slug: first_haskell_parser_for_kindle
 :author: John Nduli
 :status: draft
 
 
 Kindle saves highlights, bookmarks and notes in a `My Clippings.txt`
-file. I wanted a way to parse it and filter out the content I wanted.
+file. I needed a way to parse it and filter out the content I wanted.
 I also wanted to work on a parser in haskell, so this was a great
 opportunity to get my hands dirty.
 
