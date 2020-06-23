@@ -7,7 +7,7 @@ First Haskell Parser (for Kindle Highlights)
 :category: Computer
 :slug: first_haskell_parser_for_kindle
 :author: John Nduli
-:status: draft
+:status: published
 
 
 Kindle saves highlights, bookmarks and notes in a `My Clippings.txt`
