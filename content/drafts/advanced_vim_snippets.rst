@@ -1,11 +1,22 @@
-Custom snippets in ultisnips
+######################
+Custon snippets in vim
+######################
+
+:date: 2020-07-03
+:tags: programming
+:category: Computer
+:slug: custom-snippets-in-vim
+:author: John Nduli
+:status: drafts
+
 
 Set up
 ======
-I use ultisnips for my snippets in vim. To set this up, I have the
-following in my vimrc:
+.. TODO: link to ultisnips
+I use ultisnips for my snippets. To set this up, I have this
+`vimrc`:
 
-.. code-block:: lua
+.. code-block:: vim
 
     call plug#begin('~/.vim/plugged')
 
@@ -17,18 +28,18 @@ following in my vimrc:
     let g:UltiSnipsEditSplit="vertical"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
-This setups ultisnips and vimsnippets using plug. Whenever I have a
-snippet I want to use, I just press `ctrl-e` and its expanded. I place
-custom snippets in `~/.vim/mysnippets` but still want to use the
-snippets provided by Ultisnips.
+This setups `ultisnips` and `vimsnippets` using `plug`. Whenever I have
+a snippet I want to use, I press `ctrl-e` and its expanded. I place
+custom snippets in `~/.vim/mysnippets`, so having `UltiSnips` in the
+`UltiSnipsSnippetDirectories` parameters enables me to use both the
+custom snippets and those provided by `ultisnips/vimsnippets`.
 
 Simple snippet
-=============
+==============
+I like to pre-plan my day, with most days having similar and unique
+tasks. A snippet is a good use case for the similar tasks.
 
-I plan my day on the previous night. My plans tend to be similar with
-small changes here and there, so this is a good use case for snippets.
-
-Here's a sample snippet for use:
+Here's an example:
 
 .. code-block:: python
 
@@ -45,11 +56,11 @@ Here's a sample snippet for use:
     endsnippet
 
 You can place this file in `~/vim/mysnippets/all.snippet` and type `bd`
-in any file to expand this. That is the simplest form of a snippet I've
-found. I use this for some time and soon find out that I need to have
-specific tasks e.g. for clean up, it needs to be clean up something. I
-then update the snippet to include this by having `{$1: utensils, desk,
-room}`. `utensils, desk, room` in this case is the default string.
+in any file to expand this. This does not cover tasks that are similar,
+but with small differences e.g. for clean up, it needs to be clean up
+something. I then update the snippet to include this by having `{$1:
+utensils, desk, room}`. `utensils, desk, room` in this case is the
+default string.
 
 .. code-block:: python
 
@@ -65,20 +76,22 @@ room}`. `utensils, desk, room` in this case is the default string.
     - [ ] Weekly email
     endsnippet
 
-
 Now typing `Ctrl-j` after the snippet has been expanded takes me to all
-the points with the marking.
+the points with this marking.
     
 Advanced snippets
 =================
-However, I quickly realized that the simple plan doesn't work daily.
-This is because some days have special circumstances that are easy to
-miss e.g. I take out trash on Thursdays.
+The simple snippet has some disadvantages like:
 
-That is where context aware snippets come in. A context is a python
-function that returns true. For example, I want to do some tasks
++ I can't specify unique tasks for a particular day e.g. I take out
+  trash on Thursdays
++ I can't specify different conditions for tasks e.g. I need to switch
+  out some tasks with my house mate
+
+.. TODO: add link to context docs in utlisnips
+Context aware snippets help with this. A context (in UltiSnips) is a
+python function that returns true. For example, I want to do some tasks
 depending on if its the weekend or not.
-
 
 .. code-block:: python
 
@@ -115,9 +128,9 @@ depending on if its the weekend or not.
     - [ ] Weekly email
     endsnippet
 
-However, a problem is that a lot of the content is repeated between the
-weekday and weekend snippets. A way of avoiding this is to use python
-code internally within the snippets, for example:
+This works but creates a lot of repeated tasks between the weekday and
+weekend. To avoid this, python code can be used directly within the
+snippets, for example:
 
 .. code-block:: python
 
@@ -141,9 +154,8 @@ code internally within the snippets, for example:
     endsnippet
 
 
-And there we have a better implementation. To prevent the repetition of
-datetime methods, you can define a global variable and use that instead
-e.g.
+To prevent the repetition of datetime methods, you can define a global
+variable and use that instead.
 
 .. code-block:: python
 
@@ -155,3 +167,9 @@ e.g.
 
     ## in snipeet have this
     `!p snip.rv = "- [ ] Weekly email\n" if day > 5 else ""`
+
+.. TODO: come up with better conclusion
+Ultisnips provides a powerful tool to create various snippets depending
+on the situation. Described in this article are the use cases I've tried
+out and the options I've attempted to use with the tool. I hope this
+helps.
