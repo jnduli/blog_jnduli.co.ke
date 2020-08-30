@@ -1,5 +1,5 @@
 ######################
-Custon snippets in vim
+Custom snippets in vim
 ######################
 
 :date: 2020-08-30
@@ -7,6 +7,7 @@ Custon snippets in vim
 :category: Computer
 :slug: custom-snippets-in-vim
 :author: John Nduli
+:status: published
 
 Set up
 ======
@@ -136,8 +137,6 @@ snippets, for example:
     import datetime 
     endglobal
 
-    # weekday basic day
-    context "datetime.date.today().isoweekday()<=5"
     snippet bd "Basic Day" b
     = Tasks =
     - [ ] Exercise
@@ -167,5 +166,5 @@ variable and use that instead.
     `!p snip.rv = "- [ ] Weekly email\n" if day > 5 else ""`
 
 Ultisnips provides a powerful tool to customize repeated texts depending
-on the situation. Described in this article are the use cases I've tried
-out and the options I've attempted to use with the tool.
+on the situation. Described in this article is one of the use cases I
+have, and various options I use to make my snippets manageable.
