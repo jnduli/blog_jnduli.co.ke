@@ -2,19 +2,16 @@
 Custon snippets in vim
 ######################
 
-:date: 2020-07-03
+:date: 2020-08-30
 :tags: programming
 :category: Computer
 :slug: custom-snippets-in-vim
 :author: John Nduli
-:status: drafts
-
 
 Set up
 ======
-.. TODO: link to ultisnips
-I use ultisnips for my snippets. To set this up, I have this
-`vimrc`:
+I use `ultisnips <https://github.com/SirVer/ultisnips>`_ for my
+snippets. To set this up, I have this in `vimrc`:
 
 .. code-block:: vim
 
@@ -88,10 +85,11 @@ The simple snippet has some disadvantages like:
 + I can't specify different conditions for tasks e.g. I need to switch
   out some tasks with my house mate
 
-.. TODO: add link to context docs in utlisnips
-Context aware snippets help with this. A context (in UltiSnips) is a
-python function that returns true. For example, I want to do some tasks
-depending on if its the weekend or not.
+`Context aware snippets
+<https://github.com/SirVer/ultisnips/blob/7dc30c55e5c41c98a8c7421bb01fec1d559256fd/doc/UltiSnips.txt#L1411>`_
+help with this. A context (in UltiSnips) is a python function that
+returns true. For example, I want to do some tasks depending on if its
+the weekend or not.
 
 .. code-block:: python
 
@@ -165,11 +163,9 @@ variable and use that instead.
     day = datetime.date.today().isoweekday()
     endglobal
 
-    ## in snipeet have this
+    ## in snippet have this
     `!p snip.rv = "- [ ] Weekly email\n" if day > 5 else ""`
 
-.. TODO: come up with better conclusion
-Ultisnips provides a powerful tool to create various snippets depending
+Ultisnips provides a powerful tool to customize repeated texts depending
 on the situation. Described in this article are the use cases I've tried
-out and the options I've attempted to use with the tool. I hope this
-helps.
+out and the options I've attempted to use with the tool.
