@@ -48,12 +48,12 @@ I modified my cabal config by:
   another folder to prevent warning errors on missing dependencies.
 
 
-.. code-block:: haskell
+.. code-block:: cabal
 
     cabal-version:       2.2
     name:                kindle-highlights
-    :
-    :
+    .
+    .
 
     common shared-properties
       default-language:    Haskell2010
@@ -70,14 +70,12 @@ I modified my cabal config by:
       hs-source-dirs:      src
       build-depends:       optparse-applicative
 
-
     executable kindle-highlights
       import:              shared-properties
       hs-source-dirs:      app
       main-is:             Main.hs
       build-depends:       optparse-applicative,
                            kindle-highlights,
-
 
     test-suite spec
       import:              shared-properties
@@ -125,8 +123,8 @@ has to export the spec function, which will be called by hspec.
 Running the tests with `stack test` should show:
 
 .. code-block:: haskell
-    :
-    :
+    .
+    .
 
     kindle-highlights> test (suite: spec)
 
