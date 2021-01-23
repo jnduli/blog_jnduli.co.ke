@@ -2,7 +2,7 @@
 Setting up Hspec on a Haskell Project
 #####################################
 
-:date: 2021-01-07
+:date: 2021-01-23
 :tags: projects
 :category: Engineering
 :slug: setting-up-hspec-on-haskell-project
