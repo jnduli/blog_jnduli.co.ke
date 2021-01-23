@@ -13,8 +13,8 @@ Setting up Hspec on a Haskell Project
 I'd started the `Kindle-Highlights project
 <https://github.com/jnduli/kindle_highlights>`_ without tests. This was
 a problem because I couldn't add features as fast as I wanted because
-I'd maybe break something. I needed to add tests to speed up my
-development. For haskell, `hspec <https://hspec.github.io/>`_  is a
+I'd break something without knowing. I needed to add tests to speed up
+my development. For haskell, `hspec <https://hspec.github.io/>`_  is a
 tool/library for this. Setting this up on the project was surprisingly
 challenging, mostly because I didn't properly read the docs.
 
@@ -22,12 +22,12 @@ Some of the things I missed out on or had to do are:
 
 - There is auto detection of test files with `hspec-discover
   <https://hspec.github.io/hspec-discover.html>`_.
-- Test files should have the suffix Spec (I'd added then with a Test
+- Test files should have the suffix Spec (I'd added them with a Test
   Suffix) to be auto discovered by hspec-discover.
 - Each test file has to export a `spec` of type Spec
 - I needed to set up some of my modules properly in the cabal file.
-- I had to move executable to different directory to prevent warning on
-  missing dependencies, see `github stack issue `
+- I had to move executable to a different directory to prevent warning
+  on missing dependencies, see `github stack issue `
   <https://github.com/commercialhaskell/stack/issues/3109>`_.
 - I switched to cabal version 2.2 to use the shared properties field.
 
