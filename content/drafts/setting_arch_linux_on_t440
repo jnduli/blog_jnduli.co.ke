@@ -1,0 +1,85 @@
+Plan:
+
+
+
+
+ignore the SSD
+
+sudo dd if=archlinux-2021.01.01-x86_64.iso of=/dev/sda status=progress bs=2M 
+
+# Connecting to wifi
+iwctl
+device list # showed wlan0 as a device
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect SSID
+
+
+
+
+#Didn't have to do this, verify boot mode
+ls /sys/firmware/efi/efivars
+
+
+# update system clock
+timedatectl set-ntp true
+
+# partition disks
+fdisk -l
+
+fdisk /dev/sda
+g # convert to gpt partitioning scheme
+n # create a new partition
+# first partition 2M for Grub
+# 2nd partition 120GB for linux
+# 3rd partittion rest of files size
+n # create another partition, that took rest of remaining space
+
+
+mkfs.ext4 /dev/root_partition
+mount /dev/sda2 /mnt
+
+
+
+# installing things
+
+pacstrap /mnt base linux linux-firmware openssh git networkmanager tmux i3 dmenu sway xfce4 feh scrot xautolock python python-pip gvim neovim python-pynvim xdg-user-dirs zsh zsh-completions pulseaudio ledger firefox libmtp gvfs-mtp man-db man-pages texinfo intel-ucode grub
+
+# TO generate fstab
+mount /dev/sda3 /mnt/home # ensures home is on another partitions
+genfstab -U /mnt >> /mnt/etc/fstab
+
+
+# chroot
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/Africa/Nairobi /etc/localtime
+hwclock --systohc
+
+
+I set the locale by uncommenting the 'en_US.UTF-8 UTF-8' and the 'en_GB.UTF-8 UTF-8' lines in the /etc/locale.gen file and then ran:
+
+locale-gen
+echo LANG=en_US.UTF-8 >> /etc/locale.conf
+
+echo laptop_name >> /etc/hostname
+
+
+edit /etc/hostname and hosts
+
+root password: passwd
+
+
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+
+
+useradd -m -G wheel -s /bin/bash username
+passwd username
+
+pacman -S sudo
+EDITOR=vi visudo #and uncommnet the line %WHEEL  ALL= (ALL) ALL
+
+
+install xorg from instructions here: https://wiki.archlinux.org/index.php/Xorg
+
+packages to enable: systemctl enable NetworkManager
