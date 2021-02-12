@@ -12,6 +12,8 @@ TaskLite Setup
 TODO:
  add section on basic usage
  add section explaining recuring vs repeating tasks
+ problem with my syncing: what happens if I update a file that is old.
+ It gets a new mod date and changes the server.
 
 
 Managing tasks that I wanted to do using vim and vimwiki was becoming
