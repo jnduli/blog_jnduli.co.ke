@@ -35,7 +35,7 @@ method.
     station wlan0 connect SSID
 
 
-After connecting to wifi, I updated the system clock with:
+After which I updated the system clock with:
 
 .. code-block:: bash
 
@@ -44,8 +44,7 @@ After connecting to wifi, I updated the system clock with:
 I had no qualms wiping out my hard drive and setting things up from
 scratch. I noticed that I had two storage devices, a 16GB SSD and a 512GB
 hard drive. I decided against using the SSD for anything (I'm planning
-to upgrade this to a larger size), and just used the hard drive for
-everything.
+to upgrade this to a larger size), and only used the hard drive.
 
 To partition the drive:
 
@@ -60,12 +59,12 @@ To partition the drive:
     n # 2nd partition 120GB for linux
     n # 3rd partittion rest of files size, for home directory
 
-Key thing was to ensure I had the first partition of a size at least 1MB
-for Grub (see `grub archwiki
+The first partition needed to have at least 1MB for Grub (see `grub
+archwiki
 <https://wiki.archlinux.org/index.php/GRUB#GUID_Partition_Table_(GPT)_specific_instructions)>`_.
-I also went with another two partition: 120GB for arch and the rest for my
-home folder. My reasoning was that when I upgraded the SSD, I'd just set
-up arch on it and my home folder would still be ok.
+I had another two partition: 120GB for arch and the rest for my home
+folder. My reasoning was that when I upgraded the SSD, I'd just set up
+arch on it and my home folder would still be ok.
 
 I partitioned the 2nd partition with:
 
@@ -84,7 +83,7 @@ To generate fstab, I first mounted the third partition into `/mnt/home`:
 
 .. code-block:: bash
 
-    mkfs.ext4 /dev/sda3
+    mkfs.ext4 /dev/sda3 # partition to ext4
     mount /dev/sda3 /mnt/home # ensures home is on another partition
     genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -137,7 +136,7 @@ Lastly I set up grub with:
     grub-install /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
 
-and after rebooting, I could enter into my system.
+and after rebooting, I could enter my system.
 
 Other Thinkpad T440 specific Things
 ===================================
@@ -159,10 +158,12 @@ measure and added them in a monitor config in
         Gamma		0.7
     EndSection
 
-For power management I set up tpacpi-bat and enabled the default
-mappings:
+For power management I set up tpacpi-bat and tlp, enabling their default
+services.
 
 .. code-block:: lua
 
     sudo pacman -S tpacpi-bat 
     sudo systemctl enable tpacpi-bat.service
+    sudo pacman -S tlp
+    sudo systemctl enable tlp
