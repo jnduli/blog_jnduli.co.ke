@@ -109,8 +109,8 @@ and added the following lines into `/etc/hosts`:
 .. code-block:: txt
 
     127.0.0.1 	localhost
-    ::1		localhost
-    127.0.1.1	ovonel.localhodmain ovonel
+    ::1		    localhost
+    127.0.1.1	ovonel.localdomain ovonel
 
 I set up the root password by typing `passwd`, and added a new user
 with:
