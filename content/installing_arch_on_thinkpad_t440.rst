@@ -1,12 +1,12 @@
 #############################
 Thinkpad T440 ArchLinux Setup
 #############################
-:date: 2021-02-18
+:date: 2021-02-27
 :tags: linux
 :category: Computer
 :slug: thinkpad-t440-archlinux-setup
 :author: John Nduli
-:status: draft
+:status: published
 
 
 I recently got a Thinkpad T440 and decided to document the steps I took
