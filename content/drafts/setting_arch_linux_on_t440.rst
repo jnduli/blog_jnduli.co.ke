@@ -22,9 +22,8 @@ I first got the iso image and burnt it onto a flash drive with:
     sudo dd if=archlinux-2021.01.01-x86_64.iso of=/dev/sda status=progress bs=2M 
 
 Connecting the flash into the laptop and booting got me into Grub, then
-archlinux. Connecting to wifi, `iwctl
-<https://wiki.archlinux.org/index.php/Iwd>`_ is the new recommended
-method.
+archlinux, and accessed wifi using `iwctl
+<https://wiki.archlinux.org/index.php/Iwd>`_.
 
 .. code-block:: bash
 
@@ -62,7 +61,7 @@ To partition the drive:
 The first partition needed to have at least 1MB for Grub (see `grub
 archwiki
 <https://wiki.archlinux.org/index.php/GRUB#GUID_Partition_Table_(GPT)_specific_instructions)>`_.
-I had another two partition: 120GB for arch and the rest for my home
+I added another two partitions: 120GB for arch and the rest for my home
 folder. My reasoning was that when I upgraded the SSD, I'd just set up
 arch on it and my home folder would still be ok.
 
