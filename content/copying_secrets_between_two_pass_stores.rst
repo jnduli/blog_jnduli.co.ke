@@ -2,15 +2,16 @@
 Copying Pass Secrets to Another Machine
 #######################################
 
-:date: 2018-03-04 15:00
+:date: 2021-03-27
 :category: Engineering
 :slug: copying-pass-secrets-to-another-machine 
 :author: John Nduli
-:status: draft
+:status: published
 
 
 I had a new laptop but couldn't access my previous one, so I had to
-figure out how to get my pass secrets. I had these problems:
+figure out how to get my `pass <https://www.passwordstore.org/>`_
+secrets. I had these problems:
 
 - How would I get my old password store?
 - How would I be able get my old gpg keys into this new laptop?
@@ -68,7 +69,7 @@ I imported them them with:
 
 Working with both password stores
 ---------------------------------
-Pass stores the gpg_id in its root folder, so I just copied over the
+Pass stores the `gpg_id` in its root folder, so I just copied over the
 previous pass store into a subdirectory in my new password store.
 
 .. code-block:: bash
