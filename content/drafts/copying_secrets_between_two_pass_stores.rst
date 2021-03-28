@@ -19,8 +19,8 @@ figure out how to get my pass secrets. I had these problems:
 
 Getting the old secrets
 -----------------------
-.. add link to borg
-My home directory was compressed using borg and sent over using:
+My home directory was compressed using `borg
+<https://borgbackup.readthedocs.io/en/stable/>`_ and sent to me using:
 
 .. code-block:: bash
 
@@ -59,7 +59,7 @@ And exported my keys with:
     gpg --homedir $(pwd) --output personal_gpg.gpg --armor --export ID_FOR_KEY
     gpg --homedir $(pwd) --output personal_sec.gpg --armor --export-secret-keys ID_FOR_KEY
 
-importing them with:
+I imported them them with:
 
 .. code-block:: bash
 
@@ -76,4 +76,10 @@ previous pass store into a subdirectory in my new password store.
     cp home/username/.password_store ~/.password_store/oldpasswords
 
 Now running pass shows all my passwords, both on from my old laptop and
-new laptop.
+new laptop. It's a little inconvenient because I now have an extra node
+to go through to access my old passwords but this is an acceptable
+compromise.
+
+Another unexplored alternative is to convert all the old passwords to
+use the new gpg key. It should be a simple script that just gets the
+password from the old gpg key and saves it into the new store.
