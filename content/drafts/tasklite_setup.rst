@@ -9,13 +9,13 @@ TaskLite Setup
 :status: drafts
 
 
-TODO: clean up
+I used vimwiki for task management, with a couple of custom snippets and
+scripts, but this quickly became complicated. I needed another tool,
+that would be easy to use, easy to understand and easy to tweak.
+TaskLite fit these conditions perfectly, with a bonus point earned for
+using sqlite.
 
-I used to manage my tasks with vimwiki, and a couple of custom snippets
-and functions, but this became complicated. I wanted another tool just
-for this task. The conditions were that I should be able to understand
-the source code in case I needed to tweak things. TaskLite fit these
-conditions perfectly.
+They also have excellent `documentation <https://tasklite.org/>`_
 
 To set up tasklite:
 
@@ -41,6 +41,9 @@ Using tasklite is easy. Here are some common commands I use:
 
 Recurring and Repeating Tasks
 -----------------------------
+`Recurring and Repeating Tasks Documentation
+<https://tasklite.org/repetition_and_recurrence.html>`_
+
 To understand how I use recurring and repeating tasks, let's say I want
 to clean my desk every day at 1300 Hrs. I can either set this as
 recurring P1D or repeating P1D. The difference is that I have to do the
@@ -48,18 +51,21 @@ task if it's recurring, and a new task will be created for the next day
 with the exact due date.
 
 If this was repeating a new task will be created but it will be relative
-to the time I completed the task.
+to the time I completed the task. I've use recurring tasks more.
 
-Tags are duplicated, but not notes. Improvement I can make.
+.. code-block:: bash
 
+    tl recur P1D task_id
 
-Syncing Problems
-----------------
-From here you can create simple tasks with tasklite. However, I use
-multiple laptops so I wanted a way to sync things up and always have the
-latest update for things. To pull this off, I used rclone. Rclone
-doesn't have bi-sync, so I got a little creative in how I work with a
-backup created once per day.
+When the new task is created, tasks are copied over but not notes.
+
+Syncing
+-------
+I needed a way to sync things up across multiple laptops, always having
+the most up-to-date database. I use rclone, but since it doesn't have
+bi-sync, I had to get a little creative to pull this off. I use the copy
+command with the `--update` flag, which only copies files over when the
+destinations' modified time is less than the source.
 
 .. code-block:: cron
 
@@ -67,11 +73,11 @@ backup created once per day.
     */1 * * * * /usr/bin/rclone copy gdrive:backups/work_xps/ /home/rookie/gdrive_clone --update
     00 18 * * * /home/rookie/.local/bin/tasklite backup
 
-Using the copy command with the `--update` flag means that if the file
-on the destination has a greater modification date that the source file,
-it will not be copied over. Running this command with source to
-destination and destination to source over multiple machines ensures
-that I always have the most up-to date file on whatever laptop I have.
+The risk with this is that I might accidentally overwrite changes done
+in one laptop if the sync had not succeeded. I try to be careful with
+this but I was bitten once with this. I run this every minute, which I
+think is good enough to ensure my remote gdrive folder is always in
+sync.
 
 Helper Commands
 ---------------
