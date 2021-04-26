@@ -47,3 +47,11 @@ THEME = './letter_theme'
 
 PLUGIN_PATHS = ['./pelican-plugins']
 PLUGINS = ['render_math']
+
+STATIC_PATHS = [
+    'static/favicon.ico',
+    ]
+
+EXTRA_PATH_METADATA = {
+    'static/favicon.ico': {'path': 'favicon.ico'},
+    }
