@@ -2,11 +2,10 @@
 TaskLite Setup
 ##############
 
-:date: 2021-02-12
+:date: 2021-05-01
 :category: Computer
 :slug: tasklite-setup
 :author: John Nduli
-:status: draft
 
 
 I used vimwiki for task management, with a couple of custom snippets and
