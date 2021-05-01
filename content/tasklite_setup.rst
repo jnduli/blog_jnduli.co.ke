@@ -6,6 +6,7 @@ TaskLite Setup
 :category: Computer
 :slug: tasklite-setup
 :author: John Nduli
+:status: published
 
 
 I used vimwiki for task management, with a couple of custom snippets and
