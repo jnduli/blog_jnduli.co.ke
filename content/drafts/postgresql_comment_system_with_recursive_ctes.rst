@@ -61,7 +61,6 @@ Here's the table structure I used:
 .. code-block:: sql
 
     DROP TABLE IF EXISTS comments;
-    # TODO: test this out
     CREATE TABLE comments (comment_id SERIAL PRIMARY KEY, comment TEXT, date_created DATE, parent_id INT);
 
     INSERT INTO comments (comment_id, comment, date_created, parent_id) VALUES 
