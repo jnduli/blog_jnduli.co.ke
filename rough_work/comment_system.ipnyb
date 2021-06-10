@@ -1,0 +1,39 @@
+{
+ "cells": [
+  {
+   "cell_type": "raw",
+   "execution_count": null,
+   "id": "16da6ba0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(\"This\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b42a13fa",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import psycopg2\n",
+    "\n",
+    "try:\n",
+    "    conn = psycopg2.connect(\"dbname='comments' user='admin' host='localhost' password=''\")\n",
+    "except:\n",
+    "    print \"I am unable to connect to the database\"\n",
+    "\n",
+    "cursor = conn.cursor()\n",
+    "cur.execute(\"\"\"SELECT datname from pg_database\"\"\")\n",
+    "rows = cur.fetchall()\n",
+    "print(\"Show the databases\")\n",
+    "for row in rows:\n",
+    "    print(row)"
+   ]
+  }
+ ],
+ "metadata": {},
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
