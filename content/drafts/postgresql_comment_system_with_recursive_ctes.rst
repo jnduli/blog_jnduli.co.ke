@@ -8,10 +8,10 @@ Comment System Using Recursive Queries
 :status: drafts
 
 I was reading SQL antipatterns and got into the chapter about recursive
-queries and how there are different ways to approach this. I wondered if
-postgresql supported recursive queries and it truely does. For
-experimenting, I decided to make a simple commenting database and see
-how it would work.
+queries and how there are different ways to approach this. I wanted to
+experiment with this and found that postgresql supports recursive
+queries. I decided to make a simple commenting database and see how it
+would work.
 
 Fibonnacci with CTEs
 --------------------
@@ -52,6 +52,8 @@ Here's how this would work:
 
        ) SELECT a from fib;
    
+Detailed explanation of how this works can be found here:
+`CTE Read me <https://wiki.postgresql.org/wiki/CTEReadme>`_
 
 Comment System
 --------------
@@ -87,17 +89,82 @@ A simple recursive query getting all children for comment_id 1 is:
     ) SELECT * FROM child_comments ;
 
 
-Next steps:
-- add cycle and see results of the query
-- cycle prevention in query
-- cycle prevention in inserts
+Cycle Prevention
+----------------
+
+To introduce a cycle in this query we just have to do:
+
+.. code-block:: sql
+
+    UPDATE comments SET parent_id=8 WHERE comment_id=1;
+
+To prevent this while running our query, we have to keep a state of all
+the parents we've visited and filter these out in the recursive bit. In
+this case, we maintain an array of visited parents and ignore all
+children comments that have that id.
+
+.. code-block:: sql
+
+    WITH RECURSIVE child_comments AS (
+        SELECT *, array[comment_id] as visited_parents FROM comments WHERE comment_id = 1
+        UNION ALL
+        SELECT c.*, cc.visited_parents || c.comment_id as visited_parents FROM comments c INNER JOIN child_comments cc ON c.parent_id = cc.comment_id WHERE NOT c.comment_id = ANY (cc.visited_parents)
+    ) SELECT * FROM child_comments LIMIT 10;
+
+
+But how do we prevent cycle creation in the query itself? I can think of
+only one method at the moment. Having a trigger that gets all parents of
+a child comment, and doesn't update if this happens within the tree.
+
+.. code-block:: sql
+
+
+    CREATE OR REPLACE FUNCTION cycle_prevention() RETURNS trigger AS $cycle_prevention$
+        DECLARE
+            parents_not_allowed int[];
+        BEGIN
+            -- Check that parent id doesn't cause a cycle
+            IF NEW.parent_id IS NOT NULL THEN
+                raise notice 'parent id: %, comment_id %', NEW.parent_id, NEW.comment_id;
+
+                WITH RECURSIVE parents AS (
+                    SELECT parent_id from comments where comment_id = NEW.parent_id
+                    UNION ALL
+                    select c.parent_id from comments c INNER JOIN parents p on p.parent_id=c.comment_id
+                )
+                SELECT ARRAY(SELECT parent_id::int FROM parents LIMIT 10) INTO parents_not_allowed;
+                raise notice 'Value: %', parents_not_allowed;
+
+                IF NEW.comment_id = ANY(parents_not_allowed) THEN
+                    RAISE EXCEPTION 'cycle found in query';
+                END IF;
+            END IF;
+            RETURN NEW;
+        END;
+    $cycle_prevention$ LANGUAGE plpgsql;
+
+    CREATE TRIGGER cycle_prevention BEFORE INSERT OR UPDATE ON comments
+        FOR EACH ROW EXECUTE PROCEDURE cycle_prevention();
+
+
+Now the update fails with `ERROR:  cycle found in query`.
+
+
+
+TODO:
+
+
+Real life usage of CTEs can be to get all children levels of partitioned
+table in postgresql.
+
+
+
+
+
 
 - research inserting recursively using CTEs e.g. look for problem with
   interview
 
-- investigate cycles
-- investigate how to validate correct parent relationships
-- how do I deal with parent deletions
 
 Detailed explanation of how this works can be found here: https://wiki.postgresql.org/wiki/CTEReadme
 
