@@ -5,7 +5,7 @@ Comment System Using Recursive Queries
 :category: Engineering
 :slug: comment-system-using-recursive-queries
 :author: John Nduli
-:status: drafts
+:status: draft
 
 I was reading SQL antipatterns and got into the chapter about recursive
 queries and how there are different ways to approach this. I wanted to
@@ -41,6 +41,7 @@ Here's how this would work:
 4. The recursion should stop when the intermediate table is empty but
    since fibonacci is infinite this does not happen. Adding a where
    clause to the recursive part would cause this to occur. For example:
+
    .. code-block:: sql
 
        WITH RECURSIVE fib(a, b) AS (
@@ -84,10 +85,29 @@ A simple recursive query getting all children for comment_id 1 is:
 
     WITH RECURSIVE child_comments AS (
         SELECT * FROM comments WHERE comment_id = 1
-        UNION
+        UNION ALL
         SELECT c.* FROM comments c INNER JOIN child_comments cc ON c.parent_id = cc.comment_id
     ) SELECT * FROM child_comments ;
 
+
+A good usecase for this would be if you have partitioned tables, how
+you'd end up getting all the descendants of a particular usage.
+
+
+.. code-block:: sql
+
+    DROP TABLE IF EXISTS parent;
+    CREATE TABLE parent (id INT, user_id INT, topic_id INT, comment TEXT) PARTITION BY HASH(user_id);
+    CREATE TABLE child_1 PARTITION OF parent FOR VALUES WITH (modulus 2, remainder 0) PARTITION BY HASH(topic_id);
+    CREATE TABLE child_2 PARTITION OF parent FOR VALUES WITH (modulus 2, remainder 1);
+    CREATE TABLE grand_child_1 PARTITION OF child_1 FOR VALUES WITH (modulus 2, remainder 0);
+    CREATE TABLE grand_child_2 PARTITION OF child_1 FOR VALUES WITH (modulus 2, remainder 1);
+
+    WITH RECURSIVE child_partition AS (
+    SELECT inhparent, inhrelid FROM pg_catalog.pg_inherits WHERE inhparent = 'parent'::regclass
+    UNION ALL
+    SELECT pg_cat.inhparent, pg_cat.inhrelid FROM pg_catalog.pg_inherits pg_cat INNER JOIN child_partition cp ON pg_cat.inhparent = cp.inhrelid
+    ) SELECT inhparent::regclass AS parent, inhrelid::regclass AS child from child_partition;
 
 Cycle Prevention
 ----------------
@@ -112,9 +132,9 @@ children comments that have that id.
     ) SELECT * FROM child_comments LIMIT 10;
 
 
-But how do we prevent cycle creation in the query itself? I can think of
-only one method at the moment. Having a trigger that gets all parents of
-a child comment, and doesn't update if this happens within the tree.
+But how do we prevent cycle creation in the query itself? One method is
+to have a trigger that gets all parents of a child comment, and doesn't
+update if the update would cause a cycle.
 
 .. code-block:: sql
 
@@ -146,53 +166,4 @@ a child comment, and doesn't update if this happens within the tree.
     CREATE TRIGGER cycle_prevention BEFORE INSERT OR UPDATE ON comments
         FOR EACH ROW EXECUTE PROCEDURE cycle_prevention();
 
-
 Now the update fails with `ERROR:  cycle found in query`.
-
-
-
-TODO:
-
-
-Real life usage of CTEs can be to get all children levels of partitioned
-table in postgresql.
-
-
-
-
-
-
-- research inserting recursively using CTEs e.g. look for problem with
-  interview
-
-
-Detailed explanation of how this works can be found here: https://wiki.postgresql.org/wiki/CTEReadme
-
-There are three tables intermediate, working and result, which are
-initially empty. The non recursive part of the query `SELECT * FROM
-comments WHERE comment_id = 1` is first called, appending this to result
-and working table. The recursive bit `SELECT c.* FROM comments c INNER
-JOIN child_comments cc ON c.parent_id = cc.comment_id` is then called
-using the working table as the child_comments part. The result the
-intermediate table, and is appended to the result, and replaces the
-working table. This happens until the intermediate table is empty.
-
-
-
-
-
-Table structure:
-
-
-# Gets all children for comment_id 1
-
-TODO: 
-- investigate cycles
-- investigate how to validate correct parent relationships
-- how do I deal with parent deletions
-
-
-Resources:
-https://www.postgresql.org/docs/9.1/queries-with.html
-https://www.citusdata.com/blog/2018/05/15/fun-with-sql-recursive-ctes/
-
