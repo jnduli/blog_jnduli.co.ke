@@ -1,11 +1,12 @@
 ######################################
 Comment System Using Recursive Queries
 ######################################
-:date: 2021-04-09
+:date: 2021-06-26
 :category: Engineering
 :slug: comment-system-using-recursive-queries
 :author: John Nduli
-:status: draft
+:status: published
+
 
 I was reading SQL antipatterns and got into the chapter about recursive
 queries and how there are different ways to approach this. I wanted to
