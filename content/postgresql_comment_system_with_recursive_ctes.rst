@@ -26,19 +26,20 @@ Adopted from https://wiki.postgresql.org/wiki/Fibonacci_Numbers
         UNION ALL
         -- recursive part --
         select b, a + b from fib
-    ) SELECT a from fib limit 20
+    ) SELECT a from fib limit 20;
 
 Here's how this would work:
 
 1. There are three tables, intermediate, working and result table. The
    non-recursive part is first calculated, setting the working and
    result table to values (0, 1)
-2. The recursive part of the query `select b, a + b from fib` is run on
-   the first try. Fib here is the working table, with contains (0, 1).
-   This sets the intermediate table to (1, 1). This is appended to the
-   result table, and replaces the working table.
-3. In the third run, the working table is (1, 1), with ends up with (1,
-   2) as the result and so on.
+2. The recursive part of the query `select b, a + b from fib` is then
+   run on. `fib` here is the working table, which contains (0, 1).  This
+   sets the intermediate table to (1, 1). This gets appended to the result
+   table, and replaces the working table.
+3. In the next run, the working table is (1, 1), resulting in (1, 2) in
+   the intermediate table, which gets appended to the result table, and
+   replaces the working table. This goes on and on.
 4. The recursion should stop when the intermediate table is empty but
    since fibonacci is infinite this does not happen. Adding a where
    clause to the recursive part would cause this to occur. For example:
@@ -53,7 +54,11 @@ Here's how this would work:
            select b, a + b from fib where b < 100
 
        ) SELECT a from fib;
-   
+
+5. The last select statement: `SELECT a from fib limit 20;` picks the
+   information from the result table. Limiting this too can cause the
+   infinite recursion to stop.
+
 Detailed explanation of how this works can be found here:
 `CTE Read me <https://wiki.postgresql.org/wiki/CTEReadme>`_
 
@@ -91,9 +96,8 @@ A simple recursive query getting all children for comment_id 1 is:
     ) SELECT * FROM child_comments ;
 
 
-A good usecase for this would be if you have partitioned tables, how
-you'd end up getting all the descendants of a particular usage.
-
+A good use case is when you have partitioned tables and want to see all
+descendant of a particular parent.
 
 .. code-block:: sql
 
@@ -109,6 +113,19 @@ you'd end up getting all the descendants of a particular usage.
     UNION ALL
     SELECT pg_cat.inhparent, pg_cat.inhrelid FROM pg_catalog.pg_inherits pg_cat INNER JOIN child_partition cp ON pg_cat.inhparent = cp.inhrelid
     ) SELECT inhparent::regclass AS parent, inhrelid::regclass AS child from child_partition;
+
+which results in:
+
+.. code-block:: sql
+
+     parent  |     child
+    ---------+---------------
+     parent  | child_1
+     parent  | child_2
+     child_1 | grand_child_1
+     child_1 | grand_child_2
+    (4 rows)
+
 
 Cycle Prevention
 ----------------
