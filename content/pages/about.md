@@ -24,12 +24,15 @@ _Courage To Be Disliked_.
 
 ## WHY THE BLOG ##
 
-I use this to self document the problems I experience while working on
-various problems. I work on a wide range of technologies and sometimes I
-find a fix here and there that needs recording for future purposes.
+I use this to self document the problems I experience while working and
+the solutions I come up with. I work on a wide range of technologies and
+sometimes I find a fix here and there that needs recording for future
+reference. I've found this works better than re-reading the original
+source of the solution (I think this is becaue I understand my words
+better).
 
-Also it will work as a place to let my opinions loose. Perhaps on
-a book here, a movie there, some policy, etc.
+Also it works as a place to let my opinions loose. Perhaps on a book
+here, a movie there, some policy, etc.
 
 ## WHY PELICAN ##
 
@@ -41,4 +44,8 @@ do most of my work from the terminal, so why not add blogging too.
 ## DISCLAIMER ##
 Please keep this in mind while reading the blog:
 
-_Stuff just is. My mental model of how the world works is incomplete. It has boundaries. I'm constantly relearning stuff. That, there, is the thing. Knowing that I'm limited in how I perceive stuff. There is strength in these "limits" though, they enable you to filter noise and make decisions. ~ Bonface Munyoki_
+_Stuff just is. My mental model of how the world works is incomplete. It
+has boundaries. I'm constantly relearning stuff. That, there, is the
+thing. Knowing that I'm limited in how I perceive stuff. There is
+strength in these "limits" though, they enable you to filter noise and
+make decisions. ~ Bonface Munyoki_

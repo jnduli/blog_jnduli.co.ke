@@ -7,7 +7,7 @@ Python Partial For Classes
 :category: Computer
 :slug: python-partial-for-classes
 :author: John Nduli
-:status: draft
+:status: published
 
 
 Partial sets up frozen arguments to functions. For example:
