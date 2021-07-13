@@ -37,19 +37,27 @@ A sample file would look like this:
     Content body
 
 If the files are named in a chronological order, then the markdown will
-also include them in this order.
+also include them in this order (in the table of contents and order in
+the html).
 
-This works for the moment, but I needed some improvements:
-1. Having each file in its separate html file
-2. Having a table of contents to use.
-
-
-TODO: Fix the following code
-# Note: code is in the folder for purity questions.
-# It seems to work, so I just need to clean it up and explain it
-# Also think of other improvements to make
+Some improvements I can make include:
+- having each file in a separate html file (especially when I have a lot of content)
+- generating a table of contents linking to each html file
 
 
+TO have each file in a separate html file, I can compile them separately
+with pandoc into some outful folder. To get each file,I can run a filter
+using find:
+
+.. code-block:: bash
+
+    # TODO test this out
+    find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % pandoc -f markdone -t html --mathjax --metadata title="questions" -x %
+
+However, to make it robust, I need to ensure the output directory exists
+and write it to a file similar to the markdown. I also need to add each
+file to an index.md file that will be used as part of the table of
+contents. To deal with this, I created a custon function `gen_html`:
 
 .. code-block:: bash
 
@@ -57,15 +65,24 @@ TODO: Fix the following code
         mkdir -p test_compile
         file_name=$1
         name="${1%.*}"
-        ext="${1##*.}"
         echo "[${name}](./${name}.html)" >> index.md
         echo "" >> index.md
         pandoc -f markdown -t html --mathjax --metadata title="questions" -s -o ./test_compile/${name}.html $file_name 
     }
 
-    export -f gen_html 
-    rm index.md
-    touch index.md
-    echo "%Index of Questions" >> index.md
+
+To call this function with xargs, I however had to do some special
+things (TODO: add link to this):
+
+.. code-block:: bash
+
     find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % bash -c 'gen_html "$@"' _ %
+
+After which I generate the index with:
+
+.. code-block:: bash
+
     pandoc -f markdown -t html --mathjax -s -o ./test_compile/index.html index.md 
+
+You can find the full gist here:
+TODO: add gist containing the full source code.
