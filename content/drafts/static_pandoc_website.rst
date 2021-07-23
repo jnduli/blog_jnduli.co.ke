@@ -10,7 +10,7 @@ Static Website with Pandoc
 I needed to pull off a quick website that would have various mathematics
 questions, and thought to try and use pandoc. Here are my learnings:
 
-First install `pandoc-bin` so that you don't have to deal with a lot of
+I first installed `pandoc-bin` because I didn't to deal with a lot of
 haskell dependencies.
 
 .. code-block:: bash
@@ -18,9 +18,9 @@ haskell dependencies.
     yay -S pandoc-bin
 
 
-The first simple implementation would generate one index.html file with
-all the contents and a table of contents. To do this, I have a
-bashscript file that does:
+The first iteration I made generated an `index.html` file with
+all the contents and a table of contents. The following bashscript shows
+this:
 
 .. code-block:: bash
 
@@ -36,28 +36,26 @@ A sample file would look like this:
 
     Content body
 
-If the files are named in a chronological order, then the markdown will
-also include them in this order (in the table of contents and order in
-the html).
+The order in the table of contents is on the alphabetical ordering of
+the files. In my case, the date prefixed all files, so they ended up in
+the order I wanted them to.
 
-Some improvements I can make include:
-- having each file in a separate html file (especially when I have a lot of content)
-- generating a table of contents linking to each html file
+The file however became too large after some time. I didn't want to get
+a static site manager for this, so I tweaked the bashscript.
 
-
-TO have each file in a separate html file, I can compile them separately
-with pandoc into some outful folder. To get each file,I can run a filter
-using find:
+I can compile each file to a separate html file with pandoc, but I first
+need to get a list of all files I want.
 
 .. code-block:: bash
 
     # TODO test this out
-    find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % pandoc -f markdone -t html --mathjax --metadata title="questions" -x %
+    find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % pandoc -f markdown -t html --mathjax --metadata title="questions" -x %
 
-However, to make it robust, I need to ensure the output directory exists
-and write it to a file similar to the markdown. I also need to add each
-file to an index.md file that will be used as part of the table of
-contents. To deal with this, I created a custon function `gen_html`:
+I need to ensure compile the files to a common directory so that its
+easy to sync with my server. An index file that links up to all the
+children files should also be generated dynamically, so that I can
+easily find the links. I created a custom function `gen_html` that does
+this:
 
 .. code-block:: bash
 
@@ -71,11 +69,15 @@ contents. To deal with this, I created a custon function `gen_html`:
     }
 
 
-To call this function with xargs, I however had to do some special
-things (TODO: add link to this):
+xargs runs in a different process, so the function `gen_html` will not
+be available for that. To fix this, we first export it and then call it
+with the xargs context. The `_` is a place holder for `argv[0]` and `%`
+is the parameter defined by `-I`. See `this link <https://stackoverflow.com/a/11003457>`_
+for more information.
 
 .. code-block:: bash
 
+    export gen_html
     find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % bash -c 'gen_html "$@"' _ %
 
 After which I generate the index with:
