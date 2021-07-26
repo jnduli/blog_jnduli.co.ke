@@ -5,7 +5,7 @@ Static Website with Pandoc
 :category: Engineering
 :slug: static_website_with_pandoc 
 :author: John Nduli
-:status: drafts
+:status: draft
 
 I needed to pull off a quick website that would have various mathematics
 questions, and thought to try and use pandoc. Here are my learnings:
@@ -48,8 +48,7 @@ need to get a list of all files I want.
 
 .. code-block:: bash
 
-    # TODO test this out
-    find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % pandoc -f markdown -t html --mathjax --metadata title="questions" -x %
+    find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % pandoc -f markdown -t html --mathjax --metadata title="questions" -o %.html  %
 
 I need to ensure compile the files to a common directory so that its
 easy to sync with my server. An index file that links up to all the
@@ -77,8 +76,9 @@ for more information.
 
 .. code-block:: bash
 
-    export gen_html
+    export -f gen_html
     find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sort | xargs -I % bash -c 'gen_html "$@"' _ %
+
 
 After which I generate the index with:
 
@@ -86,5 +86,6 @@ After which I generate the index with:
 
     pandoc -f markdown -t html --mathjax -s -o ./test_compile/index.html index.md 
 
-You can find the full gist here:
-TODO: add gist containing the full source code.
+
+You can find the full code in `this gihub gist
+<https://gist.github.com/jnduli/0d07305c79c542282d105c48e31d004c>`_.
