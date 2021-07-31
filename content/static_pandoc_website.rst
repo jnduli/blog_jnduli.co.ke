@@ -5,7 +5,7 @@ Static Website with Pandoc
 :category: Engineering
 :slug: static_website_with_pandoc 
 :author: John Nduli
-:status: draft
+:status: published
 
 I needed to pull off a quick website that would have various mathematics
 questions, and thought to try and use pandoc. Here are my learnings:
@@ -30,6 +30,7 @@ this:
 
 
 A sample file would look like this:
+
 .. code-block:: markdown
 
     # Title that will be in table of contents
