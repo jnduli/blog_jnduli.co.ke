@@ -12,7 +12,8 @@ We need to install: minikube and kubectl
 
 .. code-block:: bash
 
-    sudo pacman -S minikube kubectl
+    sudo pacman -S minikube kubectl docker
+    sudo systemctl start docker
     minikube config set driver docker
     minikube start
 
@@ -22,6 +23,15 @@ containers. The can be exposed using services, for example:
   pods/services that want to access a particular group of pods.
 - LoadBalancer is used to provide external access to a pod within the
   cluster.
+
+
+== Static Project ==
+With a simple html project, we can easily deploy this using a nginx
+image.
+
+Clone this repository and run:
+
+
 
 TODO: I mignt need to explain controllers above and what they do.
 Also we might also want to use and IngressController here.
