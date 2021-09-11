@@ -54,9 +54,10 @@ To partition the drive:
     fdisk /dev/sda # enters fdisk to help modify this drive
     g # convert to gpt partitioning scheme
     n # create a new partition
-    # first partition 2M for Grub
+    # first partition 2M for Grub, mark this as Bios boot
     n # 2nd partition 120GB for linux
     n # 3rd partittion rest of files size, for home directory
+    w # write changes and exit
 
 The first partition needed to have at least 1MB for Grub (see `grub
 archwiki
