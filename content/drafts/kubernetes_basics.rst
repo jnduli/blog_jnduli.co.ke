@@ -8,7 +8,7 @@ Kubernetes Basics
 :author: John Nduli
 
 
-We need to install: minikube and kubectl
+We need to install `docker`, `minikube` and `kubectl` before starting.
 
 .. code-block:: bash
 
@@ -17,17 +17,130 @@ We need to install: minikube and kubectl
     minikube config set driver docker
     minikube start
 
-Smallest deployable unit in kubes is a pod. It contains one or more
-containers. The can be exposed using services, for example:
+
+== Serving Static Html ==
+We'll be deploying a simple html page on kubernetes. The dockerfile for
+this is:
+
+.. code-block:: Dockerfile
+
+    # Dockerfile_static_content
+    FROM nginx:1.21.1
+    COPY static_website_with_pandoc.html /usr/share/nginx/html/index.html
+
+The smallest deployable unit in kubernetes is a pod. So the above image
+will be run in a pod. A pod can contain one or more containers. However,
+managing pods individually isn't a good idea. Creation and termination
+of pods is handled by controllers
+(https://kubernetes.io/docs/concepts/workloads/pods/#pods-and-controllers).
+
+One type of controller is a ReplicaSet that maintains a constant number
+of pods running at the same type. A deployment is a higher level
+controller that manages ReplicaSet, so its recommended to use
+Deployments instead of ReplicaSets directly
+(https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#when-to-use-a-replicaset).
+
+For example, assuming the above is in an image tagged `static:0.1.0`, a
+deployment manifest for this would look like:
+
+.. code-block:: yaml
+
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: static-website
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: static-website
+      template:
+        metadata:
+          labels:
+            app: static-website
+        spec:
+          containers:
+          - name: static-website
+            image: static:0.1.0
+            ports:
+            - containerPort: 80
+
+TODO: explain the parts of the manifest.
+
+This will create 3 different pods when run. Pods however cannot
+communicate with each other. To be able to talk to a pod, or even access
+it we have to use a service. A service is an abstract way to expose an
+application running on a set of Pods as a network service
+(https://kubernetes.io/docs/concepts/services-networking/service/).
+
+A LoadBalance is a service that exposes some resource to the public
+through an ip. Here's the once used to expose the static website.
+
+
+.. code-block:: yaml
+
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: static-load-balancer
+    spec:
+      selector:
+        app: static-website
+      ports:
+        - port: 80
+          targetPort: 80
+      type: LoadBalancer
+
+
+To run the above, we can do the following:
+
+
+.. code-block:: bash
+
+    # create the files or clone this repo <TODO Link to repo>
+    minikube start
+    eval $(minikube -p minikube docker-env)
+    docker build -t static:0.1.0 -f Dockerfile_static_content .
+    kubectl apply -f k8s/deployment.yml
+    kubectl get services # TODO: might be deeployments
+    kubectl get pods
+    kubectl get services # notice port address of the load balancer service
+    curl $(minikube ip):ip_from_above
+
+
+TODO: Last point of first round draft clean up
+
+
+
 - the ClusterIP service provides an internal IP to be used by other
   pods/services that want to access a particular group of pods.
-- LoadBalancer is used to provide external access to a pod within the
-  cluster.
 
 
-== Static Project ==
-With a simple html project, we can easily deploy this using a nginx
-image.
+
+
+  
+
+
+You can find the set up for this here: `TODO: add link to github
+folder`. We can run the above with:
+
+.. code-block:: bash
+
+    minikube start
+    eval $(minikube -p minikube docker-env)
+    docker build -t static:0.1.0 -f Dockerfile_static_content .
+    kubectl apply -f k8s/deployment.yml
+    kubectl get services
+    kubectl get pods
+    kubectl get services # notice ip address of service
+    curl $(minikube ip):ip_from_above
+
+
+
+
+
 
 Clone this repository and run:
 
@@ -36,22 +149,92 @@ Clone this repository and run:
 TODO: I mignt need to explain controllers above and what they do.
 Also we might also want to use and IngressController here.
 
-To demonstrate the above, we'll deploy a small vuejs project on kubes:
-TODO: use staafu, and expose this using LoadBalancer and ClusterIP.
+
+Node JS Project
+---------------
+For the above, we using the loadbalancer exposes the ip address for use,
+but this isn't ideal when deploying to production. We would ideally want
+to access our services using some link or such. We'll build and deploy
+and nodejs project here and see how it would work.
+
+We first create a cluster ip that provides an internal ip address that
+we can use to access our pods. Then we create an ingress controller to
+help us access this through nginx.
+
+.. code-block:: yaml
+
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: vue-clusterip
+    spec:
+      type: ClusterIP
+      ports:
+        - port: 8080
+          targetPort: 8080
+      selector:
+        app: vue-website
 
 
-The advantage of the staafu project is that it's stateless. When we want
-to have state, and dont want to mess things up, we can use a
-statefulset.
+    ---
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: vue-ingress
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /$1
+    spec:
+      rules:
+        - http:
+            paths:
+              - path: /?(.*)
+                pathType: Prefix
+                backend:
+                  service:
+                    name: vue-clusterip
+                    port:
+                      number: 8080
 
-TODO: set up my comic project, using postgresql as statefulset and the
-django side as a replicaset. For image hosting, I'll set up something
-different as a stateful set too.
+
+To run the above we do:
+
+.. code-block:: yaml
+
+    minikube start
+    eval $(minikube -p minikube docker-env)
+    docker build -t vue:0.1.0 -f Dockerfile .
+    minikube addons enable ingress
+    kubectl apply -f k8s/
+    kubectl get ingress
+    kubectl get services
+
+
+Deploying a django application with a db frontend
+-------------------------------------------------
+When we require state, we can use a statefulset instead of a deployment
+because this can maintain state amongst the starting things.
+
+To set up the postgresql cluster, we create a volume that has a store of
+5gb, which will be persistent. This will persist the storage amongst
+multiple restarts of the container.
+
+The django bit runs similar to the nodejs project on a deployment stack.
+
+# TODO: try and figure out how to deal with image storage.
+
+.. code-block:: bash
+
+    cd django_project
+    minikube start
+    eval $(minikube -p minikube docker-env)
+    docker build -t comic-server:0.1.0 -f Dockerfile .
+    kubectl apply -f k8s/
 
 
 
 
-
+# Rough Notes
 Kubernetes is an orchestration thingy, so its used to manage containers
 and has other cool features like load balancers, scaling, etc.
 
