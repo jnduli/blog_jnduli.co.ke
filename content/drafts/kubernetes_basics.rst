@@ -8,6 +8,15 @@ Kubernetes Basics
 :author: John Nduli
 
 
+Think of this as telling a story. And start with something catching and
+how things will go from there.
+
+Kubernetes is pretty complex, and learning it is a tall order. However,
+I think it provides a sane way of handling infra complexity and also
+means as it becomes more and more popular it becomes easier/more
+standard, and understanding different setups becomes easier since we
+have a common base to build upon.
+
 We need to install `docker`, `minikube` and `kubectl` before starting.
 
 .. code-block:: bash
@@ -110,56 +119,57 @@ To run the above, we can do the following:
     curl $(minikube ip):ip_from_above
 
 
-TODO: Last point of first round draft clean up
-
-
-
-- the ClusterIP service provides an internal IP to be used by other
-  pods/services that want to access a particular group of pods.
-
-
-
-
-  
-
-
 You can find the set up for this here: `TODO: add link to github
 folder`. We can run the above with:
-
-.. code-block:: bash
-
-    minikube start
-    eval $(minikube -p minikube docker-env)
-    docker build -t static:0.1.0 -f Dockerfile_static_content .
-    kubectl apply -f k8s/deployment.yml
-    kubectl get services
-    kubectl get pods
-    kubectl get services # notice ip address of service
-    curl $(minikube ip):ip_from_above
-
-
-
-
-
-
-Clone this repository and run:
-
-
 
 TODO: I mignt need to explain controllers above and what they do.
 Also we might also want to use and IngressController here.
 
 
+TODO: Last point of first round draft clean up
+
+
 Node JS Project
 ---------------
-For the above, we using the loadbalancer exposes the ip address for use,
-but this isn't ideal when deploying to production. We would ideally want
-to access our services using some link or such. We'll build and deploy
-and nodejs project here and see how it would work.
+For the above, we using the loadbalancer exposes the ip address for use.
+We can point a domain name to that ip, but if we have several subdomains
+this would mean creating multiple LoadBalancers. We can use an
+IngressController to control all inbound traffic into our system. This
+will be demonstrated using a vue js project to see how it would work.
 
-We first create a cluster ip that provides an internal ip address that
-we can use to access our pods. Then we create an ingress controller to
-help us access this through nginx.
+We create a docker image and a deployment similar to the above steps:
+
+.. code-block:: bash
+
+    cd vue_project
+    docker build -t vue:0.1.0 -f Dockerfile .
+    docker container run --publish 8080:8080 --name vue_example vue:0.1.0
+
+.. code-block:: yml
+
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: vue-website
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: vue-website
+      template:
+        metadata:
+          labels:
+            app: vue-website
+        spec:
+          containers:
+          - name: vue-website
+            image: vue:0.1.0
+            ports:
+            - containerPort: 8080
+
+To get an internal ip address that points to the vue project, we create
+a clusterIP service. This just provides an endpoint that can be used to
+access the project and can be linked up to other things.
 
 .. code-block:: yaml
 
@@ -176,6 +186,14 @@ help us access this through nginx.
       selector:
         app: vue-website
 
+You can enter any container in the cluster and running 
+`curl vue-clusterip1 will return something.
+# TODO: show a demonstration of the above
+
+An ingress controller is then created and pointed to the clusterIP. We
+just provide an ip
+
+.. code-block:: bash
 
     ---
     apiVersion: networking.k8s.io/v1
@@ -209,6 +227,8 @@ To run the above we do:
     kubectl get ingress
     kubectl get services
 
+- the ClusterIP service provides an internal IP to be used by other
+  pods/services that want to access a particular group of pods.
 
 Deploying a django application with a db frontend
 -------------------------------------------------
