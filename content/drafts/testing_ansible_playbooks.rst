@@ -11,6 +11,7 @@ TODO: test these bits
 
 .. code-block:: yml
 
+    # test_ansible.yml
     ---
     - hosts: all
       tasks:
@@ -20,46 +21,54 @@ TODO: test these bits
             update_cache: yes
             pkg:
               - git
-              - nvim
+              - vim
 
 and to test this out we can run:
 
 .. code-block:: bash
 
-    # docker container run --interactive --tty  --volume /home/rookie/projects/comic_server:/app/:rw --rm  ansible_comic_server /bin/bash
-    docker container run --interactive --tty  --volume test_ansible.yml:/test_ansible.yml --rm  ubuntu:20.04 /bin/bash
-    apt install ansible
-    ansible-playbook -f /test_ansible.yml -i 'localhost,' --connection=local
+    # note for live syncing we need to mount directories, not files
+    docker container run --interactive --tty  --volume $(pwd):/app --rm  ubuntu:20.04 /bin/bash
+    apt update && apt install ansible
+    ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
 
 and install ansible in the container and run the script. I think there's
 a way to run this without this.
 
-However, since docker is a stripped down version, there are things that
-are difficult to test. One that I encountered was systemctl stuff. To
+However, docker is a minimal version of linux and doesn't have all the
+bolts and nuts of a VM. One that I encountered was systemctl stuff. To
 test this, I used a VM and ended up learning a bit of vault in the
 process.
 
+.. code-block:: bash
+
+    sudo pacman -S virtualbox vagrant
+
+and have the following Vagrantfile:
+
+.. code-block:: ruby
+
+    # Vagrantfile
+    VAGRANTFILE_API_VERSION = "2"
+
+    Vagrant.configure("2") do |config|
+        config.vm.box = "generic/ubuntu2004"
+        # config.vm.box = "bento/ubuntu-20.04"
+        config.vm.network "public_network"
+        config.vm.synced_folder "./", "/app"
+    end
+
+And running:
+
+.. code-block:: bash
+
+    vagrant up
+    vagrant ssh
 
 
+gets me into the box. We can then run the ansible play book with:
 
+.. code-block:: bash
 
-
-
-
-The problem I encountered was that since the image is a stripped down
-version with limited functionality, I couldn't test out things that
-start services or use system ctl or use docker.
-
-The other option I got was to use vagrant.
-
-# install virtualbox
-
-
-╰─$ yay -S libvirt qemu vagrant
-╰─$ systemctl start libvirtd virtlogd
-vagrant plugin install vagrant-libvirt
-vagrant up --provider=libvirt
-
-╰─$ sudo usermod --append --groups libvirt rookie                                                                              1 ↵
-
-╰─$ yay -S iptables-nft dnsmasq bridge-utils
+   sudo apt update && sudo apt install ansible
+   ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
