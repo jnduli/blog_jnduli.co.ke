@@ -2,22 +2,40 @@
 Kubernetes Basics
 #################
 
-:date: 2021-08-31
+:date: 2021-11-19
 :category: Computer
 :slug: kubernetes_basics
 :author: John Nduli
 
+"We've got this project on kubernetes that you'll be helping maintain"
 
-Think of this as telling a story. And start with something catching and
-how things will go from there.
+This started my journey with kubernetes. I only knew that it existed so
+I had to level up to be able to help. I found a great tutorial from
+`freecodecaamp
+<https://www.freecodecamp.org/news/the-kubernetes-handbook/>`_ and this
+blog is an attempt to set up some personal projects using it. It's best
+to read the original though as it's more in-depth.
 
-Kubernetes is pretty complex, and learning it is a tall order. However,
-I think it provides a sane way of handling infra complexity and also
-means as it becomes more and more popular it becomes easier/more
-standard, and understanding different setups becomes easier since we
-have a common base to build upon.
+I wanted to serve an `index.html` for a first project. A `pod
+<https://kubernetes.io/docs/concepts/workloads/pods/#working-with-pods>`_
+would be used for this. A pod is the smallest deployable unit in
+kubernetes, and it can contain one or more containers (e.g. docker
+containers). Its an isolated environment to run a docker image,
+providing storage and networking.
 
-We need to install `docker`, `minikube` and `kubectl` before starting.
+To create a pod, I can create one manually or use a `workload resource
+<https://kubernetes.io/docs/concepts/workloads/pods/#pods-and-controllers>`_,
+which provide extra features like replication, recreating pods when one
+stops working and more. The work resources have a pod template, which
+provides a description of how to create the pods we want.
+
+A `deployment
+<https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>`_
+is a work resource that creates replicas of the pod. I wanted 3 pods
+serving the `index.html` file, so I'd use a deployment.
+
+To start off, I installed packages to help me play with kubernetes
+locally:
 
 .. code-block:: bash
 
@@ -27,208 +45,219 @@ We need to install `docker`, `minikube` and `kubectl` before starting.
     minikube start
 
 
-== Serving Static Html ==
-We'll be deploying a simple html page on kubernetes. The dockerfile for
-this is:
+I also created a dockerfile that served the `index.html` file using
+nginx.
 
-.. code-block:: Dockerfile
+.. code-block:: dockerfile
 
-    # Dockerfile_static_content
+    # tagged static:0.1.0 
     FROM nginx:1.21.1
-    COPY static_website_with_pandoc.html /usr/share/nginx/html/index.html
+    COPY index.html /usr/share/nginx/html/index.html
 
-The smallest deployable unit in kubernetes is a pod. So the above image
-will be run in a pod. A pod can contain one or more containers. However,
-managing pods individually isn't a good idea. Creation and termination
-of pods is handled by controllers
-(https://kubernetes.io/docs/concepts/workloads/pods/#pods-and-controllers).
-
-One type of controller is a ReplicaSet that maintains a constant number
-of pods running at the same type. A deployment is a higher level
-controller that manages ReplicaSet, so its recommended to use
-Deployments instead of ReplicaSets directly
-(https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#when-to-use-a-replicaset).
-
-For example, assuming the above is in an image tagged `static:0.1.0`, a
-deployment manifest for this would look like:
+I created a yml file that defined the deployment resource that would be
+created in minikube.
 
 .. code-block:: yaml
 
+    # static_deployment.yml
     ---
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-      name: static-website
+      name: static-website-deployment
     spec:
       replicas: 3
       selector:
         matchLabels:
-          app: static-website
+          app: static-website-pod
       template:
         metadata:
           labels:
-            app: static-website
+            app: static-website-pod
+        # pod template section
         spec:
           containers:
-          - name: static-website
+          - name: static-website-container
             image: static:0.1.0
             ports:
             - containerPort: 80
 
-TODO: explain the parts of the manifest.
+This creates a deployment work resource with the name
+`static-website-deployment`. The deployment ensures that there are 3
+pods running the docker image at any one time (defined in replicas). The
+selector is used to define what pods are being managed, and are the same
+as the metadata.lables.app found in the template section. This metadata
+is applied to each pod that is created. The pod template defines how the
+pod are created, so in each of the 3 pods there will be a running
+container named static-website-container, and the pod would expose port
+80.
 
-This will create 3 different pods when run. Pods however cannot
-communicate with each other. To be able to talk to a pod, or even access
-it we have to use a service. A service is an abstract way to expose an
-application running on a set of Pods as a network service
-(https://kubernetes.io/docs/concepts/services-networking/service/).
+To run the above:
 
-A LoadBalance is a service that exposes some resource to the public
-through an ip. Here's the once used to expose the static website.
+.. code-block:: bash
+
+    minikube start
+    eval $(minikube -p minikube docker-env) # ensure docker images are built in minikube context
+    docker build -t static:0.1.0 -f Dockerfile_static_content .
+    kubectl apply -f k8s/deployment.yml
+
+To check that things are running as expected:
+
+.. code-block:: bash
+
+    ╰─$ kubectl get deployment
+    NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+    static-website-deployment   3/3     3            3           17s
+    ╰─$ kubectl get pods
+    NAME                                         READY   STATUS    RESTARTS   AGE
+    static-website-deployment-57bdbf7d94-7ngwt   1/1     Running   0          4s
+    static-website-deployment-57bdbf7d94-9l5cv   1/1     Running   0          4s
+    static-website-deployment-57bdbf7d94-gj59k   1/1     Running   0          4s
 
 
-.. code-block:: yaml
+I wanted to curl into this server, but couldn't because the kubernetes
+environment is isolated. To deal with this, kubernetes has `services
+<https://kubernetes.io/docs/concepts/services-networking/service/>`_
+which provide a means of exposing a set of pods. I set up a
+`LoadBalancer` service, which provides an ip address that can be used to
+access the pods. In minikube, it uses a random port on the minikube
+service. TODO: rename this to not use minikube service.
 
-    ---
+.. code-block:: yml
+
+    # static_load_balancer.yml
     apiVersion: v1
     kind: Service
     metadata:
       name: static-load-balancer
     spec:
       selector:
-        app: static-website
+        app: static-website-pod
       ports:
         - port: 80
           targetPort: 80
       type: LoadBalancer
 
-
-To run the above, we can do the following:
-
+and ran the following:
 
 .. code-block:: bash
 
-    # create the files or clone this repo <TODO Link to repo>
-    minikube start
-    eval $(minikube -p minikube docker-env)
-    docker build -t static:0.1.0 -f Dockerfile_static_content .
-    kubectl apply -f k8s/deployment.yml
-    kubectl get services # TODO: might be deeployments
-    kubectl get pods
-    kubectl get services # notice port address of the load balancer service
-    curl $(minikube ip):ip_from_above
+    ╰─$ kubectl apply -f static_load_balancer.yml
+    service/static-load-balancer unchanged
+    ╰─$ kubectl get services
+    NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+    kubernetes             ClusterIP      10.96.0.1       <none>        443/TCP        6d5h
+    static-load-balancer   LoadBalancer   10.105.222.19   <pending>     80:30133/TCP   116s
+    ╰─$ curl $(minikube ip):30133
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
 
 
-You can find the set up for this here: `TODO: add link to github
-folder`. We can run the above with:
+`minikube ip` provides the ip address of minikube, and the port is the
+second part of the PORTS section of the static-load-balancer service.
 
-TODO: I mignt need to explain controllers above and what they do.
-Also we might also want to use and IngressController here.
-
-
-TODO: Last point of first round draft clean up
-
-
-Node JS Project
----------------
-For the above, we using the loadbalancer exposes the ip address for use.
-We can point a domain name to that ip, but if we have several subdomains
-this would mean creating multiple LoadBalancers. We can use an
-IngressController to control all inbound traffic into our system. This
-will be demonstrated using a vue js project to see how it would work.
-
-We create a docker image and a deployment similar to the above steps:
+Since what we're exposing is http traffic, I could also use an `ingress
+object
+<https://kubernetes.io/docs/concepts/services-networking/ingress/>`_,
+which is a type of controller that can expose http and https traffic.
+Other advantages include ssl termination and name-based virtual
+hosting. I first needed to enable ingress in minikube with:
 
 .. code-block:: bash
 
-    cd vue_project
-    docker build -t vue:0.1.0 -f Dockerfile .
-    docker container run --publish 8080:8080 --name vue_example vue:0.1.0
+    minikube addons enable ingress
+
+
+The ingress controller links up with a service, so we could use the
+LoadBalancer service previously created.
 
 .. code-block:: yml
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: vue-website
-    spec:
-      replicas: 3
-      selector:
-        matchLabels:
-          app: vue-website
-      template:
-        metadata:
-          labels:
-            app: vue-website
-        spec:
-          containers:
-          - name: vue-website
-            image: vue:0.1.0
-            ports:
-            - containerPort: 8080
-
-To get an internal ip address that points to the vue project, we create
-a clusterIP service. This just provides an endpoint that can be used to
-access the project and can be linked up to other things.
-
-.. code-block:: yaml
-
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: vue-clusterip
-    spec:
-      type: ClusterIP
-      ports:
-        - port: 8080
-          targetPort: 8080
-      selector:
-        app: vue-website
-
-You can enter any container in the cluster and running 
-`curl vue-clusterip1 will return something.
-# TODO: show a demonstration of the above
-
-An ingress controller is then created and pointed to the clusterIP. We
-just provide an ip
-
-.. code-block:: bash
 
     ---
     apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
-      name: vue-ingress
+      name: static-ingress
       annotations:
-        nginx.ingress.kubernetes.io/rewrite-target: /$1
+        nginx.ingress.kubernetes.io/rewrite-target: /
     spec:
       rules:
         - http:
             paths:
-              - path: /?(.*)
+              - path: /
                 pathType: Prefix
                 backend:
                   service:
-                    name: vue-clusterip
+                    name: static-load-balancer
                     port:
-                      number: 8080
+                      number: 80
 
 
-To run the above we do:
+However, it doesn't make much sense to have both an ingress object and a
+load balancer pointing to the same thing. Another service I could use
+was the `ClusterIP` which provides an ip internal to the cluster. This
+way we only have one entry point into minikube.
 
-.. code-block:: yaml
+.. code-block:: yml
 
-    minikube start
-    eval $(minikube -p minikube docker-env)
-    docker build -t vue:0.1.0 -f Dockerfile .
-    minikube addons enable ingress
-    kubectl apply -f k8s/
-    kubectl get ingress
-    kubectl get services
+    # static_ingress.yml
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: static-clusterip
+    spec:
+      selector:
+        app: static-website-pod
+      ports:
+        - port: 80
+          targetPort: 80
+      type: ClusterIP
 
-- the ClusterIP service provides an internal IP to be used by other
-  pods/services that want to access a particular group of pods.
+    ---
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: static-ingress
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+    spec:
+      rules:
+        - http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: static-clusterip
+                    port:
+                      number: 80
+
+
+And now running:
+
+.. code-block:: bash
+
+    ╰─$ kubectl get services
+    NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+    kubernetes             ClusterIP      10.96.0.1       <none>        443/TCP        6d6h
+    static-clusterip       ClusterIP      10.109.227.9    <none>        80/TCP         108s
+    static-load-balancer   LoadBalancer   10.105.222.19   <pending>     80:30133/TCP   81m
+    ╰─$ kubectl get ingress
+    NAME             CLASS    HOSTS   ADDRESS     PORTS   AGE
+    static-ingress   <none>   *       localhost   80      25m
+    ╰─$ curl $(minikube ip)
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+
+
+Having the basics of kubernetes i.e. controllers, services and ingress
+down, I tried to set up a django project (which is more complex).
+
+
+.. TODO: clean up django section
 
 Deploying a django application with a db frontend
 -------------------------------------------------
@@ -423,3 +452,135 @@ TODO:
 - create docker image of the comic project, and use this to explain
   stateful sets and linking them up to the database with environment
   variable and secrets.
+
+
+
+
+
+
+
+
+
+.. should I explain Replicaset???
+.. One type of controller is a ReplicaSet that maintains a constant number
+.. of pods running at the same type. A deployment is a higher level
+.. controller that manages ReplicaSet, so its recommended to use
+.. Deployments instead of ReplicaSets directly
+.. (https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#when-to-use-a-replicaset).
+
+TODO: Let's do ingress controller in the static website part too and
+drop the nodejs project.
+
+TODO: clean up the django set up part too.
+
+
+You can find the set up for this here: `TODO: add link to github
+folder`. We can run the above with:
+
+TODO: I mignt need to explain controllers above and what they do.
+Also we might also want to use and IngressController here.
+
+
+TODO: Last point of first round draft clean up
+
+
+Node JS Project
+---------------
+For the above, we using the loadbalancer exposes the ip address for use.
+We can point a domain name to that ip, but if we have several subdomains
+this would mean creating multiple LoadBalancers. We can use an
+IngressController to control all inbound traffic into our system. This
+will be demonstrated using a vue js project to see how it would work.
+
+We create a docker image and a deployment similar to the above steps:
+
+.. code-block:: bash
+
+    cd vue_project
+    docker build -t vue:0.1.0 -f Dockerfile .
+    docker container run --publish 8080:8080 --name vue_example vue:0.1.0
+
+.. code-block:: yml
+
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: vue-website
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: vue-website
+      template:
+        metadata:
+          labels:
+            app: vue-website
+        spec:
+          containers:
+          - name: vue-website
+            image: vue:0.1.0
+            ports:
+            - containerPort: 8080
+
+To get an internal ip address that points to the vue project, we create
+a clusterIP service. This just provides an endpoint that can be used to
+access the project and can be linked up to other things.
+
+.. code-block:: yaml
+
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: vue-clusterip
+    spec:
+      type: ClusterIP
+      ports:
+        - port: 8080
+          targetPort: 8080
+      selector:
+        app: vue-website
+
+You can enter any container in the cluster and running 
+`curl vue-clusterip1 will return something.
+# TODO: show a demonstration of the above
+
+An ingress controller is then created and pointed to the clusterIP. We
+just provide an ip
+
+.. code-block:: bash
+
+    ---
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: vue-ingress
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /$1
+    spec:
+      rules:
+        - http:
+            paths:
+              - path: /?(.*)
+                pathType: Prefix
+                backend:
+                  service:
+                    name: vue-clusterip
+                    port:
+                      number: 8080
+
+
+To run the above we do:
+
+.. code-block:: yaml
+
+    minikube start
+    eval $(minikube -p minikube docker-env)
+    docker build -t vue:0.1.0 -f Dockerfile .
+    minikube addons enable ingress
+    kubectl apply -f k8s/
+    kubectl get ingress
+    kubectl get services
+
+- the ClusterIP service provides an internal IP to be used by other
+  pods/services that want to access a particular group of pods.
