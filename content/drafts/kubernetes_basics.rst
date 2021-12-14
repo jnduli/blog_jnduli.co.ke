@@ -257,17 +257,18 @@ Having the basics of kubernetes i.e. controllers, services and ingress
 down, I tried to set up a django project (which is more complex).
 
 
-.. TODO: clean up django section
+Deploying a django application
+------------------------------
+The application uses a database, so we'll need something that maintains
+state. A `statefulset
+<https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>`_
+is a controller that can help. When a pod is recreated, it has its data
+since it's stored in persistent storage and has the same name. Each pods
+name is of the form ${statefulset name}-${ordinal}, with ordinal being
+an integer from 0 to N, depending on the names.
 
-Deploying a django application with a db frontend
--------------------------------------------------
-When we require state, we can use a statefulset instead of a deployment
-because this can maintain state amongst the starting things.
+Note: It isn't really a good idea to have a dbase in kubernetes.
 
-To set up the postgresql cluster, we create a volume that has a store of
-5gb, which will be persistent. This will persist the storage amongst
-multiple restarts of the container. Creating a stateful set will
-automatically create the PersistentVolume for us.
 
 .. code-block:: yaml
 
@@ -287,7 +288,7 @@ automatically create the PersistentVolume for us.
            accessModes: [ "ReadWriteOnce" ]
            resources:
              requests:
-               storage: 5Gi
+               storage: 1Gi
        replicas: 1
        selector:
           matchLabels:
@@ -313,8 +314,9 @@ automatically create the PersistentVolume for us.
                    - name: POSTGRES_DB
                      value: comicsite
 
-We create a cluster ip so that the dbase can be accessed within the
-cluster:
+On the django side, we'll create a ClusterIP that points to the
+statefulset and use this as the db host for the django app.
+
 
 .. code-block:: yaml
 
@@ -330,11 +332,6 @@ cluster:
         - port: 5432 
           targetPort: 5432
       type: ClusterIP
-
-
-The django project can be deployed as a deployment:
-
-.. code-block:: yaml
 
     ---
     apiVersion: apps/v1
@@ -373,6 +370,10 @@ The django project can be deployed as a deployment:
                 - name: "DB_HOST"
                   value: postgres-cluster-ip
 
+Note: I've avoided dealing with image storage, but this would involve
+another statefulset.
+
+Note: A better way to store secrets is to use secrets config.
 
 And link up everything to the nginx controller with:
 
@@ -397,11 +398,6 @@ And link up everything to the nginx controller with:
                     port:
                       number: 8000
 
-
-The django bit runs similar to the nodejs project on a deployment stack.
-
-# TODO: try and figure out how to deal with image storage.
-
 .. code-block:: bash
 
     cd django_project
@@ -410,177 +406,22 @@ The django bit runs similar to the nodejs project on a deployment stack.
     docker build -t comic-server:0.1.0 -f Dockerfile .
     kubectl apply -f k8s/
 
-# TODO:
-add auto scaler examples here too
-
-
-# Rough Notes
-Kubernetes is an orchestration thingy, so its used to manage containers
-and has other cool features like load balancers, scaling, etc.
-
-Add definition of cluster.
-
-We have a pod, which is a unit of work. It can contain one of many
-containers. To create a pod (It seems we cannot create pods):
-
-We can create a deployment that can contain multiple replicas. (TODO:
-more details on this). Shouldn't this be replicaset??
-
-Also add notes of persistentvolumes and such.
-
-When we need to have state, that cannot be deleted, we can use a
-statefulset. 
-
-To expose the services internally, we can use the ClusterIP service.
-This provides an internal ip that can be used by various processes.
-(TODO: add example)
-
-To expose externally, we can use an ingress controller or a load
-balancer. An example of an ingress controller provides a nginx front end
-that can be used to route http traffic into the cluster. A load balancer
-exposes ports to the public at some ip address. This can be used to
-access any type of traffic, be it http, tcp, https.
-
-To store secrets, we can create a secrets config and apply it. This
-creates a secretes service that we can use to get environment variables
-from.
-
-TODO:
-
-- create docker image of staafu, and use to explain
-  deployment/replicaset
-- create docker image of the comic project, and use this to explain
-  stateful sets and linking them up to the database with environment
-  variable and secrets.
-
-
-
-
-
-
-
-
-
-.. should I explain Replicaset???
-.. One type of controller is a ReplicaSet that maintains a constant number
-.. of pods running at the same type. A deployment is a higher level
-.. controller that manages ReplicaSet, so its recommended to use
-.. Deployments instead of ReplicaSets directly
-.. (https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#when-to-use-a-replicaset).
-
-TODO: Let's do ingress controller in the static website part too and
-drop the nodejs project.
-
-TODO: clean up the django set up part too.
-
-
-You can find the set up for this here: `TODO: add link to github
-folder`. We can run the above with:
-
-TODO: I mignt need to explain controllers above and what they do.
-Also we might also want to use and IngressController here.
-
-
-TODO: Last point of first round draft clean up
-
-
-Node JS Project
----------------
-For the above, we using the loadbalancer exposes the ip address for use.
-We can point a domain name to that ip, but if we have several subdomains
-this would mean creating multiple LoadBalancers. We can use an
-IngressController to control all inbound traffic into our system. This
-will be demonstrated using a vue js project to see how it would work.
-
-We create a docker image and a deployment similar to the above steps:
 
 .. code-block:: bash
-
-    cd vue_project
-    docker build -t vue:0.1.0 -f Dockerfile .
-    docker container run --publish 8080:8080 --name vue_example vue:0.1.0
-
-.. code-block:: yml
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: vue-website
-    spec:
-      replicas: 3
-      selector:
-        matchLabels:
-          app: vue-website
-      template:
-        metadata:
-          labels:
-            app: vue-website
-        spec:
-          containers:
-          - name: vue-website
-            image: vue:0.1.0
-            ports:
-            - containerPort: 8080
-
-To get an internal ip address that points to the vue project, we create
-a clusterIP service. This just provides an endpoint that can be used to
-access the project and can be linked up to other things.
-
-.. code-block:: yaml
-
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: vue-clusterip
-    spec:
-      type: ClusterIP
-      ports:
-        - port: 8080
-          targetPort: 8080
-      selector:
-        app: vue-website
-
-You can enter any container in the cluster and running 
-`curl vue-clusterip1 will return something.
-# TODO: show a demonstration of the above
-
-An ingress controller is then created and pointed to the clusterIP. We
-just provide an ip
-
-.. code-block:: bash
-
-    ---
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: vue-ingress
-      annotations:
-        nginx.ingress.kubernetes.io/rewrite-target: /$1
-    spec:
-      rules:
-        - http:
-            paths:
-              - path: /?(.*)
-                pathType: Prefix
-                backend:
-                  service:
-                    name: vue-clusterip
-                    port:
-                      number: 8080
-
-
-To run the above we do:
-
-.. code-block:: yaml
 
     minikube start
     eval $(minikube -p minikube docker-env)
-    docker build -t vue:0.1.0 -f Dockerfile .
+    docker build -t vue:0.1.0 -f dockerfile .
     minikube addons enable ingress
     kubectl apply -f k8s/
     kubectl get ingress
     kubectl get services
 
-- the ClusterIP service provides an internal IP to be used by other
-  pods/services that want to access a particular group of pods.
+
+
+.. TODO: look at custom operators for postgresql
+- https://cloud.google.com/blog/products/databases/to-run-or-not-to-run-a-database-on-kubernetes-what-to-consider
+- https://stackoverflow.com/questions/68157219/when-should-i-use-statefulsetcan-i-deploy-database-in-statefulset
+
+# TODO:
+add auto scaler examples here too
