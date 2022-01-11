@@ -2,16 +2,15 @@
 Sending Mail from Cron in Ubuntu 20.04 LTS
 ##########################################
 
-:date: 2021-12-24
+:date: 2022-01-15
 :category: Computer
 :slug: sending_mail_from_cron_in_ubuntu_20_04_lts
 :author: John Nduli
-
-.. TODO: set and find ubuntu version I'm using
+:status: published
 
 I created a cronjob to back up my server content and wanted to test out
 emailing of errors when they occurred. To set this up, I installed
-`msmtp, msmtp-mta` to help send emails using an smtp server and
+`msmtp` and `msmtp-mta` to help send emails using an smtp server and
 `bsd-mailx` to test sending emails from terminal. The cronjob entry was:
 
 .. code-block:: cron
@@ -19,7 +18,7 @@ emailing of errors when they occurred. To set this up, I installed
     MAILTO="email@example.org"
     */1 * * * * echo "using default crontab mail functionality variable"
 
-However, I got the following errors (check out `/var/log/syslog'):
+However, I got the following errors (check out `/var/log/syslog`):
 
 .. code-block:: bash
 
