@@ -1,3 +1,11 @@
+################
+Celery learnings
+################
+
+:date: 2022-01-15
+:category: Computer
+:author: John Nduli
+
 https://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html#application
 
 
@@ -8,13 +16,16 @@ systemctl start redix
 
 Create file: task.py
 
-from celery import Celery
+.. code-block:: bash
 
-app = Celery('tasks', backend='redis', broker='redis://localhost:6379/0')
-    
-@app.task
-def add(x, y):
-    return x + y
+
+    from celery import Celery
+
+    app = Celery('tasks', backend='redis', broker='redis://localhost:6379/0')
+        
+    @app.task
+    def add(x, y):
+        return x + y
     
     
 Start celery with: celery -A task worker --loglevel=info 

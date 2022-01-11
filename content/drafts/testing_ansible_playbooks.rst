@@ -1,3 +1,11 @@
+#########################
+Testinq ansible playbooks
+#########################
+
+:date: 2022-01-15
+:category: Computer
+:author: John Nduli
+
 While working with ansible, we can test the scripts locally, but
 sometimes its some platform specific things I want to test out, for
 example installation of packages using a custom os's thing. I think

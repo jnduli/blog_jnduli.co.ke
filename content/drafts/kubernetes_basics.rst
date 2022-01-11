@@ -420,8 +420,8 @@ And link up everything to the nginx controller with:
 
 
 .. TODO: look at custom operators for postgresql
+
 - https://cloud.google.com/blog/products/databases/to-run-or-not-to-run-a-database-on-kubernetes-what-to-consider
 - https://stackoverflow.com/questions/68157219/when-should-i-use-statefulsetcan-i-deploy-database-in-statefulset
 
-# TODO:
-add auto scaler examples here too
+.. TODO: add auto scaler examples here too
