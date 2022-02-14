@@ -9,29 +9,28 @@ Kubernetes Basics
 
 "We've got this project on kubernetes that you'll be helping maintain"
 
-This started my journey with kubernetes. I only knew that it existed so
-I had to level up to be able to help. I found a great tutorial from
-`freecodecaamp
+This started my journey with kubernetes. I found a great tutorial from
+`freecodecamp
 <https://www.freecodecamp.org/news/the-kubernetes-handbook/>`_ and this
 blog is an attempt to set up some personal projects using it. It's best
 to read the original though as it's more in-depth.
 
 I wanted to serve an `index.html` for a first project. A `pod
 <https://kubernetes.io/docs/concepts/workloads/pods/#working-with-pods>`_
-would be used for this. A pod is the smallest deployable unit in
-kubernetes, and it can contain one or more containers (e.g. docker
-containers). Its an isolated environment to run a docker image,
-providing storage and networking.
+would be used. A pod is the smallest deployable unit in kubernetes, and
+it can contain one or more containers (e.g. docker containers). Its an
+isolated environment to run a docker image, providing storage and
+networking.
 
 To create a pod, I can create one manually or use a `workload resource
 <https://kubernetes.io/docs/concepts/workloads/pods/#pods-and-controllers>`_,
 which provide extra features like replication, recreating pods when one
-stops working and more. The work resources have a pod template, which
-provides a description of how to create the pods we want.
+stops working and more. The workload resources have a pod template,
+which provides a description of how to create the pods we want.
 
 A `deployment
 <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>`_
-is a work resource that creates replicas of the pod. I wanted 3 pods
+is a workload resource that creates replicas of the pod. I wanted 3 pods
 serving the `index.html` file, so I'd use a deployment.
 
 To start off, I installed packages to help me play with kubernetes
@@ -85,12 +84,12 @@ created in minikube.
 This creates a deployment work resource with the name
 `static-website-deployment`. The deployment ensures that there are 3
 pods running the docker image at any one time (defined in replicas). The
-selector is used to define what pods are being managed, and are the same
-as the metadata.lables.app found in the template section. This metadata
-is applied to each pod that is created. The pod template defines how the
-pod are created, so in each of the 3 pods there will be a running
-container named static-website-container, and the pod would expose port
-80.
+selector.matchLabels.app is used to define what pods are being managed,
+and are the same as the metadata.labels.app found in the template
+section. This metadata is applied to each pod that is created. The pod
+template defines how the pod are created, so in each of the 3 pods there
+will be a running container named static-website-container, and the pod
+would expose port 80.
 
 To run the above:
 
@@ -115,13 +114,13 @@ To check that things are running as expected:
     static-website-deployment-57bdbf7d94-gj59k   1/1     Running   0          4s
 
 
-I wanted to curl into this server, but couldn't because the kubernetes
-environment is isolated. To deal with this, kubernetes has `services
+I wanted to use curl to verify the pods are running correctly, but the
+kubernetes environment is isolated. To deal with this, kubernetes has
+`services
 <https://kubernetes.io/docs/concepts/services-networking/service/>`_
 which provide a means of exposing a set of pods. I set up a
-`LoadBalancer` service, which provides an ip address that can be used to
-access the pods. In minikube, it uses a random port on the minikube
-service. TODO: rename this to not use minikube service.
+`LoadBalancer` service, which provides an ip address and a port that can
+be used to access the pods. 
 
 .. code-block:: yml
 
@@ -196,7 +195,7 @@ LoadBalancer service previously created.
 
 However, it doesn't make much sense to have both an ingress object and a
 load balancer pointing to the same thing. Another service I could use
-was the `ClusterIP` which provides an ip internal to the cluster. This
+is the `ClusterIP` which provides an ip internal to the cluster. This
 way we only have one entry point into minikube.
 
 .. code-block:: yml
