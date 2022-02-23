@@ -1,25 +1,37 @@
 ################################
 Django Application in Kubernetes
-################# ##############
+################################
 
 :date: 2021-11-19
 :category: Computer
 :slug: django_application_in_kubernetes
 :author: John Nduli
 
+I set up and served a html page here, TODO: add link. I'll now try to
+set up something more complex that has a lot of wheels here.
 
+.. Explain the librephotos project, include the docker components
+   explanation
 
-Deploying a django application
-------------------------------
+.. Explain statefulsets and their usage with databases
+
+.. Fix redis on librephotos
+
+.. Explain setting up our volumes for use to store the photos
+
+.. Explain setting up the backend and frontend
+
+.. Explain how we link up the frontend and backend using ingress
+
 The application uses a database, so we'll need something that maintains
 state. A `statefulset
 <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>`_
 is a controller that can help. When a pod is recreated, it has its data
 since it's stored in persistent storage and has the same name. Each pods
 name is of the form ${statefulset name}-${ordinal}, with ordinal being
-an integer from 0 to N, depending on the names.
-
-Note: It isn't really a good idea to have a dbase in kubernetes.
+an integer from 0 to N, depending on the names. It's preferable to use
+some managed service for a database though, but for this article we'll
+use a statefulset for this.
 
 
 .. code-block:: yaml
