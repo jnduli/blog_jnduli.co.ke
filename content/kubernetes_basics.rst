@@ -2,10 +2,11 @@
 Kubernetes Basics
 #################
 
-:date: 2022-02-05
+:date: 2022-02-26
 :category: Computer
 :slug: kubernetes_basics
 :author: John Nduli
+:status: published
 
 "We've got this project on kubernetes that you'll be helping maintain"
 
