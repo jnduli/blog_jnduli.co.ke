@@ -1,6 +1,5 @@
-
-I became a tech lead and I've been struggling with a lot since this
-happenened. Some of the challenges are:
+I became a tech lead and I've been struggling a lot with this. Some of the
+challenges are:
 
 - It seems like I have way too much to do.
 - I need to support team members which is more work that I thought it
@@ -8,18 +7,24 @@ happenened. Some of the challenges are:
 - I have to plan for the future and this isn't as clear as I thought
   it'd be.
 - I need to support decisions that I make with evidence or something.
-- I need to learn a whole host of skills that I've ignored for a while.
+- I need to learn a whole host of skills that I've ignored for a while
+  especially the soft ones.
 
-It's overwhelming and I'm trying to figure things out and research how
-to do this and be better efficient. I think this is because I've
-focussed a lot of time in improving my workflow geared to code
-contributions and I don't know much about how to effectively work with a
-team beyond explaining what challenges I have, how I'm working on them
-and how I should proceed.
+It's overwhelming, but slowly becoming bearable. I'm figuring things out and
+finding out how to become a better tech lead. I think this is because I
+optimized for different skills when I was just an IC, this being finishing out
+clearly defined tickets and having a point person I could always look to for
+clarification (Goodhart's law). The skills don't exactly match for the tech lead
+role, where while I do still churn out code, this isn't the best use of my time,
+and I should work on better planning and architecture, figuring out technical
+problems and how to fix them. Sometimes I need help from other teams and here's
+where the soft skills bit comes, where I should be able to explain why I need
+their help and see we can get a consensus that said task is important.
 
-I now have to be aware of other's challenges, try to understand these
-and get a feel of where they're coming from and what solutions they're
-making.
+I also have to be aware of other team's challenges and see where we can
+help/improve. This means participating in meetings, contributing to design docs
+and reviewing more things than I'm usually used to. 
+
 
 Some of the things I've done to help with this is:
 - I've scheduled a daily task in my daily management tool (tasklite add
@@ -32,6 +37,8 @@ Some of the things I've done to help with this is:
 - I'm more aware of the limited time I have so I try to optimize my day
   around the most important thing to do. This is super hard at the
   moment though.
+
+TODO: Add quote for fs blog of time management vs being busy.
 
 TODO: do a lot of research on tips to help with this and how I can
 implement this.
