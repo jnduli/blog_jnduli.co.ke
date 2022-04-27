@@ -9,36 +9,37 @@ Moving home directory to another partition
 :author: John Nduli
 :status: draft
 
+I'd need to install ubuntu on my work laptop, but I didn't want to lose my home
+directory. The set up I'd made had everything in one partition, so my home
+folder would get lost if I chose to reinstall an OS. I'd move the contents on
+this folder into another partition.
 
-There was a chance that I'd have to install ubuntu on my laptop and I didn't
-want to lose the content of my home folder. I'd create a new partition and put
-the contents of my home folder there, that way changing of modifying my OS
-wouldn't affect this.
-
-I made sure I had enough space for this. I first found the size of my home
-directory by running:
+I'd need to ensure I had enough space to pull this off. This meant that the new
+partition would have to have at least the size of my home folder, and I found
+this by running:
 
 .. code-block:: bash
 
    cd /home
    du -sch $(ls -A)
 
-I'd need to have at least that free space on my drive, so I did a bit of clean
-up. I ensured I had a bit more free space than the size of my home directory. I
-don't want to be unable to save new files there.
+I didn't have enough space, so I cleared up some space using instructions found
+here (TODO: add link to article on space cleanup). I made sure I had the size of
+my home dir + 50GB. I don't want to be unable to store new files there.
 
-To partition the drive, I'd need to move things around so that the free space is
-contiguous. I didn't want to use my host OS for this, so I set up gparted on a
-drive and booted this. It provides a nice GUI that helped me shrink the drive,
-and create a new partition that would host my home directory.
+To partition the drive, I'd need the resize the current partition, and then
+create a new partition from the unallocated space. I got the gparted iso, set it
+up on a flash drive and booted into it. The GUI helped me shrink the drive and
+create the new partition that I'd use as my home directory.
 
-Once done, I logged into the host OS as the root user, mounted the new partition
-and copied over the content of my home folder with:
+Once done, I logged into my original OS as the root user, mounted the new
+partition and copied over my home folder with:
+
 
 .. code-block:: bash
 
    mount /dev/sdc2 /mnt
-   cp -rp /home/* /mnt # cp -r --preserve=all /hom/* /mnt would work better
+   cp -rp /home/* /mnt # cp -r --preserve=all /home/* /mnt would work better
    mv /home /home.old
 
 
@@ -50,10 +51,13 @@ automatically mount this partition on boot as my home directory with:
     # home directory mount
     UUID=uuid_from_blkid_output 	/home     	ext4      	rw,relatime	0 2
 
-I rebooted my laptop and everything went ok.
+I rebooted my laptop and everything seemed ok ok.
 
 Lastly, I cleaned out the `home.old` folder with:
 
 .. code-block:: bash
 
    rm -rf /home.old
+
+
+And now I could safely change my OS without losing my home directory.
