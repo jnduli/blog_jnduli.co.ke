@@ -9,19 +9,27 @@ SC-IM Color Configuration
 :author: John Nduli
 :status: draft
 
+SC-IM doesn't look to great in xfce4-terminal, and I chose to set up a color
+palette for it. It doesn't have good enough contrast for me to easily read the
+cells.
 
-SC-IM looks really bad by default on my laptop. I'm using xfce4-terminal
-with solarized-light color scheme. To fix this, you need to test out
-various color.
+First thing to fix was the colors for the command mode. Type this out:
 
-For the commands you input to be visible use this:
+.. code-block:: bash
 
-color "type=INPUT fg=WHITE bg=BLACK"
+    color "type=INPUT fg=WHITE bg=BLACK"
 
-When I type :help, I cant also see the test in there. To fix that, type
-this command>
+And any commands I type will be white text in black background.
 
-color "type=NORMAL fg=WHITE bg=BLACK"
+Running `:help`, the text also has the same visibility problem. To fix this I
+set:
+
+.. code-block:: lua
+
+    color "type=NORMAL fg=WHITE bg=BLACK"
+
+
+
 
 From the help menu, search for color and you'll get this:
 
