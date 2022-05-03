@@ -25,6 +25,9 @@ mostly a hit or a miss. So far these are the ones that I have:
 
 + children of moria https://store.steampowered.com/app/330020/Children_of_Morta/
 + slay the spire https://store.steampowered.com/app/646570/Slay_the_Spire/
++ transistor
+
+
 
 TODO: look for more games I can play on this laptop.
 
