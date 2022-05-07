@@ -6,7 +6,7 @@ My Firefox Configuration
 :category: Computer
 :slug: my_firefox_configuration
 :author: John Nduli
-:status: drafts
+:status: draft
 
 I like using firefox, and I've set it up to be ideal for my workflow. Here are
 the extensions I have:
@@ -57,14 +57,25 @@ the extensions I have:
           }
         }
 
++ `uBlock origin
+  <https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/>`_
++ `Leechblock NG
+  <https://addons.mozilla.org/en-US/firefox/addon/leechblock-ng/>`_: This
+  provides a way to block sites that are blocking my time. It makes is difficult
+  to do some time wasting things like watching youtube, hence I'll avoid them.
++ `Remove youtube suggestions
+  <https://addons.mozilla.org/en-US/firefox/addon/remove-youtube-s-suggestions/>`_:
+  Addon that helps block distracting features from youtube. I've removed the
+  `Explore link`, `Shorts link` and `End of Video suggestions`.
+
+
 .. TODO: clean up the sections below
-+ uBlock Origin
-+ LeechBlock NG
-+ Remove YouTube Suggestions
+
 + SponsorBlock for YouTube - Skip Sponsor
 + Firefox Mult-Account Containers
 
 .. TODO: add list of configs
+
 I also change the following configs:
 
 .. code-block:: lua
