@@ -1,26 +1,32 @@
-##########################
-Principles in Buying Stuff
-##########################
+############
+Buying Stuff
+############
 
-A common bias I get is impulse buying, anchor bias where I'll see something and
-think of a reason why I would need this. Most of the time, I end up not getting
-the item, but I dislike the seconds where my brain desires it. (TODO: Think of
-other biases)
+:date: 2022-05-06
+:category: Random
+:slug: buying_stuff
+:author: John Nduli
+:status: draft
 
+.. TODO: think about a better title
 
-I read an article about how if I want to buy something, I should first buy the
-cheapest thing I can find. If I use it enough such that it breaks, I then go and
-buy the best I can find. I really liked this and I applied it to various things
-I've been buying.
+I read `this article about buying the cheapest tools
+<https://www.johndcook.com/blog/2020/07/25/worst-tool-for-the-job/>`_ first,
+then if you use them a lot or they break because of use, then go ahead and buy
+the most expensive ones. This resonated with me, and I've found that buying the
+cheap ones also tells me if I really need the fancy things I always assumed I'd
+need.
 
-A good example is my laptop, where I bought the thinkpad t440 last year for 32K.
-I'd wanted to buy the upper end think pads, but thought I'd try it out with this
-first. Turns out this has the specs I need, and I'm rarely worried about
-performance and such. Even better yet, if this model ever breaks, I'll most
-likely get another similar one. I think this is the extra bit I've found out.
-When I buy the cheaper tools, I sometimes find out that they are ok for me, and
-I really didn't need all those extra flashy specs.
+An example is how I got my laptop. I wanted to get the latest thinkpad,
+something that would have cost me Ksh 150000, but chose to try out the older
+models first. So I got a thinkpad t440 last year for Ksh 30000. I love this
+laptop and it has most of the things I need. The only failing is playing the
+latest and greatest games, but this also has led me to trying out hidden gems
+that I'd have ignored otherwise. If this laptop ever breaks, I'll most likely
+get a similar one. I now don't see the point of spending 5 times the amount on
+something that is marginally better (for my needs that is).
 
+.. TODO: clean these chapters out, they discuss maintenance
 Another one I found out about buying the most expensive tools you can find is
 that maintenance is usually a headache. This happened with our electric shower
 head. When I moved in, we bought the best and most expensive head our
@@ -37,3 +43,12 @@ something), and the screen got spoiled. We haven't been able to get a
 replacement for this so far. All repair shops we go to, have a price of half the
 laptop price and it's irritating. I gave up on touch laptops after this
 (although I didn't even use the touch functionality).
+
+
+.. TODO: these came from atomic habits most likely
+A common bias I get is impulse buying, anchor bias where I'll see something and
+think of a reason why I would need this. Most of the time, I end up not getting
+the item, but I dislike the seconds where my brain desires it. (TODO: Think of
+other biases)
+
+.. TODO: go through this: https://write.as/harold-lee/theres-a-phrase-going-around-that-you-should-buy-experiences-not-things?pk_campaign=rss-feed
