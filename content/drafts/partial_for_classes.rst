@@ -10,7 +10,8 @@ Python Partial For Classes
 :status: draft
 
 
-Partial sets up frozen arguments to functions. For example:
+Partial will create another function with some of the parameters frozen to
+another value, for example:
 
 .. code-block:: python
 
@@ -21,6 +22,8 @@ Partial sets up frozen arguments to functions. For example:
     square = partial(power, y=2)
     square(3) # Returns 9
 
+
+.. TODO: example seems wrong here btw
 
 Using partial in classes in the same way, will require passing the class
 instance as one of the parameters as shown below:
