@@ -10,21 +10,21 @@ Buying Stuff
 
 .. TODO: think about a better title
 
-I read `this article about buying the cheapest tools
+I read `this article about buying the cheapest tool
 <https://www.johndcook.com/blog/2020/07/25/worst-tool-for-the-job/>`_ first,
-then if you use them a lot or they break because of use, then go ahead and buy
-the most expensive ones. This resonated with me, and I've found that buying the
-cheap ones also tells me if I really need the fancy things I always assumed I'd
-need.
+then if I use it often until it breaks, then I can go ahead and buy the most
+expensive one. This felt right, and I've tried to apply this to most of my
+purchases. I've found that this has made me realize that I can actually live
+with some of the cheap things I've bought.
 
-An example is how I got my laptop. I wanted to get the latest thinkpad,
-something that would have cost me Ksh 150000, but chose to try out the older
-models first. So I got a thinkpad t440 last year for Ksh 30000. I love this
-laptop and it has most of the things I need. The only failing is playing the
-latest and greatest games, but this also has led me to trying out hidden gems
-that I'd have ignored otherwise. If this laptop ever breaks, I'll most likely
-get a similar one. I now don't see the point of spending 5 times the amount on
-something that is marginally better (for my needs that is).
+I wanted to get the latest high-specc'ed thinkpad, and I'd budgeted for Ksh
+150K, but chose to try out the older models first. I ended up buying a
+refurbished thinkpad t440 last year for Ksh 30K and I love it. It has most of
+the things I need. The only failing is playing AAA games, but this also has led
+me to trying out hidden gems that I'd have ignored otherwise. If this laptop
+ever breaks, I'll most likely get a similar one. I now don't see the point of
+spending 5 times the amount on something that is marginally better (for my needs
+that is).
 
 .. TODO: clean these chapters out, they discuss maintenance
 Another one I found out about buying the most expensive tools you can find is
