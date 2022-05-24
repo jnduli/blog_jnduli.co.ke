@@ -67,9 +67,8 @@ things I want to buy (and I stick to this list).
 
 Experiences vs Things
 ---------------------
-
-
-
-.. TODO: these came from atomic habits most likely
-
-.. TODO: go through this: https://write.as/harold-lee/theres-a-phrase-going-around-that-you-should-buy-experiences-not-things?pk_campaign=rss-feed
+TODO: reread the article and jot down points
+I also liked `this article on buying things not experiences
+<https://write.as/harold-lee/theres-a-phrase-going-around-that-you-should-buy-experiences-not-things>`_.
+Instead of looking for experiences, choosing carefully curated items to own
+makes your life much more richer.
