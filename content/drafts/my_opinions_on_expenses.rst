@@ -69,8 +69,49 @@ things I want to buy (and I stick to this list).
 
 Experiences vs Things
 ---------------------
-TODO: reread the article and jot down points
+
 I also liked `this article on buying things not experiences
-<https://write.as/harold-lee/theres-a-phrase-going-around-that-you-should-buy-experiences-not-things>`_.
-Instead of looking for experiences, choosing carefully curated items to own
-makes your life much more richer.
+<https://write.as/harold-lee/theres-a-phrase-going-around-that-you-should-buy-experiences-not-things>`_,
+and learnt that there's a blurry boundary between items and experiences, in that
+there are experience like things e.g. owning a workshop, and there are
+think-like experiences e.g. an instagrammable vacation. The reasons we prefer
+experiences could be because of constraints in our lives e.g. we don't have
+enough space for them, or it could be a way to show that you're rich. Carefully
+chosen things to own will enrich our lives beyond any single experience we can
+get e.g. owning a large living room provides a chance to host friends and build
+your network.
+
+So where possible, consider the experiences of making a purchase, rather than
+just brushing it off as materialism. This though means I should also be aware of
+the biases mentioned in the previous section, and I try to balance both of these
+off.
+ 
+
+
+TODO: reread the article and jot down points
+
+Notes:
+- we should buy experiences, not things, because if I buy a lambo, for example,
+  the high lasts only for a few days, so it's better to buy experiences that'll
+  give us memories we can treasure for longer.
+- This could be a rationalization, where since we're in a time of material
+  abundance, the rich need a way to differentiate themselves from others e.g.
+  buy expensive haircuts, long vacations.
+- Also urban dwellers have less space at an expensive rate, so they can't fit
+  all the materials they want nor afford some, so they rationalize experiences
+  since they can't live a materialistic life.
+- There isn't a boundary between experiences and things. There are experience
+  like things like owning a workshop, and thing like experiences like
+  instagrammable vacation.
+- We can instead focus on the experiences owning things can bring e.g. owning a
+  large living room means you can entertain friends at your place, building and
+  strengthening your networks, owning a functional gym and kitchen reduces our
+  dependence on healthcare. Getting thoughfully chosen material goods can enable
+  new activities that can enrich my life, extend my capabilities and deepen my
+  understanding of the world.
+
+
+
+
+
+
