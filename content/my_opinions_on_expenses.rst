@@ -2,11 +2,11 @@
 My Opinions on expenses
 ###############################
 
-:date: 2022-05-06
+:date: 2022-06-04
 :category: Random
 :slug: my_opinions_on_expenses
 :author: John Nduli
-:status: draft
+:status: published
 
 Cheap items
 ===========
