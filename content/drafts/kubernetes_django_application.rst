@@ -7,31 +7,25 @@ Django Application in Kubernetes
 :slug: django_application_in_kubernetes
 :author: John Nduli
 
-I set up and served a html page here, TODO: add link. I'll now try to
-set up something more complex that has a lot of wheels here.
+I managed to serve a html page through kubernetes
+<{filename}/kubernetes_basics.rst>`_, so I'll attempt to serve a more complex
+system in minikube in this article.
 
-.. Explain the librephotos project, include the docker components
-   explanation
+The project we'll be setting up is librephotos, it has:
 
-.. Explain statefulsets and their usage with databases
+- a backend component: https://github.com/LibrePhotos/librephotos
+- a frontend component: https://github.com/LibrePhotos/librephotos-frontend
+- a devops project containing the docker files: https://github.com/LibrePhotos/librephotos-docker
 
-.. Fix redis on librephotos
-
-.. Explain setting up our volumes for use to store the photos
-
-.. Explain setting up the backend and frontend
-
-.. Explain how we link up the frontend and backend using ingress
-
-The application uses a database, so we'll need something that maintains
+The backend uses postgresql database, so we'll need an object that can maintain
 state. A `statefulset
-<https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>`_
-is a controller that can help. When a pod is recreated, it has its data
-since it's stored in persistent storage and has the same name. Each pods
-name is of the form ${statefulset name}-${ordinal}, with ordinal being
-an integer from 0 to N, depending on the names. It's preferable to use
-some managed service for a database though, but for this article we'll
-use a statefulset for this.
+<https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>`_ is a
+controller that can help. When a pod is recreated, it has its data since it's
+stored in persistent storage and has the same name. Each pods name is of the
+form ${statefulset name}-${ordinal}, with ordinal being an integer from 0 to N,
+depending on the names. It's preferable to use some managed service for a
+database though, but for this article we'll use a statefulset for this. I'll
+also stick to one pod for the database.
 
 
 .. code-block:: yaml
@@ -80,6 +74,20 @@ use a statefulset for this.
 
 On the django side, we'll create a ClusterIP that points to the
 statefulset and use this as the db host for the django app.
+
+
+.. Explain statefulsets and their usage with databases
+
+.. Fix redis on librephotos
+
+.. Explain setting up our volumes for use to store the photos
+
+.. Explain setting up the backend and frontend
+
+.. Explain how we link up the frontend and backend using ingress
+
+
+
 
 
 .. code-block:: yaml
