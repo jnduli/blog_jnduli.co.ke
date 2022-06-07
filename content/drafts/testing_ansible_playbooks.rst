@@ -5,17 +5,21 @@ Testinq ansible playbooks
 :date: 2022-01-15
 :category: Computer
 :author: John Nduli
+:status: draft
 
-While working with ansible, we can test the scripts locally, but
-sometimes its some platform specific things I want to test out, for
-example installation of packages using a custom os's thing. I think
-there are better ways, but the first though I got was to try and use
-docker, which worked out really great for a start.
 
-So let's say I want to test out script installations on ubuntu, how
-would I do that?
+TODOS:
+- test out all the scripts in the examples
+- research standard ways to test things in ansible
+- look for resources explaining docker limitations
+- modify examples to use ip addresses instead of localhost
 
-TODO: test these bits
+
+I was making some ansible scripts and I wanted to test them out locally before
+deploying them to my main server. I figured docker would help me out, especially
+for the platform specific tasks, like installing packages using an OS's package
+manager. This was possible to some extent within docker, so I created the script
+below:
 
 .. code-block:: yml
 
@@ -31,22 +35,22 @@ TODO: test these bits
               - git
               - vim
 
-and to test this out we can run:
+
+
+and ran this with:
 
 .. code-block:: bash
 
+    # TODO: there should be a way to make use the docker ip address here??
     # note for live syncing we need to mount directories, not files
     docker container run --interactive --tty  --volume $(pwd):/app --rm  ubuntu:20.04 /bin/bash
     apt update && apt install ansible
     ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
 
-and install ansible in the container and run the script. I think there's
-a way to run this without this.
 
-However, docker is a minimal version of linux and doesn't have all the
-bolts and nuts of a VM. One that I encountered was systemctl stuff. To
-test this, I used a VM and ended up learning a bit of vault in the
-process.
+I got stuck when I wanted to launch systemctl services. (TODO: add link to
+explanation of this). To test this out, I had to use a Virtual Machine, which
+would emulate a whole system. I set up vagrant and tried things out.
 
 .. code-block:: bash
 
@@ -74,7 +78,7 @@ And running:
     vagrant ssh
 
 
-gets me into the box. We can then run the ansible play book with:
+got me into the box, and I could run an ansible playbook with:
 
 .. code-block:: bash
 
