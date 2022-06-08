@@ -7,6 +7,18 @@ Testinq ansible playbooks
 :author: John Nduli
 :status: draft
 
+Plan:
+- go through:
+  https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
+  and put down notes
+- go through:
+  https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html
+  and put down notes
+- https://opensource.com/article/20/1/ansible-playbooks-lessons
+- https://molecule.readthedocs.io/en/stable/
+
+
+
 
 TODOS:
 - test out all the scripts in the examples
