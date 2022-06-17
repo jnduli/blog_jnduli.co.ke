@@ -1,8 +1,21 @@
+###############
+Asking For Help
+###############
+
+:date: 2022-05-06
+:category: Computer
+:slug: asking_for_help
+:author: John Nduli
+:status: draft
+
+
 Resources for asking for help:
 - no hello: https://nohello.net/en/
 - xy problem: https://xyproblem.info/
+
   - https://www.perlmonks.org/?node=XY+Problem
   - https://en.wikipedia.org/wiki/XY_problem
+
 - how to ask questions the smart way: http://www.catb.org/esr/faqs/smart-questions.html
 - einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect
 
@@ -10,6 +23,7 @@ Others:
 https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 
 Plan:
+
 1. Start out with: http://www.catb.org/esr/faqs/smart-questions.html and
    summarize the contents here, then do more summaries until I've got a good
    reflection of my understanding of the topic.
@@ -161,6 +175,17 @@ possible.
 
 Volume is not precision
 ^^^^^^^^^^^^^^^^^^^^^^^
+Be precise and informative e.g. if you have a large test case that is breaking a
+program, try to trim it and make it as small as possible. This is useful
+because: one is seen as investing effort in smplifying the question thus makes
+it easy to get answers; simplifying question makes it more likely you'll get an
+answer; in the process of refining a bug report you may develop a fix/work
+around yourself.
+
+Don't rush to claim that you have found a bug
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 
 
 
