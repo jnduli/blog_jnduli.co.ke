@@ -58,7 +58,8 @@ the extensions I have:
         }
 
 + `uBlock origin
-  <https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/>`_
+  <https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/>`_: an ad
+  blocker
 + `Leechblock NG
   <https://addons.mozilla.org/en-US/firefox/addon/leechblock-ng/>`_: This
   provides a way to block sites that are blocking my time. It makes is difficult
@@ -67,12 +68,14 @@ the extensions I have:
   <https://addons.mozilla.org/en-US/firefox/addon/remove-youtube-s-suggestions/>`_:
   Addon that helps block distracting features from youtube. I've removed the
   `Explore link`, `Shorts link` and `End of Video suggestions`.
++ `SponsorBlock
+  <https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/>`_: helps to
+  skip sponsor sections in youtube videos.
 
 
-.. TODO: clean up the sections below
+.. TODO: take a note of this and try to replicate it and apply the fix
 
-+ SponsorBlock for YouTube - Skip Sponsor
-+ Firefox Mult-Account Containers
+https://wiki.archlinux.org/title/Firefox#Right_mouse_button_instantly_clicks_the_first_option_in_window_managers
 
 .. TODO: add list of configs
 
