@@ -2,6 +2,11 @@
 Kizuri Chajiuza
 ###############
 
+:date: 2022-05-06
+:category: Computer
+:slug: kizuri_chajiuza
+:author: John Nduli
+:status: draft
 
 
 Kizuri chajiuza, kibaya chajitembeza loosely translates to 'the good sells

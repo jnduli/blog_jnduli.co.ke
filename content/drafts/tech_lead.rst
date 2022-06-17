@@ -1,3 +1,13 @@
+##################
+Tech Lead Thoughts
+##################
+
+:date: 2022-05-06
+:category: Computer
+:slug: tech_lead_thoughts
+:author: John Nduli
+:status: draft
+
 I became a tech lead and I've been struggling a lot with this. Some of the
 challenges are:
 
@@ -27,6 +37,7 @@ and reviewing more things than I'm usually used to.
 
 
 Some of the things I've done to help with this is:
+
 - I've scheduled a daily task in my daily management tool (tasklite add
   link) to ensure I unblock team members, do PR reviews and add relevant
   comments to tickets. This helps me be in the loop for what is

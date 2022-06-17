@@ -1,3 +1,14 @@
+###################
+Documents that Work
+###################
+
+:date: 2022-05-06
+:category: Computer
+:slug: documents_that_work
+:author: John Nduli
+:status: draft
+
+
 I might be making docs that need to be reviewed by more and more people, and I
 want to make them easier to understand and see. So this doc details the
 research I've done and the things I should add.

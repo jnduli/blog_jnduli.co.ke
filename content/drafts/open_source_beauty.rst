@@ -1,3 +1,15 @@
+##################
+Open Source Beauty
+##################
+
+
+:date: 2022-05-06
+:category: Computer
+:slug: open_source_beauty
+:author: John Nduli
+:status: draft
+
+
 Look for quote on auditing things.
 
 I really like using some software, but limitations of the tool and extensibility

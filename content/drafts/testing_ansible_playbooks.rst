@@ -8,6 +8,7 @@ Testinq ansible playbooks
 :status: draft
 
 Plan:
+
 - go through:
   https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
   and put down notes
