@@ -184,6 +184,21 @@ around yourself.
 
 Don't rush to claim that you have found a bug
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Don't claim you've found a bug unless you are very, very sure i.e. unless you
+can provide a source-code patch that fixes the problem or a regression test
+against a previous version that demonstrates incorrect behaviour. Same applies
+for doc bugs. People that write software work hard to make sure it works as well
+as possible, so claiming you've found a bug might be impugning their competence,
+and it's especially undiplomatic to yell bug in the subject line. Write as
+though you are doing something wrong, even if you're privately sure you've found
+an actual bug.
+
+Grovelling is not a substitute for doing your homework
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. TODO
+
+
 
 
 
