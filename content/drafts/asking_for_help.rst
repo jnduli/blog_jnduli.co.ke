@@ -195,6 +195,60 @@ an actual bug.
 
 Grovelling is not a substitute for doing your homework
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e.g. I know I'm just a pathetic newbie loser, but..., this is distracting,
+unhelpful and annoying if its coupled with vagueness about the actual problem.
+
+Describe the problem's symptoms not your guesses
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you want to state your guess, clearly label it as such and why that isn't
+working for you. TO diagnose, it's better to see whatever is as close as
+possible to the raw evidence that I see rather than my guesses and summaries.
+
+Describe your problem's symptoms in chronological order
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+clues to figure out what went wrong usually lie in events immediately prior. Try
+to describe precisely what you didi and what the software did leading to the
+blow up. You can provide a session log and quote the relevant twenty or so
+lines, and/or use program's diagnostic options (e.g. -v for verbose), and try to
+select options thata will add useful info to the transcript but not drown the
+reader in junk.
+
+Describe the goal, not the step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you're trying to find out how to do sth (not a bug), begin by describing the
+goal, then the steps you've taken. People will have a high level goal in mind
+but get stuck on the path they chose, and come for help on the path and don't
+realize that the path is wrong.
+
+Don't ask people to reply by private email
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Public answers allows correction of answers by knowledgeable people, and helps
+respondents be seen as competent and knowledgeable. Don't ask for private
+replies, it's the respondents choice if to reply by private.
+
+Be explicit about your question
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Open ended questions are perceived as open ended time sinks, and avoided by
+those that are most likely to be able to answer.
+
+Be explicit about what you want (provide pointers, send code, check you patch,
+etc.), which ensures there's a clear upper limit on effort and time.
+
+The less of a time a commitment you implicitly ask for, the more likely you are
+to get an answer from someone really good and busy.
+
+Frame question to minimize time commitment e.g. 'Would you give me a pointer to a
+good explanation of X?' is smarter than 'Would you explain X, please?', if you
+have malfunctioning code, its usually smarter to ask someone to explain what's
+wrong with it that to ask someone to fix it.
+
+When asking about code
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+
 
 .. TODO
 
