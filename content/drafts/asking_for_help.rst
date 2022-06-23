@@ -2,9 +2,13 @@
 Asking For Help
 ###############
 
+
 :date: 2022-05-06
+       o
 :category: Computer
-:slug: asking_for_help
+:slug: oasking_for_help
+
+iiijojq
 :author: John Nduli
 :status: draft
 
@@ -244,10 +248,33 @@ wrong with it that to ask someone to fix it.
 
 When asking about code
 ^^^^^^^^^^^^^^^^^^^^^^
+Give a hint of the problem they should be searching for e.g. post dozen lines of
+code and say "after line 7 I expected x but I got y", rather than posting a few
+hundred lines of code and saying "it doesn't work".
 
+Provide a minimal bug-demonstrating test case. Even if this is sometimes not
+possible, trying to get this is good discipline, and may help you learn what you
+need to solve the problem on your own.
 
+If you want a code review, mention so, and note the areas that might
+particularly need review and why.
 
+Dont post homework questions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It is ok to ask for hints, but not for entire solutions.
 
+Prune pointless queries
+^^^^^^^^^^^^^^^^^^^^^^^
+Dont tack on queries like 'can anyone help me?' or 'Is there an answer', since
+this is superfluous if your problem description is competent, and people find
+them annoying. Avoid yes-or-no questions.
+
+Dont flag your question as urgen even if it is to you
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Makes your query seem rude and selfish, can be filtered out as spam.
+
+Courtesy never hurts, and sometimes helps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 .. TODO
