@@ -7,6 +7,8 @@ Author: John Nduli
 status: published
 Summary: Registering on Paypal with Airtel Money Card
 
+Note: This article is outdated. I haven't used these steps in a few years.
+
 
 Paypal is an online means of paying for goods and services. It is
 especially useful when working with sites like ebay, where some
