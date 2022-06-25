@@ -8,28 +8,25 @@ My Firefox Configuration
 :author: John Nduli
 :status: draft
 
-I like firefox, and I've tweaked it to be ideal for my workflow. Here are
-the extensions I have:
+I like firefox, and I've tweaked it to be ideal for me. The extensions I have
+are:
 
 + `Dark reader <https://addons.mozilla.org/en-US/firefox/addon/darkreader/>`_: I
-  prefer having a dark background with light text, so this applies a dark theme
-  to websites to. The only problem is my bank website doesn't work with this, so
-  I've had to exclude it from the websites the plugin can work with.
+  prefer dark themes, so this applies one to websites. This works great except
+  for my bank's website, which I've excluded in the plugin.
 + `Tridactyl <https://addons.mozilla.org/en-US/firefox/addon/tridactyl-vim/>`_:
-  provides vim keybindings to firefox. Its intuitive to use, and I'm especially
-  fond of its bookmarking feature. I've changed the theme to shydactyl-dark using:
+  provides vim keybindings. It's intuitive and I'm fond of how it implemented
+  bookmarks. I changed the theme to shydactyl-dark using:
 
     .. code-block:: lua
 
       colors --url https://raw.githubusercontent.com/eeshugerman/shydactyl-variations/master/dist/shydactyl-dark.css shydactyl-dark
       colourscheme shydactyl-dark
 
-  I had an issue when opening a new tab, where I'd see a white light that would
-  immediately switch to dark mode, a flash bang, and it disoriented me for a
-  while. `This github comment
+  When opening a new tab, there'd be a white canvas that immediately
+  switched to dark-mode, a flash bang, which was disorienting. I found a solution on `this github comment
   <https://github.com/tridactyl/tridactyl/issues/2510#issuecomment-763198138I>`_
-  provides the solution. I added the following to
-  `$HOME/.mozilla/firefox/profile-dir/chrome/userContent.css`:
+  and applied it by opening `$HOME/.mozilla/firefox/profile-dir/chrome/userContent.css` and adding:
   
     .. code-block:: css 
 
@@ -52,31 +49,24 @@ the extensions I have:
         }
 
 + `uBlock origin
-  <https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/>`_: an ad
-  blocker
+  <https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/>`_: ad blocker
 + `Leechblock NG
-  <https://addons.mozilla.org/en-US/firefox/addon/leechblock-ng/>`_: Blocks
-  sites that waste my time. It makes is difficult to open distracting websites
-  like youtube, hence it's almost impossible to visit them.
+  <https://addons.mozilla.org/en-US/firefox/addon/leechblock-ng/>`_: blocks
+  sites that I don't want to visit. I have to add these sites to a block list though,
+  but once done, it's difficult to open them. I've added youtube, twitter and
+  more, and this helps me concentrate on important tasks.
 + `Remove youtube suggestions
   <https://addons.mozilla.org/en-US/firefox/addon/remove-youtube-s-suggestions/>`_:
-  Addon that helps block distracting features from youtube. I've removed the
-  `Explore link`, `Shorts link` and `End of Video suggestions`.
+  blocks distracting features on youtube. I've removed the `Explore link`,
+  `Shorts link` and `End of Video suggestions`.
 + `Tab Counter
-  <https://addons.mozilla.org/en-US/firefox/addon/tab-counter-webext/>`_:
-  Provides information on how many windows I have open, how many tabs are open,
-  and the tabs in the current window. This gives me a rough idea of whether my
-  tabs are becoming unmanageable.
+  <https://addons.mozilla.org/en-US/firefox/addon/tab-counter-webext/>`_: shows
+  how many windows and tabs I have open, and the number of tabs in the current
+  window. This gives me a rough idea of whether my tabs are becoming
+  unmanageable.
 + `SponsorBlock
-  <https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/>`_: helps to
-  skip sponsor sections in youtube videos.
-
-
-.. TODO: take a note of this and try to replicate it and apply the fix
-
-https://wiki.archlinux.org/title/Firefox#Right_mouse_button_instantly_clicks_the_first_option_in_window_managers
-
-.. TODO: add list of configs
+  <https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/>`_: skips
+  sponsor sections in youtube videos.
 
 I also change the following configs:
 
@@ -89,3 +79,8 @@ I also change the following configs:
     browser.display.background_color = #000000
     browser.display.foreground_color = #ffffff
 
+
+I also sometimes got a problem where the first option on right click would be
+clicked automatically in firefox. I haven't got this in a while, but here's a
+solution just in case: `soln for mouse clicking
+<https://wiki.archlinux.org/title/Firefox#Right_mouse_button_instantly_clicks_the_first_option_in_window_managers>`_
