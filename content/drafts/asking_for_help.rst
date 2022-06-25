@@ -4,7 +4,6 @@ Asking For Help
 
 
 :date: 2022-05-06
-       o
 :category: Computer
 :slug: oasking_for_help
 
@@ -275,7 +274,11 @@ Makes your query seem rude and selfish, can be filtered out as spam.
 
 Courtesy never hurts, and sometimes helps
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Use "Please", "Thanks for your attention" or "Thanks for your consideration".
+This makes it clear you appreciate the time people spend to help you.
 
+Follow up with a brief note on the solution
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. TODO
 
