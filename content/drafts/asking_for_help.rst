@@ -279,35 +279,60 @@ This makes it clear you appreciate the time people spend to help you.
 
 Follow up with a brief note on the solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Send a note after solution, letting those who helped know how it came out and
+thanking them, if problem attracted interest in mailing list/newsgroup, post
+follow up there too. Reply to thread for original question and have 'FIXED,
+RESOLVED' or other obvious tag to the subject line, which helps potential
+respondents not look at thread, unless they find the problem interesting. Prefer
+short, sweet summaries to long dissertations unless the soln has real technical
+depth, so say what action solved the problem, but don't replay the whole
+troubleshooting experience.
+
+With problems with some depth, post summary of troubleshooting history, describe
+final problem statement, what worked as a soln, then avoidable blind alleys, and
+name those who helped.
+
+This also helps give everyone who helped a sense of closure.
+
+Consider how you can prevent others from having the same problem in the future,
+like a FAQ documentation patch.
+
+How to Interpret Answers
+------------------------
+RTFM and STFW
+^^^^^^^^^^^^^
+RTFM: Read the Fucking Manual
+STFW: Search The Fucking Web, "Google is your Friend" is a milder version.
+
+Often, someone sending the above has the manual or web page with the soln open,
+and thinks the information is easy to find, and you'll learn more if you seek
+out the information than have it spoon-fed to you.
+
+If you don't understand
+^^^^^^^^^^^^^^^^^^^^^^^
+If you don't understand, don't immediately bounce back a demand for
+clarification. Use the same tools for research to try and understand the answer,
+and only when completely unable, ask for clarification, but exhibit what you
+learned.
+e.g. If you're told: "It sounds like you've got a stuck zentry, you'll need to
+clear it", then a bad follow up is "What's a zentry?", but a good follow up
+would be, "Ok, I read the man pages and zentries are only mentioned under the -z
+and -p switches. Neither says anything about clearing zentries. Is it one of
+these or am I missing something here?"
+
+Dealing with rudeness
+^^^^^^^^^^^^^^^^^^^^^
+What looks like rudeness isn't, its a preference for direct
+cut-through-the-bullshit communication style that is natural to people that
+prefer solving problems to making others feel good. Act calmly if your perceive
+rudeness, acting out hurts your chances to getting an answer.
+
+On Not Reacting Like A Loser
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. TODO
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+https://www.mit.edu/~jcb/tact.html
 
 
  how to ask questions:
