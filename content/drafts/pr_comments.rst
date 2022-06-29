@@ -28,3 +28,7 @@ From: https://www.reddit.com/r/ExperiencedDevs/comments/u6fxbm/do_people_think_y
   then you're doing it wrong, you need to celebrate the small victories 
 - Unless it's plainly obvious that something is wrong or won't work, assume the
   author knows more than I do so I mainly ask questions.
+
+
+
+TODO: look at this: https://www.swarmia.com/blog/a-complete-guide-to-code-reviews/
