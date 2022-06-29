@@ -133,8 +133,52 @@ cards are sorted by start time if punch card i is run.
 `OPT(i+1)` represents the decision not to run. It gives the max value schedule
 for punch cards i+1 through n.
 
-Solve the original problem using Steps 1 and 2
+Step 3: Solve the original problem using Steps 1 and 2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In the above example, it's: `OPT(1)`
+
+Step 4: Determine the dimensions of the memoization array and direction it should be filled
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In previous step, `OPT(1)` requires the soln of `OPT(2)`, and so on. This is the
+same as for fibonacci  where `fib 3` depends on the solutions for 2, 1, and 0.
+
+To know the correct order to memoize, we note that 
+`OPT(1) = max(v_1 + OPT(next[1]), OPT(2))` and that punch cards `next[1]` and 2
+have start times after punch card 1 due to sorting, thus we need to fill the
+memoization table from `OPT(n)` to `OPT(1)`.
+
+How do we determine the dimensions of the memoization table? The dimensions of
+the array are equal to the number and size of the variables on which `OPT(*)`
+relies. In the punch card problem we have `OPT(i)` which means that `OPT(*)`
+relies of variable i, which reps the punch card number. This suggests that our
+memoization table will be 1-D and its size will be n since there are n total
+punch cards.
+
+Since indexing starts at 0 in many languages we can create a table like
+`memo = [0. OPT(1), OPT(2), OPT(3), ...]`
+
+
+Step 5: Code it
+^^^^^^^^^^^^^^^
+The only new piece of info we need is a base case, which you find as you tinker
+with the algorithm.
+
+The soln to the above can be:
+
+.. code-block:: python
+
+
+    def punchcardSchedule(n, values, next):
+        # Initialize memoization array - Step 4  
+        memo = [0] * (n+1)   
+        # Set base case  
+        memo[n] = values[n]   
+        # Build memoization table from n to 1 - Step 2  
+        for i in range(n-1, 0, -1):    
+            memo[i] = max(v_i + memo[next[i]], memo[i+1])  
+        # Return solution to original problem OPT(1) - Step 3  
+        return memo[1]
+
 
 .. TODO
 
