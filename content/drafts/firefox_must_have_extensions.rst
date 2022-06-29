@@ -6,7 +6,7 @@ My Firefox Configuration
 :category: Computer
 :slug: my_firefox_configuration
 :author: John Nduli
-:status: draft
+:status: published
 
 I like firefox, and I've tweaked it to be ideal for me. The extensions I have
 are:
@@ -80,7 +80,7 @@ I also change the following configs:
     browser.display.foreground_color = #ffffff
 
 
-I also sometimes got a problem where the first option on right click would be
-clicked automatically in firefox. I haven't got this in a while, but here's a
+I previously had a problem where the first menu item on right click would be
+chosen in firefox. I haven't experienced this in a while, but here's a
 solution just in case: `soln for mouse clicking
 <https://wiki.archlinux.org/title/Firefox#Right_mouse_button_instantly_clicks_the_first_option_in_window_managers>`_
