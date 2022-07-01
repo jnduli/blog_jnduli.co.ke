@@ -34,16 +34,16 @@ problem.
 
 e.g. You're given natural number n punch cards to run. Each card i must be run
 at some predetermined start time s_1 and stop running at some finish time f_i.
-Only once punch card can run at a time, and each card has an associated value
-v_i based on how important it is to your company. What is the optimal schedule
-of punch cards that maximized the total value of all punch cards run?
+Only one punch card can run at a time, and each card has an associated value v_i
+based on how important it is to your company. What is the optimal schedule of
+punch cards that maximized the total value of all punch cards run?
 
-subproblem: the maximum value schedule for punch cards i through n such that the
+sub-problem: the maximum value schedule for punch cards i through n such that the
 punch cards are sorted by start time?? I don't understand this yet.
 i.e. we do subproblem n-1 to n, n-2 to n, and so on until 1 to n. We memoize
 each subproblem / store the solution.
 
-fibonnaci, non memoized:
+fibonnaci, not memoized:
 
 .. code-block:: python
 
@@ -52,7 +52,7 @@ fibonnaci, non memoized:
        return n
       return fib(n-1) + fib(n-2)
 
-fibonnaci, memized:
+fibonnaci, memoized:
 
 .. code-block:: python
 
