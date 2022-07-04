@@ -329,6 +329,71 @@ rudeness, acting out hurts your chances to getting an answer.
 
 On Not Reacting Like A Loser
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When you screw up in forums, you'll be told exactly how you screwed up, in
+public, and you might end up whining about the experience, but instead you
+should get over it, it's normal, healthy and appropriate.
+
+Community standards don't maintain themselves, they're maintained by people
+actively applying them, visibly in publich, so don't whine when the criticism is
+not in private email, not is it useful if you claim you've been personally
+insulted when someone differs with your views. Forums that have banned
+participants from any fault-finding end up with clueful participants leaving to
+elsewhere, leaving the forum into meaningless babble and useless as a techincal
+forum.
+
+When someone tells you you've screwed up, he's acting out of concern for you and
+his community. He could have easily ignored you, so if you can't manage to be
+grateful, don't whine, don't expect to be treated like a fragile doll.
+
+If someone legitimately attacks you with no apparent reason, complaining is the
+way to really screw up. 
+
+Questions Not to Ask
+^^^^^^^^^^^^^^^^^^^^
+
+- where can I find program or resource X? STFW
+- how can I use X to do Y? (x-y problem)
+- how can I configure my shell prompt? RTFM
+- can I convert the acmecorp doc into a tex file using bass-o-matic converter?
+  Try it and see, you'll learn the answer and stop wasting my time
+- my {program, config, sql} doesn't work. Not a question
+- i'm having problems with my windows machine, can you help?
+- My program doesn't work. I think system facility X is broken. Try and back up
+  this statement with clear and exhaustive documentation of the failure case.
+- I'm having problems installing linux or X, can you help? No, I'd need
+  hands-on-access to your machine to troubleshoot this, go ask your local linux
+  user group.
+- How can I crack/root/steal channel-ops privileges/read someone's email? You're
+  a lowlife for wanting to do such things and a moron for asking for help on
+  this.
+
+Good and Bad Questions
+^^^^^^^^^^^^^^^^^^^^^^
+Stupid: Where can I find out stuff about xyx?
+Smart: I used google to try and find xyx on the web, but I got no useful hits.
+Can I get a pointer to programming information on this?
+
+Stupid: I can't get the code from project foo to compile. Why is it broken?
+(Assumes someone else screwed up)
+Smart: The code from project foo doesn't compile under Nuiix version 6.2. I've
+read the FAQ but it doesn't have anything in it about Nuiix related problems.
+Here's the transcript of my compilation attempt, it is something I did?
+
+Stupid: I'm having problems with my motherboard, can anybody help me? 
+Smart: I tried X, Y and Z on the s2464 motherboard. When that didn't work, I
+tried A, B and C. Note the curious symptom when I tried C. Obviously the
+florbish is grommicking, but the results aren't what one might expect. What are
+the usual causes of gromicking on Athlon MP Motherboards? ANybody got idesas for
+more test I can run to pin down the problem?
+
+If you Can't Get an Answer
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+
+
 
 .. TODO
 

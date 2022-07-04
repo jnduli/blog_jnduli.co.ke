@@ -182,5 +182,7 @@ The soln to the above can be:
 
 .. TODO
 
+   Look at errichto's videos and compile notes.
+
 
 
