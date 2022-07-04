@@ -2,7 +2,7 @@
 My Firefox Configuration
 ########################
 
-:date: 2022-05-06
+:date: 2022-07-02
 :category: Computer
 :slug: my_firefox_configuration
 :author: John Nduli
