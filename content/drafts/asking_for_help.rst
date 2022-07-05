@@ -25,15 +25,20 @@ Resources for asking for help:
 Others:
 https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 
-Plan:
+Plan (Note: these don't need to happen sequentially):
 
-1. Start out with: http://www.catb.org/esr/faqs/smart-questions.html and
-   summarize the contents here, then do more summaries until I've got a good
-   reflection of my understanding of the topic.
-2. Then go with, einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect, and do the same.
-3. Then go with: xy problem
-4. Then lastly do: no-hello.
-5. Then create a summary article with all the ideas I've collected.
+- Start out with: http://www.catb.org/esr/faqs/smart-questions.html and
+   summarize the contents here.
+- Do summary 1 of content, goal being < 250 lines. This summary will help me
+   understand the content better.
+- Do summary 2 of content, goal being < 100 lines. I want to distill this info
+   more such that I can get a quick reference any time that I feel I've done
+   something wrong / I need a refresher. I can always go to the original article
+   if I need more details or the original perspective.
+- Then go with, einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect, and do the same.
+- Then go with: xy problem
+- Then lastly do: no-hello.
+- Then create a summary article with all the ideas I've collected.
 
 Summary of Smart Questions
 ==========================
@@ -388,6 +393,39 @@ more test I can run to pin down the problem?
 
 If you Can't Get an Answer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you cant get an answer, don't take it personally. Sometimes people don't know
+the answer, and no response is not the same as being ignored. Don't repost your
+question when this happens though, as it will be seen as pointlessly annotying,
+and consider going to other sources better adapted to novice's needs. These can
+include enthusiast user groups, commercial companies that providier help.
+
+e.g. consider linux, where there are atleast 10000 users for each dev, it's not
+possible for one person to handle the ssupport from all these.
+
+How To Answer Questions in a Helpful Way
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Be gentle, problem related cstress can make people seen rude or stupid.
+Reply to a first offender offline: no need for public humiliation for someone
+that may have made an honest mistake.
+If you don't know for sure, say so: a wrong authoritative answer is worse than
+none at all.
+If you can't help, dont hinder e.g. dont make jokes about procedures that could
+trash the user's setup, they might interpret this as instructions.
+Ask probing questions to elicit more details, this can help turn the bad
+question into a good one.
+RTFM might be justified, but a pointer to documentation is better.
+If you're going to answer the question at all, give good value. Don't suggest
+kludgy workarounds when somebody is using the wrong tool/approach, suggest good
+tools, even reframe the question.
+Answer the actual question, if the user has been really thorough in their
+question and has included that X Y Z A B C have already been tried but
+unsuccessful, it is unhelpful to respond with try A or B, or with a link that
+only says try X Y Z A B or C.
+If you did research to answer the question, demonstrate your skills rather than
+writing as though you pulled the answer out of your butt. Answering one good
+question is like feeding a hungry person one meal, but teaching them research
+skills by example is showing them how to grow food for a lifetime.
+
 
 
 
