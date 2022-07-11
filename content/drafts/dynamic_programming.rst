@@ -182,7 +182,97 @@ The soln to the above can be:
 
 .. TODO
 
-   Look at errichto's videos and compile notes.
+
+Paradox of Choice: Multiple Options DP Example
+----------------------------------------------
+You're selling friendship bracelets to n customers and the value of the product
+increases monotonically i.e. the product has prices {p_1, ..., p_n} such that
+p_i <= p_j if customer j comes after customer i. These n customers have values
+{v_1, ..., v_n}, and a given customer will buy a friendship bracelet at price
+p_i if p_i <= v_i, otherwise the revenue obtained from that customer is 0.
+Assume the prices are natural numbers.
+
+Problem: Find the set of prices that ensure you the maximum possible revenue
+from selling your friendship bracelets.
+
+My solution
+^^^^^^^^^^^
+sub problem in words:
+
+1. Find the price p_n such that I get max revenue from customer c_n
+2. Find the prices {p_n-1, p_n}, st I get max revenue from customer {c_n-1, c_n}
+
+Step 2: Write out the sub-problem as a recurring mathematical decision
+
+- what decision do I make at each step? What prices should I set the items,
+  based off the current item
+- if algo is at step i, what info would it need to decide what to do in step
+  i+1? The max revenue for i+1, the price set for i+1, the customer value for i+1
+- if algo is at step i, what info would it need to decide what to do in step
+  i-1? I don't know
+
+.. code-block:: lua
+
+
+    Recurrence = opt(i) = 
+                    if c_i > c_i+1:
+                        m1 = c_i + max(c_i+1) - (c_i - c_i+1)(n-1+1)
+                    else:
+                        m1 = c_1 + max(c_i + 1)
+                    max(m1, max(c_1+1)
+
+
+
+
+
+
+Authors solution
+^^^^^^^^^^^^^^^^
+
+step 1:
+sub-problem: max revenue from customers i to n, s.t. the price for customer i-1
+was set at q.
+
+That was found by realizing that to determine the max revenue for cust i through
+n, I would need to find the answer to the following sub-problems:
+
+- the max revenue from customers n-1 to n s.t. the price for cust n-2 was q
+- max revenue from cust n-2 to n s.t. price for cusut n-2 is q
+- etc.
+
+variable q is added because in order to solve each sub problem, I need to know
+price set for customer before the sub-problem. q ensures monotonic nature of the
+set prices, and i keeps track of the current customer.
+
+Step 2:
+What decision do I make at each step? decide the price to sell the bracelet.
+Since prices must be natural nos, I should set the price for cust 1 in he range
+of q to price_customer_i.
+
+If my algo is at step i, what infor woul it need to decide what to do in step
+i+1? soln needs to know price set for cust i and the value of customer i+1 in
+order to decide the value.
+
+So the recurrence soln is:
+
+opt(i,q) = max~([Revenue(v_i, a) + opt(i+1, a)]) 
+
+s.t. max~ finds the max over all a in the range q <= a <= v_i
+
+to find total revenue, we add the revenue from cust i to the max revenue
+obtained from customers I=1 throgh n s.t . the price for cust i was set at
+
+
+
+
+
+TODO: practice DP and clean up above notes
+List of things:
+https://www.quora.com/What-are-the-top-10-most-popular-dynamic-programming-problems-among-interviewers
+https://leetcode.com/tag/dynamic-programming/
+
+Look at errichto's videos and compile notes.
+
 
 
 
