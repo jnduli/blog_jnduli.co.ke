@@ -5,9 +5,7 @@ Asking For Help
 
 :date: 2022-05-06
 :category: Computer
-:slug: oasking_for_help
-
-iiijojq
+:slug: asking_for_help
 :author: John Nduli
 :status: draft
 
@@ -27,9 +25,9 @@ https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 
 Plan (Note: these don't need to happen sequentially):
 
-- Start out with: http://www.catb.org/esr/faqs/smart-questions.html and
+- DONE: Start out with: http://www.catb.org/esr/faqs/smart-questions.html and
    summarize the contents here.
-- Do summary 1 of content, goal being < 250 lines. This summary will help me
+- DONE: Do summary 1 of content, goal being < 250 lines. This summary will help me
    understand the content better.
 - Do summary 2 of content, goal being < 100 lines. I want to distill this info
    more such that I can get a quick reference any time that I feel I've done
@@ -135,80 +133,55 @@ When you ask:
 - Don't flag your question as urgent even if it is to you.
 - Courtesy never hurts, and sometimes helps e.g. use 'please', 'thanks for your
   attention' or 'thanks for your consideration'.
-  
+- Follow up with a brief note on the solution on original thread and other
+  groups that showed interest in the problem. Have 'FIXED' or 'RESOLVED' in the
+  subject line to help potential respondents know that its solved. If the
+  problem had some technical depth, post summary of troubleshooting history, the
+  final problem statement and what worked as a solution, and avoidable blind
+  alleys plus attribution to those who helped. If possible, do a FAQ
+  documentation patch.
 
-When You Ask
-------------
-Follow up with a brief note on the solution
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Send a note after solution, letting those who helped know how it came out and
-thanking them, if problem attracted interest in mailing list/newsgroup, post
-follow up there too. Reply to thread for original question and have 'FIXED,
-RESOLVED' or other obvious tag to the subject line, which helps potential
-respondents not look at thread, unless they find the problem interesting. Prefer
-short, sweet summaries to long dissertations unless the soln has real technical
-depth, so say what action solved the problem, but don't replay the whole
-troubleshooting experience.
+How to Interpret answers:
 
-With problems with some depth, post summary of troubleshooting history, describe
-final problem statement, what worked as a soln, then avoidable blind alleys, and
-name those who helped.
+- RTFM (Read thee Fucking Manual), STFW (Search The Fucking Web). The responder
+  thinks the information is easy to find and you'll learn more if you search
+  than have it spoon-fed to you.
+- If you don't understand an answer, research the answer, and ask for
+  clarification only if this still didn't help, but make sure to show what
+  you've learned e.g. 'You got a stuck zentry', don't follow up with 'Ok, what's
+  a zentry?', but raher, 'I read the man pages and zetries are only mentioned in
+  .. neither says anything about clearing zentries, am I missing somthing?'
+- Assume that what you perceive as rudeness isn't. Acting out hurts your chances
+  of getting an answer.
+- If you screw up in a forum, you'll be told. Instead of complaining about the
+  experience, get over it since it's normal and healthy. The person telling you
+  is acting out of concern for you and the community, and could have easily
+  ignored you, so instead try to be grateful and don't expect to be treated like
+  a baby.
+- If someone legitimately attacks you for no reason, complaining is the way to
+  screw up.
 
-This also helps give everyone who helped a sense of closure.
+If you can't get an answer, no response doesn't mean you're being ignored.
+Perhaps people don't know the answer. Don't repost the question though, and
+consider going to other sources.
 
-Consider how you can prevent others from having the same problem in the future,
-like a FAQ documentation patch.
+To answer questions in a helpful way:
 
-How to Interpret Answers
-------------------------
-RTFM and STFW
-^^^^^^^^^^^^^
-RTFM: Read the Fucking Manual
-STFW: Search The Fucking Web, "Google is your Friend" is a milder version.
-
-Often, someone sending the above has the manual or web page with the soln open,
-and thinks the information is easy to find, and you'll learn more if you seek
-out the information than have it spoon-fed to you.
-
-If you don't understand
-^^^^^^^^^^^^^^^^^^^^^^^
-If you don't understand, don't immediately bounce back a demand for
-clarification. Use the same tools for research to try and understand the answer,
-and only when completely unable, ask for clarification, but exhibit what you
-learned.
-e.g. If you're told: "It sounds like you've got a stuck zentry, you'll need to
-clear it", then a bad follow up is "What's a zentry?", but a good follow up
-would be, "Ok, I read the man pages and zentries are only mentioned under the -z
-and -p switches. Neither says anything about clearing zentries. Is it one of
-these or am I missing something here?"
-
-Dealing with rudeness
-^^^^^^^^^^^^^^^^^^^^^
-What looks like rudeness isn't, its a preference for direct
-cut-through-the-bullshit communication style that is natural to people that
-prefer solving problems to making others feel good. Act calmly if your perceive
-rudeness, acting out hurts your chances to getting an answer.
-
-On Not Reacting Like A Loser
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-When you screw up in forums, you'll be told exactly how you screwed up, in
-public, and you might end up whining about the experience, but instead you
-should get over it, it's normal, healthy and appropriate.
-
-Community standards don't maintain themselves, they're maintained by people
-actively applying them, visibly in publich, so don't whine when the criticism is
-not in private email, not is it useful if you claim you've been personally
-insulted when someone differs with your views. Forums that have banned
-participants from any fault-finding end up with clueful participants leaving to
-elsewhere, leaving the forum into meaningless babble and useless as a techincal
-forum.
-
-When someone tells you you've screwed up, he's acting out of concern for you and
-his community. He could have easily ignored you, so if you can't manage to be
-grateful, don't whine, don't expect to be treated like a fragile doll.
-
-If someone legitimately attacks you with no apparent reason, complaining is the
-way to really screw up. 
+- be gently, problem related stress can make people seem rude/stupid.
+- reply to first offenders privately, no need for public humiliation.
+- if you don't know, say so, a wrong authoritative answer is worse that no
+  answer.
+- If you can't help don't hinder e.g. don't make jokes about commands that can
+  trash the user's set up.
+- ask probing questions that can help turn a bad question into a good one.
+- instead of RTFM, send a pointer to the documentation.
+- if you answer a question, give good value. Don't suggest workarounds if
+  someone is using the wrong tool/approach, but suggest good tools or even
+  reframe the question.
+- answer the actual question. If the user has been thorough and tried A, B, C,
+  it's unhelpful to tell them to try A or B.
+- if you did research to answer the question, show this rather than act as
+  though you pulled the answer out of your head. Teach them to fish.
 
 Questions Not to Ask
 ^^^^^^^^^^^^^^^^^^^^
@@ -248,40 +221,6 @@ florbish is grommicking, but the results aren't what one might expect. What are
 the usual causes of gromicking on Athlon MP Motherboards? ANybody got idesas for
 more test I can run to pin down the problem?
 
-If you Can't Get an Answer
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you cant get an answer, don't take it personally. Sometimes people don't know
-the answer, and no response is not the same as being ignored. Don't repost your
-question when this happens though, as it will be seen as pointlessly annotying,
-and consider going to other sources better adapted to novice's needs. These can
-include enthusiast user groups, commercial companies that providier help.
-
-e.g. consider linux, where there are atleast 10000 users for each dev, it's not
-possible for one person to handle the ssupport from all these.
-
-How To Answer Questions in a Helpful Way
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Be gentle, problem related cstress can make people seen rude or stupid.
-Reply to a first offender offline: no need for public humiliation for someone
-that may have made an honest mistake.
-If you don't know for sure, say so: a wrong authoritative answer is worse than
-none at all.
-If you can't help, dont hinder e.g. dont make jokes about procedures that could
-trash the user's setup, they might interpret this as instructions.
-Ask probing questions to elicit more details, this can help turn the bad
-question into a good one.
-RTFM might be justified, but a pointer to documentation is better.
-If you're going to answer the question at all, give good value. Don't suggest
-kludgy workarounds when somebody is using the wrong tool/approach, suggest good
-tools, even reframe the question.
-Answer the actual question, if the user has been really thorough in their
-question and has included that X Y Z A B C have already been tried but
-unsuccessful, it is unhelpful to respond with try A or B, or with a link that
-only says try X Y Z A B or C.
-If you did research to answer the question, demonstrate your skills rather than
-writing as though you pulled the answer out of your butt. Answering one good
-question is like feeding a hungry person one meal, but teaching them research
-skills by example is showing them how to grow food for a lifetime.
 
 
 
