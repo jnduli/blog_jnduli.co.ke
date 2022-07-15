@@ -225,7 +225,59 @@ to find total revenue, we add the revenue from cust i to the max revenue
 obtained from customers I=1 throgh n s.t . the price for cust i was set at
 
 
+Personal Attempts
+=================
+Alice and Bob take turns playing a game, with Alice starting first.
 
+Initially, there is a number n on the chalkboard. On each player's turn, that player makes a move consisting of:
+
+    Choosing any x with 0 < x < n and n % x == 0.
+    Replacing the number n on the chalkboard with n - x.
+
+Also, if a player cannot make a move, they lose the game.
+
+Return true if and only if Alice wins the game, assuming both players play optimally.
+
+- if n is 1, Alice won't win, False
+- if n is 2, Alice wins, True
+- if n is 3, Alice can only take 1, then she won't win, False
+- if n is 4, Alice takes 1, then wins, True
+- for n, find a factor Alice can take than leads to her winning. If not factor
+  exists then false. Build array from 1 to n containing all these wins/loss
+  situations and maintain list of False and Wins
+
+
+If I'm at n, what do I need to know about n-1? I need to know all xs s.t n % x
+== 0 and soln[n-x] = True
+
+OPT(i) = exists OPT[i-x], s.t. i%x=True
+
+return OPT(n)
+
+code:
+
+def soln(n):
+    ops = [None] * (n+1)
+    ops[1] = False
+    ops[2] = True
+    # dict_values = {False: [1], True: [2]}
+    for i in range(3, n+1):
+        ops[i] = any(not ops[i-div] for div in range(1, i-1) if i % div == 0)
+    return ops[n]
+
+
+for i in range(20, 30):
+    print(i, soln(i))
+
+
+
+
+
+Step 1: Identify the sub-problem in words
+Step 2: Write out the sub-problem as a recurring mathematical function
+Step 3: Solve the original problm using Steps 1 and 2
+Step 4: Determine the dimensions of the memoization array and direction to fill
+Step 5: Code it
 
 
 TODO: practice DP and clean up above notes
@@ -234,6 +286,7 @@ https://www.quora.com/What-are-the-top-10-most-popular-dynamic-programming-probl
 https://leetcode.com/tag/dynamic-programming/
 
 Look at errichto's videos and compile notes.
+
 
 
 
