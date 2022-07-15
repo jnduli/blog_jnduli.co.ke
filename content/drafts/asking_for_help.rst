@@ -9,6 +9,29 @@ Asking For Help
 :author: John Nduli
 :status: draft
 
+Actual Blog
+===========
+Think of this as a skill that can be improved and how to do achieve this.
+
+
+Asking for help can be structured, especially for code help when stuck, enabling
+both the questioner and anwswerer to have the best bang for their time.
+
+
+1. Clean up the code in your branch, assuming that someone will do some sort of
+   review on it. This ensures it's easy for the helper to understand what you
+   were going for.
+2. Add an explanation or a code snippet on how to replicate this issue. This
+   way, someone can run this and replicate the problem locally.
+3. Screenshots and documentation on alternatives tried, etc.
+
+
+This way, the helper easily gets context with one read, is able to think of
+solutions and if they want to get their hands dirty, they can replicate the same
+locally.
+
+This should happen before any syncs on the same too.
+
 
 Resources for asking for help:
 - no hello: https://nohello.net/en/
@@ -33,7 +56,7 @@ Plan (Note: these don't need to happen sequentially):
    more such that I can get a quick reference any time that I feel I've done
    something wrong / I need a refresher. I can always go to the original article
    if I need more details or the original perspective.
-- Then go with, einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect, and do the same.
+- DONE: Then go with, einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect, and do the same.
 - Then go with: xy problem
 - Then lastly do: no-hello.
 - Then create a summary article with all the ideas I've collected.
@@ -222,6 +245,18 @@ the usual causes of gromicking on Athlon MP Motherboards? ANybody got idesas for
 more test I can run to pin down the problem?
 
 
+Einstellug Effect
+-----------------
+Ref: https://en.wikipedia.org/wiki/Einstellung_effect
+
+The negative effect of previous experience when solving new problems. This is
+where your predisposition to solve a given problem in a specific mannger even
+though better or more appropriate methods of solving the problem exist.
+
+Similarly, theres' functional fixedness, which is an impaired ability to
+discover a new use for an object, owing to your previous use of the object in a
+functionally dissimilar context.
+
 
 
 
@@ -234,32 +269,6 @@ more test I can run to pin down the problem?
 https://www.mit.edu/~jcb/tact.html
 
 
- how to ask questions:
-
-- 
 
 
 
-Asking for help can be structured, especially for code help when stuck, enabling
-both the questioner and anwswerer to have the best bang for their time.
-
-
-1. Clean up the code in your branch, assuming that someone will do some sort of
-   review on it. This ensures it's easy for the helper to understand what you
-   were going for.
-2. Add an explanation or a code snippet on how to replicate this issue. This
-   way, someone can run this and replicate the problem locally.
-3. Screenshots and documentation on alternatives tried, etc.
-
-
-This way, the helper easily gets context with one read, is able to think of
-solutions and if they want to get their hands dirty, they can replicate the same
-locally.
-
-This should happen before any syncs on the same too.
-
-
-TODO: read the following:
-http://catb.org/~esr/faqs/smart-questions.html
-xyproblem
-nohello
