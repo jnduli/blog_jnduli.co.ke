@@ -40,8 +40,8 @@ Resources for asking for help:
   - https://www.perlmonks.org/?node=XY+Problem
   - https://en.wikipedia.org/wiki/XY_problem
 
-- how to ask questions the smart way: http://www.catb.org/esr/faqs/smart-questions.html
-- einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect
+- DONE: how to ask questions the smart way: http://www.catb.org/esr/faqs/smart-questions.html
+- DONE: einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect
 
 Others:
 https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
@@ -257,9 +257,45 @@ Similarly, theres' functional fixedness, which is an impaired ability to
 discover a new use for an object, owing to your previous use of the object in a
 functionally dissimilar context.
 
+TODO
+
+XY Problem
+----------
+summary of: https://xyproblem.info/:
+
+This is asking about your attempted solution rather than your actual problem,
+for example:
+
+- user wants to do X
+- they don't know how to do X, but think they can somehow do X if they manage to
+  do Y.
+- User doesn't know how to do Y too.
+- User asks for help with Y.
+- Others try to help with Y, but are confused because Y seems like a strange
+  problem to solve.
+- After a lot of wasted time, it becomes clear that user really wanted X, and Y
+  wasn't even a suitable solution for X.
+
+In order to avoid this:
+
+- always include information about a broader picture along with any attempted
+  solutions.
+- If someone asks for more information, provide details.
+- Also iclude other solutions you're already ruled out and why you ruled them
+  out.
+
+For example: user want's to  find the extension of a file, and thinks this can
+be got by getting the last three characters, so user asks how to get the last 3
+characters of a filename. Hacker responds with the solution, but follows up
+wanting to know why 3 characters. User says they want an extension, but hacker
+tells them that the last 3 characters is not guaranteed to solve the problem.
 
 
 
+
+
+.. TODO
+- no hello: https://nohello.net/en/
 
 
 
