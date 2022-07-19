@@ -57,8 +57,15 @@ Plan (Note: these don't need to happen sequentially):
    something wrong / I need a refresher. I can always go to the original article
    if I need more details or the original perspective.
 - DONE: Then go with, einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect, and do the same.
-- Then go with: xy problem
-- Then lastly do: no-hello.
+- DONE: Then go with: xy problem
+- DONE: Then lastly do: no-hello.
+- Clean up plan section to avoid confusing and misleading sections
+- Summarize each section such that its easy to get the gist of the content in
+  one skim:
+    - smart questions: from 181 lines -> 80 lines
+    - einstellug effect: from 11 lines -> 7 lines
+    - xy problem: 30 lines -> 20 lines
+    - no hello: 21 lines -> 15 lines
 - Then create a summary article with all the ideas I've collected.
 
 
@@ -257,8 +264,6 @@ Similarly, theres' functional fixedness, which is an impaired ability to
 discover a new use for an object, owing to your previous use of the object in a
 functionally dissimilar context.
 
-TODO
-
 XY Problem
 ----------
 summary of: https://xyproblem.info/:
@@ -290,6 +295,27 @@ characters of a filename. Hacker responds with the solution, but follows up
 wanting to know why 3 characters. User says they want an extension, but hacker
 tells them that the last 3 characters is not guaranteed to solve the problem.
 
+No Hello
+--------
+REF: https://nohello.net/en/
+
+People try to ask questions by asking 'hello?', 'hi are you around?', hi, quick
+question?', 'ping?', etc. and waiting for the other person to respond before
+they send the actual question. This is because they are trying to be polite by
+not jumping straight to the request, like one would in person or on the phone,
+but chat is different and you're actually just making the other person wait for
+you to phrase your question, which is lost productivity and annoying.
+
+So just ask the question. If this feels off, preface the question with as many
+pleasantries as you see fit e.g. 'hey man, what's up? Also, any idea when that
+thing's due?', or 'hi there! Hope you're well, I'm after the latest deck when
+you get a second', etc.
+
+This allows for asynchronous communication e.g. if the other party is away, and
+you leave before they come back, they can still answer your question instead of
+just staring at a hello and wondering what they missed.
+
+^ not a summary, its the main website verbatim.
 
 
 
