@@ -13,10 +13,8 @@ Actual Blog
 ===========
 Think of this as a skill that can be improved and how to do achieve this.
 
-
 Asking for help can be structured, especially for code help when stuck, enabling
 both the questioner and anwswerer to have the best bang for their time.
-
 
 1. Clean up the code in your branch, assuming that someone will do some sort of
    review on it. This ensures it's easy for the helper to understand what you
@@ -25,49 +23,35 @@ both the questioner and anwswerer to have the best bang for their time.
    way, someone can run this and replicate the problem locally.
 3. Screenshots and documentation on alternatives tried, etc.
 
-
 This way, the helper easily gets context with one read, is able to think of
 solutions and if they want to get their hands dirty, they can replicate the same
 locally.
 
 This should happen before any syncs on the same too.
 
-
-Resources for asking for help:
-- no hello: https://nohello.net/en/
-- xy problem: https://xyproblem.info/
-
-  - https://www.perlmonks.org/?node=XY+Problem
-  - https://en.wikipedia.org/wiki/XY_problem
-
-- DONE: how to ask questions the smart way: http://www.catb.org/esr/faqs/smart-questions.html
-- DONE: einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect
-
-Others:
-https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
-
+Notes
+=====
 Plan (Note: these don't need to happen sequentially):
 
 - DONE: Start out with: http://www.catb.org/esr/faqs/smart-questions.html and
    summarize the contents here.
 - DONE: Do summary 1 of content, goal being < 250 lines. This summary will help me
    understand the content better.
-- Do summary 2 of content, goal being < 100 lines. I want to distill this info
-   more such that I can get a quick reference any time that I feel I've done
-   something wrong / I need a refresher. I can always go to the original article
-   if I need more details or the original perspective.
 - DONE: Then go with, einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect, and do the same.
 - DONE: Then go with: xy problem
 - DONE: Then lastly do: no-hello.
-- Clean up plan section to avoid confusing and misleading sections
+- DONE: Clean up plan section to avoid confusing and misleading sections
 - Summarize each section such that its easy to get the gist of the content in
   one skim:
     - smart questions: from 181 lines -> 80 lines
-    - einstellug effect: from 11 lines -> 7 lines
-    - xy problem: 30 lines -> 20 lines
-    - no hello: 21 lines -> 15 lines
+    - DONE: einstellug effect: from 11 lines -> 7 lines
+    - DONE: xy problem: 30 lines -> 20 lines
+    - DONE: no hello: 21 lines -> 15 lines
 - Then create a summary article with all the ideas I've collected.
 
+Others:
+https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+https://www.mit.edu/~jcb/tact.html
 
 Summary of Smart Questions
 ==========================
@@ -251,86 +235,46 @@ florbish is grommicking, but the results aren't what one might expect. What are
 the usual causes of gromicking on Athlon MP Motherboards? ANybody got idesas for
 more test I can run to pin down the problem?
 
-
 Einstellug Effect
 -----------------
 Ref: https://en.wikipedia.org/wiki/Einstellung_effect
 
-The negative effect of previous experience when solving new problems. This is
-where your predisposition to solve a given problem in a specific mannger even
-though better or more appropriate methods of solving the problem exist.
-
-Similarly, theres' functional fixedness, which is an impaired ability to
-discover a new use for an object, owing to your previous use of the object in a
-functionally dissimilar context.
+If I have experience solving problems using X, when I get something similar,
+I'll try to force X to the problem, even though there might be a better way Y.
+My experience hinders the problem-solving. This also happens to tools, where if
+I'm used to using tool X for Y, I'll find it hard to discover a new use for X
+(functional fixedness).
 
 XY Problem
 ----------
-summary of: https://xyproblem.info/:
+ref: https://xyproblem.info/:
 
-This is asking about your attempted solution rather than your actual problem,
-for example:
+When someone asks about problems in their solution rather than the actual
+problem, for example:
 
-- user wants to do X
-- they don't know how to do X, but think they can somehow do X if they manage to
-  do Y.
-- User doesn't know how to do Y too.
-- User asks for help with Y.
-- Others try to help with Y, but are confused because Y seems like a strange
-  problem to solve.
-- After a lot of wasted time, it becomes clear that user really wanted X, and Y
-  wasn't even a suitable solution for X.
+1. User wants to do X e.g. get the extension of a file
+2. They don't know how to do X, but think a solution is to try Y e.g. get the
+   last 3 characters of a filename
+3. They don't know how to do Y too
+4. They ask for help with Y e.g. how do I get the last 3 characters of a
+   filename?
+5. Someone gives the solution to Y, but Y feels odd problem to solve e.g.
+   "filename[-3:]"
+5. It later becomes clear that the user wanted X, and solving Y seems like
+   wasted effort. e.g. not all files have extensions 3 characters long.
 
-In order to avoid this:
-
-- always include information about a broader picture along with any attempted
-  solutions.
-- If someone asks for more information, provide details.
-- Also iclude other solutions you're already ruled out and why you ruled them
-  out.
-
-For example: user want's to  find the extension of a file, and thinks this can
-be got by getting the last three characters, so user asks how to get the last 3
-characters of a filename. Hacker responds with the solution, but follows up
-wanting to know why 3 characters. User says they want an extension, but hacker
-tells them that the last 3 characters is not guaranteed to solve the problem.
+Including details about the broader picture and the attempted solutions and why
+you ruled them out can help avoid this. Also give more information when asked.
 
 No Hello
 --------
 REF: https://nohello.net/en/
 
-People try to ask questions by asking 'hello?', 'hi are you around?', hi, quick
-question?', 'ping?', etc. and waiting for the other person to respond before
-they send the actual question. This is because they are trying to be polite by
-not jumping straight to the request, like one would in person or on the phone,
-but chat is different and you're actually just making the other person wait for
-you to phrase your question, which is lost productivity and annoying.
+Starting with 'hello?', 'hi, quick question?', etc. and waiting for the other
+person to respond before I send the actual question leads to lost productivity.
+For example, if I was away from my laptop, I'm now forced to respond before I
+can get the question, whereas if you'd asked the question upfront I could have
+answered it when I got back.
 
-So just ask the question. If this feels off, preface the question with as many
-pleasantries as you see fit e.g. 'hey man, what's up? Also, any idea when that
-thing's due?', or 'hi there! Hope you're well, I'm after the latest deck when
-you get a second', etc.
-
-This allows for asynchronous communication e.g. if the other party is away, and
-you leave before they come back, they can still answer your question instead of
-just staring at a hello and wondering what they missed.
-
-^ not a summary, its the main website verbatim.
-
-
-
-
-.. TODO
-- no hello: https://nohello.net/en/
-
-
-
-
-.. TODO
-
-https://www.mit.edu/~jcb/tact.html
-
-
-
-
-
+If you're uncomfortable being direct, preface the question with pleasantries
+like 'hey, hope you're well. Any idea when the demo is due?'.
