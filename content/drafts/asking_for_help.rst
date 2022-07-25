@@ -58,34 +58,39 @@ Summary of Smart Questions
 It's okay to be ignorant, it's not okay to play stupid. 
 
 Before you ask:
-- do your homework. Search google, user forums, FAQs and read the manual. This
-  ensures your problem can't be answered with a quick web search.
+- do your homework. Search google, user forums, FAQs and read the manual,
+  ensuring a quick web search doesn't answer the problem.
 
 Formulating the Question:
 - While refining the question, you may develop a fix/work around yourself.
 - Write in clear, grammatical and well spelled language. Don't abuse smileys.
+- Use meaningful subject headers, a good convention being `object-deviation`
+  e.g. "Help! Video doesn't work properly on my laptop" doesn't help, but "X.org
+  6.8.1 misshapen mouse cursor, Fooware MV1005 vid.chipset" is smart. This helps
+  when thinking about the problem, and helps future users skim list of topics
+  discussed in forum.
+- If you want to do something (not a bug), describe the goal first then the
+  steps taken. This helps others know if the steps were wrong or not.
 - Be precise and informative about your problem:
     - describe environment in which it occurs
     - Describe the problem's symptoms in chronological order. You can also
       provide diagnostic options (e.g. -v for verbose).
-    - research done. Include exact phrases googled to provide a record of
-      searches that didn't help and direct others with similar problems to the
-      thread.
+    - research done. Add the phrases googled to provide a record of searches
+      that didn't help and direct others with the same problems to the thread.
     - diagnostic steps taken and relevant changes made to configurations,
     - and if possible a way to reproduce the error.
 - Volume is note precision e.g. trim down large test cases
 - Describe the symptoms not your guesses. Label your guess in case you mention
   it. It's better to see raw evidence when debugging.
-- If you want to do sth (not a bug), describe the goal first then the steps
-  you've taken. This helps respondents know if the path you chose was wrong or
-  not.
 - Make it clear you're willing to help in finding a solution e.g. would someone
   provide a pointer? What other sites can I search?
-- Use meaningful subject headers, a good convention being `object-deviation`
-  e.g. "Help! Video doesn't work properly on my laptop" doesn't help, but "X.org
-  6.8.1 misshapen mouse cursor, Fooware MV1005 vid.chipset" is smart. This also
-  helps organize thinking about the problem, and helps future users skim list of
-  topics being discussed in forum.
+- Be explicit in what you want, which ensures an upper bound on time and effort
+  e.g. 'would you give me a pointer to a good explanation of X?' is better than
+  'Would you explain X, please?'. It's also better to have someone explain
+  what's wrong with buggy code than have then fix it.
+- When asking about code, provide a small bug demonstrating test case (sometimes
+  its impossible, but its good to try) and give a hint to the problem e.g. after
+  line 7 I expected x but got y.
 - Avoid yes or no questions.
 
 When you ask:
@@ -103,27 +108,10 @@ When you ask:
   depth, post summary of troubleshooting history, the final problem statement
   and what worked as a solution, and avoidable blind alleys plus attribution to
   those who helped. If possible, do a FAQ documentation patch.
-
-
-When you ask:
-
 - Don't ask questions in replies since it will only be seen by those watching
   the thread.
 - Make it east to reply e.g. emails should have 'Reply-To' header, but don't end
   your messages with 'Please send reply to...'.
-- Be explicit in what you want (provide pointers, send code, check your patch
-  etc.) which ensures a clear upper bound on time and effort. Someone really
-  good and busy is more likely to answer a question with less implicity asked
-  for time. Frame questions to minimize time commitment e.g. 'Would you give me
-  a pointer to a good explanation of X?' is better than 'Would you explain X,
-  please?'. If you have buggy code, its smarter to ask someone to explain what's
-  wrong than to ask them to fix it.
-- When asking about code: give a hint to the problem e.g. post dozen lines of
-  code and say "after line 7 I expected x but got y" rather than posting few
-  hundred lines while saying "it doesn't work"; provide minimal bug
-  demonstrating test case (even if impossible sometimes, it's good discipline to
-  try); mention you want a code review if you want it and note areas that might
-  need more attention.
 - Don't tack questions like 'can anyone help me?' or 'is there an answer', since
   this is superfluous to a competent problem description.
 - Don't flag your question as urgent even if it is to you.
