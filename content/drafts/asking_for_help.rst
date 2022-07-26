@@ -43,7 +43,7 @@ Plan (Note: these don't need to happen sequentially):
 - DONE: Clean up plan section to avoid confusing and misleading sections
 - Summarize each section such that its easy to get the gist of the content in
   one skim:
-    - smart questions: from 181 lines -> 80 lines
+    - DONE: smart questions: from 181 lines -> 80 lines
     - DONE: einstellug effect: from 11 lines -> 7 lines
     - DONE: xy problem: 30 lines -> 20 lines
     - DONE: no hello: 21 lines -> 15 lines
@@ -58,16 +58,18 @@ Summary of Smart Questions
 It's okay to be ignorant, it's not okay to play stupid. 
 
 Before you ask:
+
 - do your homework. Search google, user forums, FAQs and read the manual,
   ensuring a quick web search doesn't answer the problem.
 
 Formulating the Question:
+
 - While refining the question, you may develop a fix/work around yourself.
 - Write in clear, grammatical and well spelled language. Don't abuse smileys.
 - Use meaningful subject headers, a good convention being `object-deviation`
-  e.g. "Help! Video doesn't work properly on my laptop" doesn't help, but "X.org
-  6.8.1 misshapen mouse cursor, Fooware MV1005 vid.chipset" is smart. This helps
-  when thinking about the problem, and helps future users skim list of topics
+  e.g. don't do "Help! Video doesn't work properly on my laptop" but do "X.org
+  6.8.1 misshapen mouse cursor, Fooware MV1005 vid.chipset". This helps when
+  thinking about the problem, and helps future users skim list of topics
   discussed in forum.
 - If you want to do something (not a bug), describe the goal first then the
   steps taken. This helps others know if the steps were wrong or not.
@@ -84,10 +86,10 @@ Formulating the Question:
   it. It's better to see raw evidence when debugging.
 - Make it clear you're willing to help in finding a solution e.g. would someone
   provide a pointer? What other sites can I search?
-- Be explicit in what you want, which ensures an upper bound on time and effort
+- Be explicit in what you want, creating a limit on time and effort required
   e.g. 'would you give me a pointer to a good explanation of X?' is better than
   'Would you explain X, please?'. It's also better to have someone explain
-  what's wrong with buggy code than have then fix it.
+  what's wrong with buggy code than have them fix it.
 - When asking about code, provide a small bug demonstrating test case (sometimes
   its impossible, but its good to try) and give a hint to the problem e.g. after
   line 7 I expected x but got y.
@@ -96,59 +98,39 @@ Formulating the Question:
 When you ask:
 
 - Find the relevant forum/channel for the question.
-- Prefer public forums to private ones or personal messages. This providers a
-  larger pool of helpers, adds value to the group and distributes the load of
-  help.  
+- Prefer public to private forums or personal messages because you get a larger
+  pool of helpers, adds value to the group and distributes the load of help.  
 - Send questions in accessible formats e.g. use txt vs html, doc
 - Upvote helpful answers and accept any that solved the problem
 - Don't ask for private replies, public ones allow correction by others and
   helps respondents be seen as competent and knowledgeable.
-- Follow up with a brief note on the solution on original thread and other
-  groups that showed interest in the problem. If the problem had some technical
-  depth, post summary of troubleshooting history, the final problem statement
-  and what worked as a solution, and avoidable blind alleys plus attribution to
-  those who helped. If possible, do a FAQ documentation patch.
-- Don't ask questions in replies since it will only be seen by those watching
-  the thread.
-- Make it east to reply e.g. emails should have 'Reply-To' header, but don't end
+- Follow up with a brief note on the solution to the original thread. If the
+  problem had some technical depth, post summary of troubleshooting history, the
+  final problem statement, the solution, avoidable blind alleys and attribution
+  to helpers. If possible, do a FAQ documentation patch.
+- Don't ask questions in replies since only those watching the thread will see
+  it.
+- Make it easy to reply e.g. emails should have 'Reply-To' header, but don't end
   your messages with 'Please send reply to...'.
-- Don't tack questions like 'can anyone help me?' or 'is there an answer', since
-  this is superfluous to a competent problem description.
+- Don't tack unnecessary questions like 'can anyone help me?' or 'is there an answer'.
 - Don't flag your question as urgent even if it is to you.
-- Courtesy never hurts, and sometimes helps e.g. use 'please', 'thanks for your
-  attention' or 'thanks for your consideration'.
+- Courtesy never hurts e.g. use 'please', 'thanks for your attention'
 
-Questions Not to Ask
-^^^^^^^^^^^^^^^^^^^^
-- where can I find program or resource X? STFW
-- how can I use X to do Y? (x-y problem)
-- how can I configure my shell prompt? RTFM
-- can I convert the acmecorp doc into a tex file using bass-o-matic converter?
-  Try it and see, you'll learn the answer and stop wasting my time
-- my {program, config, sql} doesn't work. Not a question
-- i'm having problems with my windows machine, can you help?
-- My program doesn't work. I think system facility X is broken. Try and back up
-  this statement with clear and exhaustive documentation of the failure case.
-- I'm having problems installing linux or X, can you help? No, I'd need
-  hands-on-access to your machine to troubleshoot this, go ask your local linux
-  user group.
-- How can I crack/root/steal channel-ops privileges/read someone's email? You're
-  a lowlife for wanting to do such things and a moron for asking for help on
-  this.
-
-Good and Bad Questions
-^^^^^^^^^^^^^^^^^^^^^^
-Stupid: Where can I find out stuff about xyx?
-Smart: I used google to try and find xyx on the web, but I got no useful hits.
+Bad/Good Questions
+^^^^^^^^^^^^^^^^^^
+Bad: How do I configure my shell prompt? Where can I find out about xyz?
+Good: I used google to try and find xyz on the web, but I got not useful hits.
 Can I get a pointer to programming information on this?
 
-Stupid: I can't get the code from project foo to compile. Why is it broken?
-(Assumes someone else screwed up)
-Smart: The code from project foo doesn't compile under Nuiix version 6.2. I've
-read the FAQ but it doesn't have anything in it about Nuiix related problems.
-Here's the transcript of my compilation attempt, it is something I did?
+Bad: I'm having problems with my window machine, can you help? My program
+doesn't work, I think system facility X is broken (back this statement up
+first). I can't get the code to compile, why is it broken? (assumes someone else
+screwed up).
+Good: The code from project foo doesn't compile under Nuix v6.2. I've read the
+FAQ but it doesn't have anything in it about Nuix related problems. Here's the
+transcript of my compilation attempt, is it something I did?
 
-Stupid: I'm having problems with my motherboard, can anybody help me? 
+Bad: I'm having problems with my motherboard, can anybody help me?
 Smart: I tried X, Y and Z on the s2464 motherboard. When that didn't work, I
 tried A, B and C. Note the curious symptom when I tried C. Obviously the
 florbish is grommicking, but the results aren't what one might expect. What are
