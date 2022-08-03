@@ -2,59 +2,115 @@
 Asking For Help
 ###############
 
-
 :date: 2022-05-06
 :category: Computer
 :slug: asking_for_help
 :author: John Nduli
 :status: draft
 
-Actual Blog
-===========
-Think of this as a skill that can be improved and how to do achieve this.
+I get and send out bad questions. To stop this, I started to write the question
+in my editor, review it and then copy it to the platform e.g. slack, email. My
+questions became better, which made me wonder if there are other changes that
+could further improve my questions.
 
-Asking for help can be structured, especially for code help when stuck, enabling
-both the questioner and anwswerer to have the best bang for their time.
+I found a lot of great resources, and here's a checklist I'll try to follow with
+questions.
 
-1. Clean up the code in your branch, assuming that someone will do some sort of
-   review on it. This ensures it's easy for the helper to understand what you
-   were going for.
-2. Add an explanation or a code snippet on how to replicate this issue. This
-   way, someone can run this and replicate the problem locally.
-3. Screenshots and documentation on alternatives tried, etc.
+Before you consider asking a question, ask yourself:
 
-This way, the helper easily gets context with one read, is able to think of
-solutions and if they want to get their hands dirty, they can replicate the same
-locally.
+1. What do I want? I don't want to ask about the solution I'm trying but the
+   actual problem. I can tack on the failed attempts to the question if need be.
+   This prevents `the XY problem <https://xyproblem.info/>`_ when I do my
+   research (I don't spent too much time on what I think the solution should be)
+   and make the question.
+2. Am I forcing the technology I know or `the solution I've thought
+   <https://en.wikipedia.org/wiki/Einstellung_effect>`_, the solution I've
+   thought up into the problem?
+3. Spend time making the question before reaching out to someone. This prevents
+   the `sending a hello with no context <https://nohello.net/en/>`_, since I
+   have the question to add after the greeting.
+4. Do my research, and note down all the findings I've got somewhere. This helps
+   me add more details the question.
 
-This should happen before any syncs on the same too.
+I tried to build an image on a server, but this failed severally because the
+server ran out of memory. I spent a lot of time trying to figure out how to
+limit docker memory, but this wasn't the goal. Following the above process could
+have helped me a lot.
+
+1. What did I want? I wanted a custom image on the server.
+2. Am I forcing the technology I know or the solution I've thought out? Yes I
+   was. The server ran out of memory multiple times and I tried to find ways to
+   limit the memory while building the image. I didn't even stop to consider
+   that there would be another option to get this image in.
+3. Spend time making the question before reaching out to someone. At this point
+   I realized that I was solving the wrong problem, and decided to find other
+   options for what I wanted.
+4. Do my research and note down all findings. While researching the original
+   problem, I found that I can load up a locally build image to a server by
+   using docker load, which solve the problem, hence no need to ask.
+
+Once I've done the above and still have the problem, I make and refine the question by:
+
+1. Using meaningful subject headers, that has the format `object-deviation`.
+2. Starting with what I want to achieve (the goal), then the steps I've taken. This
+   ensures others know if my steps are wrong or if there are other options I
+   didn't consider.
+3. Having my question be short but informative by including:
+    - the environment this occurred (if relevant)
+    - the symptoms in chronological order
+    - the research done
+    - a way to reproduce the error (if possible).
+    - screenshots if its a UI bug
+4. Trimming down code snippets and test cases to the smallest bug-demonstrating version.
+5. Avoid open-ended questions, and be explicit in what I want. Try and figure
+   out one which requires least effort from others e.g. instead of 'Can someone
+   explain X?', 'Can someone provide a pointer to a good explanation of X' takes
+   less effort and time.
+6. Writing in clear, grammatical and well spelled language.
+7. Avoiding yes or no questions.
+
+Not that when refining the question, you can find a fix/work around
+
+Once you have the question, then ask by:
+
+1. Finding a relevant public channel. Avoid private ones or personal messages
+   since public ones ensure more people see the question and learn from it.
+2. Follow up with a brief note on the solution to the thread. Upvote helpful
+   answers and accept any that solved the problem.
+3. Don't ask questions in ongoing threads since those not following the tread
+   will not see it.
+4. Avoid flagging your question as urgent and tacking on unnecessary questions
+   like 'can anyone help?' or 'is there an answer?'.
+5. Be courteous, use please and 'thanks for your attention', etc.
+6. Use accessible formats e.g. use text over doc files.
+
+References
+==========
+
+- http://www.catb.org/esr/faqs/smart-questions.html
+- https://en.wikipedia.org/wiki/Einstellung_effect
+- https://xyproblem.info/
+- https://nohello.net/en/
+
+TODO: should I provide examples of good/bad questions?
+
+
+
+
+
 
 Notes
 =====
-Plan (Note: these don't need to happen sequentially):
-
-- DONE: Start out with: http://www.catb.org/esr/faqs/smart-questions.html and
-   summarize the contents here.
-- DONE: Do summary 1 of content, goal being < 250 lines. This summary will help me
-   understand the content better.
-- DONE: Then go with, einstellug effect: https://en.wikipedia.org/wiki/Einstellung_effect, and do the same.
-- DONE: Then go with: xy problem
-- DONE: Then lastly do: no-hello.
-- DONE: Clean up plan section to avoid confusing and misleading sections
-- Summarize each section such that its easy to get the gist of the content in
-  one skim:
-    - DONE: smart questions: from 181 lines -> 80 lines
-    - DONE: einstellug effect: from 11 lines -> 7 lines
-    - DONE: xy problem: 30 lines -> 20 lines
-    - DONE: no hello: 21 lines -> 15 lines
-- Then create a summary article with all the ideas I've collected.
 
 Others:
 https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 https://www.mit.edu/~jcb/tact.html
 
+Appendix
+========
+
 Summary of Smart Questions
-==========================
+--------------------------
 It's okay to be ignorant, it's not okay to play stupid. 
 
 Before you ask:
@@ -183,9 +239,8 @@ like 'hey, hope you're well. Any idea when the demo is due?'.
 
 
 How to Interpret Answers and How to Answer
-==========================================
+------------------------------------------
 REF: http://www.catb.org/esr/faqs/smart-questions.html
-
 
 How to Interpret answers:
 

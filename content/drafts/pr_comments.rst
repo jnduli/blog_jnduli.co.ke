@@ -30,5 +30,30 @@ From: https://www.reddit.com/r/ExperiencedDevs/comments/u6fxbm/do_people_think_y
   author knows more than I do so I mainly ask questions.
 
 
+A complete guide to code reviews
+--------------------------------
+https://www.swarmia.com/blog/a-complete-guide-to-code-reviews/
 
-TODO: look at this: https://www.swarmia.com/blog/a-complete-guide-to-code-reviews/
+The goals for code reviews are:
+
+- sharing knowledge
+- spreading ownership
+- unifying development practices
+- quality control
+
+Best practices:
+
+- decide on a process:
+  draft PR -> ready for review -> PR reviews -> PR author merges
+- focus on the right things: functionality, software design, complexity, tests,
+  naming, comments, documentation. Developers shouldn't spent their time
+  reviewing things that can be automatically checked.
+- discuss high level approach early, preventing rewrite of PR. If PR rewrites
+  happen often, its a sign you might want to talk more often before
+  implementation. If a POC is needed to ignite the discussion, then start a
+  draft PR of the approach and make architecture decisions based on gained
+  information.
+- Optimize for the team: TODO:
+
+
+
