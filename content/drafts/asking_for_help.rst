@@ -2,8 +2,8 @@
 Asking For Help
 ###############
 
-:date: 2022-05-06
-:category: Computer
+:date: 2022-08-19
+:category: Random
 :slug: asking_for_help
 :author: John Nduli
 :status: draft
@@ -18,22 +18,21 @@ questions.
 
 Before I consider asking a question, ask:
 
-1. What do I want? Avoid thinking that the solution I've chosen is the problem.
-   I can tack on the failed solution to the question if need be. This prevents
-   `the XY problem <https://xyproblem.info/>`_ when I'm researching of making
-   the question.
+1. What do I want? Avoid thinking that the solution in mind is the problem. I
+   can tack on the failed solution to the question if need be. This prevents
+   `the XY problem <https://xyproblem.info/>`_ when I'm making the question.
 2. Am I forcing my experience, knowledge or the technology I know to the problem (i.e. `einstellung
    <https://en.wikipedia.org/wiki/Einstellung_effect>`_?
 3. Spend time making the question before reaching out to someone. This prevents
-   the `sending a hello with no context <https://nohello.net/en/>`_, since I
-   have the question to add after the greeting.
-4. Do my research, and note down all the findings I've got. This will help when
+   `sending a hello with no context <https://nohello.net/en/>`_, since I have
+   the question to add after the greeting.
+4. Do my research, and note down all the findings I've got. This helps when
    adding details to the question.
 
-I tried to build an image on a server, but this failed severally because the
+For example, I built an image on a server, but failed severally because the
 server ran out of memory. I spent a lot of time trying to figure out how to
 limit docker memory, but this wasn't the goal. Following the above process could
-have helped me a lot.
+have helped.
 
 1. What did I want? I wanted a custom image on the server.
 2. Am I forcing the technology I know or the solution I've thought out? Yes I

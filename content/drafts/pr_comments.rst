@@ -6,18 +6,31 @@ Summary of How to Do PR Reviews
 :category: Computer
 :slug: summary_of_ho_to_do_pr_reviews
 
-From: https://www.reddit.com/r/ExperiencedDevs/comments/u6fxbm/do_people_think_your_pr_comments_sound_arrogant/
+Plan
+====
+- Summarize code review guidelines for humans
+- Summarize google code eng review guide
+- DONE: Summarize reddit review summary: 100 words
+- Summarize swarma review summary: 200 words
+- Summarize stackoverflow review summary: 200 words
 
-- Use we instead of I/me/you. This makes comments sound less judgemental,
-  removing the implication of blame, shortcoming or that my way is right e.g. we
-  may want to do things this other way, could we change this code to do it that
-  way?
+
+Summaries
+=========
+
+Reddit
+------
+https://www.reddit.com/r/ExperiencedDevs/comments/u6fxbm/do_people_think_your_pr_comments_sound_arrogant/
+
+- Use we instead of I/me/you which makes comments less judgemental, removes
+  blame implication and feeling that my way is right e.g. could we change this
+  function to do it this way?
 - Limit character count of each comment to 300, otherwise it looks like a wall
-  of complaints. You can keep this wall in another document and summarize it for
-  the comment, and follow up with dev if they want to talk through them.
+  of complaints. You can keep the long comments in another document and
+  summarize it. Follow up with the dev if they want the details.
 - Use emojis, which helps communicate the intent behind your words.
-- Use questions instead of statements, but don't shy from being direct if you
-  already know the answer e.g:
+- Use questions instead of statements, but don't shy from being direct if
+  there's a clear answer. This assumes the author knows more than you do e.g:
 
     - I find this confusing becomes 'Could you elaborate on how this works?'
     - This is unmaintainable becomes 'What was your vision on maintaining this?'
@@ -26,8 +39,6 @@ From: https://www.reddit.com/r/ExperiencedDevs/comments/u6fxbm/do_people_think_y
 
 - Include positive feedback. If you're only complaining about the code in PRs
   then you're doing it wrong, you need to celebrate the small victories 
-- Unless it's plainly obvious that something is wrong or won't work, assume the
-  author knows more than I do so I mainly ask questions.
 
 
 A complete guide to code reviews
@@ -43,16 +54,24 @@ The goals for code reviews are:
 
 Best practices:
 
-- decide on a process:
-  draft PR -> ready for review -> PR reviews -> PR author merges
-- focus on the right things: functionality, software design, complexity, tests,
-  naming, comments, documentation. Developers shouldn't spent their time
-  reviewing things that can be automatically checked.
-- discuss high level approach early, preventing rewrite of PR. If PR rewrites
-  happen often, its a sign you might want to talk more often before
-  implementation. If a POC is needed to ignite the discussion, then start a
-  draft PR of the approach and make architecture decisions based on gained
-  information.
+- focus on important aspects like functionality, software design, complexity,
+  tests, naming, documentation and comments, and automate trivial checks.
+- discuss high level approaches before implementation, which prevents
+  PR-rewrites. If I require a POC to spark the discussion, start a draft PR of
+  the approach and have the conversation.
+- Foster a positive feedback culture:
+
+    - provide feedback on code, not the author
+    - accept that there are several correct solutions to a problem and you all
+      are in the same boat.
+    - PR authors are humans with feelings.
+    - Use the "Yes, and ..." technique to keep an innovative atmosphere. It's
+      ungracious to dismiss fresh and fragile ideas in a draft PR stage.
+    - Keep feedback balanced with positive comments.
+    - pick your battles
+
+
+TODO:
 - Optimize for the team: team should understand the implications of fast reviews
   and agree on suitable max time for responding to a PR. Key is to minimize
   response lag between the author and the reviewer, even if the whole review
@@ -65,28 +84,12 @@ Best practices:
   concluding an "ideal" solution, so reserve time for technical decisions but
   move on before you reach analysis paralysis. Be more inclined to merge code
   instead of focussing on punching holes in the implementation.
-- Keep pull requests small 
-- Foster a positive feedback culture:
-    - give feedback about the code, not the author
-    - pick your battles
-    - accept that there are multiple correct solutions to a problem
-      you're in the same boat
-    - PR authors are humans with feelings
-    - Use the "Yes, and ..." technique to keep an innovative atmosphere. It's
-      ungracious to dismiss fresh and fragile ideas in a draft PR stage.
-    - Keep feedback balanced with positive comments.
-- Use CI effectively: automate quality checks allowing reviewers to focus on
-  more important things like s/ware design, architecture and readability. Checks
-  can include tests, test coverage, code style enforcements, commit message
-  conventions, static analysis, etc.
-- Delegate nit-picking to a computer e.g. code-formatting.
 - Communicate explicitly:  be explicit about the action you request from the
   author.
 - Use explicit review requests: set up CODEOWNERS to automate requesting a
   review, which can also be requested from a team using the same CODEOWNDERS,
   and make sure they're done evenly across the team instead of siloing these to
   a single person.
-- Review your own code.
 - Document as much as possible in code. If you receive a comment/suggestion, try
   to document the discussion in code, this way future devs can understand
   functionality without reading PR discussions.
@@ -136,12 +139,67 @@ of without a specific status.
   available for urgent changes.
 
 From Code Reviews to talking to Each Other:
-- TODO:
+Code reviews are async, but sometimes it's necessary to have a face to face.
+- good: leave as many comments and questions as needed, but when the
+  conversations get into long back-and-forths, try to switch to in-person
+  discussion instead of using the code review too.
+- better: proactively reach out to coder after they do a first pass on the code
+  and they have a lot of comments and questions. Having many comments means
+  there's some misunderstanding on either side, and these are easier identified
+  and resolved by talking things through.
 
+Nitpicks:
+unimportant comments that the code can be merged without addressing.
+- good: make it clear when changes are unimportant nitpicks e.g. prefixing
+  "nit". Too many of these are frustrating and take attention away from the more
+  important parts of the review.
+- better: realize that too many nitpicks are a sign of lack of tooling and a
+  lack of standards. Look to solving these ouutside the code review process e.g.
+  with automated linting.
+
+Code Reviews for New Joiners:
+- good: use same quality bar and approach for everyone regardless of job title,
+  level or when they joined the company.
+- better: pay additional attention to make the first few reviews for new joiners
+  a great experience. Reviewers are empathetic to ignorance of new joiner to
+  coding guidelines and being unfamiliar with the code. Put additional effort to
+  explaining alternative approaches and pointing to guides. Positive in tone,
+  and celebrate the first few changes to the codebase the author suggests.
+
+Cross-office, cross-time Zone Reviews:
+- good: account for time zone differences when they can. Aim to review code in
+  overlapping working hours btn offices, and try to chat/video call through
+  PRs with many comments.
+- better: notice when PRRs run into timezone issues and look for systemic
+  solutions outside code review framework.
+
+Organizational Support:
+How companies and their eng organizations approach code reviews. In cultures
+where reviews are unimportant and trivial, it might be tempting to do away with
+reviews.
+- good: ensure all eng take part in review process, encourage raising the
+  quality bar, and teams facilitate healthy discussions on code review
+  approaches both at team and org level.
+- better: have hard rules around no code making it to prod without a code
+  review. Realize that cutting corners isn't worth it, and have processes for
+  expedited reviews for urgent cases. Invest in dev productivity, including
+  working continually to develop more efficient code reviews and tooling
+  improvements. When people find reviews that feel hostile, they can speak up
+  and have support all-round to resolve the issue. Seniors/Managers consider
+  code reviews that are not up to bar just as much of an issue as sloppy code or
+  poor behaviour.
+
+== Code Review Guidelines for Humans ==
+https://phauer.com/2018/code-review-guidelines/
+Guidelines for author:
+- be humble: takes away the fear of mistakes and creates an atmosphere where
+  making them is accepted and admitting them is desired, allowing for criticism
+  in code reviews to be accepted. So be humble, and accept that you'll make
+  mistakes. Also consider mistakes as opportunities to learn.
+- you are not your code:
 
 
 Other resources to summarize:
-https://phauer.com/2018/code-review-guidelines/
 https://google.github.io/eng-practices/review/reviewer/
 
 
