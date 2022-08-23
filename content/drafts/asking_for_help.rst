@@ -2,7 +2,7 @@
 Asking For Help
 ###############
 
-:date: 2022-08-19
+:date: 2022-08-27
 :category: Random
 :slug: asking_for_help
 :author: John Nduli
@@ -46,12 +46,12 @@ have helped.
    problem, I found that I can load up a locally build image to a server by
    using docker load, which solve the problem, hence no need to ask.
 
-Once I've done the above and still have the problem, I make and refine the question by:
+Once I've done the above and the problem persists, I make and refine the question by:
 
-1. Using meaningful subject headers.
+1. Having meaningful subject headers.
 2. Starting with the goal, then the steps I've taken, hence I ensure others will
    know if my steps were wrong or if there were other options I didn't consider.
-3. Having my question be short but informative by including:
+3. Editing the question to be short but informative. I can include:
     - the environment this occurred (if relevant)
     - the symptoms in chronological order
     - the research done
@@ -68,14 +68,13 @@ Once I've done the above and still have the problem, I make and refine the quest
 
 Once you have the question, then:
 
-1. Finding a relevant public channel. Avoid private ones or personal messages
+1. Look for a relevant public channel. Avoid private ones or personal messages
    since public ones ensure more people see the question and learn from it.
 2. Follow up with a brief note on the solution to the thread. Upvote helpful
    answers and accept any that solved the problem.
-3. Don't ask questions in ongoing threads since those not following the tread
+3. Don't ask questions in ongoing threads since those not following the thread
    will not see it.
 4. Be courteous, use please and 'thanks for your attention', etc.
-5. Use accessible formats e.g. use text over doc files.
 
 References
 ==========

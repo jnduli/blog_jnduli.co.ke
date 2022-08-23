@@ -11,7 +11,7 @@ Plan
 - Summarize code review guidelines for humans
 - Summarize google code eng review guide
 - DONE: Summarize reddit review summary: 100 words
-- Summarize swarma review summary: 200 words
+- DONE: Summarize swarma review summary: 200 words -> reached 301
 - Summarize stackoverflow review summary: 200 words
 
 
@@ -69,35 +69,22 @@ Best practices:
       ungracious to dismiss fresh and fragile ideas in a draft PR stage.
     - Keep feedback balanced with positive comments.
     - pick your battles
-
-
-TODO:
-- Optimize for the team: team should understand the implications of fast reviews
-  and agree on suitable max time for responding to a PR. Key is to minimize
-  response lag between the author and the reviewer, even if the whole review
-  process takes long. Devs shouldn't interrupt their focus to do reviews, and
-  instead prioritize them when there's a fitting gap e.g. after lunch. Review is
-  both the reviewer's and author's responsibility.
-- Default to action: reviews can stall for various reasons, so have a bias for
-  action. One can approve a PR even if there's some input left for the author to
-  consider. Deciding something relatively quickly is better than slowly
-  concluding an "ideal" solution, so reserve time for technical decisions but
-  move on before you reach analysis paralysis. Be more inclined to merge code
-  instead of focussing on punching holes in the implementation.
-- Communicate explicitly:  be explicit about the action you request from the
-  author.
-- Use explicit review requests: set up CODEOWNERS to automate requesting a
-  review, which can also be requested from a team using the same CODEOWNDERS,
-  and make sure they're done evenly across the team instead of siloing these to
-  a single person.
-- Document as much as possible in code. If you receive a comment/suggestion, try
-  to document the discussion in code, this way future devs can understand
-  functionality without reading PR discussions.
-- Write clear PR descriptions: you can include setup needed to test PR,
-  surprising implementation details, anything that will make reviewer's job
-  smoother, visual demos.
-- Prefer shared repository model to the forking model.
 - Keep discussions public
+- Be explicit about the action you want from the author.
+- Optimize for the team. Fast reviews are great and set a max time to respond to
+  a PR. We minimize response lag between the author and reviewer, avoid
+  interrupting focus times and have reviews done when there's a fitting gap e.g.
+  after lunch.
+- Have a bias for action, preventing stalled work e.g. approve a PR even if
+  there's some input left to consider. Quick decisions are sometimes better than
+  slow "ideal" solutions, so reserve time for technical decisions but move on
+  before you reach analysis paralysis. Incline more to merge code rather than
+  punching holes in implementation.
+- Clear Pr descriptions e.g. test set up, surprising implementation details,
+  visual demos etc.
+- Document discussions in code i.e. if you receive comments/suggestions,
+  document this discussion in code, so that future devs have context without
+  having to look for PRs.
 
 
 == Stackoverflow blog on good code reviews ==
