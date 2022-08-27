@@ -256,7 +256,31 @@ Is it true? Is it necessary? Is it kind?
   factory feels complicated to me. Have you considered to use a constructor
   instead?'
 
+== Google Code Review Docs ==
 
+The standard of Code Review:
+primary purpose of review it to make sure overall code health of google's code
+base is improving over time. For this to happen, devs must be able to submit
+improvements to the codebase and reviewers should make it easy for such changes
+to get in, but also ensure the change is such that the overall health of the
+codebase is improving. Codebases degrade through small decreases in code health
+over time, especially when a team is time constrained and takes shortcuts.
+
+rule: reviewers should favor approving a CL once it is in a state where it
+definitely improves the overall code health of the system being worked on, even
+if the CL isn't perfect.
+
+Mentoring
+leave comments that help devs learn something new but prefix them with "Nit:" if
+not critical or indicate it's not mandatory to be resolved.
+
+Resolving conflict:
+first action is for dev and reviewer to try to come to a consensus, prefer a
+face-to-face meeting and record the results in a comment in the PR. It this
+doesn't resolve the situation, escalate to broader team, TL, Eng Manager.
+
+
+TODO: next section https://google.github.io/eng-practices/review/reviewer/looking-for.html
 Other resources to summarize:
 TODO: https://google.github.io/eng-practices/review/reviewer/
 

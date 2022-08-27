@@ -6,7 +6,7 @@ Asking For Help
 :category: Random
 :slug: asking_for_help
 :author: John Nduli
-:status: draft
+:status: published
 
 I get and send bad questions. To avoid this, I write my questions in my editor,
 review and then copy them to the platform e.g. slack, email. My questions are
