@@ -258,7 +258,7 @@ Is it true? Is it necessary? Is it kind?
 
 == Google Code Review Docs ==
 
-The standard of Code Review:
+*The standard of Code Review:*
 primary purpose of review it to make sure overall code health of google's code
 base is improving over time. For this to happen, devs must be able to submit
 improvements to the codebase and reviewers should make it easy for such changes
@@ -278,6 +278,26 @@ Resolving conflict:
 first action is for dev and reviewer to try to come to a consensus, prefer a
 face-to-face meeting and record the results in a comment in the PR. It this
 doesn't resolve the situation, escalate to broader team, TL, Eng Manager.
+
+*What to Look for in a Code Review:*
+design: do the interactions of various code pieces make sense? Does this change
+belong in the code base or a library? Does it integrate well with the rest of
+the system?
+Functionality: think about edge cases, look for concurrency problems, try to
+think like a user and make sure there are no bugs that you see just by reading
+the code. You can validate the change, especially if it has a user facing impact
+e.g. UI change.
+Complexity: `too complex` means `can't be understood quickly by code readers`
+or `developers are likely to introduce bugs when they try to call or modify this
+code`. Look out for over-engineering, where devs have made the code more generic
+than it needs to be or added functionality that isn't needed by the system.
+Tests: tests should be added in same CL as the code unless its an emergency.
+Make sure tests in CL are correct, sensible and useful. Will tests fail when the
+code is broken? If code changes will they start producing false positives? Does
+each test make simple and useful assertions? Are tests separated appropriately?
+Tests are also code that has to be maintained, so don't accept complexity in
+them just because they aren't part of the main binary.
+Naming:
 
 
 TODO: next section https://google.github.io/eng-practices/review/reviewer/looking-for.html
