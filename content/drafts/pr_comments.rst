@@ -9,11 +9,12 @@ Summary of How to Do PR Reviews
 Plan
 ====
 - DONE: Summarize code review guidelines for humans
-- Summarize google code eng review guide
+- ONGOING: Summarize google code eng review guide
 - DONE: Summarize reddit review summary: 100 words
 - DONE: Summarize swarma review summary: 200 words -> reached 301
-- Summarize stackoverflow review summary: 200 words
+- DONE: Summarize stackoverflow review summary: 200 words -> reached 680
 - Summarize code guidelines for humans summary: 300 words
+  Summarize google code eng review guide
 
 
 Summaries
@@ -92,90 +93,81 @@ Best practices:
 https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/
 
 Areas Covered by code review:
-- good: cover code correctness, test coverage, functionality changes, code
-  guidelines and best practices, and point out obvious improvments like hard to
-  understand code, unclear names, commented out code, untested code, unhandled
-  edge cases. Also not when too many changes are crammed into one review, and
-  suggest keeping code changes single-purposed/breaking the change into more
-  focussed parts.
-- better: look at change in context of larger system, and check that changes are
-  easy to maintain. Ask questions on necessity of change or how it impacts other
-  parts of the system, look at abstractions introduced and how they fit into
-  existing s/ware arch. Note maintainability observations like complex logic
-  that could be simplified, improve test structure, remove duplication.
+- good: covers correctness, test coverage, functionality changes and best
+  practices. Points out obvious improvements like hard to understand code,
+  unclear names, commented out code, untested code, unhandled edge cases and
+  when too many changes are crammed into one review.
+- better: looks at change in context of larger system, and makes sure the changes are
+  easy to maintain. Asks if change is necessary or how it impacts other parts of
+  the system. Notes maintenance problems like complex logic that could be
+  simplified, improves test structure and removes duplication.
 
 Tone of Review:
-Reviews with harsh tone contribute to feeling of hostile env, opinionated
-language turns people defensive. Professional and positive tones contribute to
-more inclusive environment.
+Having a harsh tone makes others hostile, and opinionated language makes them
+defensive. Prefer professional and positive tones.
 - good: open ended questions instead of strong opinionated statements. Offer
-  alternatives and possible workarounds but don't insist these solns are the
-  best/only way to process. Assume reviewer might be missing something and ask
-  for clarification instead of correction.
+  alternatives and possible workarounds but don't insist these are the best/only
+  way to process. Assume reviewer might be missing something and ask for
+  clarification instead of correction.
 - better: empathetic, know that coder spent a lot of time and effort on change.
   Kind and unassuming, applaud nice solutions and all-round positive.
 
 Approving vs Requesting Changes:
-After a review, the changes can either be approved, blocked with change requests
-of without a specific status.
-- good: don't approve changes while there are open-ended questions, but make it
-  clear which questions/comments are non-blocking/unimportant marking them
-  distinctly. Are explicit when approving a change or when requesting a follow
-  up.
-- Better code reviews: firm on principle but flexible on practice. Allow some
-  comments to be addressed in follow-up code changes. Reviewers make themselves
-  available for urgent changes.
+After a review, the changes are either approved, blocked with change requests
+or without a specific status.
+- good: don't approve changes with open-ended questions, but make it clear which
+  questions/comments are non-blocking/unimportant marking them distinctly. Are
+  explicit when approving a change or when requesting a follow up.
+- Better: firm on principle but flexible on practice. Allow some comments to be
+  addressed in follow-up PRs. Reviewers are available for urgent changes.
 
 From Code Reviews to talking to Each Other:
 Code reviews are async, but sometimes it's necessary to have a face to face.
 - good: leave as many comments and questions as needed, but when the
-  conversations get into long back-and-forths, try to switch to in-person
-  discussion instead of using the code review too.
+  conversations has many back-and-forths, try to switch to in-person discussion
+  instead of using the code review tool.
 - better: proactively reach out to coder after they do a first pass on the code
   and they have a lot of comments and questions. Having many comments means
   there's some misunderstanding on either side, and these are easier identified
-  and resolved by talking things through.
+  and resolved by talking.
 
 Nitpicks:
 unimportant comments that the code can be merged without addressing.
 - good: make it clear when changes are unimportant nitpicks e.g. prefixing
-  "nit". Too many of these are frustrating and take attention away from the more
-  important parts of the review.
+  "nit". Many nits are frustrating and distract from the more important parts.
 - better: realize that too many nitpicks are a sign of lack of tooling and a
-  lack of standards. Look to solving these ouutside the code review process e.g.
+  lack of standards. Try to solve these outside the code review process e.g.
   with automated linting.
 
 Code Reviews for New Joiners:
 - good: use same quality bar and approach for everyone regardless of job title,
   level or when they joined the company.
-- better: pay additional attention to make the first few reviews for new joiners
-  a great experience. Reviewers are empathetic to ignorance of new joiner to
-  coding guidelines and being unfamiliar with the code. Put additional effort to
-  explaining alternative approaches and pointing to guides. Positive in tone,
-  and celebrate the first few changes to the codebase the author suggests.
+- better: pay attention to make the first few reviews for new joiners a great
+  experience. They are empathetic to ignorance of new joiner to coding
+  guidelines and unfamiliarity with the code. Explain alternative approaches and
+  point to guides. Positive in tone, and celebrate the first few changes to the
+  codebase the author suggests.
 
 Cross-office, cross-time Zone Reviews:
 - good: account for time zone differences when they can. Aim to review code in
   overlapping working hours btn offices, and try to chat/video call through
   PRs with many comments.
-- better: notice when PRRs run into timezone issues and look for systemic
+- better: notice when PRs run into timezone issues and look for systemic
   solutions outside code review framework.
 
 Organizational Support:
-How companies and their eng organizations approach code reviews. In cultures
-where reviews are unimportant and trivial, it might be tempting to do away with
-reviews.
+How companies and their eng organizations approach code reviews. If reviews are
+unimportant and trivial, it might be tempting to do away with them.
 - good: ensure all eng take part in review process, encourage raising the
   quality bar, and teams facilitate healthy discussions on code review
   approaches both at team and org level.
 - better: have hard rules around no code making it to prod without a code
-  review. Realize that cutting corners isn't worth it, and have processes for
-  expedited reviews for urgent cases. Invest in dev productivity, including
-  working continually to develop more efficient code reviews and tooling
-  improvements. When people find reviews that feel hostile, they can speak up
-  and have support all-round to resolve the issue. Seniors/Managers consider
-  code reviews that are not up to bar just as much of an issue as sloppy code or
-  poor behaviour.
+  review. Cutting corners isn't worth it, and there are  processes for urgent
+  cases. Invest in dev productivity, including working continually to develop
+  more efficient code reviews and tooling improvements. When people find reviews
+  that feel hostile, they can speak up and have support all-round to resolve the
+  issue. Seniors/Managers consider code reviews that are not up to bar just as
+  much of an issue as sloppy code or poor behaviour.
 
 == Code Review Guidelines for Humans ==
 https://phauer.com/2018/code-review-guidelines/
@@ -297,10 +289,78 @@ code is broken? If code changes will they start producing false positives? Does
 each test make simple and useful assertions? Are tests separated appropriately?
 Tests are also code that has to be maintained, so don't accept complexity in
 them just because they aren't part of the main binary.
-Naming:
+Naming: a good name is long enough to fully communicate what the item is/does
+without being so long that its hard to read.
+Comments: Are all comments necessay? Usually, comments are useful when they
+explain why some code exists, not what some code is doing. Code should be simple
+enough that someone can get the what (an exception is regex and complex algos).
+Note that comments are different from documentation of classes, modules,
+functions that should instead express the purpose of a piece of code, how it's
+used and how it behaves when used.
+Style: CL should follow style guides. Prefix style comments with nit.
+Consistency: maintain consistency with existing code.
+Documentation: ensure CL updates associated documentation, including READMEs,
+etc. If it deletes/deprecates code, check if the documentation should also be
+deleted. If documentation is missing, ask for it.
+Every Line: look at every line of code you've been assigned to review. If its
+too hard to read the code and it's slowing the review, notify the dev and wait
+for clarifications. If you understand the code but you don't feel qualified to
+do some part of the review, make sure there's a reviewer on the CL that's
+qualified.
+Exceptions: If it doesn't make sense to review every line, note in a comments
+the parts you've review, If you want to grant merge after confirming other
+reviewers have reviewed parts of the CL, note this explicitly in a comment to
+set expectations.
+Context: look at the CL in a broad context, e.g. you might have to look at the
+whole file to see if the 2 line changes make sense, or think of the CL in the
+context of the system as a whole, is it improving code health of system or
+degrading it.
+Good things: if you see something nice in a CL, tell the dev, especially when
+they addressed one of you comments in a great way. Offer appreciation and
+encouragement for good practices as well.
+
+Summary
+
+In doing a code review, you should make sure that:
+
+    The code is well-designed.
+    The functionality is good for the users of the code.
+    Any UI changes are sensible and look good.
+    Any parallel programming is done safely.
+    The code isn’t more complex than it needs to be.
+    The developer isn’t implementing things they might need in the future but don’t know they need now.
+    Code has appropriate unit tests.
+    Tests are well-designed.
+    The developer used clear names for everything.
+    Comments are clear and useful, and mostly explain why instead of what.
+    Code is appropriately documented (generally in g3doc).
+    The code conforms to our style guides.
 
 
-TODO: next section https://google.github.io/eng-practices/review/reviewer/looking-for.html
+Navigating a CL in review
+-------------------------
+Summary:
+
+- does the change make sense? Does it have a good description?
+  If this change shouldn't have happened in the first place, respond immediately
+  with an explanation of why, and suggest what the dev should have done instead
+  e.g. 'Looks like you put some good work into this, thanks! However, we're
+  actually going in the direction of removing the FooWidget system that you're
+  modifying here, and so we don't want to make any new modifications to it rn.
+  How about instead you refactor our new BarWidget class?' If you get more than
+  a few CL changes that you don't want to make, consider re-working your team's
+  dev process. It's better to tell people no before they've done a ton of work.
+- look at the most important part of the change first. Is it well designed
+  overall? There should be one file with the largest number of logical changes
+  and it's the major piece of the CL, so looking at this helps give context of
+  the other changes and accelerates the review. If you can't figure out the
+  major part, ask the dev for this or ask them to split up the CL into multiple
+  CLs. Send comments immediately if there are errors in this major part, even if
+  you won't review the other changes.
+- Look at the rest of the CL in an appropriate sequence
+
+
+TODO: next section https://google.github.io/eng-practices/review/reviewer/speed.html
 Other resources to summarize:
 TODO: https://google.github.io/eng-practices/review/reviewer/
 
