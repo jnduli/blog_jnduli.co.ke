@@ -13,8 +13,8 @@ Plan
 - DONE: Summarize reddit review summary: 100 words
 - DONE: Summarize swarma review summary: 200 words -> reached 301
 - DONE: Summarize stackoverflow review summary: 200 words -> reached 680
-- Summarize code guidelines for humans summary: 300 words
-  Summarize google code eng review guide
+- DONE: Summarize code guidelines for humans summary: now 800 words -> 652 words
+- Summarize google code eng review guide
 
 
 Summaries
@@ -172,72 +172,60 @@ unimportant and trivial, it might be tempting to do away with them.
 == Code Review Guidelines for Humans ==
 https://phauer.com/2018/code-review-guidelines/
 Guidelines for author:
-- be humble: takes away the fear of mistakes and creates an atmosphere where
-  making them is accepted and admitting them is desired, allowing for criticism
-  in code reviews to be accepted. So be humble, and accept that you'll make
-  mistakes. Also consider mistakes as opportunities to learn.
-- you are not your code: criticism of code is not criticism of you as a human,
-  you're still a valuable team member even if there are flaws in you code.
-- you are on the same side: 
-- mind the IKEA effect: IKEA effect (consumers place a disproportionately high
-  value on products they partially create), so in s/ware this means we place
-  more value into code that we've written and it might be hard to accept changes
-  or removal of this code.
-- new perspectives on your code: reviews reveal implicit knowledge that is not
-  expressed in code yet, and the coder most often can't see these issues. e.g.
-  `if article.state == state.inactive` is implicit coz I might not know when
-  that happens but `bool article_is_out_of_stock = article.state ==
-  state.inactive` makes it less so.
-- exchange of best practices and experiences: reviews are a valuable source of
-  knowledge and an opportunity to learn.
+- be humble and accept that you'll makes mistakes. This reduces the fear of
+  mistakes and creates an atmosphere where they're accepted and its desired to
+  admit them, which allows criticism and opportunities to learn in PRs.
+- You are not your code, so someone criticizing your code doesn't mean they're
+  criticizing you.
+- You are on the same side 
+- Don't place more value in code you've written since it'll be hard to accept
+  suggestions and remove the code (IKEA effect)
+- Reviews reveal new perspectives/implicit knowledge that isn't expressed in
+  code, that the author can't see e.g. `if article.state == state.inactive` is
+  implicit because I might not know when that happens but `bool
+  article_is_out_of_stock = article.state == state.inactive` makes it less so.
+- exchange of best practices and experiences
 
 Guidelines for the Reviewer:
-Phrasing of feedback is crucial for feedback to be accepted.
+How we phrase feedback determines if its accepted.
 - Use I-messages i.e. I suggest/think/believe/would, It's hard for me, For me it
   seems e.g. you are writing cryptic code -> It's hard for me to grasp what's
-  going on in this code. It's had for the author to argue against personal
-  feelings since they're subjective. You messages sound like an insinuation and
-  an absolute statement, an attack to the author, and they'll start being
-  defensive.
-- talk about the code, not the coder e.g. You're requesting the ervice multiple
+  going on in this code. These make the message subjective, but you-messages
+  sound like an insinuation or an absolute statement, an attack to the author,
+  and they get defensive.
+- talk about the code, not the coder e.g. You're requesting the service multiple
   times which is inefficient -> This code is requesting the service ... 
-- ask questions e.g. this variable shouuld have the name userId -> What do you
-  thinnk about the name userID for this variable? Questions feel much less like
-  criticism, and can trigger a thought process that can lead with the feedback
-  being accepted, or come up with even better solutions. This can also reveal
-  intentions behind some design decisions without passing judgement to the
-  author.
-- refer to the author's behaviour, not their traits e.g. you are sloppy when it
-  comes to writing tests -> I believe that you should pay more attention to
-  writing tests. It's not required to talk about the author at all though.
+- ask questions e.g. this variable should be called userId -> What do you
+  think about the name userId for this variable? Questions feel less like
+  criticism and can trigger a thought process that leads to accepted feedback or
+  a better solution. They also reveal intention behind some design decisions
+  without passing judgement.
 - Mind the OIR-Rule of giving feedback:
-    - Observation e.g. this method has 100 lines. Describe this in an objective
-      and neutral way, and use I messages.
+    - Observation e.g. this method has 100 lines. Described in an objective
+      neutral way, and use I messages.
     - Impact e.g. this makes it hard for me to grasp the essential logic of this
       method. Explain impact that the observation has on you. Use I-messages.
-    - Request e.g. I suggest extracting the low-level-details into subroutings
-      and give them expressive names. Use an I-message to express your
-      wish/proposal
+    - Request e.g. I suggest extracting the low-level-details into subroutines
+      and give them expressive names. Use an I-message to express wish/proposal
 - Accept that there are different solutions: distinguish between common best
   practices and your personal taste, make compromises and be pragmatic.
-- Don't jump in front of every train: don't criticize every single line of code
-  but instead choose wisely the battles to fight. Focus on flaws and code smells
-  that are most important to you.
-- Praise: appreciate good code. Praise should be specific, concrete and
-  separated from criticism. Use different sentences and avoid sandwiching e.g.
-  Most of your code looks good, but the method calc is too big -> I really like
-  the class ProductController, Tim. It has a clear single responsibility, is
-  coherent and contains nicely named methods good Job.\nDespite this, I spotted
-  the method calc which is too big for me. It's totally ok to say "Everything is
+- Don't criticize every single line of code but instead choose the battles to
+  fight. Focus on flaws and code smells that are most important to you.
+- Praise: appreciate good code. It should be specific, concrete and separated
+  from criticism. Use different sentences and avoid sandwiching e.g. Most of
+  your code looks good, but the method calc is too big -> I really like the
+  class ProductController, Tim. It has a clear single responsibility, is
+  coherent and contains nicely named methods good Job.\n Despite this, I spotted
+  the method calc which is too big for me. It's okay to say "Everything is
   good".
 
 Three Filters For Feedback:
 Is it true? Is it necessary? Is it kind?
 
-- Is it true? e.g. You should use getter and setter. This code is wrong. assumes
-  an absolute truth, which rarely exists. Avoid right, wrong, should, and often
-  refer to your opinion e.g. in this case I'd recommend using getter and setter
-  because..., or ask questions 'did you consider to use getter and setter?' or
+- Is it true? `You should use getter and setter. This code is wrong`, assumes an
+  absolute truth, which rarely exists. Avoid right, wrong, should and often
+  refer to your opinion e.g. `in this case I'd recommend using getter and setter
+  because ...`, or ask questions 'did you consider to use getter and setter?' or
   refer to a source 'According to the java style guide...'
 - Is it necessary? e.g. 'there is a space missing here' is pedantic, 'this code
   sends a chill down my spine, but I see your intention' first part has no sense

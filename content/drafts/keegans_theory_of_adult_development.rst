@@ -1,3 +1,85 @@
+Part 1
+------
+Subject (I AM): self concepts we're attached to and thus can't reflect on or take
+an objective look at. Can include personality traits, assumptions about how the
+world works, behaviours, emotions, etc.
+
+Object (I HAVE): self concepts we can detach ourselves from, that we can look
+at, reflect upon, engage, control and connect to something else.
+
+Subject-object shift happens when something moves from Subject (where it's
+controlling us) to Object (where we can control it).
+
+e.g. in religion, when younger, it's subjection (I am catholic) but when we're
+older it becomes more objective (I'm a human with beliefs who can step back and
+reflect on and decide what to believe in)
+
+Stage 2 - The Imperial Mind
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Subject: IS needs, interests, desires
+Object: HAS impulses, feelings and perceptions.
+
+Relationships are transactional. They view people as a means to get their own
+needs met. They care about how others perceive them, but only becausue this may
+have concrete consequences for them e.g. they don't lie to each other because of
+fear of the consequences of retaliation, not because they value honesty and
+transparency in a relationship.
+
+They follow along with rules, philosophies etc. because of external rewards and
+punishments, not because they truly believe them e.g. they won't cheat because
+they're scared of the consequences, not because it goes against their personal
+values.
+
+Stage 3: The Socialized Mind
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Subject: IS interpersonal relationships, mutuality
+Object: HAS needs, interests, desires
+
+External sources shape our sense of self and understanding the world. The most
+important things are the ideas, norms, beliefs of the people around us (family,
+society, culture).
+
+- we get our thoughts, beliefs, morals from external sources.
+- we take too much personal responsibility for how other people experience us,
+  thus spend too much time trying to avoid hurting other's feelings.
+- we look for external validation to derive our sense of self e.g. an executive
+  doesn't know if a particular meeting was successful until colleagues tell her
+  so.
+- we don't have an independent, strong sense of self. If there's a conflict
+  between ideologies, people, we have a hard time answering 'What do I want?'
+  because we're too busy focused on others expectations or societal roles.
+- we no longer view other people as a means to an end, and internalize others
+  perspectives and care about their opinions of use e.g. I care that you're
+  angry with me because I care about you and our relationship, not just because
+  you won't invite me to your party.
+
+In regards to cheating:
+- stage 2: worried about getting caught and consequences
+- stage 3: feel guilty and a disturbing dissonance because cheating is wrong and
+  goes against their belief system and values.
+
+Stage 4: The Self Authoring Mind
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+
+
+
+aoasdf
+
+sdfaasdfasf
+
+
+
+
+
+Part 2
+------
+
+
+## Part 2
 Ref: https://medium.com/@NataliMorad/part-2-how-to-be-an-adult-kegans-theory-of-adult-development-ddf057b4517b
 
 Self-authorship: defining and reshaping what you believe, your sense of self and
