@@ -60,26 +60,45 @@ In regards to cheating:
 
 Stage 4: The Self Authoring Mind
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Subject: IS self-authorship, identity, ideology
+Object: HAS relationships, mutuality
 
+We can define who we are, and not be defined by other people, our relationships
+or the environment. We can not distinguish the opinions of others from our own
+opinions to formulate our own sense of judgement.
 
+- We can question expectations and values, take stands, set limits and solve
+  problems with independent frames of mind.
+- We can explore other thoughts and feelings, creating our own sense of
+  authority or voice.
+- We can take responsibility for our own inner states and emotions e.g. I feel
+  angry because I interpret what you did as a violation of important values of
+  mine, and if I interpreted you actions differently I might feel sad instead.
+- We generate our understanding of the world and are not unduly shaped by the
+  context in which we find ourselves.
+- We realize that we're always changing, that who we are is something that we
+  can still negotiate.
 
+Stage 5: The Interconnected Mind
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Subject: IS
+Object: HAS self authorship, identity and ideology.
 
+One's sense of self is not tied to particular identities or roles, but is
+constantly created through the exploration of one's identities and roles and
+further honed through interactions with others.
 
-
-
-aoasdf
-
-sdfaasdfasf
-
-
-
+- We are both self-authoring and willing to work with the authority of others.
+  We can question authority, and also question ourselves.
+- We are no longer held prisoner by our own identity. We see complexities of
+  life, can expand who we are and be open to other possibilities i.e.
+  reinventing our identity.
+- We can hold multiple thoughts and ideologies at once. We can understand things
+  from many different perspectives.
 
 
 Part 2
 ------
-
-
-## Part 2
 Ref: https://medium.com/@NataliMorad/part-2-how-to-be-an-adult-kegans-theory-of-adult-development-ddf057b4517b
 
 Self-authorship: defining and reshaping what you believe, your sense of self and
@@ -165,3 +184,28 @@ So practice by making small decisions that align with my values.
 
 When we honor our internal commitments, we gain confidence. The more I do it,
 the more confident I become.
+
+Part 3
+------
+In stage 5, one's sense of self isn't tied to particular identities or roles,
+but is constantly created through the exploration of one's identities and roles
+and further honed through interactin with others.
+
+Xtics of stage 5:
+- Nothing is black or white: life, people, emotions, rlshps are complicated and
+  always changing. They're constantly moving along a spectrum, never just one
+  way or anther (i.e. I am not impatient, I'm patient in certain situations and
+  impatient in others).
+- We can question authority and ourselves
+- We embrace paradox
+
+Creating Fertile Space for Development:
+- understanding our self, constant awareness and humility: be aware of what
+  we're thinking and feeling and how we're behaving, and to practice humility.
+  This means putting ourselves in "learning mode" and accept the problems we
+  keep coming up against are nout about the world but about us. We realize we're
+  inadequate and want more out of our lives and our relationships and are
+  willing to do the work.
+- Sharing our self: honest, real conversations with people we trust
+
+

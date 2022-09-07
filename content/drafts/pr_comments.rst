@@ -348,7 +348,97 @@ Summary:
 - Look at the rest of the CL in an appropriate sequence
 
 
+Speed of Code Reviews
+---------------------
+Slow code review has the following impact:
+- velocity of the team as a whole is decreased: individual that doesn't respond
+  quickly to the review gets other work done, but new feature and bug fixes for
+  the rest of the team are delayed by days, weeks, monght as each CL waits for
+  review and re-review.
+- developers start to protest the code review process, where if a reviewer
+  responds every few days but requests majore changes to the PR each time, it's
+  frustrating and difficult for developers. This is expressed as complaints
+  about how "strict" the reviewer is being. If the reviewer responds quickly
+  every time the dev makes an update, the complaints tend to disappear. Most
+  complaints about the code review process are actually resolved by making the
+  process faster.
+- Code health is impacted. With slow reviews, there's increased pressure to
+  allow devs to submit PRs that are not as good as they could be. Slow reviews
+  also discourage code cleanups, refactorings and further improvemetns to
+  existing PRs.
+
+How Fast Should Code Reviews Be?
+
 TODO: next section https://google.github.io/eng-practices/review/reviewer/speed.html
+If not in the middle of a focused task, you should do a code review shortly
+after it comes in. One business day is the maximum time it should take to
+respond to a code review request. Using these guidelines a typical CL should get
+multiple rounds of review within a single day.
+
+Speed vs Interruption:
+If you're in the middle of a focused task e.g. writing code, don't interrupt
+yourself to do a code review.
+
+Instead wait for a break point in your work before you review e.g. after
+completing coding, after lunch, after a meeting, coming from break room.
+
+Fast Responses:
+Response time = speed of code reviews.
+
+It's more important for individual responses to come quickly than it is for the
+whole process to happen rapidly.
+
+If you're too busy to do a full review, you can still send a quick response to
+let the dev know when to expect this, suggest other reviewers, provide some
+initial broad comments.
+
+It's important that reviewers spend enough time on review that they're certain
+their LGTM meant the "code meets our standard".
+
+Cross Time Zone Reviews:
+try to get back to author while they have time to respond before end of of
+working hours.
+
+LGTM with Comments:
+Do this when:
+- you're confident author will appropriately address all the remaining comments.
+- the remaining changes are minor and don't have to be done by the dev.
+
+The reviewer should specify which of these they intend.
+
+Large CLs:
+if the PR is so large you're unsure when you'll be able to have time to review
+it, you should ask for the CL to be split into several smaller CLs. If it can't
+be broken down and you don't have time to review the entire thing, then at least
+write some comments on the overall design and set it back to the dev for
+improvement. Always unblock the dev / enable them to take some sort of further
+action quickly, without sacrificing code health to do so.
+
+Code Review Improvements Over Time:
+These guidelines means the entire code review process tends to go faster and
+faster over time. Devs learn what is required for healthy code, and send you CLs
+that are great from the start, requiring less and less review time. 
+
+Don't compromise on the code review standards or quality for an imagined
+improvement on velocity.
+
+How to Write Code Review Comments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+https://google.github.io/eng-practices/review/reviewer/comments.html
+
+Summary: be kind, explain your reasoning, balance giving explicit directions
+with just pointing out problems and letting the dev decide, ecnourage devs to
+simplify code or add code comments instead of just explaining the complexity to
+you.
+
+Courtesy: be kind while also being clear and helpful in the review. Make
+comments about the code and never about the developer.
+
+Explain Why:
+
+
+
+TODO: next https://google.github.io/eng-practices/review/reviewer/comments.html
 Other resources to summarize:
 TODO: https://google.github.io/eng-practices/review/reviewer/
 
