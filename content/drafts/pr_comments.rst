@@ -9,12 +9,12 @@ Summary of How to Do PR Reviews
 Plan
 ====
 - DONE: Summarize code review guidelines for humans
-- ONGOING: Summarize google code eng review guide
+- DONE: Summarize google code eng review guide
 - DONE: Summarize reddit review summary: 100 words
 - DONE: Summarize swarma review summary: 200 words -> reached 301
 - DONE: Summarize stackoverflow review summary: 200 words -> reached 680
 - DONE: Summarize code guidelines for humans summary: now 800 words -> 652 words
-- Summarize google code eng review guide
+- Summarize google code eng review guide: 2223 -> goal 1000 words
 
 
 Summaries
@@ -237,6 +237,7 @@ Is it true? Is it necessary? Is it kind?
   instead?'
 
 == Google Code Review Docs ==
+ref: https://google.github.io/eng-practices/review/reviewer/
 
 *The standard of Code Review:*
 primary purpose of review it to make sure overall code health of google's code
@@ -433,14 +434,61 @@ you.
 
 Courtesy: be kind while also being clear and helpful in the review. Make
 comments about the code and never about the developer.
+    Bad: “Why did you use threads here when there’s obviously no benefit to be gained from concurrency?”
 
-Explain Why:
+    Good: “The concurrency model here is adding complexity to the system without any actual performance benefit that I can see. Because there’s no performance benefit, it’s best for this code to be single-threaded instead of using multiple threads.”
+
+Explain Why: not always necessary but sometime its appropriate to explain your
+intent, the best practices you're following or how your suggestion improves code
+health.
+
+Giving Guidance: strike balance between pointing our problems and providing
+direct guidance. The former helps the dev learn, making it easier to do code
+reviews and leading to a better soln since they are closer to the code than the
+reviewer. The latter helps with the primary code of getting the best CL
+possible, while improving dev skills is a secondary goal. Also comment on things
+you like in the CL too, and why to liked this.
+
+Label comment severity: consider labeling the severity of your commeents,
+differentiating changes from guidelines or suggesions e.g. nit, optional, FYI.
+This makes review intent explicit and helps authors prioritize comments, and
+avoids misunderstandings like all comments are mandatory.
+
+Accepting Explanations: if you ask a dev to explain a piece of code that you
+don't understand, this should usually result in a rewrite, and sometimes adding
+a comment in the code (as long as it doesn't explain overly complex code).
+Explanations written only in code review tool are unhelpful to future code
+readers and are only acceptable in a few situation e.g. reviewing an area you
+aren't familiar with that normal readers of code would already know.
+
+Handling Pushback in Code Reviews
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TODO: https://google.github.io/eng-practices/review/reviewer/pushback.html
+
+When a dev disagrees with your suggestion, consider they may be right, since
+they're closer to the code. If so, let them know they're right and drop the
+issue. If not right, reviewer should further explain why they believe their
+suggestion is correct, demonstration both an understanding of the dev's reply
+and additional info about why the change is being requested. Sometimes it takes
+a few back and forths before the explanation really sinks in, so make sure to
+always stay polite and let the dev now that you hear what they're saying but
+don't agree.
+
+Reviewers sometimes believe that the dev will be upset if the reviewer insists
+on an improvement. Upsets are usually more about the way comments are written
+than about the reviewer's insistence on code quality, so if you're polite devs
+won't get upset.
+
+Sometimes dev say they'll clean up in a later PR, but this usually doesn't
+happen because it gets forgotten in press of other work. Thus it's usually best
+to insist that the clean up happen in the CL now or create a bug for the clean
+up and assign it to the dev.
+
+If you previous had lax reviews and you switch to a stricter model, some devs
+will complain, but improving speed of Code reviews usually causes these
+complaints to fade away.
 
 
-
-TODO: next https://google.github.io/eng-practices/review/reviewer/comments.html
-Other resources to summarize:
-TODO: https://google.github.io/eng-practices/review/reviewer/
 
 
 
