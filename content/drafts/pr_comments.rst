@@ -239,116 +239,63 @@ Is it true? Is it necessary? Is it kind?
 == Google Code Review Docs ==
 ref: https://google.github.io/eng-practices/review/reviewer/
 
-*The standard of Code Review:*
-primary purpose of review it to make sure overall code health of google's code
-base is improving over time. For this to happen, devs must be able to submit
-improvements to the codebase and reviewers should make it easy for such changes
-to get in, but also ensure the change is such that the overall health of the
-codebase is improving. Codebases degrade through small decreases in code health
-over time, especially when a team is time constrained and takes shortcuts.
+Reviews ensure code health is improving over time. Devs can submit improvements
+and reviewers should make it easy for these changes to get in, while ensuring
+code health is improving.
 
-rule: reviewers should favor approving a CL once it is in a state where it
-definitely improves the overall code health of the system being worked on, even
-if the CL isn't perfect.
+Reviewers should favor approving a PR once it improves the code health of the
+system even if it isn't perfect.
 
-Mentoring
-leave comments that help devs learn something new but prefix them with "Nit:" if
-not critical or indicate it's not mandatory to be resolved.
+Mentoring: leave comments that teach dev but prefix with "nit:"
+Resolving conflict: prefer face-to-face to get a consensus, and record the
+    result in a PR comment.
 
-Resolving conflict:
-first action is for dev and reviewer to try to come to a consensus, prefer a
-face-to-face meeting and record the results in a comment in the PR. It this
-doesn't resolve the situation, escalate to broader team, TL, Eng Manager.
+What do you look for in a PR:
 
-*What to Look for in a Code Review:*
-design: do the interactions of various code pieces make sense? Does this change
-belong in the code base or a library? Does it integrate well with the rest of
-the system?
-Functionality: think about edge cases, look for concurrency problems, try to
-think like a user and make sure there are no bugs that you see just by reading
-the code. You can validate the change, especially if it has a user facing impact
-e.g. UI change.
-Complexity: `too complex` means `can't be understood quickly by code readers`
-or `developers are likely to introduce bugs when they try to call or modify this
-code`. Look out for over-engineering, where devs have made the code more generic
-than it needs to be or added functionality that isn't needed by the system.
-Tests: tests should be added in same CL as the code unless its an emergency.
-Make sure tests in CL are correct, sensible and useful. Will tests fail when the
-code is broken? If code changes will they start producing false positives? Does
-each test make simple and useful assertions? Are tests separated appropriately?
-Tests are also code that has to be maintained, so don't accept complexity in
-them just because they aren't part of the main binary.
-Naming: a good name is long enough to fully communicate what the item is/does
-without being so long that its hard to read.
-Comments: Are all comments necessay? Usually, comments are useful when they
-explain why some code exists, not what some code is doing. Code should be simple
-enough that someone can get the what (an exception is regex and complex algos).
-Note that comments are different from documentation of classes, modules,
-functions that should instead express the purpose of a piece of code, how it's
-used and how it behaves when used.
-Style: CL should follow style guides. Prefix style comments with nit.
-Consistency: maintain consistency with existing code.
-Documentation: ensure CL updates associated documentation, including READMEs,
-etc. If it deletes/deprecates code, check if the documentation should also be
-deleted. If documentation is missing, ask for it.
-Every Line: look at every line of code you've been assigned to review. If its
-too hard to read the code and it's slowing the review, notify the dev and wait
-for clarifications. If you understand the code but you don't feel qualified to
-do some part of the review, make sure there's a reviewer on the CL that's
-qualified.
-Exceptions: If it doesn't make sense to review every line, note in a comments
-the parts you've review, If you want to grant merge after confirming other
-reviewers have reviewed parts of the CL, note this explicitly in a comment to
-set expectations.
-Context: look at the CL in a broad context, e.g. you might have to look at the
-whole file to see if the 2 line changes make sense, or think of the CL in the
-context of the system as a whole, is it improving code health of system or
-degrading it.
-Good things: if you see something nice in a CL, tell the dev, especially when
-they addressed one of you comments in a great way. Offer appreciation and
-encouragement for good practices as well.
+- design: interactions of code pieces, does change belong to code/library
+- functionality: edge cases, concurrency problems, bugs, validate UI changes.
+- complexity: complex code isn't quickly understood and bugs can be introduced
+  when modified. Check for over-engineering (e.g. code is too generic, has
+  functionality that isn't needed)
+- Add tests in the same PR as code. Tests are correct, sensible and useful, are
+  separated appropriately, are simple (tests are maintained too).
+- naming: are long enough to communicate what it does without being so long that
+  it's hard to read.
+- comments: are they all necessary? Comments should explain why the code exists
+  not what it's doing. Comments aren't documentation for classes, modules,
+  functions which instead express purpose of piece of code, how it's used and
+  how it behaves.
+- Style: CL should follow style guides. Prefix style comments with nit.
+- Consistency: maintain consistency with existing code.
+- Documentation: PR updates relevant documentation e.g. READMEs. If it
+  deletes/deprecates code, the docs should be deleted. Ask for missing docs.
+- Every line: look at every line of code. If something is too hard, notify the
+  dev. If you understand the code but aren't qualified for some parts, make sure
+  there's a reviewer on the PR that's qualified.
+- Context: look at PR in broader context (e.g. whole file instead of just the 2
+  lines changed) or PR in the context of the whole system. Does it improve the
+  health or degrade it?
+- Tell the dev when you see something good in a PR e.g. they addressed a comment
+  in a great way. Appreciate and encourage good practices.
 
-Summary
+To navigate a PR:
 
-In doing a code review, you should make sure that:
-
-    The code is well-designed.
-    The functionality is good for the users of the code.
-    Any UI changes are sensible and look good.
-    Any parallel programming is done safely.
-    The code isn’t more complex than it needs to be.
-    The developer isn’t implementing things they might need in the future but don’t know they need now.
-    Code has appropriate unit tests.
-    Tests are well-designed.
-    The developer used clear names for everything.
-    Comments are clear and useful, and mostly explain why instead of what.
-    Code is appropriately documented (generally in g3doc).
-    The code conforms to our style guides.
+- see if the change makes sense and has a good description. If not, explain
+  immediately why and suggest alternatives e.g. Looks like you put some good
+  work into this, thanks, but we're actually going in the direction of removing
+  this Widget system that you're modifying here and so we don't want to make any
+  new changes to it right now. How about you refactor BarWidget class?
+- if above happens a couple of times, consider changing the team's dev process
+  because it's better to tell someone no before they've put in a lot of work.
+- start with the most important part of the change, and see if it's well
+  designed. This gives context of the other changes and accelerates review. If
+  you can't figure this out, ask the dev and suggest they split up the PR into
+  multiple ones. Immediately comment on errors in this major part, even if you
+  don't review other changes.
+- go to other parts of PR in proper sequence.
 
 
-Navigating a CL in review
--------------------------
-Summary:
-
-- does the change make sense? Does it have a good description?
-  If this change shouldn't have happened in the first place, respond immediately
-  with an explanation of why, and suggest what the dev should have done instead
-  e.g. 'Looks like you put some good work into this, thanks! However, we're
-  actually going in the direction of removing the FooWidget system that you're
-  modifying here, and so we don't want to make any new modifications to it rn.
-  How about instead you refactor our new BarWidget class?' If you get more than
-  a few CL changes that you don't want to make, consider re-working your team's
-  dev process. It's better to tell people no before they've done a ton of work.
-- look at the most important part of the change first. Is it well designed
-  overall? There should be one file with the largest number of logical changes
-  and it's the major piece of the CL, so looking at this helps give context of
-  the other changes and accelerates the review. If you can't figure out the
-  major part, ask the dev for this or ask them to split up the CL into multiple
-  CLs. Send comments immediately if there are errors in this major part, even if
-  you won't review the other changes.
-- Look at the rest of the CL in an appropriate sequence
-
-
+TODO: summary
 Speed of Code Reviews
 ---------------------
 Slow code review has the following impact:
@@ -487,9 +434,3 @@ up and assign it to the dev.
 If you previous had lax reviews and you switch to a stricter model, some devs
 will complain, but improving speed of Code reviews usually causes these
 complaints to fade away.
-
-
-
-
-
-
