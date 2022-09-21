@@ -14,7 +14,8 @@ Plan
 - DONE: Summarize swarma review summary: 200 words -> reached 301
 - DONE: Summarize stackoverflow review summary: 200 words -> reached 680
 - DONE: Summarize code guidelines for humans summary: now 800 words -> 652 words
-- Summarize google code eng review guide: 2223 -> goal 1000 words
+- DONE: Summarize google code eng review guide: 2223 -> 1232 words
+- Create first article draft from summaries
 
 
 Summaries
@@ -294,143 +295,78 @@ To navigate a PR:
   don't review other changes.
 - go to other parts of PR in proper sequence.
 
+Slow code reviews:
 
-TODO: summary
-Speed of Code Reviews
----------------------
-Slow code review has the following impact:
-- velocity of the team as a whole is decreased: individual that doesn't respond
-  quickly to the review gets other work done, but new feature and bug fixes for
-  the rest of the team are delayed by days, weeks, monght as each CL waits for
-  review and re-review.
-- developers start to protest the code review process, where if a reviewer
-  responds every few days but requests majore changes to the PR each time, it's
-  frustrating and difficult for developers. This is expressed as complaints
-  about how "strict" the reviewer is being. If the reviewer responds quickly
-  every time the dev makes an update, the complaints tend to disappear. Most
-  complaints about the code review process are actually resolved by making the
-  process faster.
-- Code health is impacted. With slow reviews, there's increased pressure to
-  allow devs to submit PRs that are not as good as they could be. Slow reviews
-  also discourage code cleanups, refactorings and further improvemetns to
-  existing PRs.
+- reduce team velocity.
+- cause protests with the review process (e.g. we have strict reviewers)
+  especially when someone responds after some days and requests major
+  changes. Quick responses make the complaints disappear.
+- reduce code health since devs submit PRs that aren't as good as they could be,
+  discourage code cleanups and refactors and code improvements.
 
-How Fast Should Code Reviews Be?
+If not in the middle of deep work, respond to a review request shortly after it
+comes. One business day is the max time to respond to a review request, and
+typically multiple rounds of review occur in a single day.
 
-TODO: next section https://google.github.io/eng-practices/review/reviewer/speed.html
-If not in the middle of a focused task, you should do a code review shortly
-after it comes in. One business day is the maximum time it should take to
-respond to a code review request. Using these guidelines a typical CL should get
-multiple rounds of review within a single day.
+Don't interrupt yourself to do a review, but use break points for these e.g.
+after lunch, after a meeting, coming from break.
 
-Speed vs Interruption:
-If you're in the middle of a focused task e.g. writing code, don't interrupt
-yourself to do a code review.
-
-Instead wait for a break point in your work before you review e.g. after
-completing coding, after lunch, after a meeting, coming from break room.
-
-Fast Responses:
 Response time = speed of code reviews.
 
-It's more important for individual responses to come quickly than it is for the
-whole process to happen rapidly.
+It's important that reviewers spend time on review s.t. their 'LGTM' means the
+code meets our standard. If you're too busy to do a full review, you can send
+quick responses to let the dev know when to expect this, suggest other reviews
+and provide initial broad comments. If working across time zones, try to get
+back to author while they still have time to respond.
 
-If you're too busy to do a full review, you can still send a quick response to
-let the dev know when to expect this, suggest other reviewers, provide some
-initial broad comments.
+Have LGTM with comments when you're confident the author will address all the
+remaining comments or the remaining changes are minor, and specify which of
+these you mean.
 
-It's important that reviewers spend enough time on review that they're certain
-their LGTM meant the "code meets our standard".
+Request for large PRs to be split. If it can't be split and you don't have time
+to review, then at least comment on the overall design. Always unblock the dev
+and enable them to take some sort of further action quickly.
 
-Cross Time Zone Reviews:
-try to get back to author while they have time to respond before end of of
-working hours.
-
-LGTM with Comments:
-Do this when:
-- you're confident author will appropriately address all the remaining comments.
-- the remaining changes are minor and don't have to be done by the dev.
-
-The reviewer should specify which of these they intend.
-
-Large CLs:
-if the PR is so large you're unsure when you'll be able to have time to review
-it, you should ask for the CL to be split into several smaller CLs. If it can't
-be broken down and you don't have time to review the entire thing, then at least
-write some comments on the overall design and set it back to the dev for
-improvement. Always unblock the dev / enable them to take some sort of further
-action quickly, without sacrificing code health to do so.
-
-Code Review Improvements Over Time:
-These guidelines means the entire code review process tends to go faster and
-faster over time. Devs learn what is required for healthy code, and send you CLs
-that are great from the start, requiring less and less review time. 
-
-Don't compromise on the code review standards or quality for an imagined
+Improving the quality of PRs and their speed leads to a feedback loop where devs
+learn what's healthy code and send PRs that are great from the start, needing
+less and less review time. Don't compromise on review standards for an imagined
 improvement on velocity.
 
-How to Write Code Review Comments
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-https://google.github.io/eng-practices/review/reviewer/comments.html
+When writing review comments:
+- be kind while being clear and helpful. Comment on the code and not the
+  reviewer e.g. "why did you use threads here where there's obviously no benefit
+  to be gained from concurrency" is bad, and can be rephrased as "The
+  concurrency model here is adding more complexity to the system without any
+  actual performance benefit that I can see. Because there's no performance
+  benefit, it's best for this code to be single-threaded instead of using
+  multiple threads."
+- Explain why sometimes when you want to give your intent, the best practices or
+  how the suggestion improves code health.
+- Balance giving explicit directions (helps get PR in best condition) and
+  pointing out problems (this helps the dev learn, making future reviews easier
+  and can lead to better solns since the dev is closer to the code).
+- Comment on things you like in the PR and why you liked them.
+- Consider labelling your comments to differential guidance from suggestions
+  e.g. nit, optional, FYI, helping the author prioritize comments and avoid
+  misunderstandings (e.g. all comments need to be addressed).
+- If you ask for an explanation, this should result in a rewrite or a comment
+  added in the code. Review tool only explanations don't help future code
+  readers and are only ok when its an area of code you aren't familiar with.
 
-Summary: be kind, explain your reasoning, balance giving explicit directions
-with just pointing out problems and letting the dev decide, ecnourage devs to
-simplify code or add code comments instead of just explaining the complexity to
-you.
-
-Courtesy: be kind while also being clear and helpful in the review. Make
-comments about the code and never about the developer.
-    Bad: “Why did you use threads here when there’s obviously no benefit to be gained from concurrency?”
-
-    Good: “The concurrency model here is adding complexity to the system without any actual performance benefit that I can see. Because there’s no performance benefit, it’s best for this code to be single-threaded instead of using multiple threads.”
-
-Explain Why: not always necessary but sometime its appropriate to explain your
-intent, the best practices you're following or how your suggestion improves code
-health.
-
-Giving Guidance: strike balance between pointing our problems and providing
-direct guidance. The former helps the dev learn, making it easier to do code
-reviews and leading to a better soln since they are closer to the code than the
-reviewer. The latter helps with the primary code of getting the best CL
-possible, while improving dev skills is a secondary goal. Also comment on things
-you like in the CL too, and why to liked this.
-
-Label comment severity: consider labeling the severity of your commeents,
-differentiating changes from guidelines or suggesions e.g. nit, optional, FYI.
-This makes review intent explicit and helps authors prioritize comments, and
-avoids misunderstandings like all comments are mandatory.
-
-Accepting Explanations: if you ask a dev to explain a piece of code that you
-don't understand, this should usually result in a rewrite, and sometimes adding
-a comment in the code (as long as it doesn't explain overly complex code).
-Explanations written only in code review tool are unhelpful to future code
-readers and are only acceptable in a few situation e.g. reviewing an area you
-aren't familiar with that normal readers of code would already know.
-
-Handling Pushback in Code Reviews
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TODO: https://google.github.io/eng-practices/review/reviewer/pushback.html
-
-When a dev disagrees with your suggestion, consider they may be right, since
-they're closer to the code. If so, let them know they're right and drop the
-issue. If not right, reviewer should further explain why they believe their
-suggestion is correct, demonstration both an understanding of the dev's reply
-and additional info about why the change is being requested. Sometimes it takes
-a few back and forths before the explanation really sinks in, so make sure to
-always stay polite and let the dev now that you hear what they're saying but
+If a dev disagrees with a suggestion, consider they may be right, since they're
+closer to the code, and if so let them know this and drop the issue. If not,
+explain your beliefs further and demonstrate both an understanding of the dev's
+reply and any extra info on why the change was made. It might take a few
+back-and-forths for this, so be polite and let dev know that you hear them but
 don't agree.
 
-Reviewers sometimes believe that the dev will be upset if the reviewer insists
-on an improvement. Upsets are usually more about the way comments are written
-than about the reviewer's insistence on code quality, so if you're polite devs
-won't get upset.
+Reviewers can believe they'll upset the dev if they insist on an improvement,
+but upsets are more about how they write the comments than the insistence on
+code quality.
 
-Sometimes dev say they'll clean up in a later PR, but this usually doesn't
-happen because it gets forgotten in press of other work. Thus it's usually best
-to insist that the clean up happen in the CL now or create a bug for the clean
-up and assign it to the dev.
+Its best to insist that some clean up happens in the current PR or create a bug
+for the clean up and assign it to the dev. If not, the clean up won't happen
+since it gets forgotten while doing other work.
 
-If you previous had lax reviews and you switch to a stricter model, some devs
-will complain, but improving speed of Code reviews usually causes these
-complaints to fade away.
+If you switch from lax to strict reviews, some devs will complain, but improving
+the speed of reviews will cause these complaints to stop.
