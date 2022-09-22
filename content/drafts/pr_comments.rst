@@ -18,6 +18,40 @@ Plan
 - Create first article draft from summaries
 
 
+Draft
+-----
+.. # Mostly from swarmia
+PR reviews are a way to improve the code health of a system, while also sharing
+knowledge and spreading ownership of code.
+
+To facilitate the review process needs to be fast, so automate trivial checks
+and have style guidelines to remove the easy checks out of the way. High levle
+discussions need to happen before the PR to prevent rewrites (a POC can be made
+to spark the discussion).
+
+The reviewer should:
+
+- provide feedback on code, not the author.
+- accept that there are many solutions to a problem
+- the PR author is human.
+- Use the "Yes, and ... " technique to keep an innovative atmosphes. Don't
+  dismiss fresh and fragile ideas in a draft PR.
+- Have positive comments.
+- Have discussions in public, and ensure these are noted down in code.
+- Be explicit about the action you want.
+- Fast reviews (Needs a separate paragraph)
+- Have a bias for action e.g. approve a PR with minor comments.
+
+
+Author should ensure:
+- clear PR descriptions with test set up, surprising implementation details and
+  visual demos added.
+
+
+
+
+
+
 Summaries
 =========
 
