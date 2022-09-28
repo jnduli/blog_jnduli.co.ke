@@ -21,6 +21,7 @@ Plan
 Draft
 -----
 .. # Mostly from swarmia
+.. # added summary from reddit into main article
 PR reviews are a way to improve the code health of a system, while also sharing
 knowledge and spreading ownership of code.
 
@@ -31,16 +32,48 @@ spark the discussion if necessary).
 
 The reviewer should:
 
+- check the code for
+    - correctness, test coverage, functionality changes and best practices.
+    - view changes in context of larger system and see if they can be easily
+      maintained.
+    - point out improvements like hard to understand code, unclear names,
+      commented out code, untested code, unhandled edge cases, too many changes
+      in one PR, duplication, bad test structure.
+- tone:
+    - have open ended questions instead of strong opinionated statements.
+    - offer alternatives but don't insist they're the only way to proceed.
+    - assume reviewer might be missing something and ask for clarification
+      instead of correction.
+    - have in mind that the code spent a lot of time and effort on the change,
+      so be king and unassuming and applaud nice solutions.
+    - review should be all-round positive.
 - provide feedback on code, not the author.
 - accept there are many solutions to a problem
+    - Use questions instead of statements, but don't shy from being direct if
+      there's a clear answer. This assumes the author knows more than you do e.g:
+
+           - I find this confusing becomes 'Could you elaborate on how this works?'
+           - This is unmaintainable becomes 'What was your vision on maintaining this?'
+           - This is broken, it will lose the db connection becomes 'What happens if we
+             lose the db connection here?'
 - be aware that the PR author is human.
 - Use the "Yes, and ... " technique to keep an innovative atmosphere. Don't
   dismiss fresh and fragile ideas in a draft PR.
-- Have positive comments.
+- Include positive feedback. If you're only complaining about the code in PRs
+  then you're doing it wrong, you need to celebrate the small victories 
 - Have discussions in public, and ensure code documents these.
-- Be explicit about the action you want.
+- Be explicit about the action you want. Use emojis or prefixes to help with
+  this and communicate intent behind your words.
 - Fast reviews (Needs a separate paragraph)
 - Have a bias for action e.g. approve a PR with minor comments.
+- Use we instead of I/me/you which makes comments less judgemental, removes
+  blame implication and feeling that my way is right e.g. could we change this
+  function to do it this way?
+- Limit character count of each comment to 300, otherwise it looks like a wall
+  of complaints. You can keep the long comments in another document and
+  summarize it. Follow up with the dev if they want the details.
+
+
 
 
 Author should ensure:
@@ -128,18 +161,18 @@ Best practices:
 https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/
 
 Areas Covered by code review:
-- good: covers correctness, test coverage, functionality changes and best
-  practices. Points out obvious improvements like hard to understand code,
-  unclear names, commented out code, untested code, unhandled edge cases and
-  when too many changes are crammed into one review.
-- better: looks at change in context of larger system, and makes sure the changes are
-  easy to maintain. Asks if change is necessary or how it impacts other parts of
-  the system. Notes maintenance problems like complex logic that could be
-  simplified, improves test structure and removes duplication.
+- good: check correctness, test coverage, functionality changes and best
+  practices. Point out improvements like hard to understand code, unclear names,
+  commented out code, untested code, unhandled edge cases and when one review
+  has too many changes.
+- better: view changes in context of larger system, and make sure they are easy
+  to maintain. Ask if change is necessary or how it impacts other parts of the
+  system. Note maintenance problems like complex logic, improve test structure
+  and remove duplication.
 
 Tone of Review:
-Having a harsh tone makes others hostile, and opinionated language makes them
-defensive. Prefer professional and positive tones.
+A harsh tone makes others hostile, and opinionated language defensive. Use
+professional and positive tones.
 - good: open ended questions instead of strong opinionated statements. Offer
   alternatives and possible workarounds but don't insist these are the best/only
   way to process. Assume reviewer might be missing something and ask for
@@ -147,9 +180,10 @@ defensive. Prefer professional and positive tones.
 - better: empathetic, know that coder spent a lot of time and effort on change.
   Kind and unassuming, applaud nice solutions and all-round positive.
 
+.. TODO: blog draft
 Approving vs Requesting Changes:
-After a review, the changes are either approved, blocked with change requests
-or without a specific status.
+After a review, the changes are approved, blocked with change requests or
+without a specific status.
 - good: don't approve changes with open-ended questions, but make it clear which
   questions/comments are non-blocking/unimportant marking them distinctly. Are
   explicit when approving a change or when requesting a follow up.
