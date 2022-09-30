@@ -22,58 +22,90 @@ Draft
 -----
 .. # Mostly from swarmia
 .. # added summary from reddit into main article
-PR reviews are a way to improve the code health of a system, while also sharing
-knowledge and spreading ownership of code.
+.. # added summary from stackoveflow blog
+Code reviews improve the code health of a system and spread ownership of code
+and knowledge.
 
-The review process should be fast to be efficient, so automate trivial checks
-and have style guidelines to remove the easy checks out of the way. High level
-discussions need to happen before the PR to prevent rewrites (make a POC to
-spark the discussion if necessary).
+A good review process is fast. Automate trivial checks and have style guidelines
+to improve the speed. Have high level discussions of the changes before coding
+to prevent rewrites (make a POC to spark the discussion if needed).
 
-The reviewer should:
 
-- check the code for
-    - correctness, test coverage, functionality changes and best practices.
-    - view changes in context of larger system and see if they can be easily
-      maintained.
-    - point out improvements like hard to understand code, unclear names,
-      commented out code, untested code, unhandled edge cases, too many changes
-      in one PR, duplication, bad test structure.
+The reviewer:
+
+- checks the code for
+    - correctness, test coverage, functionality and best practices.
+    - hard to understand code, unclear names, commented out code, untested code,
+      unhandled edge cases, duplication, bad test structure, too many changes.
+    - view changes in context of larger system and see if they are maintainable.
 - tone:
     - have open ended questions instead of strong opinionated statements.
     - offer alternatives but don't insist they're the only way to proceed.
-    - assume reviewer might be missing something and ask for clarification
-      instead of correction.
+    - ask for clarification instead of correction (assume you might be missing
+      something)
     - have in mind that the code spent a lot of time and effort on the change,
-      so be king and unassuming and applaud nice solutions.
+      so be kind and unassuming and applaud nice solutions.
     - review should be all-round positive.
 - provide feedback on code, not the author.
-- accept there are many solutions to a problem
-    - Use questions instead of statements, but don't shy from being direct if
-      there's a clear answer. This assumes the author knows more than you do e.g:
+- Accept that there are different solutions: distinguish between common best
+  practices and your personal taste, make compromises and be pragmatic.
+    - accept there are many solutions to a problem
+        - Use questions instead of statements, but don't shy from being direct if
+          there's a clear answer. This assumes the author knows more than you do e.g:
 
-           - I find this confusing becomes 'Could you elaborate on how this works?'
-           - This is unmaintainable becomes 'What was your vision on maintaining this?'
-           - This is broken, it will lose the db connection becomes 'What happens if we
-             lose the db connection here?'
+               - I find this confusing becomes 'Could you elaborate on how this works?'
+               - This is unmaintainable becomes 'What was your vision on maintaining this?'
+               - This is broken, it will lose the db connection becomes 'What happens if we
+                 lose the db connection here?'
 - be aware that the PR author is human.
 - Use the "Yes, and ... " technique to keep an innovative atmosphere. Don't
   dismiss fresh and fragile ideas in a draft PR.
 - Include positive feedback. If you're only complaining about the code in PRs
   then you're doing it wrong, you need to celebrate the small victories 
+    - Praise: appreciate good code. It should be specific, concrete and separated
+      from criticism. Use different sentences and avoid sandwiching e.g. Most of
+      your code looks good, but the method calc is too big -> I really like the
+      class ProductController, Tim. It has a clear single responsibility, is
+      coherent and contains nicely named methods good Job.\n Despite this, I spotted
+      the method calc which is too big for me. It's okay to say "Everything is
+      good".
 - Have discussions in public, and ensure code documents these.
 - Be explicit about the action you want. Use emojis or prefixes to help with
   this and communicate intent behind your words.
 - Fast reviews (Needs a separate paragraph)
 - Have a bias for action e.g. approve a PR with minor comments.
-- Use we instead of I/me/you which makes comments less judgemental, removes
-  blame implication and feeling that my way is right e.g. could we change this
-  function to do it this way?
+- Strategies for dealing with tone:
+    - Use I-messages i.e. I suggest/think/believe/would, It's hard for me, For me it
+      seems e.g. you are writing cryptic code -> It's hard for me to grasp what's
+      going on in this code. These make the message subjective, but you-messages
+      sound like an insinuation or an absolute statement, an attack to the author,
+      and they get defensive.
+    - Use we instead of I/me/you which makes comments less judgemental, removes
+      blame implication and feeling that my way is right e.g. could we change this
+      function to do it this way?
+    - Use questions instead of statements, but don't shy from being direct if
+      there's a clear answer. This assumes the author knows more than you do e.g:
+           - I find this confusing becomes 'Could you elaborate on how this works?'
+           - This is unmaintainable becomes 'What was your vision on maintaining this?'
+           - This is broken, it will lose the db connection becomes 'What happens if we
+             lose the db connection here?'
+    - talk about the code, not the coder e.g. You're requesting the service multiple
+      times which is inefficient -> This code is requesting the service ... 
+    - ask questions e.g. this variable should be called userId -> What do you
+      think about the name userId for this variable? Questions feel less like
+      criticism and can trigger a thought process that leads to accepted feedback or
+      a better solution. They also reveal intention behind some design decisions
+      without passing judgement.
 - Limit character count of each comment to 300, otherwise it looks like a wall
   of complaints. You can keep the long comments in another document and
   summarize it. Follow up with the dev if they want the details.
+- Reach out to dev if you have too many comments in the review. This could be
+  that there's some misunderstanding on either side, which is easier resolved by
+  talking.
 
 
+Three Filters For Feedback:
+Is it true? Is it necessary? Is it kind?
 
 
 Author should ensure:
@@ -180,7 +212,6 @@ professional and positive tones.
 - better: empathetic, know that coder spent a lot of time and effort on change.
   Kind and unassuming, applaud nice solutions and all-round positive.
 
-.. TODO: blog draft
 Approving vs Requesting Changes:
 After a review, the changes are approved, blocked with change requests or
 without a specific status.
@@ -231,7 +262,7 @@ unimportant and trivial, it might be tempting to do away with them.
   quality bar, and teams facilitate healthy discussions on code review
   approaches both at team and org level.
 - better: have hard rules around no code making it to prod without a code
-  review. Cutting corners isn't worth it, and there are  processes for urgent
+  review. Cutting corners isn't worth it, and there are processes for urgent
   cases. Invest in dev productivity, including working continually to develop
   more efficient code reviews and tooling improvements. When people find reviews
   that feel hostile, they can speak up and have support all-round to resolve the
@@ -305,6 +336,7 @@ Is it true? Is it necessary? Is it kind?
   factory feels complicated to me. Have you considered to use a constructor
   instead?'
 
+.. TODO add in draft
 == Google Code Review Docs ==
 ref: https://google.github.io/eng-practices/review/reviewer/
 
