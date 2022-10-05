@@ -23,6 +23,7 @@ Draft
 .. # Mostly from swarmia
 .. # added summary from reddit into main article
 .. # added summary from stackoveflow blog
+.. # added phaber
 Code reviews improve the code health of a system and spread ownership of code
 and knowledge.
 
@@ -33,10 +34,15 @@ to prevent rewrites (make a POC to spark the discussion if needed).
 
 The reviewer:
 
-- checks the code for
+- checks the code and tests for
     - correctness, test coverage, functionality and best practices.
     - hard to understand code, unclear names, commented out code, untested code,
       unhandled edge cases, duplication, bad test structure, too many changes.
+    - if there are too many changes, request for the PR to be split.
+    - comments. They should explain why code exists not what its doing (comments
+      != documentation).
+    - consistency
+    - relevant documentation is updated.
     - view changes in context of larger system and see if they are maintainable.
 - tone:
     - have open ended questions instead of strong opinionated statements.
@@ -46,6 +52,8 @@ The reviewer:
     - have in mind that the code spent a lot of time and effort on the change,
       so be kind and unassuming and applaud nice solutions.
     - review should be all-round positive.
+- respond to a review request shortly after it comes (if not in the middle of
+  deep work). At most 1 day shouldn't pass before you respond.
 - provide feedback on code, not the author.
 - Accept that there are different solutions: distinguish between common best
   practices and your personal taste, make compromises and be pragmatic.
@@ -336,7 +344,6 @@ Is it true? Is it necessary? Is it kind?
   factory feels complicated to me. Have you considered to use a constructor
   instead?'
 
-.. TODO add in draft
 == Google Code Review Docs ==
 ref: https://google.github.io/eng-practices/review/reviewer/
 
@@ -432,6 +439,7 @@ learn what's healthy code and send PRs that are great from the start, needing
 less and less review time. Don't compromise on review standards for an imagined
 improvement on velocity.
 
+.. TODO add in draft
 When writing review comments:
 - be kind while being clear and helpful. Comment on the code and not the
   reviewer e.g. "why did you use threads here where there's obviously no benefit
