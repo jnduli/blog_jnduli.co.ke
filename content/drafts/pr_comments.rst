@@ -15,7 +15,8 @@ Plan
 - DONE: Summarize stackoverflow review summary: 200 words -> reached 680
 - DONE: Summarize code guidelines for humans summary: now 800 words -> 652 words
 - DONE: Summarize google code eng review guide: 2223 -> 1232 words
-- Create first article draft from summaries
+- DONE: Create first article draft from summaries
+- DONE: Clean up first draft into more compact listing: 956 words ->
 
 
 Draft
@@ -44,7 +45,9 @@ The reviewer:
     - consistency
     - relevant documentation is updated.
     - view changes in context of larger system and see if they are maintainable.
-- tone:
+- tone (be kind but clear and helpful):
+    - comment on code not the coder.
+    - comment on things you like in the PR
     - have open ended questions instead of strong opinionated statements.
     - offer alternatives but don't insist they're the only way to proceed.
     - ask for clarification instead of correction (assume you might be missing
@@ -52,6 +55,9 @@ The reviewer:
     - have in mind that the code spent a lot of time and effort on the change,
       so be kind and unassuming and applaud nice solutions.
     - review should be all-round positive.
+- if you ask for an explanation, ensure this is implemented in code (e.g.
+  rewrite or a comment). This doesn't  apply if you're unfamiliar with the code
+  area.
 - respond to a review request shortly after it comes (if not in the middle of
   deep work). At most 1 day shouldn't pass before you respond.
 - provide feedback on code, not the author.
@@ -439,7 +445,6 @@ learn what's healthy code and send PRs that are great from the start, needing
 less and less review time. Don't compromise on review standards for an imagined
 improvement on velocity.
 
-.. TODO add in draft
 When writing review comments:
 - be kind while being clear and helpful. Comment on the code and not the
   reviewer e.g. "why did you use threads here where there's obviously no benefit
