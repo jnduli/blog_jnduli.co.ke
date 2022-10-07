@@ -16,21 +16,13 @@ Plan
 - DONE: Summarize code guidelines for humans summary: now 800 words -> 652 words
 - DONE: Summarize google code eng review guide: 2223 -> 1232 words
 - DONE: Create first article draft from summaries
-- DONE: Clean up first draft into more compact listing: 956 words ->
+- Clean up first draft into more compact listing: 956 words ->
 
 
 Draft
 -----
-.. # Mostly from swarmia
-.. # added summary from reddit into main article
-.. # added summary from stackoveflow blog
-.. # added phaber
 Code reviews improve the code health of a system and spread ownership of code
 and knowledge.
-
-A good review process is fast. Automate trivial checks and have style guidelines
-to improve the speed. Have high level discussions of the changes before coding
-to prevent rewrites (make a POC to spark the discussion if needed).
 
 
 The reviewer:
@@ -38,29 +30,25 @@ The reviewer:
 - checks the code and tests for
     - correctness, test coverage, functionality and best practices.
     - hard to understand code, unclear names, commented out code, untested code,
-      unhandled edge cases, duplication, bad test structure, too many changes.
-    - if there are too many changes, request for the PR to be split.
+      unhandled edge cases, duplication, bad test structure
+    - too many changes (if these are a lot, ask dev to split the PR).
     - comments. They should explain why code exists not what its doing (comments
       != documentation).
     - consistency
-    - relevant documentation is updated.
-    - view changes in context of larger system and see if they are maintainable.
-- tone (be kind but clear and helpful):
-    - comment on code not the coder.
-    - comment on things you like in the PR
+    - documentation updates.
+- is kind when commenting on code. They:
+    - comment on code and not the coder.
+    - comment on what you like in the PR
     - have open ended questions instead of strong opinionated statements.
-    - offer alternatives but don't insist they're the only way to proceed.
-    - ask for clarification instead of correction (assume you might be missing
+    - ask for clarification instead of correction (assume they're missing
       something)
-    - have in mind that the code spent a lot of time and effort on the change,
-      so be kind and unassuming and applaud nice solutions.
-    - review should be all-round positive.
+    - offer alternatives but don't insist they're the only way to proceed.
+.. TODO: draft edit
 - if you ask for an explanation, ensure this is implemented in code (e.g.
   rewrite or a comment). This doesn't  apply if you're unfamiliar with the code
   area.
 - respond to a review request shortly after it comes (if not in the middle of
   deep work). At most 1 day shouldn't pass before you respond.
-- provide feedback on code, not the author.
 - Accept that there are different solutions: distinguish between common best
   practices and your personal taste, make compromises and be pragmatic.
     - accept there are many solutions to a problem
@@ -126,6 +114,10 @@ Author should ensure:
 - clear PR descriptions with test set up, surprising implementation details and
   visual demos added.
 
+
+A good review process is fast. Automate trivial checks and have style guidelines
+to improve the speed. Have high level discussions of the changes before coding
+to prevent rewrites (make a POC to spark the discussion if needed).
 
 
 
