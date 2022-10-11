@@ -4,7 +4,7 @@ Summary of How to Do PR Reviews
 
 :date: 2022-05-06
 :category: Computer
-:slug: summary_of_ho_to_do_pr_reviews
+:slug: summary_of_how_to_do_pr_reviews
 
 Plan
 ====
@@ -16,17 +16,23 @@ Plan
 - DONE: Summarize code guidelines for humans summary: now 800 words -> 652 words
 - DONE: Summarize google code eng review guide: 2223 -> 1232 words
 - DONE: Create first article draft from summaries
-- Clean up first draft into more compact listing: 956 words ->
+- DONE: Clean up first draft into more compact listing: 956 words -> 741 -> 536 words
+- DONE: More editting: 483 words
+- Read each section and blog and see if there's something I've missed in the
+  draft
 
 
 Draft
 -----
-Code reviews improve the code health of a system and spread ownership of code
-and knowledge.
+Code reviews improve the health of a system while spreading ownership of code
+and knowledge. A good review process is fast, so automate trivial checks and
+have style guidelines to deal with low hanging fruits. Have high level
+discussions on the changes before coding to prevent rewrites.
 
+Once the changes are ready, the reviewer:
 
-The reviewer:
-
+- responds to the review request shortly after it comes (if not in the middle of
+  deep work). At most 1 day shouldn't pass before you respond.
 - checks the code and tests for
     - correctness, test coverage, functionality and best practices.
     - hard to understand code, unclear names, commented out code, untested code,
@@ -37,87 +43,35 @@ The reviewer:
     - consistency
     - documentation updates.
 - is kind when commenting on code. They:
-    - comment on code and not the coder.
-    - comment on what you like in the PR
-    - have open ended questions instead of strong opinionated statements.
-    - ask for clarification instead of correction (assume they're missing
-      something)
-    - offer alternatives but don't insist they're the only way to proceed.
-.. TODO: draft edit
-- if you ask for an explanation, ensure this is implemented in code (e.g.
-  rewrite or a comment). This doesn't  apply if you're unfamiliar with the code
-  area.
-- respond to a review request shortly after it comes (if not in the middle of
-  deep work). At most 1 day shouldn't pass before you respond.
-- Accept that there are different solutions: distinguish between common best
-  practices and your personal taste, make compromises and be pragmatic.
-    - accept there are many solutions to a problem
-        - Use questions instead of statements, but don't shy from being direct if
-          there's a clear answer. This assumes the author knows more than you do e.g:
-
-               - I find this confusing becomes 'Could you elaborate on how this works?'
-               - This is unmaintainable becomes 'What was your vision on maintaining this?'
-               - This is broken, it will lose the db connection becomes 'What happens if we
-                 lose the db connection here?'
-- be aware that the PR author is human.
+    - comment on what they like in the PR
+    - comment on code and not the coder e.g. instead of `you're creating many db
+      connections here` you have 'this code creates many db connections'.
+    - Use questions instead of statements. Questions feel less like criticism
+      and can trigger a thought process that leads to better solutions while
+      also assuming the author knows more than you do e.g:
+           - `I find this confusing` becomes `Could you elaborate on how this works?`
+           - `This is unmaintainable` becomes `What was your vision on maintaining this?`
+    - Use I-messages instead of you-messages i.e. I suggest/think/believe/would,
+      It's hard for me, For me it seems e.g. `you are writing cryptic code`
+      becomes `It's hard for me to grasp what's going on in this code.`
+      You-messages sound like an insinuation or an absolute statement, an attack
+      to the author, and they get defensive.
+    - Use we instead of I/me/you which makes comments less judgemental e.g.
+      `could we change this function to do it this way?`
+- ensures the dev implements explanations in code (e.g. rewrite or a comment).
+  Explanations in the review tool won't help future devs.
+- accepts that there are different solutions, they distinguish between common best
+  practices and your personal taste and make compromises.
 - Use the "Yes, and ... " technique to keep an innovative atmosphere. Don't
   dismiss fresh and fragile ideas in a draft PR.
-- Include positive feedback. If you're only complaining about the code in PRs
-  then you're doing it wrong, you need to celebrate the small victories 
-    - Praise: appreciate good code. It should be specific, concrete and separated
-      from criticism. Use different sentences and avoid sandwiching e.g. Most of
-      your code looks good, but the method calc is too big -> I really like the
-      class ProductController, Tim. It has a clear single responsibility, is
-      coherent and contains nicely named methods good Job.\n Despite this, I spotted
-      the method calc which is too big for me. It's okay to say "Everything is
-      good".
 - Have discussions in public, and ensure code documents these.
-- Be explicit about the action you want. Use emojis or prefixes to help with
-  this and communicate intent behind your words.
-- Fast reviews (Needs a separate paragraph)
+- is explicit about the action they want. Use emojis or prefixes to show intent
+  e.g. nit.
+- Avoid long comments which look like a wall of complaints. They follow up with
+  the dev if they find themselves doing this too much.
+- Reach out to dev if you have too many comments. This could be that there's
+  some misunderstanding on either side, which is easier resolved by talking.
 - Have a bias for action e.g. approve a PR with minor comments.
-- Strategies for dealing with tone:
-    - Use I-messages i.e. I suggest/think/believe/would, It's hard for me, For me it
-      seems e.g. you are writing cryptic code -> It's hard for me to grasp what's
-      going on in this code. These make the message subjective, but you-messages
-      sound like an insinuation or an absolute statement, an attack to the author,
-      and they get defensive.
-    - Use we instead of I/me/you which makes comments less judgemental, removes
-      blame implication and feeling that my way is right e.g. could we change this
-      function to do it this way?
-    - Use questions instead of statements, but don't shy from being direct if
-      there's a clear answer. This assumes the author knows more than you do e.g:
-           - I find this confusing becomes 'Could you elaborate on how this works?'
-           - This is unmaintainable becomes 'What was your vision on maintaining this?'
-           - This is broken, it will lose the db connection becomes 'What happens if we
-             lose the db connection here?'
-    - talk about the code, not the coder e.g. You're requesting the service multiple
-      times which is inefficient -> This code is requesting the service ... 
-    - ask questions e.g. this variable should be called userId -> What do you
-      think about the name userId for this variable? Questions feel less like
-      criticism and can trigger a thought process that leads to accepted feedback or
-      a better solution. They also reveal intention behind some design decisions
-      without passing judgement.
-- Limit character count of each comment to 300, otherwise it looks like a wall
-  of complaints. You can keep the long comments in another document and
-  summarize it. Follow up with the dev if they want the details.
-- Reach out to dev if you have too many comments in the review. This could be
-  that there's some misunderstanding on either side, which is easier resolved by
-  talking.
-
-
-Three Filters For Feedback:
-Is it true? Is it necessary? Is it kind?
-
-
-Author should ensure:
-- clear PR descriptions with test set up, surprising implementation details and
-  visual demos added.
-
-
-A good review process is fast. Automate trivial checks and have style guidelines
-to improve the speed. Have high level discussions of the changes before coding
-to prevent rewrites (make a POC to spark the discussion if needed).
 
 
 
