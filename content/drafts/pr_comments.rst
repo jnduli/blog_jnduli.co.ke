@@ -20,6 +20,11 @@ Plan
 - DONE: More editting: 483 words
 - Read each section and blog and see if there's something I've missed in the
   draft
+    - DONE: Reddit
+    - DONE: Swarmia
+    - DONE: Stack overflow
+    - Code review for humans
+    - Google review guide
 
 
 Draft
@@ -43,7 +48,7 @@ Once the changes are ready, the reviewer:
     - consistency
     - documentation updates.
 - is kind when commenting on code. They:
-    - comment on what they like in the PR
+    - comment on what they like in the PR (positive feedback)
     - comment on code and not the coder e.g. instead of `you're creating many db
       connections here` you have 'this code creates many db connections'.
     - Use questions instead of statements. Questions feel less like criticism
@@ -67,10 +72,9 @@ Once the changes are ready, the reviewer:
 - Have discussions in public, and ensure code documents these.
 - is explicit about the action they want. Use emojis or prefixes to show intent
   e.g. nit.
-- Avoid long comments which look like a wall of complaints. They follow up with
-  the dev if they find themselves doing this too much.
-- Reach out to dev if you have too many comments. This could be that there's
-  some misunderstanding on either side, which is easier resolved by talking.
+- Reach out to dev if you have too many comments or too long comments. This
+  could be that there's some misunderstanding on either side, which is easier
+  resolved by talking, and prevents the review looking like a wall of complaints.
 - Have a bias for action e.g. approve a PR with minor comments.
 
 
