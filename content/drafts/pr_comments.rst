@@ -2,9 +2,11 @@
 PR Reviews Notes
 ################
 
-:date: 2022-05-06
+:date: 2022-10-29
 :category: Computer
 :slug: pr_review_notes
+:author: John Nduli
+:status: draft
 
 Code reviews improve the health of a system while spreading ownership of code
 and knowledge. A good review process is fast and we can handle low hanging
@@ -32,8 +34,10 @@ Once the changes are ready, the reviewer:
     - Use questions instead of statements. Questions feel less like criticism
       and can trigger creative solutions while also assuming the author knows
       more than you do e.g:
-           - `I find this confusing` becomes `Could you elaborate on how this works?`
-           - `This is unmaintainable` becomes `What was your vision on maintaining this?`
+
+        * `I find this confusing` becomes `Could you elaborate on how this works?`
+        * `This is unmaintainable` becomes `What was your vision on maintaining this?`
+
     - Use I-messages instead of you-messages i.e. I suggest/think/believe/would,
       It's hard for me, For me it seems e.g. `you are writing cryptic code`
       becomes `It's hard for me to grasp what's going on in this code.`
