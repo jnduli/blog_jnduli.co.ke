@@ -52,6 +52,35 @@ System designed to scale. IT can mean:
 - A mantra I think about often is "cohesion over coupling" and trying to write
   code that works well together, but doesn't necessarily rely on each other.
 
+
+Notes:
+https://www.youtube.com/watch?v=Y6Ev8GIlbxc&t=435s
+
+What's a distributed system? Collection of independent users that appear to its
+users as one computer e.g. amazon.com, cassandra cluster, kafka cluster.
+
+They have 3 characteristics:
+
+- computers operate concurrently
+- the computers fail independently
+- the computers don't share a global clock (e.g. collection of processors with
+  clocks synchronized aren't distributed).
+
+Topics: Storage, Computation, Messaging
+
+Distributed Storage:
+- Single Master storage: db only on one server.
+- most web services have more reads than writes. In relation dbases reads are
+  less expensive than writes.
+- How do we scale reads? We do read-replication (propagate writes to master to
+  the read servers). This breaks consistency. This is now an eventually
+  consistent dbase.
+
+
+
+
+
+
 TO read more:
 https://tolerablecoder.blogspot.com/2019/06/getting-started-with-distributed-systems.html
 https://tolerablecoder.blogspot.com/2019/06/a-list-of-corporate-engineering-blogs.html
