@@ -75,6 +75,20 @@ Distributed Storage:
 - How do we scale reads? We do read-replication (propagate writes to master to
   the read servers). This breaks consistency. This is now an eventually
   consistent dbase.
+- We can now scale the reads as much as we want but the writes end up becoming a
+  bottleneck. To solve this we do sharding e.g. break up dbase based on key like
+  usernames, like A-F in db1, F-N in db2, etc. and each of this has its
+  followers. With this, we now break our data model, we can't join across
+  shards.
+- Suppose the dbase comes under pressure, latency is going up, higher
+  transactions volume and reads aren't performing properly: most people will
+  choose to add an index. If we already have all the indexing we can, we can
+  realize that because of all this relational models, we have joins, so we take
+  this away by denormalizing. Also, as write traffic increased, pressure on
+  indexes increase.
+- Consistent hashing: how do you build a dbase from the ground up to be
+  distributed. Cassandra won't give us a lot of features and there are a lot of
+  limitations.
 
 
 

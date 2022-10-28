@@ -6,7 +6,7 @@ How To Code Review
 :category: Computer
 :slug: how_to_code_review
 :author: John Nduli
-:status: draft
+:status: published
 
 Code reviews improve the health of a system while spreading ownership of code
 and knowledge. A good review process is fast and we can handle low hanging
@@ -17,7 +17,7 @@ before coding to prevent rewrites.
 Once the changes are ready, the reviewer:
 
 - responds quickly to the review request (if not in the middle of deep work). At
-  most 1 day shouldn't pass before you respond.
+  most 1 day shouldn't pass before they respond.
 - checks the code and tests for:
 
   * correctness, test coverage, functionality and best practices.
@@ -25,7 +25,7 @@ Once the changes are ready, the reviewer:
   * unhandled edge cases, duplication, bad test structure
   * too many changes (if these are a lot, ask dev to split the PR).
   * comments. They should explain why not what the code is doing (comments !=
-  * documentation).
+    documentation).
   * consistency
   * documentation updates.
 
@@ -44,8 +44,7 @@ Once the changes are ready, the reviewer:
   * Use I-messages instead of you-messages i.e. I suggest/think/believe/would,
     It's hard for me, For me it seems e.g. `you are writing cryptic code`
     becomes `It's hard for me to grasp what's going on in this code.`
-    You-messages sound like an insinuation or an absolute statement, an attack
-    to the author, and they get defensive.
+    We see You-messages absolute statements or attacks, and get defensive.
   * Use we instead of I/me/you which makes comments less judgemental e.g. `could
     we change this function to do it this way?`
 
@@ -57,10 +56,9 @@ Once the changes are ready, the reviewer:
   dismiss fresh and fragile ideas in a draft PR.
 - Have discussions in public, and ensure code documents these.
 - is explicit about the action they want. Prefix your comments with emojis or
-  the intent e.g. nit.
-- Reach out to dev if they have too many comments or comments that are too long.
-  This solving misunderstanding early on, which is easier and faster by
-  talking.
+  the intent e.g. nit, FYI.
+- Reach out to dev if they have too many comments or comments that are too long,
+  solving misunderstanding early. Talk these out instead of using comments.
 - Have a bias for action e.g. approve a PR with minor comments.
 
 References
