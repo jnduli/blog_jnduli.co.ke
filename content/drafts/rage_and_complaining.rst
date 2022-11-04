@@ -17,14 +17,26 @@ complaints. I won't notice solutions the other person suggests since I'm too
 fixated on my problems. It's only later on, when I reflect on what they said
 that I figure things out.
 
+What seems to work for me is cycling. When I reach some point of exhaustion, I
+stop thinking about things and my mind calms down for the rest of the ride.
+
 
 TODO: edit
+I've found some ways to stop this that include:
+Some ways suggested in the nautilus article are to change the perspective of
+thought by:
 
-So how do I get out of this habit? I want to create a system where if I have a
-complaint running in my brain I also try to come up with a solution. This keeps
-me grounded and prvents my thoughts spiralling out of control. This is easier
-said than done though, and I'll try and see if this can pan out well.
+- distanced self talk, where instead of referring to me in my thoughts I use my
+  name or other pronouns like you, he, she.
+- taking nature walks, which draw attention to nature, promoting a sense of awe,
+  making my concerns seem smaller.
+- doing a physical task like tidying up.
 
+References
+==========
+- https://nautil.us/how-to-quiet-your-mind-chatter-238149/
+
+TODO: clean up
 
 Another one I've seen is `support-complaining` where I give a complaint and the
 other person one-ups my complaint. I then double down on my complaint of come up
@@ -35,7 +47,6 @@ waste of time.
 
 Research
 --------
-https://nautil.us/how-to-quiet-your-mind-chatter-238149/
 
 Chatter occurs when we have negative thought loops, being stuck on the same
 thing. It involves rumination (looping about the past) or worry (about the
@@ -51,16 +62,6 @@ Chatter affects our performance, social relationships (we only talk about our
 problems, on and on, or lash at others when we have negative emotions), and
 stresses us.
 
-How do we quiet chatter:
-- distanced self talk i.e. use my name or pronouns like you, he, she. This works
-  because it changes perspective. Its similar to the batman effect where if a
-  child is stuck on something hard, you have them imagine they're batman and
-  what batman would do.
-- nature walks. This draws our attention to nature and promotes a sense of awe
-  (I'm in the presenece of something vast that I can't explain), changing my
-  perspective and making my concerns smaller.
-- tidy up office
-- chatter advisors that help give perspective.
 
 
 
