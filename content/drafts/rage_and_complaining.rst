@@ -72,3 +72,35 @@ stresses us.
 Plan:
 - Research: https://news.ycombinator.com/item?id=31151546
 
+
+From: https://www.forbes.com/sites/alicegwalton/2017/02/28/8-science-based-tricks-for-quieting-the-monkey-mind/?sh=59a4f7b81af6
+
+- meditation
+- practice mindfulness (pay attention to the present on purpose
+  non-judgementally)
+- Cognitive Behavior Therapy (CBT), where a person is trained to recognize a
+  negative thought process they fall on, and then consciously create a new
+  though (that's' based more on reality) to replace it.
+  TODO: Research  Mindfullness based Cognitive Therapy (MBCT)
+- Color, count, recite, run: subtle ways to focus our minds on something that
+  isn't our rambling thoughts.
+- Talk to an actual person or write. Talking in your head is abstract, unordered
+  thoughts and worries, but verbalizing these helps generate meaning from the
+  thoughts. 
+- Practice acceptance (Acceptance and Commitment Theory). You try to acccept the
+  current reality as is, however lousy, instead of trying to change it (TODO:
+  research how to do this). Self-compassion is treating yourself with kindness
+  and responding to anxiety with gentle understanding and soothing, and changes
+  the internal dialogue to 'it's hard to feel this way but you can get through
+  this' and encourages people not to blame themselves for anxiety.
+- Cognitive defusion: take a thought and change the function of how it impacts
+  me e.g. if I loop through 'life is meaningless', reframe it as 'I'm having a
+  thought that life is meaningless' and repeat it as the second sentence, taking
+  the negative punch out of hearing it. You can try positive direction/positive
+  affect where you re-word your negative thoughts like instead of thinking 'I
+  cant do this` or 'Ill never be able to make this goal happen`, twist this into
+  a positve way by saying `Of course I can be successful' or 'I'm going to
+  definitely make this happen' to cheer me on, stimulating goal directed
+  behavior.
+
+TODO: research for CBT: https://www.greaterwrong.com/posts/FJkfboEQjN3ritXk9/does-cognitive-therapy-encourage-bias
