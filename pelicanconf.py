@@ -55,3 +55,7 @@ STATIC_PATHS = [
 EXTRA_PATH_METADATA = {
     'static/favicon.ico': {'path': 'favicon.ico'},
     }
+
+
+# letter theme options
+DISPLAY_CATEGORIES_ON_MENU = False
