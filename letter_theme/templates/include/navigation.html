@@ -1,5 +1,6 @@
 <nav id="menu" class="nav" tabindex="-1">
     <div>
+        <a href="{{ SITEURL }}/">Home</a>
         {% for title, link in MENUITEMS %}
         <a href="{{ link }}">{{ title }}</a>
         {% endfor %}
@@ -16,5 +17,6 @@
     </div>
 </nav><!-- /#menu -->
 <header id="banner" class="header">
-    <h1><a href="{{ SITEURL }}/">{{ SITENAME }} <strong>{{ SITESUBTITLE }}</strong></a></h1>
+  <!-- TODO: fix this left it here so that I can have the underline -->
+<!--     <h1><a href="{{ SITEURL }}/">{{ SITENAME }} <strong>{{ SITESUBTITLE }}</strong></a></h1> -->
 </header><!-- /#banner -->
