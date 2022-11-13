@@ -1,0 +1,170 @@
+/** importing fonts to use in the site **/
+/** font for navigation bar **/
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
+
+body{
+    font-family: 'Oxygen', monospace;
+    background: #eeeeee;
+    color: #011627; 
+    line-height: 1.5rem;
+    text-align: left;
+}
+body a{
+    color: #0b2198;
+}
+
+/** formating the header **/
+.header {
+    line-height: 4.0rem;
+    border-bottom: 0.1rem solid #333333;
+}
+.header h1{
+    margin-bottom: 1rem; /* ensure header line is nice width from header */
+}
+.nav {
+    line-height: 2.0rem;
+}
+.header, .nav {
+    text-align: center;
+}
+.nav{
+    background: #eeeeee;
+    font-size: 1.8rem;
+}
+.header a, .nav a{
+    color: #011627;
+    text-decoration: none;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.nav a.active{
+    font-weight: bold;
+    border-bottom: 0.2rem solid #333333;
+}
+.nav a:hover, .header a:hover{
+    outline: 0.2rem solid #333333;
+    background: #eeeeee;
+    color: #011627; 
+}
+/** end header **/
+
+/** index **/
+#content {
+    padding: 2rem 10rem 0rem 10rem;
+}
+
+/** hentry things **/
+.hentry {
+    margin-right: 5rem;
+    max-width: 800px;
+}
+.hentry h2{
+    font-size: 1.5rem;
+    line-height: 1.6rem;
+    margin-bottom: 0.1rem;
+}
+.hentry .post-info{
+    color: #596671;
+    font-size: 1.0rem;
+    font-style: italic;
+}
+.hentry .published {
+    width: auto;
+}
+.hentry .entry-title a{
+    color: #011627;
+    text-decoration: none;
+    line-height: 2.0rem;
+    border: 2px solid transparent;
+    /* border-bottom: 1px solid #333333; */
+}
+.hentry .entry-title a:hover{
+    border: 2px solid #333333;
+}
+.hentry .entry-content{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    line-height: 2.0rem;
+}
+
+/** end of hentry things **/
+
+
+/** Main article **/
+.article-content {
+    max-width: 700px;
+    margin: 0 auto;
+    /* padding: 60px 40px 100px 40px; */
+}
+.article-content header {
+    text-align: center;
+}
+.article-content h1 {
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+}
+.article-content h2 {
+    font-size: 1.8rem;
+    line-height: 1.5rem;
+}
+.article-content .entry-title a{
+    color: #011627;
+    text-decoration: none;
+    border-bottom: 1px solid #333333;
+    border: 2px solid transparent;
+}
+.article-content .entry-title a:hover{
+    border: 2px solid #333333;
+}
+.article-content .description {
+    text-align: center;
+}
+.article-content .description a{
+    text-decoration: none;
+    padding: 5px;
+}
+.article-content .description a:hover{
+    border-right: 1px solid #333333;
+    border-left: 1px solid #333333;
+}
+.article-content .entry-content{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    line-height: 2.0rem;
+}
+
+/** End of Main article **/
+
+
+/** code formatting that I control **/
+.highlight{
+    font-size: 1.0rem;
+    overflow: auto;
+    line-height: 1.0rem;
+    max-height: 30rem;
+}
+
+/** end of index **/
+/** Sidebar **/
+.sidebar h4 {
+    font-size: 1.5rem;
+    line-height: 1.35rem;
+}
+.sidebar ul{
+    font-size: 1.2rem;
+    list-style-type: square;
+    text-align: left;
+    font-family: 'Cormorant Garamond', serif;
+}
+.sidebar ul li{
+    padding-bottom: 0.7rem;
+}
+
+/** TODO: add screen sizes for paddings **/
+@media only screen and (max-width:600px) {
+    #content {
+        padding: 20px 10px 0px 10px;
+    }
+}

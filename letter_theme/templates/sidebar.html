@@ -1,0 +1,22 @@
+<div class = 'col c3 sidebar' >
+    <h4>Categories</h4>
+    {% if categories %}
+    <ul class="blank">
+        {% for cat, null in categories %}
+        <li><a href="{{ SITEURL }}/{{ cat.url|e }}">{{ cat }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h4>Tags</h4>
+    {% if tags %}
+    <ul class="blank">
+        {% for tag,articles in tags|sort %}
+        <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+            ({{ articles|count }})
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+</div>
