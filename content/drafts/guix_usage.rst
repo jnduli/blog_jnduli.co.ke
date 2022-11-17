@@ -22,4 +22,51 @@ Virtual Box Setup:
     - dispay -> screen: max out video memory and enable 3d acceleration
     - set up shared folders: helps copy folders between host and VM and
       automount
+- set up guest additions:
+    - install gcc, perl, make
+    - go to devices > insert special additions cd/rom, this will restart some
+      prompt and after you add your passwords insert kernel modules for you.
+- restart kernel
+    
 
+
+
+Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.html
+
+.. code-block:: bash
+
+    cd /tmp
+    wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
+    chmod +x guix-install.sh
+    ./guix-install.sh
+
+    # Not tested, from:
+    # Step by step guide: https://www.ubuntubuzz.com/2021/04/lets-try-guix.html
+
+    guix pull
+
+    GUIX_PROFILE="$HOME/.guix-profile"
+    . "$GUIX_PROFILE/etc/profile"
+
+    # log out and in again
+    # confirm guix-daemon is running with:
+    ps aux | grep -i guix
+
+    # helper commands
+    guix describe
+    guix package --list-installed 
+
+    guix search [keyword] e.g. guix search text editor
+    guix install packagename
+    guix size packagename
+
+    # guix has generations which are like commits in git. When I add /remove a
+    # program I do a commit, and I can move back in time to previous generations
+    guix package --list-generations
+    guix package --switch-generation
+    guix package --roll-back
+
+    # TODO: continue from Play CheckPoints location: https://www.ubuntubuzz.com/2021/04/lets-try-guix.html
+
+
+Another tutorial to follow: https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/softenv/guix/
