@@ -4,7 +4,7 @@ Handling Noise in My Head
 
 :date: 2022-11-30
 :category: Random
-:slug: handling_nose_in_my_head
+:slug: handling_noise_in_my_head
 :author: John Nduli
 :status: draft
 
@@ -19,11 +19,10 @@ about a past event e.g. something someone told me (rumination) or about the
 future e.g. what will happen (worry).
 
 I subconsciously like this feeling and sometimes catch myself looking for
-something to complain or be angry with. I also look for someone to validate my
-feelings, which ends up with a one sided conversations about my problems and
-complaints. I won't notice solutions the other person suggests since I'm too
-fixated on my problems. Later on, when I reflect on what they said is when I'll
-see their solution and angle.
+something to complain or be angry with. I'll look for someone to validate my
+feelings, having a one sided conversations about my problems and complaints. I
+won't notice solutions they suggest since I'm too fixated on my problems. Later
+on, when I reflect on what they said is when I'll see their solution and angle.
 
 What seems to work for me is:
 
@@ -39,16 +38,13 @@ Other ways I've read that might work are:
 - distanced self talk, where instead of using I/me while thinking I use my
   name or other pronouns like you, he, she.
 - practice meditation and mindfulness
-- do something else that takes our focus from the rambling thoughts like color,
-  count, recite, run, tidying up, taking a walk.
-- Talk to an actual person or write. Thoughts tend to be abstract and unordered
-  and verbalizing these helps generate meaning from the thoughts. 
+- do something else that takes my focus from the rambling thoughts like color
+  naming, count, recite, run, tidying up, taking a walk.
+- Talking/Writing. Thoughts tend to be abstract and unordered and verbalizing
+  these helps generate meaning from the thoughts. 
 - Practice changing my perception:
-    - Reframe thoughts (cognitive defusion), for example:
-        - 'life is meaningless' becomes "I'm having a thought that life is
-          meaningless"
-        - "I can't do this" becomes "I'm going to make this happen"
-        - "I'll be a failure" becomes "Of course I can be successful"
+    - Reframe thoughts (cognitive defusion), for example, "life is meaningless"
+      becomes "I'm having a thought that life is meaningless"
     - Train myself to recognize a negative thought I fall on, and consciously
       create a new thought that's based on reality to replace it (Cognitive
       Behaviour Therapy).

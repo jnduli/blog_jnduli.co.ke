@@ -9,9 +9,8 @@ Testinq ansible playbooks
 
 Plan:
 
-- go through:
-  https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
-  and put down notes
+- DONE: https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
+- https://github.com/chrismeyersfsu/provision_docker and https://www.ansible.com/blog/testing-ansible-roles-with-docker
 - go through:
   https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html
   and put down notes
@@ -97,3 +96,25 @@ got me into the box, and I could run an ansible playbook with:
 
    sudo apt update && sudo apt install ansible
    ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
+
+
+Research
+========
+
+https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
+
+Testing Ansible:
+- unit testing: similar to SQL queries, you don't do it. Unit tests belong to
+  the python module level.
+- functional tests: require a large amount of system state to set up mocking and
+  it isn't realistic
+- integration testing: most useful e.g. you set up a LAMP stack and issue an
+  http request.
+
+Start testing any time. You can test by setting up a clean host and running the
+play against this.
+
+https://github.com/chrismeyersfsu/provision_docker
+
+
+
