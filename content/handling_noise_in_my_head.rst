@@ -6,7 +6,7 @@ Handling Noise in My Head
 :category: Random
 :slug: handling_noise_in_my_head
 :author: John Nduli
-:status: draft
+:status: published
 
 
 I complain and anger myself a lot. I'll have an internal dialogue that loops
