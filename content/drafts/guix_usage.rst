@@ -23,7 +23,7 @@ Virtual Box Setup:
     - set up shared folders: helps copy folders between host and VM and
       automount
 - set up guest additions:
-    - install gcc, perl, make
+    - install gcc, perl, make: sudo apt install gcc make perl
     - go to devices > insert special additions cd/rom, this will restart some
       prompt and after you add your passwords insert kernel modules for you.
 - restart kernel
