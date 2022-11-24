@@ -10,12 +10,12 @@ Testinq ansible playbooks
 Plan:
 
 - DONE: https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
-- https://github.com/chrismeyersfsu/provision_docker and https://www.ansible.com/blog/testing-ansible-roles-with-docker
 - go through:
   https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html
   and put down notes
 - https://opensource.com/article/20/1/ansible-playbooks-lessons
 - https://molecule.readthedocs.io/en/stable/
+- https://github.com/chrismeyersfsu/provision_docker and https://www.ansible.com/blog/testing-ansible-roles-with-docker
 
 
 
@@ -116,5 +116,33 @@ play against this.
 
 https://github.com/chrismeyersfsu/provision_docker
 
+Testing stragegies:
+^^^^^^^^^^^^^^^^^^^
+
+https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html
+
+Ansible is push-based, so its really easy to run the steps against localhost or
+test servers.
+
+Right Level of Testing:
+Ansible resources are models of desired state, so don't test that services are
+started or packages are installed, since ansible will ensure that these are
+declaratively true.
+
+e.g.
+
+.. code-block:: lua
+    
+    tasks:
+        - ansible.builtin.service:
+            name: foo
+            state: started
+            enabled: true
+
+Ansible will yell appropriately if this isn't started. Note: this is different
+from whether the service is functional correct.
+
+
+Check Mode As A Drift Test:
 
 

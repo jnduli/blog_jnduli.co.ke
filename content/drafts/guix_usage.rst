@@ -45,6 +45,8 @@ Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.
 
     guix pull
 
+    # this section doesn't work, research the latest for this from official guix docs
+    # Look here for details: https://guix.gnu.org/en/manual/devel/en/html_node/Binary-Installation.html#Binary-Installation
     GUIX_PROFILE="$HOME/.guix-profile"
     . "$GUIX_PROFILE/etc/profile"
 
