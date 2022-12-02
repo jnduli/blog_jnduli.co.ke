@@ -10,9 +10,7 @@ Testinq ansible playbooks
 Plan:
 
 - DONE: https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
-- go through:
-  https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html
-  and put down notes
+- DONE: https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html
 - https://opensource.com/article/20/1/ansible-playbooks-lessons
 - https://molecule.readthedocs.io/en/stable/
 - https://github.com/chrismeyersfsu/provision_docker and https://www.ansible.com/blog/testing-ansible-roles-with-docker
@@ -144,5 +142,101 @@ from whether the service is functional correct.
 
 
 Check Mode As A Drift Test:
+pass in `--check` to ansible which reports in ansible thinks there's going to be
+a change in the system.
 
+Modules That are useful for testing:
+Some modules are good for testing, for example:
+
+.. code-block:: ansible
+
+    # ensures a port is open
+    tasks:
+        - ansible.builtins.wait_for:
+          host: "{{ inventory_hostname }}"
+          port: 22
+        deleteage_to: localhost
+
+    # make sure a web service returns
+    tasks:
+        - action : uri url=https://www.example.com return_content=yes
+          register: webpage
+
+        - fail:
+            msg: "Service is not happy"
+          when: "'AWESOME' not in webpage.content"
+
+    # push a script to host, and ansible will automatically fail if the script
+    has a non zero return code
+    tasks:
+        - ansible.builtin.script: test_script1
+
+    # assert module can verify certain truths
+    tasks:
+        - ansible.builtin.shell: /usr/bin/some-command --parameter value
+          register: cmd_result
+        - ansible.builtin.assert:
+            that:
+                - "'not_ready' not in cmd_result.stderr"
+                - "'gizmo enabled' in cmd_result.stdout"
+
+
+    # use the stat module to test existence of files not declaratively set by ansible configuration
+    - tasks:
+        - ansible.builtin.state:
+            path: /path/to/sth
+          register: p
+
+        - ansible.builtin.assert:
+            that:
+                - p.stat.exists and p.stat.isdir
+
+
+Testing Lifecycle:
+
+.. code-block:: yml
+
+    ---
+
+    - hosts: webservers
+      serial: 5
+
+      pre_tasks:
+
+        - name: take out of load balancer pool
+          ansible.builtin.command: /usr/bin/take_out_of_pool {{ inventory_hostname }}
+          delegate_to: 127.0.0.1
+
+      roles:
+
+         - common
+         - webserver
+
+      tasks:
+         - ansible.builtin.script: /srv/qa_team/app_testing_script.sh --server {{ inventory_hostname }}
+           delegate_to: testing_server
+
+      post_tasks:
+
+        - name: add back to load balancer pool
+          ansible.builtin.command: /usr/bin/add_back_to_pool {{ inventory_hostname }}
+          delegate_to: 127.0.0.1
+
+
+A script runs from the test machine before bringing back the into the pool.
+
+Open Source Article
+-------------------
+https://opensource.com/article/20/1/ansible-playbooks-lessons =
+
+Stay organized:
+store playbooks in a git repository.
+run playbooks from a build server.
+have a README with documentation on the playbook's purpose, links to relevant
+resources, instructions for local testing and development.
+have small, readable task files and extract related sets of tasks into ansible
+roles. If a playbook reaches around 100 lines of yaml, split it up and use
+`include_tasks`.
+
+Test early and often:
 

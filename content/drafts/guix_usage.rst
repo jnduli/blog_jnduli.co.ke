@@ -45,10 +45,24 @@ Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.
 
     guix pull
 
-    # this section doesn't work, research the latest for this from official guix docs
-    # Look here for details: https://guix.gnu.org/en/manual/devel/en/html_node/Binary-Installation.html#Binary-Installation
+    #  installing guix locales, used by libc installed via guix
+    $ guix install glibc-locales
+    $ export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+
+    # Install nscd (name service cache daemon)
+    sudo apt install nscd
+    sudo systemctl enable nscd
+
+
+    # installing my editor
+    guix install python neovim python-pynvim
+
+    # TODO: set this up in .profile folder
     GUIX_PROFILE="$HOME/.guix-profile"
     . "$GUIX_PROFILE/etc/profile"
+
+    # installing i3
+    guix install i3-wm
 
     # log out and in again
     # confirm guix-daemon is running with:
