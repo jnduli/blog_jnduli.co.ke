@@ -7,6 +7,8 @@ Testinq ansible playbooks
 :author: John Nduli
 :status: draft
 
+
+
 Plan:
 
 - DONE: https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
@@ -16,20 +18,14 @@ Plan:
 - https://github.com/chrismeyersfsu/provision_docker and https://www.ansible.com/blog/testing-ansible-roles-with-docker
 
 
+Draft
+=====
 
 
-TODOS:
-- test out all the scripts in the examples
-- research standard ways to test things in ansible
-- look for resources explaining docker limitations
-- modify examples to use ip addresses instead of localhost
-
-
-I was making some ansible scripts and I wanted to test them out locally before
-deploying them to my main server. I figured docker would help me out, especially
-for the platform specific tasks, like installing packages using an OS's package
-manager. This was possible to some extent within docker, so I created the script
-below:
+Docker Attempts
+---------------
+I wanted to test some ansible scripts locally before deploying them and tried
+out docker for this. This worked out great so long as I didn't need systemd.
 
 .. code-block:: yml
 
@@ -45,18 +41,37 @@ below:
               - git
               - vim
 
-
-
-and ran this with:
+and ran it with:
 
 .. code-block:: bash
 
     # TODO: there should be a way to make use the docker ip address here??
     # note for live syncing we need to mount directories, not files
-    docker container run --interactive --tty  --volume $(pwd):/app --rm  ubuntu:20.04 /bin/bash
+    docker container run --interactive --tty  --volume $(pwd):/app --rm  ubuntu:22.04 /bin/bash
+    export DEBIAN_FRONTEND=noninteractive
     apt update && apt install ansible
     ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
 
+A better way of running the above it to use the `community.docker.docker`
+connection plug like:
+
+.. code-block:: bash
+
+    docker container run --interactive --tty --volume $(pwd)/rough_work:/app --name ansible_container --rm python:3.10 /bin/bash
+    # note we have to disable become: true from the ansible.yml file for this to
+    # work. TODO: figure out how to handle this gracefully
+    # RUNNING apt-get update && apt-get install sudo seems to fix this
+    ansible-playbook -i 'ansible_container,' -c docker test_ansible.yml
+    code
+
+
+
+Another alternative is to create an image that has ssh access and use this to
+run things.
+
+
+https://zauner.nllk.net/post/0038-running-systemd-inside-a-docker-container/
+https://stackoverflow.com/questions/24738264/how-to-test-ansible-playbook-using-docker
 
 I got stuck when I wanted to launch systemctl services. (TODO: add link to
 explanation of this). To test this out, I had to use a Virtual Machine, which

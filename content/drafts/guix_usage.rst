@@ -1,37 +1,32 @@
-Plan:
+############
+Testing GUIX
+############
 
-- Set up VM using light weight ubuntu
-- Set up guix
-- Set up python and attempt to use this
-- Research setting up i3 using guix
-- Research how to manage dotfiles using guix
+I was required to use ubuntu and I wasn't sure I'd replicate my current set up
+there. I also wanted a reproducible build, so I looked into guix as a package
+manager and like it.
 
+I first set up a VM with VirtualBox and installed xubuntu. The set up follows
+this video: https://www.youtube.com/watch?v=qL3xc8hwU7c
 
-
-Virtual Box Setup:
-- New, add name (don't use Expert Mode)
-- memory size: if 8GB of Ram, do 3Gg, if you have 15GB, set 4 or 5.
-- hard disk set up: create a virtual disk, create, use VDI
-  dynamically allocated is slower, so prefer fixed size.
-  For size, do like 10GB.
-- Modify settings i.e. right click image and click on settings.
-    - general -> advanced: enable shared clipboard in bidirectinal way.
-    - system -> processor: change to half no of vcpus - 1
-            extended features: enable PAE/NX and nexted VT/AMD if available
-    - acceleration: leave things checked
-    - dispay -> screen: max out video memory and enable 3d acceleration
+- Open Virtual Box, select New and add a descriptive name.
+- Make sure Expert Mode is disabled, then click Next
+- Set memory size to 3GB
+- Preallocate hard disk space. Avoid dynamically allocated since it'll be
+  slower. Use VDT to create the virtual disk and I used 25GB space.
+- After image is created, modify more settings.
+    - general -> advanced: enable shared clipboard in bi-directional way.
+    - system -> processor: change to total number of vcpus/2 - 1
+    - display -> screen: max out video memory and disable 3d acceleration
     - set up shared folders: helps copy folders between host and VM and
-      automount
+      auto-mount
 - set up guest additions:
-    - install gcc, perl, make: sudo apt install gcc make perl
+    - install gcc, perl, make: `sudo apt install gcc make perl`
     - go to devices > insert special additions cd/rom, this will restart some
       prompt and after you add your passwords insert kernel modules for you.
 - restart kernel
-    
 
-
-
-Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.html
+I installed guix with:
 
 .. code-block:: bash
 
@@ -40,29 +35,55 @@ Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.
     chmod +x guix-install.sh
     ./guix-install.sh
 
-    # Not tested, from:
-    # Step by step guide: https://www.ubuntubuzz.com/2021/04/lets-try-guix.html
-
     guix pull
 
     #  installing guix locales, used by libc installed via guix
-    $ guix install glibc-locales
-    $ export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+    guix install glibc-locales
+    export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+
+    # TODO: add the above to .profile 
 
     # Install nscd (name service cache daemon)
     sudo apt install nscd
     sudo systemctl enable nscd
-
-
-    # installing my editor
-    guix install python neovim python-pynvim
-
+    
     # TODO: set this up in .profile folder
     GUIX_PROFILE="$HOME/.guix-profile"
     . "$GUIX_PROFILE/etc/profile"
 
-    # installing i3
-    guix install i3-wm
+I like i3 as my window manager and the ubuntu provided version doesn't yet
+support gaps. I first install i3 using the ubuntu package manager, setting up
+the correct configs to be picked up by the login manager in
+`/usr/share/xsessions/` and then install i3-gaps using guix. `i3-gaps` will have
+preference to the i3 installed via the system package manager.
+
+.. code-block:: bash
+
+   sudo apt-install i3
+   guix install i3-gaps
+
+Font set up:
+
+.. code-block:: bash
+
+    guix install fontconfig
+    fc-cache -rv
+
+
+
+
+Install other packages:
+
+.. code-block:: bash
+    # installing my editor
+    guix install python neovim python-pynvim
+
+    guix install nss-certs # so that I can use git
+    guix install git
+
+Other useful commands that can help are:
+
+.. code-block:: bash
 
     # log out and in again
     # confirm guix-daemon is running with:
@@ -86,3 +107,6 @@ Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.
 
 
 Another tutorial to follow: https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/softenv/guix/
+
+
+Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.html
