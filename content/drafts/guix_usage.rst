@@ -30,25 +30,26 @@ I installed guix with:
 
 .. code-block:: bash
 
+    # Install nscd (name service cache daemon)
+    sudo apt install nscd
+    sudo systemctl enable nscd
+
+    # install guix
     cd /tmp
     wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
     chmod +x guix-install.sh
     ./guix-install.sh
 
+    # update guix
     guix pull
+
 
     #  installing guix locales, used by libc installed via guix
     guix install glibc-locales
-    export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
 
-    # TODO: add the above to .profile 
-
-    # Install nscd (name service cache daemon)
-    sudo apt install nscd
-    sudo systemctl enable nscd
-    
-    # TODO: set this up in .profile folder
+    # Add the following to .profile
     GUIX_PROFILE="$HOME/.guix-profile"
+    GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
     . "$GUIX_PROFILE/etc/profile"
 
 I like i3 as my window manager and the ubuntu provided version doesn't yet
