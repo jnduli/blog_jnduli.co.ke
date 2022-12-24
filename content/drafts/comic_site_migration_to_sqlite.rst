@@ -14,7 +14,7 @@ I also don't get a lot of traffic so it wouldn't have an impact.
 The process followed this general pattern:
 
 1. Change the code to use sqlite instead of postgres. I'd maintain the same
-   paths to the static resources so that I wouldn't have to move these too.
+   paths to the static resources so that I wouldn't have to move these.
 2. Change the docker-compose yml file to:
     - Use a different local port for the sqlite instance
     - Use a different project name
@@ -32,3 +32,7 @@ The process followed this general pattern:
 7. Change nginx configuration to point to the new instance.
 8. Turn down the old instance with `docker-compose down`. I'll clear out the
    volumes once I'm sure things are ok.
+
+
+Note: python commands run in the docker-compose container by first running:
+`docker compose exec comic_server /bin/bash`
