@@ -2,6 +2,12 @@
 Comic Site Migration to SQLite
 ##############################
 
+:date: 2022-12-27
+:category: Computer
+:slug: comic_site_migration_to_sqlite
+:author: John Nduli
+.. :status: published
+
 I used postgres as the database for my comic site but chose to migrate to sqlite
 because:
 
@@ -23,7 +29,7 @@ The process followed this general pattern:
 4. Change ansible to deploy the project to a different folder and run it.
 5. Perform a migration and load the data with:
 
-   .. code-block:: lua
+   .. code-block:: bash
 
         python manage.py migrate
         python manage.py loaddata /var/backups/comic_server/natural_dump.json
@@ -31,7 +37,7 @@ The process followed this general pattern:
 6. Verify the new instance works.
 7. Change nginx configuration to point to the new instance.
 8. Turn down the old instance with `docker-compose down`. I'll clear out the
-   volumes once I'm sure things are ok.
+   volumes once I'm sure everything is ok.
 
 
 Note: python commands run in the docker-compose container by first running:

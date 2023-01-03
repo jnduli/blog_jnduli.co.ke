@@ -38,14 +38,18 @@ I installed guix with:
     cd /tmp
     wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
     chmod +x guix-install.sh
-    ./guix-install.sh
+    sudo ./guix-install.sh
 
     # update guix
     guix pull
 
+    # log out and log in again
 
     #  installing guix locales, used by libc installed via guix
     guix install glibc-locales
+
+    # nss-certs
+    guix install nss-certs # confirm the name of this package, needed for git clone to ensure ssl works ok
 
     # Add the following to .profile
     GUIX_PROFILE="$HOME/.guix-profile"
