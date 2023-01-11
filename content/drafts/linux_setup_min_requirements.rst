@@ -21,6 +21,7 @@ Terminal Tools
 - iosevka font
 - zsh
 - ohmyzsh
+- cal (terminal calendar) sudo apt install ncal in ubuntu
 
 
 Development Tools
@@ -33,7 +34,29 @@ Development Tools
 - docker, docker-compose
 - stack-static
 
+LSP Tools
+---------
+- pyright (set up pyright.json at home directory)
+- bash-language-server
+
+ALE Tools
+---------
+- shellcheck
+
+
+
 
 Others
 ------
 - tasklite
+- anki
+- python
+- ipython
+- proselint
+- writegood
+- sqlite3
+
+
+
+TODO: find the most used applications from history
+

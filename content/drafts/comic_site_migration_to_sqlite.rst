@@ -2,25 +2,26 @@
 Comic Site Migration to SQLite
 ##############################
 
-:date: 2022-12-27
+:date: 2023-01-07
 :category: Computer
 :slug: comic_site_migration_to_sqlite
 :author: John Nduli
 .. :status: published
 
-I used postgres as the database for my comic site but chose to migrate to sqlite
-because:
+Postgres was the database for my comic site but I chose to migrate to sqlite
+because it would:
 
-- It would be easier to back up
-- It would use less resources on my server
-- It would be one less service to manage
+- be easier to back up
+- use less resources on my server
+- be one less service to manage
 
 I also don't get a lot of traffic so it wouldn't have an impact.
 
 The process followed this general pattern:
 
 1. Change the code to use sqlite instead of postgres. I'd maintain the same
-   paths to the static resources so that I wouldn't have to move these.
+   paths to the static resources so that I wouldn't have to move these (I stored
+   static resources on the host).
 2. Change the docker-compose yml file to:
     - Use a different local port for the sqlite instance
     - Use a different project name
@@ -38,7 +39,6 @@ The process followed this general pattern:
 7. Change nginx configuration to point to the new instance.
 8. Turn down the old instance with `docker-compose down`. I'll clear out the
    volumes once I'm sure everything is ok.
-
 
 Note: python commands run in the docker-compose container by first running:
 `docker compose exec comic_server /bin/bash`
