@@ -26,6 +26,10 @@ is:
 - Regular clean up of functions and code to better understand what is happening
 - Have some way of getting debug output from the program (I didn't know about
   set -x)
+- Code introspection
+- If something isn't automated, then it should be well documented in an easy to
+  find location.
+- Prefer iteration over perfection
 
 
 TODO: research more of these

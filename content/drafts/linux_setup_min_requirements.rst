@@ -22,6 +22,7 @@ Terminal Tools
 - zsh
 - ohmyzsh
 - cal (terminal calendar) sudo apt install ncal in ubuntu
+- vd (visidata)
 
 
 Development Tools
@@ -55,6 +56,19 @@ Others
 - proselint
 - writegood
 - sqlite3
+- grep
+- golang
+    - gore
+- rust
+- stack-static for hkell development
+- grep
+- entr
+- zsh
+- docker
+- paplay
+
+
+Continue checking the zsh_history stored in this folder
 
 
 

@@ -30,16 +30,5 @@ I'm not saying that we don't put in the effort to improve ourselves, rather that
 we should also aim to improve our selling skills. I'm far off from this but
 trying to become better at it.
 
-
-.. TODO previous article
-Another use case here is in job searching. A naive approach would be that since
-I'm good at my job, I don't need to network and advertise myself, but the
-problem is that if I don't do that no one will know about me and how capable I
-am. I'll just be hoping on the good words of my co-workers and previous
-employees, which is limiting myself to this small space.
-
-I guess what I'm trying to say is that we need to market ourselves somehow, and
-build some network actively, such that it ends up helping ourselves or our
-products in worse case scenarios.
-
-
+I'm saying we need to take an active, and not passive approach to selling
+ourselves.
