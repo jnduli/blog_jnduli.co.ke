@@ -1,3 +1,13 @@
+################
+Dev Experience
+################
+
+:date: 2022-01-15
+:category: Computer
+:slug: dev_experience
+:author: John Nduli
+.. :status: published
+
 I wanted to make some UI changes to my pomodoro script which I assumed were
 simple. I wrote a small design doc to ensure my ideas were concrete and came up
 with a smaller script that had the gist of the idea. I tried to integrate this

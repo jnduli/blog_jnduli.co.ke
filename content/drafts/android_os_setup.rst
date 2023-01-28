@@ -1,3 +1,14 @@
+#################
+Android OS set up
+#################
+
+:date: 2022-01-15
+:category: Computer
+:slug: android_os_setup
+:author: John Nduli
+.. :status: published
+
+
 My phone almost died and I realized I don't have an easy way to set up my phone
 from scratch. I figured I'd write down the software I need on an android phone
 and the plan for how to restore things back to normal if this ever happens

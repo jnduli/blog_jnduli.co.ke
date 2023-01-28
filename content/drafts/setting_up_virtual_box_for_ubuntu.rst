@@ -1,4 +1,12 @@
+################
+VM set up Ubuntu
+################
 
+:date: 2022-01-15
+:category: Computer
+:slug: vm_setup_ubuntu
+:author: John Nduli
+.. :status: published
 
 I was required to use ubuntu and I wasn't sure I'd replicate my current set up
 there. I also wanted a reproducible build, so I looked into guix as a package
