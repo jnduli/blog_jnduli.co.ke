@@ -43,3 +43,9 @@ is:
 
 
 TODO: research more of these
+TODO: dev experience and how to improve this
+
+
+- comic: someone doesn't respect my ideas until they get them from someone 
+- comic: nice feeling I get after helping someone out
+- comic: why is this so complicated, because they want money

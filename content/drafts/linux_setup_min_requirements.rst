@@ -1,18 +1,26 @@
 
-I set up my laptop again but realized I don't have an easy way of getting up and
-ready. I've tried something `in my install script here
-<https://github.com/jnduli/dotfiles/blob/3c850b2f6daec024ad3c57b4ea60dc884614f74f/install.sh#L34>`_
-but that's limited to archlinux and doesn't have everything I need to work.
+I have a couple of challenges with how I set up my linux boxes:
+- The `install script
+  <https://github.com/jnduli/dotfiles/blob/3c850b2f6daec024ad3c57b4ea60dc884614f74f/install.sh#L34>`_
+  doesn't support other OSes apart from archlinux
+- I don't have a comprehensive list of what I need which means I'll be setting
+  things up continuously for a while.
+- I don't have documentation / links to how I set something up last time e.g.
+  setting up stack-static on Ubuntu wasn't obvious to me.
+- TODO:
 
-As I work on some long term alternative e.g. guix package manager, I'll create a
-doc that contains everything I think I need and update this as I change. I'll
-also work on a script that tells me what I have and what I don't.
+To counter this, I'm looking into using `guix` as a package manager, and getting
+familiar with this ecosystem although it isn't a magic gun that solves
+everything.
+
+In the short term I'll maintain a rough list of what I use and regularly update
+this doc:
 
 Window Manager and Related Tools
 --------------------------------
 - i3-gaps (or the latest version of i3 that merged gaps changes)
 - dmenu
-TODO: add more tools that I use along with i3
+- i3-gaps feh maim scrot dunst dmenu xautolock 
 
 
 Terminal Tools
@@ -23,54 +31,48 @@ Terminal Tools
 - ohmyzsh
 - cal (terminal calendar) sudo apt install ncal in ubuntu
 - vd (visidata)
+- curl
+- tmux
 
 
 Development Tools
 -----------------
+- golang
+    - gore
+- python
+    - ipython
+- rust
+- stack-static for hkell development
 - neovim (at least 0.7)
 - fzf
-- linters:
+- linters (used with ALE):
+    - shellcheck
+    - proselint
+    - writegood
     - TODO: list all linters I need to have here
 - git
 - docker, docker-compose
 - stack-static
-
-LSP Tools
----------
-- pyright (set up pyright.json at home directory)
-- bash-language-server
-
-ALE Tools
----------
-- shellcheck
-
-
-
+- LSP:
+    - pyright (set up pyright.json at home directory)
+    - bash-language-server
+- entr
+- docker
+- zsh
+- sqlite3
 
 Others
 ------
 - tasklite
 - anki
-- python
-- ipython
-- proselint
-- writegood
-- sqlite3
 - grep
-- golang
-    - gore
-- rust
-- stack-static for hkell development
-- grep
-- entr
-- zsh
-- docker
 - paplay
+- ledger
 
 
-Continue checking the zsh_history stored in this folder
+Fonts
+-----
+- iosevka
+- noto-fonts-emoji
 
-
-
-TODO: find the most used applications from history
 
