@@ -49,3 +49,12 @@ TODO: dev experience and how to improve this
 - comic: someone doesn't respect my ideas until they get them from someone 
 - comic: nice feeling I get after helping someone out
 - comic: why is this so complicated, because they want money
+
+
+Blogs to read:
+https://future.com/the-case-for-developer-experience/
+https://news.ycombinator.com/item?id=23455741
+https://news.ycombinator.com/item?id=24755730
+
+https://leaddev.com/productivity-eng-velocity/what-developer-experience-team
+https://redmonk.com/jgovernor/2022/02/21/what-is-developer-experience-a-roundup-of-links-and-goodness/
