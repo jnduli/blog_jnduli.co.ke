@@ -1,8 +1,9 @@
 Title: Stack Static Missing Library With Guix
-Date: 2023-02-15
+Date: 2023-02-25
 Category: Computer
 Slug: stack_static_missing_library_with_guix
 Author: John Nduli
+Status: published
 
 I installed stack_static by downloading the binary [from
 github](https://github.com/commercialhaskell/stack/releases) and moving it to
@@ -46,10 +47,10 @@ $ /usr/bin/ldd .stack-work/install/x86_64-linux-tinfo6/48795ad824c5ab2c527b42cc0
 ```
 
 I didn't know how to add the library to guix (`guix install gmp` didn't fix
-this). The solution was to compile the program using the OS level utilities.
+this). The solution was to compile the program using native OS level utilities.
 
 ```
-# Opens bash without guix loaded utilities
+# opens bash without guix loaded utilities
 env -i /bin/bash --login --noprofile --norc  
 export PATH=$PATH:~/.local/bin
 stack build
