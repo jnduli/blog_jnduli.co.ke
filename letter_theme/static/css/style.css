@@ -146,6 +146,11 @@ body a{
     max-height: 30rem;
 }
 
+p > code {
+    font-size: 1.0rem;
+    font-style: italic;
+}
+
 /** end of index **/
 /** Sidebar **/
 .sidebar h4 {
