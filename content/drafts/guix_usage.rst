@@ -2,7 +2,7 @@
 Testing GUIX
 ############
 
-:date: 2023-01-07
+:date: 2023-04-30
 :category: Computer
 :slug: testing_guix
 :author: John Nduli
@@ -18,6 +18,7 @@ I installed guix with:
     sudo systemctl enable nscd
 
     # install guix
+    # Ref: https://guix.gnu.org/manual/en/html_node/Binary-Installation.html
     cd /tmp
     wget https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh
     chmod +x guix-install.sh
@@ -26,56 +27,58 @@ I installed guix with:
     # update guix
     guix pull
 
-    # log out and log in again
+    # log out and in again
+    # confirm guix-daemon is running with:
+    ps aux | grep -i guix
 
     #  installing guix locales, used by libc installed via guix
     guix install glibc-locales
 
     # nss-certs
-    guix install nss-certs # confirm the name of this package, needed for git clone to ensure ssl works ok
+    guix install nss-certs
 
     # Add the following to .profile
     GUIX_PROFILE="$HOME/.guix-profile"
     GUIX_LOCPATH=$GUIX_PROFILE/lib/locale
     . "$GUIX_PROFILE/etc/profile"
 
-I like i3 as my window manager and the ubuntu provided version doesn't yet
-support gaps. I first install i3 using the ubuntu package manager, setting up
-the correct configs to be picked up by the login manager in
-`/usr/share/xsessions/` and then install i3-gaps using guix. `i3-gaps` will have
-preference to the i3 installed via the system package manager.
+I like i3 window manager and the ubuntu provided version doesn't yet support
+gaps. I installed i3 using the ubuntu package manager (apt), which configured
+the login manager for i3 in `/usr/share/xsessions/`. I then installed i3-gaps
+using guix and it had preference to the i3 installed via apt.
 
 .. code-block:: bash
 
    sudo apt-install i3
    guix install i3-gaps
 
-Font set up:
+I set up fonts using:
 
 .. code-block:: bash
 
     guix install fontconfig
     fc-cache -rv
 
-
-
-
-Install other packages:
+and installed other useful packages:
 
 .. code-block:: bash
     # installing my editor
-    guix install python neovim python-pynvim
+    guix install python neovim python-pynvim git
 
-    guix install nss-certs # so that I can use git
-    guix install git
 
+I update my guix system using:
+
+.. code-block:: bash
+
+    guix pull
+    guix package -u
+
+
+.. TODO: see what these commands do
 Other useful commands that can help are:
 
 .. code-block:: bash
 
-    # log out and in again
-    # confirm guix-daemon is running with:
-    ps aux | grep -i guix
 
     # helper commands
     guix describe
@@ -100,11 +103,3 @@ chain. I solved this with:
 .. code-block:: bash
 
     guix package -i neovim --with-c-toolchain=tree-sitter=gcc-tool-chain@12.2
-
-
-
-
-Another tutorial to follow: https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/softenv/guix/
-
-
-Guix installation: https://guix.gnu.org/manual/en/html_node/Binary-Installation.html

@@ -2,7 +2,7 @@
 Comic Site Migration to SQLite
 ##############################
 
-:date: 2023-01-07
+:date: 2023-03-31
 :category: Computer
 :slug: comic_site_migration_to_sqlite
 :author: John Nduli
