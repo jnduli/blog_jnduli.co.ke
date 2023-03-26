@@ -141,6 +141,70 @@ It's empowering to the dev to help explore and embrace existing complexity,
 rather than introduce more complexity when trying to automate things away.
 
 Developers work in rainforests, not planned gardens
+We already have tools that help us find and fix issues in existing systems e.g.
+graphQL mapping for APIs using Apollo, API gateways,etc. but these assume its
+possible to put all your software into one language, framework or even a single
+unified stack. 
+
+Any system of sufficient size and maturity will always involve multiple
+languages and runtimes. Software is heterogenous, and until the dev community
+accepts this fact, we're upper bounding how far we can get with dev experience.
+
+Using APIs etc. means we get problems due to inconsistent data format
+assumptions.
+
+Soln: we can't see what is supposed to happen, wo we need to see what IS
+happening. this means shifting our mindset and approach of monitoring to one of
+observing, thus future of devex is a better experience on observability. Most
+people see observability as involving logs, metrics and traces, but this is like
+saying s/ware is just about manipulating assembly instructions when its actually
+about building the s/ware functionality you need. Observability is about
+building models of your s/ware so you can build s/ware more quickly.
+
+So what does this all mean for designing dev experience?
+we can get a grasp by looking at developer tools and companies that make it and
+those that don't. The answer is design (reducing friction to help developers get
+to where they need to go). This isn't prettines or user experiences like cute
+error messages, notifications or dark mode, nor is it dev ergonomics (which
+values moving faster and more efficiently through slick interfaces). The tools
+that have been catching on are abstraction tools (e.g. hashicorp, postman,
+github, heroku), which digest large parts of the rainforest that are dev's
+ecosystem. To achieve this, you need to:
+
+- Focus on the problem being solved: e.g. people focus on pillars of
+  observability as logs, metrics and traces instead of goals like understand
+  system behaviour or catch breaking changes. Devs may want beautiful code and
+  zero bugs e.g. functional languages guaranteese but what they need is to be
+  able to ship functional software on schedule.
+- Focus on fitting into existing workflows: devs get how cool the tech is but
+  they don't get how it helps them with their top-of-mind problems, or they
+  can't reasonably transition from their workflows to completely new workflows
+  e.g. choosing tool X since it works with their programming language/ingfra nd
+  has slack/gh/jira integrations they want. Toolers also assume devs will switch
+  to an entirely new toolchain to get relatively small set of benefits which is
+  a non starter fro most teams. Instead, focus more on interoperability with
+  existing dev tools and on incremental improvements that aren't a paradigm
+  shift but that actually work with what exists.
+- Focus on packaging and prioritization: if its a one time tool, then having
+  clunky output, need to query over it and hand beautify results is ok. If its
+  to be used regularly, then take the time to better package it.
+
+Where do we go from here: Developers, buyers, the industry?
+Tool creators and users assume a high learning curve, limiting the impact and
+usefulness of the tools since there are alternatives that don't need to be hard
+to use. It's easy to fall into polarized extremes where things are either
+super-easy or hard-core. For example, we have a lot of frameworks and APIs that
+are great examples of design, yet their debuggers, performance profilers and
+observability/monitoring tools can't provide the same experience. We assume
+complexity revealing tools are for "experts" instead of being meant to aid devs
+in solving problems by revealing the necessary information. These tools can't
+automate the problem away, but they can focus on providing the info to solve the
+problem. The best tools combine abstraction with revealing complexity (similar
+to peaking under the hood of a car, where even if you have a low-maintenance
+car, it's still important if you can peek under the hood if theres a problem
+without going back to the dealership).
+
+
 TODO: Continue from here
 
 
