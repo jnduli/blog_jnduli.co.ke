@@ -54,30 +54,31 @@ Lead Dev Notes
 ^^^^^^^^^^^^^^
 https://leaddev.com/productivity-eng-velocity/what-developer-experience-team
 
-dev experience teams improve developer productivity by reducing friction from
-suboptimal tools and processes i.e. making software engineering easier.
+Dev experience teams make software engineering easier. The teams are created by:
 
-The journery for DevEx team follows the path:
-- an existing team takes on a specific devex project e.g. Synk found that builds
-  were failing 70% of the team.
-- a dedicated team is formed that sits where the problem exists e.g. in one eng
-  team, product vertical. This team works to solve the problem within one team
-  first, and once the value is clear, scales this more broadly to the org.
-- a centralized devex team is formed since the initial project deserves more
-  work/support or other needs arise.
-  Devex team expands their work into:
-  - strategic bets: project that solve issues experienced across the org and
-    result in org-wide productivity gains
-  - support requests from other devs
-  devx team runs risk of becoming an everything dept since many problems
-  surfaced are not owned by any other teams, and they may slip into treating
-  their backlog like a roadmap instead of proactively prioritizing work that'll
-  have the biggest impact on the organization.
-- DevX team sets a charter and roadmap, and proactively identifies top needs
-  across the organisation. It will eventually create a formal process for
-  identifying and prioritizing strategic work as well as for managing support in
-  a way that does not interfere with the teams strategic bets.
+- a team takes on a specific devex project e.g. builds fail 70% of the time.
+- a dedicated team is formed that sits where the problem exists. It solves the
+  problem first within one team, and once value is clear, scales this more
+  broadly to the organisation.
+- a centralized devex team is formed since more work/support is needed for
+  initial project or other needs arise.
 
+The devex team runs the risk of becoming an `everything` team since a lot of the
+problems aren't owned by other teams, and they may slip to treating their
+backlog like a roadmap rather than prioritizing work that'll have the biggest
+impact on the org.
+
+Devex team works on strategic bets (projects that solve issues experienced
+across the org and result in org-wide productivity gains) and support requests
+from other devs.
+
+The team sets a charter and a roadmap, and proactively identifies top needs
+across the org and later on formalizes the process for finding and prioritizing
+strategic work as well as managing support in a way that doesn't interfere with
+the strategic bets.
+
+
+.. TODO: further summary
 How DevEx teams prioritize strategic work:
 can use surveys, in-context feedback (tool like slackbot/browser plugin that
 asks for feedback when dev uses a tool), ask/feedback channels (e.g. slack

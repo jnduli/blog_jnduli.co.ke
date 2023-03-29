@@ -6,6 +6,8 @@ Comic Site Migration to SQLite
 :category: Computer
 :slug: comic_site_migration_to_sqlite
 :author: John Nduli
+
+
 .. :status: published
 
 Postgres was the database for my comic site but I chose to migrate to sqlite
@@ -23,7 +25,7 @@ The process followed this general pattern:
    paths to the static resources so that I wouldn't have to move these (I stored
    static resources on the host).
 2. Change the docker-compose yml file to:
-    - Use a different local port for the sqlite instance
+    - Use a different local port for the comic server using sqlite
     - Use a different project name
 3. Create a json dump from the production server using:
    `python manage.py dumpdata --natural-foreign --natural-primary > /var/backups/comic_server/natural_dump.json`
