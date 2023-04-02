@@ -2,18 +2,18 @@
 Testing GUIX
 ############
 
-:date: 2023-04-30
+:date: 2023-03-31
 :category: Computer
 :slug: testing_guix
 :author: John Nduli
-.. :status: published
+:status: published
 
 
 I installed guix with:
 
 .. code-block:: bash
 
-    # Install nscd (name service cache daemon)
+    # Install nscd (name service cache daemon) to help pick up guix libs
     sudo apt install nscd
     sudo systemctl enable nscd
 
@@ -34,7 +34,7 @@ I installed guix with:
     #  installing guix locales, used by libc installed via guix
     guix install glibc-locales
 
-    # nss-certs
+    # ensures guix libs and apps can do https
     guix install nss-certs
 
     # Add the following to .profile
@@ -72,29 +72,6 @@ I update my guix system using:
 
     guix pull
     guix package -u
-
-
-.. TODO: see what these commands do
-Other useful commands that can help are:
-
-.. code-block:: bash
-
-
-    # helper commands
-    guix describe
-    guix package --list-installed 
-
-    guix search [keyword] e.g. guix search text editor
-    guix install packagename
-    guix size packagename
-
-    # guix has generations which are like commits in git. When I add /remove a
-    # program I do a commit, and I can move back in time to previous generations
-    guix package --list-generations
-    guix package --switch-generation
-    guix package --roll-back
-
-    # TODO: continue from Play CheckPoints location: https://www.ubuntubuzz.com/2021/04/lets-try-guix.html
 
 
 I needed to install neovim that was build with a later version of the gcc-tool

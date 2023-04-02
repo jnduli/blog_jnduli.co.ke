@@ -77,69 +77,54 @@ across the org and later on formalizes the process for finding and prioritizing
 strategic work as well as managing support in a way that doesn't interfere with
 the strategic bets.
 
+The team collects feedback through surveys, in-context feedback (like
+slackbot/browser plugin that asks for feedback when dev uses a tool), feedback
+channels like slack channels, office hours, 1:1 interviews, shadowing devs, etc.
 
-.. TODO: further summary
-How DevEx teams prioritize strategic work:
-can use surveys, in-context feedback (tool like slackbot/browser plugin that
-asks for feedback when dev uses a tool), ask/feedback channels (e.g. slack
-channel), office hours, 1:1 interviews, customer advisory boards,
-embedded/shadowing (devs work alongside devs to better understand what they're
-experiencing).
-Team considers:
-- is issue isolated to specific team or systemic across organisation? There are
-  things team can change e.g. tools, tests, builds, environments, documentation
-  and things they can influence e.g. issues isolated to specific teams.
-- Which dev persona do we need to serve? e.g. prioritize work for teams on
-  mission critical projects.
-- What level of ongoing work will this problem require moving forward? e.g. new
-  tool requires support and maintenance, documentation needs coaching on how to
-  write or find it, tech debt can need focus on preventing high interest tech
-  debt long term.
-- What is the cost of this problem? Expected gain to the company( and try to
-  calculate the expected boost in productivity), cost of time wasted( take avg
-  eng salaray, multiply by 1.5X to get cost per minute/hour, then multiply this
-  time by the amount spent waiting, redoing, conktext switching within a part of
-  development process), cost of delayed investment (if the problem costs the org
-  an avg of 400K per week, we can calculate the cost of not investing in the
-  problem for 5 months).
+It considers the following while prioritizing strategic work:
 
-How devex teams get adoption for tools or processes?
-before releasing for general availability:
-- identify early adopters
-- release a prototype to early adopters
-- get feedback on change from users
+- Is the issue isolated to one team or organization wide?
+- Which dev persona needs to be served, and prioritize teams that are on mission
+  critical projects.
+- What level of ongoing work does the problem require, like support,
+  maintenance, documentation, coaching.
+- What is the cost of the problem, and the expected gain to the company? A
+  simple way to do this is to get 1.5X average dev salary to get cost per
+  minute/hour, then multiply this by the amount spent waiting, redoing, context
+  switching within development process. Another is cost of delayed investment
+  e.g. if the problem costs 400K per week, we can calculate the cost of not
+  investing in this for 5 months.
 
-interesting tactics for getting adoption:
-- all hands meetings, show-and-tell meetings
-- events like hackdays
-- community: create a place where people can learn about the work and talk with
-  other users.
-- embedding: devx team member joins a team for a sprint and helps adoption
-- showcase team/internal champion: have a team using the tool share their case
-  study on the benefits
-- build the golden path: build tool into automated processes for common tasks.
+Before releasing for general availability find early adopters and release a
+prototype to them so that you get feedback.
+
+In order to get wider adoption:
+
+- all hands meeting, show-and-tell meetings, events like hack-days
+- create a place where devs learn and discuss the work (community)
+- embedding: devx team member joins a team for a sprint to help with adoption
+- showcase an internal champion e.g. a team that uses the tool shares their use
+  case and the benefits.
+- build the tool into automated processes for common tasks.
 
 If the change isn't catching on, its possible the team missed something in their
-research with regards to pain points experienced.
+research with regard to pain points experienced.
 
+.. TODO: further summary
 The Case For Developer Experience
 ---------------------------------
 https://future.com/the-case-for-developer-experience/
-What's holding back devex is that most of the conversations around developer
-experience are about how to make it easier to write new code, in a vacuum, when
-in reality most devs are writing new code that needs to play well with old code,
-which goes beyond the obvious complaints of tech debt, lack of explainability
-and other issues. There are 2 categories of tools, thus 2 categories of devex
-needs:
+
+Most discussion on devex is about how to make it easier to write new code, which
+doesn't usually include how to make new code play well with old code. There are
+2 major categories of tools and hence devex:
 - abstraction tools (assume we code in a vaccuum)
 - complexity exploring tools (assume we work in complex environs)
 
-the dark side of abstreaction is that at some point you need to cross the
-abstraction barried e.g. reach inside the db, and different problems require
-different abstractions.
+With abstraction, you will need to cross the abstraction barrier at some point
+e.g. query the db in an ORM.
 
-It's empowering to the dev to help explore and embrace existing complexity,
-rather than introduce more complexity when trying to automate things away.
+.. TODO summary
 
 Developers work in rainforests, not planned gardens
 We already have tools that help us find and fix issues in existing systems e.g.
