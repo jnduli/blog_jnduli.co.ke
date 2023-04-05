@@ -7,15 +7,43 @@ Dev Experience
 :author: John Nduli
 .. :status: published
 
-I wanted to make some UI changes to my pomodoro script which I assumed were
-simple. I wrote a small design doc to ensure my ideas were concrete and came up
-with a smaller script that had the gist of the idea. I tried to integrate this
-with the main script and things seemed ok, I'd merge the changes, until I used
-it for a full day. Things were not ok. The output was broken, it would either
-cut out previous lines, or look all jumbled and I didn't know what was happening
-or how to fix it. I just went in and brute forced my way through the whole
-script and hoped that something would work. After a few days I realized the
-pains of this process because it would follow the same path:
+
+Developer experience makes software development easier. This includes:
+
+- clear documentation on how to set up.
+- support for debug-mode to help introspection.
+- automated testing 
+- well designed code, which is a huge topic but at least have:
+    - functions do what they say they do
+    - comments in complicated function
+- clear documentation on manual steps and links to non-obvious solutions
+
+I've found my personal projects suffer from having poor developer experience.
+Any time I've had to fix a bug or move a service to another server, I experience
+`a lot of frustration <https://comics.jnduli.co.ke/pub/looking-at-something-i-set-up-some-years-back/>`_.
+
+I wanted to change the UI of my pomodoro script to include colors, some way of
+marking tasks as done or cancelled and better messaging. I spent too much time
+figuring out how the original script worked and when I made the changes, the
+output broke. It took me a long time to clean this up, but it still was a
+mish-mash of fixes and I'm not confident the next improvement have a better
+experience. The biggest problem was that I didn't have any sort of automated
+tests that would tell me early on that I'd broken something, and I instead had
+to run the tool for this (It doesn't help that this was in bash).
+
+.. TODO: add other examples
+
+- comic server migration
+- main server shutting down problem
+
+
+
+
+
+
+
+
+
 
 - Make a theory on what was wrong
 - Implement a solution for this
@@ -29,16 +57,6 @@ I'll be investing time in developer experience but then I also need to find out
 what this is and how many angles I can look at it. Before research, what I have
 is:
 
-- It should be easy to test my changes 
-- If I break something, automated testing should provide feedback
-- Functions should do what they say, not some weird amalgam of this
-- Regular clean up of functions and code to better understand what is happening
-- Have some way of getting debug output from the program (I didn't know about
-  set -x)
-- Code introspection
-- If something isn't automated, then it should be well documented in an easy to
-  find location.
-- Prefer iteration over perfection
 
 
 TODO: research more of these
@@ -124,74 +142,28 @@ doesn't usually include how to make new code play well with old code. There are
 With abstraction, you will need to cross the abstraction barrier at some point
 e.g. query the db in an ORM.
 
+Most systems have many languages and runtimes, yets most tools help and fix
+issues that assume one language and framework. We should focus on observability
+(not only logs, metrics and traces), which is building the models of your
+software so you can build s/ware faster.
+
+Looking at tools that make it like hashicorp, postman, github, the solution is
+design, where we reduce friction. This isn't prettiness or user experience like
+cute error messages or dark mode, not is it dev ergonomics, but rather digesting
+large parts of the rainforest that's dev's ecosystem.
+
+To achieve this:
+
+- focus on the problem being solved e.g. don't look at logs, metric and traces
+  only but also system behaviour or catching breaking changes, functional
+  languages are ok but the goal should be to ship functional software on time.
+- focus on fitting into existing workflows: If they can't get how it helps with
+  their top of mind problems or can't reasonably transition to it, then its a
+  non-starter e.g. slack/gh/jira integrations, integrates with language/infra.
+- focus on packaging/prioritization i.e. output, query, beautiful results.
+
+
 .. TODO summary
-
-Developers work in rainforests, not planned gardens
-We already have tools that help us find and fix issues in existing systems e.g.
-graphQL mapping for APIs using Apollo, API gateways,etc. but these assume its
-possible to put all your software into one language, framework or even a single
-unified stack. 
-
-Any system of sufficient size and maturity will always involve multiple
-languages and runtimes. Software is heterogenous, and until the dev community
-accepts this fact, we're upper bounding how far we can get with dev experience.
-
-Using APIs etc. means we get problems due to inconsistent data format
-assumptions.
-
-Soln: we can't see what is supposed to happen, wo we need to see what IS
-happening. this means shifting our mindset and approach of monitoring to one of
-observing, thus future of devex is a better experience on observability. Most
-people see observability as involving logs, metrics and traces, but this is like
-saying s/ware is just about manipulating assembly instructions when its actually
-about building the s/ware functionality you need. Observability is about
-building models of your s/ware so you can build s/ware more quickly.
-
-So what does this all mean for designing dev experience?
-we can get a grasp by looking at developer tools and companies that make it and
-those that don't. The answer is design (reducing friction to help developers get
-to where they need to go). This isn't prettines or user experiences like cute
-error messages, notifications or dark mode, nor is it dev ergonomics (which
-values moving faster and more efficiently through slick interfaces). The tools
-that have been catching on are abstraction tools (e.g. hashicorp, postman,
-github, heroku), which digest large parts of the rainforest that are dev's
-ecosystem. To achieve this, you need to:
-
-- Focus on the problem being solved: e.g. people focus on pillars of
-  observability as logs, metrics and traces instead of goals like understand
-  system behaviour or catch breaking changes. Devs may want beautiful code and
-  zero bugs e.g. functional languages guaranteese but what they need is to be
-  able to ship functional software on schedule.
-- Focus on fitting into existing workflows: devs get how cool the tech is but
-  they don't get how it helps them with their top-of-mind problems, or they
-  can't reasonably transition from their workflows to completely new workflows
-  e.g. choosing tool X since it works with their programming language/ingfra nd
-  has slack/gh/jira integrations they want. Toolers also assume devs will switch
-  to an entirely new toolchain to get relatively small set of benefits which is
-  a non starter fro most teams. Instead, focus more on interoperability with
-  existing dev tools and on incremental improvements that aren't a paradigm
-  shift but that actually work with what exists.
-- Focus on packaging and prioritization: if its a one time tool, then having
-  clunky output, need to query over it and hand beautify results is ok. If its
-  to be used regularly, then take the time to better package it.
-
-Where do we go from here: Developers, buyers, the industry?
-Tool creators and users assume a high learning curve, limiting the impact and
-usefulness of the tools since there are alternatives that don't need to be hard
-to use. It's easy to fall into polarized extremes where things are either
-super-easy or hard-core. For example, we have a lot of frameworks and APIs that
-are great examples of design, yet their debuggers, performance profilers and
-observability/monitoring tools can't provide the same experience. We assume
-complexity revealing tools are for "experts" instead of being meant to aid devs
-in solving problems by revealing the necessary information. These tools can't
-automate the problem away, but they can focus on providing the info to solve the
-problem. The best tools combine abstraction with revealing complexity (similar
-to peaking under the hood of a car, where even if you have a low-maintenance
-car, it's still important if you can peek under the hood if theres a problem
-without going back to the dealership).
-
-
-TODO: Continue from here
 
 
 Blogs to read:

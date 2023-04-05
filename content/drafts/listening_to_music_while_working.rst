@@ -1,3 +1,16 @@
+##############################
+Listing to Music While Working
+##############################
+
+:date: 2023-03-31
+:category: Computer
+:slug: listening_to_music_while_working
+:author: John Nduli
+
+
+.. :status: published
+
+
 I'm not sure if this is a good or bad thing, but I listen to music while
 working. It helps me focus and concentrate on the task I'm working on but I
 sometimes wonder if its the correct way of doing things.

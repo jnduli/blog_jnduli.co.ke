@@ -62,6 +62,7 @@ I set up fonts using:
 and installed other useful packages:
 
 .. code-block:: bash
+
     # installing my editor
     guix install python neovim python-pynvim git
 
