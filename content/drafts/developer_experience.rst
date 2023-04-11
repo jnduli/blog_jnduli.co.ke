@@ -11,25 +11,30 @@ Dev Experience
 Developer experience makes software development easier. This includes:
 
 - clear documentation on how to set up.
+- clear documentation on manual steps and links to non-obvious solutions
 - support for debug-mode to help introspection.
-- automated testing 
-- well designed code, which is a huge topic but at least have:
+- automated testing.
+- well designed code, which covers a lot but at least have:
     - functions do what they say they do
     - comments in complicated function
-- clear documentation on manual steps and links to non-obvious solutions
 
 I've found my personal projects suffer from having poor developer experience.
 Any time I've had to fix a bug or move a service to another server, I experience
 `a lot of frustration <https://comics.jnduli.co.ke/pub/looking-at-something-i-set-up-some-years-back/>`_.
 
-I wanted to change the UI of my pomodoro script to include colors, some way of
-marking tasks as done or cancelled and better messaging. I spent too much time
-figuring out how the original script worked and when I made the changes, the
-output broke. It took me a long time to clean this up, but it still was a
-mish-mash of fixes and I'm not confident the next improvement have a better
-experience. The biggest problem was that I didn't have any sort of automated
-tests that would tell me early on that I'd broken something, and I instead had
-to run the tool for this (It doesn't help that this was in bash).
+For example, I wanted to change the UI of my pomodoro script to include colors,
+some way of marking tasks as done or cancelled and better messaging. I spent too
+much time figuring out how the original script worked and when I made the
+changes, the output broke. It took me a long time to clean this up, but it still
+was a mish-mash of fixes and I'm not confident the next improvement have a
+better experience. The biggest problem was that I didn't have any sort of
+automated tests that would tell me early on that I'd broken something, and I
+instead had to run the tool for this (It doesn't help that this was in bash).
+
+I set up my first server without documentation, which means I don't know what is
+installed there, what's required and what's was an optional experiment. It's
+running fine but it's frustrating to migrate away from this to something more
+structured.
 
 .. TODO: add other examples
 
