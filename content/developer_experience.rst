@@ -1,11 +1,11 @@
 ####################################
 Dev Experience For Personal Projects
 ####################################
-:date: 2022-04-29
+:date: 2023-04-29
 :category: Computer
 :slug: dev_experience_for_personal_projects
 :author: John Nduli
-.. :status: published
+:status: published
 
 My personal projects have poor developer experience. Any time I want to fix a
 bug or improve a service, I experience `a lot of frustration
