@@ -146,7 +146,8 @@ body a{
     max-height: 30rem;
 }
 
-p > code {
+code {
+    font-family: 'Oxygen', monospace;
     font-size: 1.0rem;
     font-style: italic;
 }
