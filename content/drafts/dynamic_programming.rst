@@ -256,18 +256,19 @@ return OPT(n)
 
 code:
 
-def soln(n):
-    ops = [None] * (n+1)
-    ops[1] = False
-    ops[2] = True
-    # dict_values = {False: [1], True: [2]}
-    for i in range(3, n+1):
-        ops[i] = any(not ops[i-div] for div in range(1, i-1) if i % div == 0)
-    return ops[n]
+.. code-block:: python
+    def soln(n):
+        ops = [None] * (n+1)
+        ops[1] = False
+        ops[2] = True
+        # dict_values = {False: [1], True: [2]}
+        for i in range(3, n+1):
+            ops[i] = any(not ops[i-div] for div in range(1, i-1) if i % div == 0)
+        return ops[n]
 
 
-for i in range(20, 30):
-    print(i, soln(i))
+    for i in range(20, 30):
+        print(i, soln(i))
 
 
 

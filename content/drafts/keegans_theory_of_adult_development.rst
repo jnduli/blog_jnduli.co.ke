@@ -1,3 +1,7 @@
+###########################
+Theory of Adult Development
+###########################
+
 Plan:
 - Summarize content: 1970 words -> 1000 words
 - Ankify content
@@ -58,6 +62,7 @@ society, culture).
   won't invite me to your party.
 
 In regards to cheating:
+
 - stage 2: worried about getting caught and consequences
 - stage 3: feel guilty and a disturbing dissonance because cheating is wrong and
   goes against their belief system and values.
@@ -198,6 +203,7 @@ but is constantly created through the exploration of one's identities and roles
 and further honed through interactions with others.
 
 Characteristics are:
+
 - Nothing is black or white: life, people, emotions, rlshps are complicated and
   always changing, constantly moving along a spectrum, never just one way or
   another e.g. I am not impatient, I'm patient in certain situations and
@@ -206,6 +212,7 @@ Characteristics are:
 - We embrace paradox
 
 Creating Fertile Space for Development:
+
 - understanding our self, constant awareness and humility: we're aware of what
   we're thinking/feeling and how we're behaving, and are humble. We are in
   "learning mode" and accept that the problems we keep coming up against aren't

@@ -6,7 +6,7 @@ VM set up Ubuntu
 :category: Computer
 :slug: vm_setup_ubuntu
 :author: John Nduli
-.. :status: published
+
 
 I was required to use ubuntu and I wasn't sure I'd replicate my current set up
 there. I also wanted a reproducible build, so I looked into guix as a package

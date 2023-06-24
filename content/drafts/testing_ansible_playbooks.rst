@@ -117,6 +117,7 @@ Research
 https://www.ansible.com/blog/five-questions-testing-ansible-playbooks-roles
 
 Testing Ansible:
+
 - unit testing: similar to SQL queries, you don't do it. Unit tests belong to
   the python module level.
 - functional tests: require a large amount of system state to set up mocking and
@@ -129,8 +130,9 @@ play against this.
 
 https://github.com/chrismeyersfsu/provision_docker
 
-Testing stragegies:
-^^^^^^^^^^^^^^^^^^^
+
+Testing Strategies
+==================
 
 https://docs.ansible.com/ansible/latest/reference_appendices/test_strategies.html
 

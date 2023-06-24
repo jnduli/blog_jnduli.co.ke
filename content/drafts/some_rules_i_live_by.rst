@@ -1,3 +1,7 @@
+###############
+Rules I live By
+###############
+
 I've tried to figure out what I value and do introspection into this and I'm
 slowly getting to understand myself
 
@@ -17,6 +21,7 @@ skill. This also means I value getting out to do something rather than get the
 perfect thing to do.
 
 Here are some examples:
+
 - I code in a language I'm learning everyday using codewars.
 - I try to do a leetcode problem every day, it doesn't matter whether I'm able
   to do it or not.

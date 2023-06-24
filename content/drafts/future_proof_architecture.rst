@@ -6,19 +6,21 @@ Future Proof Architecture
 = Future Proofing Architecture =
 Ref: https://www.reddit.com/r/ExperiencedDevs/comments/tcfzba/how_to_study_future_proofing_architecture/
 
-System designed to scale. IT can mean:
+System designed to scale. It can mean:
+
 - every piece can scale in some way (horizontally via replication, etc)
 - data that doesn't need to scale can have a single source of truth. Data that
   needs to scale has some way to amortize access across many machines.
+
     - At the fuzziest level, you can break down into the following categories:
-        Distributed Data Store
-        Databases
-            Distributed vs. "Non Distributed"
-            SQL/Schema/NoSQL Databases
-            Object Store
-        Graph DB
-        Key Value Store
-        Distributed Cache and Proxies
+        - Distributed Data Store
+        - Databases:
+            - Distributed vs. "Non Distributed"
+            - SQL/Schema/NoSQL Databases
+            - Object Store
+        - Graph DB
+        - Key Value Store
+        - Distributed Cache and Proxies
 
      And in "Designing Data-Intensive Applications" and similar books, you can
      find all the usual theoretical tools and techniques (CAP theorem,
@@ -45,6 +47,7 @@ System designed to scale. IT can mean:
   disappeared right now, how quickly could I get everything back up and
   running". The faster your answer, the better your architecture. If the answer
   is never, you don't have a functional system architecture. 
+
     - The best systems have some sort of failover capability, with and without
       reduced compute capacity. Beyond that, you're likely doing a combination
       of bringing up new servers or ramping up the failover datacenter/cluster,
@@ -69,6 +72,7 @@ They have 3 characteristics:
 Topics: Storage, Computation, Messaging
 
 Distributed Storage:
+
 - Single Master storage: db only on one server.
 - most web services have more reads than writes. In relation dbases reads are
   less expensive than writes.

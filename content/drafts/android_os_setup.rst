@@ -6,7 +6,6 @@ Android OS set up
 :category: Computer
 :slug: android_os_setup
 :author: John Nduli
-.. :status: published
 
 
 My phone almost died and I realized I don't have an easy way to set up my phone
