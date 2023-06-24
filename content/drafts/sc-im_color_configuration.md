@@ -4,10 +4,10 @@ Category: Computer
 Slug: sc-im-color-configuration
 Author: John Nduli
 
-I couldn't read the cells in [sc-im](https://github.com/andmarti1424/sc-im)
-because there was little contrast between the background and foreground colors.
-I temporarily fixed this by changing my terminal's color scheme, but I'd prefer
-to keep it. A good compromise was to change Sc-im's colors, for example:
+I couldn't read cells in [sc-im](https://github.com/andmarti1424/sc-im) because
+there was little contrast between the background and foreground colors. I
+temporarily fixed this by changing my terminal's color scheme, but I'd prefer to
+keep it. A permanent solution was to change sc-im's colors, for example:
 
 ```vim
 color "type=INPUT fg=WHITE bg=BLACK"
@@ -20,9 +20,9 @@ color "type=NORMAL fg=WHITE bg=BLACK"
 ```
 
 The help menu provides more details for the colors to use. You type `:help` and
-search for color with `\color`. The help explains the different options for
-type. I saved the colors I chose in `~/.scimrc` for permanent configurations.
-Here's what I had:
+search for color with `\color`, getting the explanations for all the types
+supported. I experimented with a couple of options and saved my final colors in
+`~/.scimrc`. Here's what I had:
 
 ```bash
 color "type=INPUT fg=WHITE bg=DEFAULT_COLOR"
