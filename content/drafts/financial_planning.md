@@ -1,22 +1,203 @@
+Title: Financial Planning
+Date: 2023-05-31
+Category: Random
+Slug: financial_planning
+Author: John Nduli
 
-I want to pay my day to day bills from my passive income. I'll be a step closer
-to financial freedom once then.
+I record my expenses in my
+[ledger-cli](https://ledger-cli.org/doc/ledger3.html). It structured as:
 
-I've got some foundation around this like:
+```ledger
 
-- I track my expenses with ledger-cli, meaning I have some measure of my average
-  expenses.
-- I track my income using ledger-cli, meaning I know how much I earn regularly.
-  This is tricky because they don't pay out at a regular cadence, so I instead
-  do an average of income per the last year.
-- I have a rough idea of the interest I earn in some of my savings.
+2023-01-02 * Home
+    Expenses:food                   Ksh 850.00
+    Assets:mpesa
 
-This means I have a good idea of how far I am from achieving my goal. I can also
-see how log I can live with my savings in case I lose my job.
+2023-01-03 * Home
+    Expenses:water                  Ksh 250.00
+    Expenses:mpesa                  Ksh 51.00
+    Assets:mpesa
 
-AIs:
-- provide an example of how I use ledger-cli to track my expenses and savings
-- provide an example of how I calculate my emergency funds lasting in case I
-  lose my job.
-- investigate how to embed vim in this page and create a simple calculator for
-  this
+2023-02-01 * Transport
+    Expenses:transport              Ksh 100.00
+    Assets:cash
+    
+2023-02-01 * Hospital
+    Expenses:doctor                 Ksh 1000.00 ; oneoff:
+    Expenses:medicine                Ksh 200.00 ; oneoff:
+    Assets:mpesa
+```
+
+I get my total expenses using:
+
+```bash
+$ ledger --file trial.ledger --begin 2023-01-01 --end 2023-02-28 --depth 1 --no-pager --permissive bal expenses               
+         Ksh 2451.00  Expenses
+```
+
+I tag outliers with `oneoff` to exclude them from some reports e.g. if I want to
+know what is normal to spend in a time.
+
+```bash
+$ ledger --file trial.ledger --begin 2023-01-01 --end 2023-02-28 --depth 1 --no-pager --permissive bal expenses and not %oneoff
+         Ksh 1251.00  Expenses
+```
+
+I sometimes want to see trends in my expenses, which can help me fix incorrect
+entries or course correct on expenses. I get a rolling 12 month average expense
+reports using the above commands.
+
+```bash
+for i in {12..0}; do
+    end_date=$(date -d "$(date +%Y/%m/01) - $i month - 1 day" "+%Y/%m/%d")
+    start_date=$(date -d "$end_date - 12 month + 1 day" "+%Y/%m/%d")
+    ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal expenses and not %oneoff | xargs"
+    readarray -td' ' yearly_expenses <<< "$(eval "$ledger_command")"
+    average_monthly=$(awk '{print ($1/12)}' <<<"${yearly_expenses[1]}")
+    printf "Avg monthly from %s to %s: %'.2f \-\n" "$start_date" "$end_date" "$average_monthly"
+done
+```
+Note: I haven't used -f in the above command since I've set up the correct file
+in my `.ledgerrc`.
+
+
+I track income in the same ledger file, and I can get similar reports from it,
+for example:
+
+```ledger
+2023-01-31 * Salary
+    Assets:bank          Ksh 2000.00
+    Income:job
+
+2023-02-14 * Investment
+    Assets:mpesa         Ksh 200.00
+    Income:investment
+
+2023-02-28 * Salary
+    Assets:bank          Ksh 2000.00
+    Income:job
+```
+
+I can get total income with:
+
+```bash
+$ ledger --file income.ledger --permissive --no-pager bal income --begin 2023-01-01 --end 2023-03-01 --depth 1
+        Ksh -4200.00  Income
+# and a detailed breadkdown with
+$ ledger --file income.ledger --permissive --no-pager bal income --begin 2023-01-01 --end 2023-03-01
+        Ksh -4200.00  Income
+         Ksh -200.00    investment
+        Ksh -4000.00    job
+--------------------
+        Ksh -4200.00
+```
+
+I can filter out my salary to see my side income with:
+
+```bash
+$ ledger -f income.ledger --permissive --no-pager --begin 2023-01-01 --end 2023-03-01 --depth 1 bal income and not job
+         Ksh -200.00  Income
+# or         
+$ ledger -f income.ledger --permissive --no-pager --begin 2023-01-01 --end 2023-03-01 --depth 1 bal income:investment 
+
+         Ksh -200.00  Income
+```
+
+I generate a 12 month rolling window average to see trends in my income with:
+
+```bash
+#!/bin/bash
+for i in {12..0}; do
+    end_date=$(date -d "$(date +%Y/%m/01) - $i month - 1 day" "+%Y/%m/%d")
+    start_date=$(date -d "$end_date - 12 month + 1 day" "+%Y/%m/%d")
+    ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal income:investment | xargs"
+    readarray -td' ' yearly_income <<< "$(eval "$ledger_command")"
+    average_monthly=$(awk '{print ($1/12)}' <<<"${yearly_income[1]}")
+    printf "Avg monthly income from %s to %s: %'.2f \-\n" "$start_date" "$end_date" "$average_monthly"
+done
+```
+
+I can get some financial health metrics from the above reports. For example, if
+I wan't to learn how long I can survive without my main income (salary):
+
+
+$$
+\begin{aligned}
+l = liquid\_assets, i = monthly\_income \\
+e = monthly\_expenses, x = no\_of\_months \\
+l + ix - ex = 0 \\
+x = \frac{l}{e-i}
+\end{aligned}
+$$
+
+and here's the code for this:
+
+```bash
+# window for calculations
+end_date=$(date -d "$(date +%Y/%m/01) - 1 day" "+%Y/%m/%d")
+start_date=$(date -d "$end_date - 12 month + 1 day" "+%Y/%m/%d")
+# average monthlu income
+ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal income:investment | xargs"
+readarray -td' ' yearly_income <<< "$(eval "$ledger_command")"
+income=$(awk -v total="${total[1]}" 'BEGIN {print (total/12)}')
+
+# average monthly expenses
+ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal ^expenses and not %oneoff | xargs"
+readarray -td' ' total <<< "$(eval "$ledger_command")"
+expenses=$(awk -v total="${total[1]}" 'BEGIN {print (total/12)}')
+
+# liquid assets
+# and section limites this from illiquid assets e.g. fixed deposit bank accounts
+ledger_command="ledger -X Ksh --depth 1 bal assets and \(bank or cash or mpesa\) | xargs"
+readarray -td' ' total <<< "$(eval "$ledger_command")"
+liquid="${total[1]}"
+
+months_remaining=$(awk -v l="$liquid" -v i="$average_income" -v m="$average_expenses" 'BEGIN {print (l / (m-i))}')
+echo "Months without job: $months_remaining" 
+```
+
+I can get the average interest rate of my investments for the last 12 months. I
+use the interest to get a rouhg idea for how much more I need to have to cater
+for half my monthly expenses (assuming I can maintain this interest).
+
+$$
+\begin{aligned}
+interest = i, interest\_earners = p \\
+monthly\_expenses = e \\
+expected\_income = 0.5 * e \\
+0.5e = new_p * i / 12 \\
+new_p = \frac{6e}{i} \\
+remaining = \frac{6e}{i} - new_p
+\end{aligned}
+$$
+
+and here's the code for this:
+
+```bash
+end_date=$(date -d "$(date +%Y/%m/01) - 1 day" "+%Y/%m/%d")
+start_date=$(date -d "$end_date - 12 month + 1 day" "+%Y/%m/%d")
+
+# use and to filter out the interest earning assets
+ledger_command="ledger -X Ksh --depth 1 bal assets and \(savings or cbk or mutual_fund\) | xargs"
+readarray -td' ' total <<< "$(eval "$ledger_command")"
+earners="${total[1]}"
+
+# average monthlu income from the earners
+ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal income:investment | xargs"
+readarray -td' ' yearly_income <<< "$(eval "$ledger_command")"
+income=$(awk '{print (-1 * $1)}' <<<"${yearly_income[1]}")
+
+# interest average earned
+interest=$(awk -v p="$earners" -v i="$income" 'BEGIN {print (1.0 * i/p)}')
+printf "Average interest: %.2f\n" $interest
+
+# How much remaining until I earn 50% of expenses from investment?
+ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal ^expenses and not %oneoff | xargs"
+readarray -td' ' total <<< "$(eval "$ledger_command")"
+average_expenses=$(awk -v total="${total[1]}" 'BEGIN {print (total/12)}')
+remaining=$(awk -v i="$interest" -v e="$average_expenses" -v p="$earners" 'BEGIN {print ((6 * e / i) - p)}')
+printf "Remaining to survive on interest: %.2f" $remaining
+```
+
+I hate using bash for these calculations, and I've seen that ledger has a python
+api that I'll learn and see if I can make this better.
