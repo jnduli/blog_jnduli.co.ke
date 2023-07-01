@@ -3,6 +3,7 @@ Date: 2023-07-01
 Category: Computer
 Slug: sc-im-color-configuration
 Author: John Nduli
+Status: published
 
 I couldn't read cells in [sc-im](https://github.com/andmarti1424/sc-im) because
 there was little contrast between the background and foreground colors. I
