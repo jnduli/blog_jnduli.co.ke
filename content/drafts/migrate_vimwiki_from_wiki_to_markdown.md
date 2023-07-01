@@ -12,11 +12,7 @@ I'd outgrown vimwiki's syntax since:
 - There weren't a lot of tools to convert my wiki to html except
   `VimwikiAll2HTML`.
 
-Vimwiki also supported markdown, and I switched to this since:
-
-- I use markdown everywhere
-- I could explore other html generation options e.g. mkdocs, docusaurus,
-  vitepress.
+Using `markdown` solved all the above problems, and vimwiki supported it.
 
 ## Fixing My Config
 
@@ -42,7 +38,7 @@ and here's the new config using [lazy](https://github.com/folke/lazy.nvim).
 },
 ```
 
-## Experiments
+## Pandoc Conversion
 
 I used pandoc generation. For example, with the file:
 

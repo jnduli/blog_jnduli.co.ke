@@ -1,29 +1,33 @@
-##########################
-Python Partial For Classes
-##########################
+Title: Python Partial For Classes
+Date: 2019-08-03
+Category: Computer
+Slug: python-partial-for-classes
+Author: John Nduli
 
-:date: 2019-08-03
-:tags: linux
-:category: Computer
-:slug: python-partial-for-classes
-:author: John Nduli
-:status: draft
+TODO:
+- clean up article
+- provide better and more practical examples
+
+I love currying in haskell. It's an easy way to create new functions from other
+functions, for example:
+
+```haskell
+add x y = x + y
+add2 y = add 2 y
+```
+
+I do the same in python using partial.
+
+```python
+def power(x, y):
+    return x ** y
+# Partial implementation
+from functools import partial
+square = partial(power, y=2)
+square(3) # Returns 9
+```
 
 
-Partial will create another function with some of the parameters frozen to
-another value, for example:
-
-.. code-block:: python
-
-    def power(x, y):
-        return x ** y
-    # Partial implementation
-    from functools import partial
-    square = partial(power, y=2)
-    square(3) # Returns 9
-
-
-.. TODO: example seems wrong here btw
 
 Using partial in classes in the same way, will require passing the class
 instance as one of the parameters as shown below:
