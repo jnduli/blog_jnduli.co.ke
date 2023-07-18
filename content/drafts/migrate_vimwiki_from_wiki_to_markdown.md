@@ -1,26 +1,21 @@
 Title: Migrate From Vimwiki To Markdown Syntax
-Date: 2023-05-31
+Date: 2023-07-29
 Category: Computer
 Slug: migrate_from_vimwiki_to_markdown_syntax
 Author: John Nduli
 
-<!-- TODO: add tldr section linking to gist -->
+[Vimwiki](https://github.com/vimwiki/vimwiki) supports markdown and I switched
+to this because:
 
-I'd outgrown vimwiki's syntax since:
-
-- I didn't use the syntax anywhere else except with vimwiki.
-- There weren't a lot of tools to convert my wiki to html except
-  `VimwikiAll2HTML`.
-
-Using `markdown` solved all the above problems, and vimwiki supported it.
+- I didn't use the default syntax anywhere else.
+- I could convert to html using only `VimwikiAll2HTML`.
 
 ## Fixing My Config
 
-I used the default vimwiki options e.g. path to vimwiki, so I didn't realize
-that I'd set it up incorrectly. The options need to be set before vimwiki loads,
-and here's the new config using [lazy](https://github.com/folke/lazy.nvim).
+Vimwiki expects some options set before it loads
+([ref](https://github.com/vimwiki/vimwiki/issues/935#issuecomment-661647681)).
+With [lazy](https://github.com/folke/lazy.nvim), I use `init` like:
 
-[ref](https://github.com/vimwiki/vimwiki/issues/935#issuecomment-661647681) 
 
 ```lua
 { 'vimwiki/vimwiki',
@@ -38,9 +33,10 @@ and here's the new config using [lazy](https://github.com/folke/lazy.nvim).
 },
 ```
 
+
 ## Pandoc Conversion
 
-I used pandoc generation. For example, with the file:
+I tested [pandoc](https://pandoc.org/) for conversion with the file:
 
 ```vimwiki
 == Title ==
@@ -73,7 +69,7 @@ Another code block
 }}}
 ```
 
-and running `pandoc --from vimwiki --to commonmark_x trial.wiki` gave me:
+Running `pandoc --from vimwiki --to commonmark_x trial.wiki` gave me:
 
 ````shell
 ╰─$ pandoc --from vimwiki --to commonmark_x trial.wiki
@@ -103,34 +99,26 @@ Another code block
       find . -iname '*.wiki'
 ````
 
-The conversion wasn't perfect because:
+I had these problems with the conversion:
 
-- it added an extra indentifer to the header
-- the checklist items wouldn't work with vimwiki plugin
-- the TODO comment became a link (TODO: confirm terminology)
-- they escaped the `'` character
-- The link to the file contained a "wikilink" text and wouldn't work in vimwiki
+- the checklist generated wouldn't work with vimwiki
+- I didn't want the escaped `'`  character in my files
+- The link to a file had the string "wikilink" which wouldn't work in vimwiki
 - I lost my comment
 - The last code block wasn't wrapped around \` characters
 
-This was a great starting point though and I'd use sed to modify the conversion.
+I'd combine `sed` with `pandoc` to get what I wanted.
 
 ## Preprocessing
-To prevent the comment from getting lost in translation, I modified all lines
-with comments by prefixing them with `TODO: comment`.
 
-I wanted the eventual wiki code blocks to be wrapped in \`. I converted all code
-blocks without a language i.e. `{{{` to have bash i.e. `{{{bash` and I'd change
-the language later on:
+I replaced the comment identifier `%%` with `TODO: comment` to the prevent
+losing them during conversion. I also replaced code blocks without a language
+i.e. `{{{` to have bash i.e. `{{{bash` and I'd replace this when editting later.
 
 ```shell
-sed -r -e 's/\{\{\{$/\{\{\{bash/g' -e 's/%%/TODO: comment/g' trial.wiki
-```
-
-For example
-
-```shell
-╰─$ echo -e "%% save me\nNormal line %% with ending\n{{{" | sed -r -e 's/\{\{\{$/\{\{\{bash/g' -e 's/%%/TODO: comment/g'                                              1 ↵
+╰─$ echo -e "%% save me\nNormal line %% with ending\n{{{" \
+      | sed -r -e 's/\{\{\{$/\{\{\{bash/g' \
+               -e 's/%%/TODO: comment/g'
 
 TODO: comment save me
 Normal line TODO: comment with ending
@@ -139,21 +127,26 @@ Normal line TODO: comment with ending
 
 ## Post processing
 
-To fix the links, I changed all vimwiki links e.g. `[link to file](link to file
-"wikilink")` to a format that would still work with vimwiki's markdown support
-i.e. `[link to file](link to file.md)`. 
+I changed the vimwikie-converted linked i.e. `[link_to_file](link_to_file
+"wikilink")` to use the file name i.e. `[link_to_file](link_to_file.md)`.
 
-I also converted all checklists to github's checklist syntax with:
+``` shell
+echo -e "[link_to_file](link_to_file \"wikilink\")" \
+  | sed -r -e 's/(\[.*\])\(([^#]*)((.*) "wikilink")\)/\1\(\2.md\4\)/g'
+```
+
+I converted all checklists to github's checklist syntax with:
 
 ```shell
-    -e "s/\[\]\{\.done[0-3]\}/\[ \] /g" \
-    -e "s/\[\]\{\.done4\}/\[X\] /g" \
+echo -e "- []{.done4}done\n- []{.done0} not_done" \
+  | sed -r -e "s/\[\]\{\.done[0-3]\}/\[ \] /g" \
+           -e "s/\[\]\{\.done4\}/\[X\] /g"
 ```
 
 and also unquoted all `'` characters with:
 
 ```shell
-    -e "s/\\\'/\'/g" \
+echo -e "\\'" | sed -e "s/\\\'/\'/g"
 ```
 
 Here's the final post processing step:
@@ -164,4 +157,40 @@ Here's the final post processing step:
     -e "s/\[\]\{\.done[0-3]\}/\[ \] /g" \
     -e "s/\[\]\{\.done4\}/\[X\] /g" \
     "$md_file"
+```
+
+## Putting It All Together
+
+```bash
+
+#!/bin/bash
+
+set -euo pipefail
+
+# files to change extension from to md format
+readarray -d '' mv_files < <( \
+  find . \( -iwholename '*diary/*.wiki' \
+    -or -iwholename '*unorganized_things/*.wiki' \
+    -or -iwholename '*design_docs/*.wiki' \
+    -and -not -iname 'diary.wiki' \
+    -and -not -iname 'index.wiki' \) \
+    -print0 
+)
+
+for file in "${mv_files[@]}"; do
+  md_file="${file%%.wiki}.md"
+  mv "$file" "$md_file"
+done
+
+readarray -d '' files < <(find . -name "*.wiki" -print0)
+for file in "${files[@]}"; do
+  md_file="${file%%.wiki}.md"
+  sed -r -e 's/\{\{\{$/\{\{\{bash/g' -e 's/%%/TODO: comment/g' "$file" | pandoc --from vimwiki --to commonmark_x -o "$md_file"
+  sed -r -i -e 's/(\[.*\])\(([^#]*)((.*) "wikilink")\)/\1\(\2.md\4\)/g' \
+    -e "s/\\\'/\'/g" \
+    -e "s/\[\]\{\.done[0-3]\}/\[ \] /g" \
+    -e "s/\[\]\{\.done4\}/\[X\] /g" \
+    "$md_file"
+  rm "$file"
+done
 ```
