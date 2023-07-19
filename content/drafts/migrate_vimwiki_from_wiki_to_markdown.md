@@ -119,7 +119,6 @@ i.e. `{{{` to have bash i.e. `{{{bash` and I'd replace this when editting later.
 ╰─$ echo -e "%% save me\nNormal line %% with ending\n{{{" \
       | sed -r -e 's/\{\{\{$/\{\{\{bash/g' \
                -e 's/%%/TODO: comment/g'
-
 TODO: comment save me
 Normal line TODO: comment with ending
 {{{bash
