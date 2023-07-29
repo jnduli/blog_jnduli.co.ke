@@ -3,6 +3,7 @@ Date: 2023-07-29
 Category: Computer
 Slug: migrate_from_vimwiki_to_markdown_syntax
 Author: John Nduli
+status: published
 
 [Vimwiki](https://github.com/vimwiki/vimwiki) supports markdown and I switched
 to this because:
