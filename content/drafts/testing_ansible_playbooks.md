@@ -1,11 +1,8 @@
-#########################
-Testinq ansible playbooks
-#########################
-
-:date: 2022-01-15
-:category: Computer
-:author: John Nduli
-:status: draft
+Title: Testinq ansible playbooks
+Date: 2022-01-15
+Category: Computer
+Slug: testing_ansible_playbooks
+Author: John Nduli
 
 
 
@@ -18,17 +15,13 @@ Plan:
 - https://github.com/chrismeyersfsu/provision_docker and https://www.ansible.com/blog/testing-ansible-roles-with-docker
 
 
-Draft
-=====
 
+# Docker Attempts
 
-Docker Attempts
----------------
 I wanted to test some ansible scripts locally before deploying them and tried
 out docker for this. This worked out great so long as I didn't need systemd.
 
-.. code-block:: yml
-
+```yml
     # test_ansible.yml
     ---
     - hosts: all
@@ -40,29 +33,28 @@ out docker for this. This worked out great so long as I didn't need systemd.
             pkg:
               - git
               - vim
+```
 
 and ran it with:
 
-.. code-block:: bash
-
-    # TODO: there should be a way to make use the docker ip address here??
-    # note for live syncing we need to mount directories, not files
-    docker container run --interactive --tty  --volume $(pwd):/app --rm  ubuntu:22.04 /bin/bash
-    export DEBIAN_FRONTEND=noninteractive
-    apt update && apt install ansible
-    ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
+```bash
+docker container run --interactive --tty  --volume $(pwd):/app --rm  ubuntu:22.04 /bin/bash
+export DEBIAN_FRONTEND=noninteractive
+apt update && apt install ansible python3-apt
+ansible-playbook -i 'localhost,' --connection=local site_comic_server.yml --check --ask-vault-password
+ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
+```
 
 A better way of running the above it to use the `community.docker.docker`
 connection plug like:
 
-.. code-block:: bash
-
-    docker container run --interactive --tty --volume $(pwd)/rough_work:/app --name ansible_container --rm python:3.10 /bin/bash
-    # note we have to disable become: true from the ansible.yml file for this to
-    # work. TODO: figure out how to handle this gracefully
-    # RUNNING apt-get update && apt-get install sudo seems to fix this
-    ansible-playbook -i 'ansible_container,' -c docker test_ansible.yml
-    code
+```bash
+docker container run --interactive --tty --volume $(pwd)/rough_work:/app --name ansible_container --rm python:3.10 /bin/bash
+# note we have to disable become: true from the ansible.yml file for this to
+# work. TODO: figure out how to handle this gracefully
+# RUNNING apt-get update && apt-get install sudo seems to fix this
+ansible-playbook -i 'ansible_container,' -c docker test_ansible.yml
+```
 
 
 
@@ -77,38 +69,38 @@ I got stuck when I wanted to launch systemctl services. (TODO: add link to
 explanation of this). To test this out, I had to use a Virtual Machine, which
 would emulate a whole system. I set up vagrant and tried things out.
 
-.. code-block:: bash
-
-    sudo pacman -S virtualbox vagrant
+```bash
+sudo pacman -S virtualbox vagrant
+```
 
 and have the following Vagrantfile:
 
-.. code-block:: ruby
+```ruby
+# Vagrantfile
+VAGRANTFILE_API_VERSION = "2"
 
-    # Vagrantfile
-    VAGRANTFILE_API_VERSION = "2"
-
-    Vagrant.configure("2") do |config|
-        config.vm.box = "generic/ubuntu2004"
-        # config.vm.box = "bento/ubuntu-20.04"
-        config.vm.network "public_network"
-        config.vm.synced_folder "./", "/app"
-    end
+Vagrant.configure("2") do |config|
+    config.vm.box = "generic/ubuntu2004"
+    # config.vm.box = "bento/ubuntu-20.04"
+    config.vm.network "public_network"
+    config.vm.synced_folder "./", "/app"
+end
+```
 
 And running:
 
-.. code-block:: bash
-
-    vagrant up
-    vagrant ssh
+```bash
+vagrant up
+vagrant ssh
+```
 
 
 got me into the box, and I could run an ansible playbook with:
 
-.. code-block:: bash
-
-   sudo apt update && sudo apt install ansible
-   ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
+```bash
+sudo apt update && sudo apt install ansible
+ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
+```
 
 
 Research
