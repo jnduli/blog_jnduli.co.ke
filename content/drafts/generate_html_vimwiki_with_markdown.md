@@ -4,30 +4,38 @@ Category: Computer
 Slug: generate_html_when_using_markdown_in_vimwiki
 Author: John Nduli
 
-I moved to `markdown` in vimwiki but couldn't generate html since
-`VimwikiAll2HTML` only supported vimwiki syntax. I explored static site
-generators looking for one that:
+
+
+I [moved to `markdown`]({filename}/migrate_vimwiki_from_wiki_to_markdown.md) in
+vimwiki but couldn't generate html. `VimwikiAll2HTML` only supported vimwiki
+syntax. I explored static site generators looking for one that:
 
 - didn't require moving my files and folders.
 - didn't need a lot of configuration to set up.
 
-I tested out `mkdocs`, `zola`, `docusaurus` and `vitepress` and only `vitepress`
-met both conditions. It also worked out the box and I liked the default theme.
+I tested out [`mkdocs`](https://www.mkdocs.org/),
+[`zola`](https://www.getzola.org/), [`docusaurus`](https://docusaurus.io/) and
+[`vitepress`](https://vitepress.dev/) and only `vitepress` met both conditions.
+It also worked out the box and I liked the default theme.
 
 ```bash
 npm install -D vitepress
 npx vitepress init
 ```
 
-This overrode my `index.md` though, so I had to restore it.
+Note:
 
-Running:
+1. This works with `"vitepress": "^1.0.0-beta.3"` in my `package.json`.
+2. This overrides `index.md`, so have a back up. I used git to restore it.
+
+
+I generated the hmtl using:
 
 ```bash
 npx run docs:build
 ```
 
-generated a website but the sidebars didn't look great, and I used
+The sidebars didn't look great though, and I used
 [vitepress-plugin-auto-sidebar](https://github.com/JonathanSchndr/vitepress-plugin-auto-sidebar/tree/main)
 to set this to by my folders. It's config looks like:
 
