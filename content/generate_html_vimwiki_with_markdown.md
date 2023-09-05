@@ -3,7 +3,7 @@ Date: 2023-09-02
 Category: Computer
 Slug: generate_html_when_using_markdown_in_vimwiki
 Author: John Nduli
-
+Status: published
 
 
 I [moved to `markdown`]({filename}/migrate_vimwiki_from_wiki_to_markdown.md) in
