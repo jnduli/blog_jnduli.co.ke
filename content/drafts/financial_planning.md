@@ -4,78 +4,70 @@ Category: Random
 Slug: financial_planning
 Author: John Nduli
 
-I record my expenses in my
-[ledger-cli](https://ledger-cli.org/doc/ledger3.html). It structured as:
+TODO:
+
+- create a single ledger file that I'll use in all my examples
+- harmonize examples to work with this single ledger file
+- test out all code examples
+
+
+I record my expenses and income in
+[ledger-cli](https://ledger-cli.org/doc/ledger3.html), for example:
 
 ```ledger
-
-2023-01-02 * Home
-    Expenses:food                   Ksh 850.00
-    Assets:mpesa
+2023-01-01 * Opening Balances
+    Assets:cash                                    Ksh 1000.00
+    Equity:Opening Balances
 
 2023-01-03 * Home
-    Expenses:water                  Ksh 250.00
-    Expenses:mpesa                  Ksh 51.00
-    Assets:mpesa
+    Expenses:water                                  Ksh 250.00
+    Expenses:food                                   Ksh 500.00
+    Assets:cash
+
+2023-01-31 * Salary
+    Assets:bank                                    Ksh 3000.00
+    Income:job
 
 2023-02-01 * Transport
-    Expenses:transport              Ksh 100.00
+    Expenses:transport                              Ksh 100.00
     Assets:cash
-    
+
 2023-02-01 * Hospital
-    Expenses:doctor                 Ksh 1000.00 ; oneoff:
-    Expenses:medicine                Ksh 200.00 ; oneoff:
-    Assets:mpesa
+    Expenses:doctor                                Ksh 1000.00 ; oneoff:
+    Expenses:medicine                               Ksh 200.00 ; oneoff:
+    Assets:bank
+
+2023-02-14 * Investment
+    Assets:bank                                     Ksh 200.00
+    Income:investment
+
+2023-02-28 * Salary
+    Assets:bank                                    Ksh 2000.00
+    Income:job
+
 ```
 
 I get my total expenses using:
 
 ```bash
-$ ledger --file trial.ledger --begin 2023-01-01 --end 2023-02-28 --depth 1 --no-pager --permissive bal expenses               
+ledger --no-pager --permissive --depth 1 \
+    --file trial.ledger \
+    --begin 2023-01-01 \
+    --end 2023-02-28 \
+    bal expenses               
          Ksh 2451.00  Expenses
 ```
 
-I tag outliers with `oneoff` to exclude them from some reports e.g. if I want to
-know what is normal to spend in a time.
+I tag some expenses with `oneoff` to show that they aren't regular expenses. If
+I want to exclude these from my report, I do:
 
 ```bash
-$ ledger --file trial.ledger --begin 2023-01-01 --end 2023-02-28 --depth 1 --no-pager --permissive bal expenses and not %oneoff
+ledger --no-pager --permissive --depth 1 \
+    --file trial.ledger \
+    --begin 2023-01-01 \
+    --end 2023-02-28 \
+    bal expenses and not %oneoff
          Ksh 1251.00  Expenses
-```
-
-I sometimes want to see trends in my expenses, which can help me fix incorrect
-entries or course correct on expenses. I get a rolling 12 month average expense
-reports using the above commands.
-
-```bash
-for i in {12..0}; do
-    end_date=$(date -d "$(date +%Y/%m/01) - $i month - 1 day" "+%Y/%m/%d")
-    start_date=$(date -d "$end_date - 12 month + 1 day" "+%Y/%m/%d")
-    ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal expenses and not %oneoff | xargs"
-    readarray -td' ' yearly_expenses <<< "$(eval "$ledger_command")"
-    average_monthly=$(awk '{print ($1/12)}' <<<"${yearly_expenses[1]}")
-    printf "Avg monthly from %s to %s: %'.2f \-\n" "$start_date" "$end_date" "$average_monthly"
-done
-```
-Note: I haven't used -f in the above command since I've set up the correct file
-in my `.ledgerrc`.
-
-
-I track income in the same ledger file, and I can get similar reports from it,
-for example:
-
-```ledger
-2023-01-31 * Salary
-    Assets:bank          Ksh 2000.00
-    Income:job
-
-2023-02-14 * Investment
-    Assets:mpesa         Ksh 200.00
-    Income:investment
-
-2023-02-28 * Salary
-    Assets:bank          Ksh 2000.00
-    Income:job
 ```
 
 I can get total income with:
@@ -102,6 +94,27 @@ $ ledger -f income.ledger --permissive --no-pager --begin 2023-01-01 --end 2023-
 
          Ksh -200.00  Income
 ```
+
+
+
+TODO: clean up
+
+I get a 12 month rolling expense report using the above command. This helps me
+see a trend in my expenses.
+
+```bash
+for i in {12..0}; do
+    end_date=$(date -d "$(date +%Y/%m/01) - $i month - 1 day" "+%Y/%m/%d")
+    start_date=$(date -d "$end_date - 12 month + 1 day" "+%Y/%m/%d")
+    ledger_command="ledger --begin $start_date --end $end_date --depth 1 -X Ksh bal expenses and not %oneoff | xargs"
+    readarray -td' ' yearly_expenses <<< "$(eval "$ledger_command")"
+    average_monthly=$(awk '{print ($1/12)}' <<<"${yearly_expenses[1]}")
+    printf "Avg monthly from %s to %s: %'.2f \-\n" "$start_date" "$end_date" "$average_monthly"
+done
+```
+Note: I haven't used -f in the above command since I've set up the correct file
+in my `.ledgerrc`.
+
 
 I generate a 12 month rolling window average to see trends in my income with:
 

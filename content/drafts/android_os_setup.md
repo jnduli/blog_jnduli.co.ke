@@ -1,11 +1,8 @@
-#################
-Android OS set up
-#################
-
-:date: 2022-01-15
-:category: Computer
-:slug: android_os_setup
-:author: John Nduli
+Title: Android OS set up
+Date: 2022-01-15
+Category: Computer
+Slug: android_os_setup
+Author: John Nduli
 
 
 My phone almost died and I realized I don't have an easy way to set up my phone
@@ -54,8 +51,3 @@ Installation things for lineage os:
 
 
 Must have things for android:
-
-
-
-
-

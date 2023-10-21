@@ -16,10 +16,42 @@ Plan:
 
 
 
-# Docker Attempts
+# Docker
 
-I wanted to test some ansible scripts locally before deploying them and tried
-out docker for this. This worked out great so long as I didn't need systemd.
+I wanted to test my ansible scripts locally and tried docker. Here's the
+`Dockerfile` I used:
+
+```
+# Ref: https://blog.carlosnunez.me/post/testing-ansible-playbooks-using-systemd-in-docker/
+# Ref: https://developers.redhat.com/blog/2014/05/05/running-systemd-within-docker-container
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y \
+    ansible python3-apt \
+    systemd systemd-sysv
+    && rm -rf /var/lib/apt/lists/* # I think I need to remove this so that check works
+
+RUN cd /lib/systemd/system/sysinit.target.wants/ \
+    && ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1
+
+RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
+    /etc/systemd/system/*.wants/* \
+    /lib/systemd/system/local-fs.target.wants/* \
+    /lib/systemd/system/sockets.target.wants/*udev* \
+    /lib/systemd/system/sockets.target.wants/*initctl* \
+    /lib/systemd/system/basic.target.wants/* \
+    /lib/systemd/system/anaconda.target.wants/* \
+    /lib/systemd/system/plymouth* \
+    /lib/systemd/system/systemd-update-utmp*
+
+VOLUME [ "/sys/fs/cgroup" ]
+CMD [ "usr/sbin/init" ]
+
+```
+
+So using the ansible script below:
+
 
 ```yml
     # test_ansible.yml
@@ -33,6 +65,17 @@ out docker for this. This worked out great so long as I didn't need systemd.
             pkg:
               - git
               - vim
+
+        - name: enable and start services
+          become: true
+          systemd:
+              enabled: true
+              state: started
+              name: '{{ item }}'
+          loop:
+            - nginx
+            - docker
+
 ```
 
 and ran it with:
@@ -45,18 +88,26 @@ ansible-playbook -i 'localhost,' --connection=local site_comic_server.yml --chec
 ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
 ```
 
-A better way of running the above it to use the `community.docker.docker`
-connection plug like:
+
+Here's a dockerfile that works with systemctl:
+
+
+
+And run the checks using `community.docker.docker` connection with:
+
+<!-- # TODO: look for ways to run without an interactive container -->
 
 ```bash
-docker container run --interactive --tty --volume $(pwd)/rough_work:/app --name ansible_container --rm python:3.10 /bin/bash
-# note we have to disable become: true from the ansible.yml file for this to
-# work. TODO: figure out how to handle this gracefully
-# RUNNING apt-get update && apt-get install sudo seems to fix this
-ansible-playbook -i 'ansible_container,' -c docker test_ansible.yml
+# build image
+docker image build -f ansible_dockerfile -t ansible-docker .
+# run the container
+docker container run -it --name ansible_container --rm ansible-docker /bin/bash
+# ansible check from another terminal
+ansible-playbook -i 'ansible_container,' -c docker --vault-id dev@vault-password.sh --check site_comic_server.yml
 ```
 
 
+<!-- TODO: test the commands below: -->
 
 Another alternative is to create an image that has ssh access and use this to
 run things.
@@ -248,4 +299,5 @@ roles. If a playbook reaches around 100 lines of yaml, split it up and use
 `include_tasks`.
 
 Test early and often:
+
 
