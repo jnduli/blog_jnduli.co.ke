@@ -10,8 +10,7 @@ Project set up:
 
 ```
 cargo new rust_actix_sqlx
-cargo add actix-web
-cargo add actix-cors
+cargo add axum
 cargo add sqlx --features runtime-tokio-rustls,sqlite
 cargo add serde --features derive
 ```
