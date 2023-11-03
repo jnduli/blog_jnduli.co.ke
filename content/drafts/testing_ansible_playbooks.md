@@ -21,7 +21,7 @@ Plan:
 I wanted to test my ansible scripts locally and tried docker. Here's the
 `Dockerfile` I used:
 
-```
+```Dockerfile
 # Ref: https://blog.carlosnunez.me/post/testing-ansible-playbooks-using-systemd-in-docker/
 # Ref: https://developers.redhat.com/blog/2014/05/05/running-systemd-within-docker-container
 FROM ubuntu:22.04
@@ -29,7 +29,7 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
     ansible python3-apt \
-    systemd systemd-sysv
+    systemd systemd-sysv \
     && rm -rf /var/lib/apt/lists/* # I think I need to remove this so that check works
 
 RUN cd /lib/systemd/system/sysinit.target.wants/ \
@@ -81,40 +81,23 @@ So using the ansible script below:
 and ran it with:
 
 ```bash
-docker container run --interactive --tty  --volume $(pwd):/app --rm  ubuntu:22.04 /bin/bash
-export DEBIAN_FRONTEND=noninteractive
-apt update && apt install ansible python3-apt
-ansible-playbook -i 'localhost,' --connection=local site_comic_server.yml --check --ask-vault-password
-ansible-playbook -i 'localhost,' --connection=local /app/test_ansible.yml
-```
-
-
-Here's a dockerfile that works with systemctl:
-
-
-
-And run the checks using `community.docker.docker` connection with:
-
-<!-- # TODO: look for ways to run without an interactive container -->
-
-```bash
 # build image
 docker image build -f ansible_dockerfile -t ansible-docker .
 # run the container
 docker container run -it --name ansible_container --rm ansible-docker /bin/bash
 # ansible check from another terminal
-ansible-playbook -i 'ansible_container,' -c docker --vault-id dev@vault-password.sh --check site_comic_server.yml
+ansible-playbook -i 'ansible_container,' -c docker --vault-id dev@vault-password.sh --check test_ansible.yml
 ```
 
 
+
+
+
+<!-- # TODO: look for ways to run without an interactive container -->
+
 <!-- TODO: test the commands below: -->
 
-Another alternative is to create an image that has ssh access and use this to
-run things.
-
-
-https://zauner.nllk.net/post/0038-running-systemd-inside-a-docker-container/
-https://stackoverflow.com/questions/24738264/how-to-test-ansible-playbook-using-docker
+### Using virtual machines
 
 I got stuck when I wanted to launch systemctl services. (TODO: add link to
 explanation of this). To test this out, I had to use a Virtual Machine, which
@@ -299,5 +282,3 @@ roles. If a playbook reaches around 100 lines of yaml, split it up and use
 `include_tasks`.
 
 Test early and often:
-
-
