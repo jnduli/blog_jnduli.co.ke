@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: update apt pkg cache and install packages
+      become: true
+      apt:
+        update_cache: yes
+        pkg:
+          - git
+          - vim
+          - curl
+          - neovim

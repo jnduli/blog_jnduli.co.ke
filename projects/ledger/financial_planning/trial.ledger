@@ -1,0 +1,29 @@
+2023-01-01 * Opening Balances
+    Assets:cash                                    Ksh 1000.00
+    Equity:Opening Balances
+
+2023-01-03 * Home
+    Expenses:water                                  Ksh 250.00
+    Expenses:food                                   Ksh 500.00
+    Assets:cash
+
+2023-01-31 * Salary
+    Assets:bank                                    Ksh 3000.00
+    Income:job
+
+2023-02-01 * Transport
+    Expenses:transport                              Ksh 100.00
+    Assets:cash
+
+2023-02-01 * Hospital
+    Expenses:doctor                                Ksh 1000.00 ; oneoff:
+    Expenses:medicine                               Ksh 200.00 ; oneoff:
+    Assets:bank
+
+2023-02-14 * Investment
+    Assets:bank                                     Ksh 200.00
+    Income:investment
+
+2023-02-28 * Salary
+    Assets:bank                                    Ksh 2000.00
+    Income:job
