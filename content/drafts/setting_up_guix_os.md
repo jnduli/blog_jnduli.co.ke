@@ -1,5 +1,9 @@
 # GUIX OS with GeneNetwork
 
+Disclaimer: This is a WIP blog post that I'll regularly update as I find better
+ways to fix the problems or handle something. I'm still a newbie in guix and
+genenetwork, so take this with a grain of salt
+
 Setting up Guix OS is easy since their iso provides a graphical guide. Some
 quirks though are:
 
@@ -124,3 +128,38 @@ I couldn't get `tmux` to start, getting `tmux: invalid LC_ALL, LC_CTYPE or LANG`
 and running `locale -a` failed too. The root cause seemed to be that my
 applications had been built on a different version of `glibc` and running `guix
 update` fixed this.
+
+### Weird Tearing Issues
+https://www.reddit.com/r/GUIX/comments/c96jef/comment/et3dons/
+
+## Setting up For Normal Workflows
+
+TODO: bluetooth setup
+TODO: pavucontrol (guix install pavucontrol)
+
+# GeneNetwork Setup
+Follow the instructions here to set up genenetwork: https://issues.genenetwork.org/topics/guix/guix-profiles
+
+Small changes:
+
+```
+# gn2 setup
+guix pull -C channels.scm -p ~/.guix-extra-channels/gn2
+GUIX_PROFILE=$HOME/.guix-extra-profiles/gn2
+. $GUIX_PROFILE/etc/profile
+guix install genenetwork2 -p ~/.guix-extra-channels/gn2
+
+# gn3 setup
+guix pull -C channels.scm -p ~/.guix-extra-channels/gn3
+GUIX_PROFILE=$HOME/.guix-extra-profiles/gn3
+. $GUIX_PROFILE/etc/profile
+guix install genenetwork3 -p ~/.guix-extra-channels/gn3
+guix install genenetwork2 -p ~/.guix-extra-channels/gn3
+guix package -i python-mysqlclient -p ~/.guix-extra-channels/gn3
+guix package -i python-pyld -p ~/.guix-extra-channels/gn3
+pytest -k unit_tests # succeeds after this
+pytest # still fails
+FLASK_DEBUG=1 FLASK_APP="main.py" flask run --port=8080 # works
+```
+
+
