@@ -143,11 +143,14 @@ Follow the instructions here to set up genenetwork: https://issues.genenetwork.o
 Small changes:
 
 ```
+# pick the channels frile from https://ci.genenetwork.org/channels.scm
 # gn2 setup
 guix pull -C channels.scm -p ~/.guix-extra-channels/gn2
 GUIX_PROFILE=$HOME/.guix-extra-profiles/gn2
 . $GUIX_PROFILE/etc/profile
 guix install genenetwork2 -p ~/.guix-extra-channels/gn2
+guix install genenetwork3 -p ~/.guix-extra-channels/gn2 # setups an older
+version
 
 # gn3 setup
 guix pull -C channels.scm -p ~/.guix-extra-channels/gn3
@@ -162,4 +165,8 @@ pytest # still fails
 FLASK_DEBUG=1 FLASK_APP="main.py" flask run --port=8080 # works
 ```
 
+mysql set up
+```
+sudo mysqld_safe --user root --datadir=/home/rookie/gn_data/mariadb/db_test
+```
 
