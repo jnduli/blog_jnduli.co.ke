@@ -1,44 +1,41 @@
 # GUIX OS with GeneNetwork
 
-Disclaimer: This is a WIP blog post that I'll regularly update as I find better
-ways to fix the problems or handle something. I'm still a newbie in guix and
-genenetwork, so take this with a grain of salt
+Disclaimer: I'm a newbie in guix and genenetwork.
 
-Setting up Guix OS is easy since their iso provides a graphical guide. Some
-quirks though are:
+Guix OS initial set up is easy. [Download the
+iso](https://guix.gnu.org/download/) and set it up on a flash disk with: 
+`dd if=guix-system-install-1.4.0.x86_64-linux.iso of=/dev/sdX status=progress`.
+I used the graphical guide. Some quirks were:
 
-- Wifi didn't work for me and it needs an internet connection to work. USB
-tethering worked though.
-- I forgot to change the bootloader to use UEFI so I couldn't boot this. To fix
-  this:
+- It needed an internet connection but wifi didn't work out of the box. I used
+  USB tethering though.
+- I forgot to edit the final configuration to UEFI. To boot, I used grub by:
+  ```
+  # ref: https://superuser.com/a/1512531
+  set pager=1
+  ls
+  # find the drive that has guix_os by searching for /etc/config.scm file
+  cat drive_from_ls/etc/config.scm # e.g. cat (hd0,1)/etc/config.scm
+  set root=drive_from_ls # e.g. set root=(hd0,1)
+  cat /boot/grub/grub.cfg
+  # run the commands in the menuentry manually
+  linux /gnu/store/......
+  initrd /gnu/store/.....
+  # boot the OS
+  boot
+  ```
+- I changed my bootloader config in `/etc/config.scm` to fix the efi issue
+  ```
+  # Ref: https://guix.gnu.org/manual/en/html_node/Bootloader-Configuration.html#index-bootloader_002dconfiguration
+  (bootloader (bootloader-configuration
+    (bootloader grub-efi-bootloader)
+    (targets '("/boot/efi"))
+    (keyboard-layout keyboard-layout)))
+  ```
+  and rebuild the OS with `sudo guix system reconfigure --allow-downgrades /etc/config.scm`
 
-  1. Use grub to log into the guix os system
-      ```
-      # ref: https://superuser.com/a/1512531
-      set pager=1
-      ls
-      # find the drive that has guix_os, looking for one that has /etc/config.scm file
-      cat (hd0,1)/etc/config.scm
-      set root=(hd0,1)
-      cat /boot/grub/grub.cfg
-      # run the commands in the menuentry manually
-      linux /gnu/store/......
-      initrd /gnu/store/.....
-      # boot the OS
-      boot
-      ```
-  2. Fix the efi problem changing the bootloader configuration in
-     `/etc/config.scm` to:
-       ```
-       # Ref: https://guix.gnu.org/manual/en/html_node/Bootloader-Configuration.html#index-bootloader_002dconfiguration
-       (bootloader (bootloader-configuration
-          (bootloader grub-efi-bootloader)
-          (targets '("/boot/efi"))
-          (keyboard-layout keyboard-layout)))
-       ```
-  3. Reconfigure the OS with `sudo guix system reconfigure --allow-downgrades /etc/config.scm`
+TODO: figure out how to fix nomodeset
 
-With this, I could easily boot into the OS.
 
 ## Quality of Life Changes
 
@@ -62,15 +59,13 @@ Change `/etc/config.scm` to have:
             %base-user-accounts))
 ```
 
-and reconfigured the OS with `sudo guix system reconfigure --allow-downgrades /etc/config.scm`
-
 When installing `oh-my-zsh` I also got an error: `ZSH not installed` so I also
 had to do an extra `guix install zsh`.
 
 ### Non Guix
-Ref: https://gitlab.com/nonguix/nonguix
+[Ref](https://gitlab.com/nonguix/nonguix)
 
-For wifi set up, I had to do add these to `/etc/config.scm`:
+For wifi to work, I modified `/etc/config.scm` to have:
 
 ```
 ;; non free linux module
@@ -82,8 +77,7 @@ For wifi set up, I had to do add these to `/etc/config.scm`:
   (firmware (list linux-firmware))
 ```
 
-The README is really clear, but a problem I had was setting up substitutes
-(since I'm unfamiliar with Guile). 
+The README did most of the heavy lifting, but I couldn't figure out how to add the substitutes.
 
 ```
 ;; what ended up in my services section
@@ -118,16 +112,11 @@ The README is really clear, but a problem I had was setting up substitutes
 
 ```
 
-
-Then reconfigured the system using: `sudo guix system reconfigure --allow-downgrades /etc/config.scm`
-
-
-### Weird Bug
+### Locale Bug
 
 I couldn't get `tmux` to start, getting `tmux: invalid LC_ALL, LC_CTYPE or LANG`
-and running `locale -a` failed too. The root cause seemed to be that my
-applications had been built on a different version of `glibc` and running `guix
-update` fixed this.
+and running `locale -a` failed too. The root cause was that my applications were
+built on a different version of `glibc` and running `guix update` fixed this.
 
 ### Weird Tearing Issues
 https://www.reddit.com/r/GUIX/comments/c96jef/comment/et3dons/
@@ -138,12 +127,13 @@ TODO: bluetooth setup
 TODO: pavucontrol (guix install pavucontrol)
 
 # GeneNetwork Setup
-Follow the instructions here to set up genenetwork: https://issues.genenetwork.org/topics/guix/guix-profiles
+[Follow the instructions here to set up genenetwork](https://issues.genenetwork.org/topics/guix/guix-profiles)
 
 Small changes:
 
 ```
-# pick the channels frile from https://ci.genenetwork.org/channels.scm
+# pick the channels file from 
+curl https://ci.genenetwork.org/channels.scm > channels.scm
 # gn2 setup
 guix pull -C channels.scm -p ~/.guix-extra-channels/gn2
 GUIX_PROFILE=$HOME/.guix-extra-profiles/gn2
@@ -163,10 +153,13 @@ guix package -i python-pyld -p ~/.guix-extra-channels/gn3
 pytest -k unit_tests # succeeds after this
 pytest # still fails
 FLASK_DEBUG=1 FLASK_APP="main.py" flask run --port=8080 # works
+
+# gn-auth set up is a bit different from the above
+# the README is clear in this case
+# just make sure you have genenetwork2 and genetwork3 installed in the profile
 ```
 
 mysql set up
 ```
 sudo mysqld_safe --user root --datadir=/home/rookie/gn_data/mariadb/db_test
 ```
-
