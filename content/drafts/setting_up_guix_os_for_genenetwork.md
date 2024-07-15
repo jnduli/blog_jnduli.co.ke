@@ -2,15 +2,15 @@
 
 Disclaimer: I'm a newbie in guix and genenetwork.
 
-Guix OS initial set up is easy. [Download the
-iso](https://guix.gnu.org/download/) and set it up on a flash disk with: 
-`dd if=guix-system-install-1.4.0.x86_64-linux.iso of=/dev/sdX status=progress`.
-I used the graphical guide. Some quirks were:
+Guix OS involves [downloading the iso](https://guix.gnu.org/download/); setting
+it on a flash disk with: `dd if=guix-system-install-1.4.0.x86_64-linux.iso
+of=/dev/sdX status=progress`; and using the graphical guide. Some quirks I got
+were:
 
-- It needed an internet connection but wifi didn't work out of the box. I used
+- I needed an internet connection but wifi didn't work out of the box. I used
   USB tethering though.
 - I forgot to edit the final configuration to UEFI. To boot, I used grub by:
-  ```
+  ```bash
   # ref: https://superuser.com/a/1512531
   set pager=1
   ls
@@ -25,17 +25,24 @@ I used the graphical guide. Some quirks were:
   boot
   ```
 - I changed my bootloader config in `/etc/config.scm` to fix the efi issue
-  ```
-  # Ref: https://guix.gnu.org/manual/en/html_node/Bootloader-Configuration.html#index-bootloader_002dconfiguration
+  ```guile
+  ;; Ref: https://guix.gnu.org/manual/en/html_node/Bootloader-Configuration.html#index-bootloader_002dconfiguration
   (bootloader (bootloader-configuration
     (bootloader grub-efi-bootloader)
     (targets '("/boot/efi"))
     (keyboard-layout keyboard-layout)))
   ```
   and rebuild the OS with `sudo guix system reconfigure --allow-downgrades /etc/config.scm`
-
-TODO: figure out how to fix nomodeset
-
+- I experienced screen flickering in my terminal and fixed it with modify my
+  boot parameters:
+  ```guile
+  ;; ref: https://wiki.archlinux.org/title/Intel_graphics#Screen_flickering
+  (bootloader (bootloader-configuration
+                (bootloader grub-efi-bootloader)
+                (targets '("/boot/efi"))
+                (keyboard-layout keyboard-layout)))
+  (kernel-arguments (list "i915.enable_psr=0"))
+  ```
 
 ## Quality of Life Changes
 
@@ -118,20 +125,12 @@ I couldn't get `tmux` to start, getting `tmux: invalid LC_ALL, LC_CTYPE or LANG`
 and running `locale -a` failed too. The root cause was that my applications were
 built on a different version of `glibc` and running `guix update` fixed this.
 
-### Weird Tearing Issues
-https://www.reddit.com/r/GUIX/comments/c96jef/comment/et3dons/
-
-## Setting up For Normal Workflows
-
-TODO: bluetooth setup
-TODO: pavucontrol (guix install pavucontrol)
-
 # GeneNetwork Setup
 [Follow the instructions here to set up genenetwork](https://issues.genenetwork.org/topics/guix/guix-profiles)
 
 Small changes:
 
-```
+```bash
 # pick the channels file from 
 curl https://ci.genenetwork.org/channels.scm > channels.scm
 # gn2 setup
@@ -139,8 +138,7 @@ guix pull -C channels.scm -p ~/.guix-extra-channels/gn2
 GUIX_PROFILE=$HOME/.guix-extra-profiles/gn2
 . $GUIX_PROFILE/etc/profile
 guix install genenetwork2 -p ~/.guix-extra-channels/gn2
-guix install genenetwork3 -p ~/.guix-extra-channels/gn2 # setups an older
-version
+guix install genenetwork3 -p ~/.guix-extra-channels/gn2 # setups an older version
 
 # gn3 setup
 guix pull -C channels.scm -p ~/.guix-extra-channels/gn3
