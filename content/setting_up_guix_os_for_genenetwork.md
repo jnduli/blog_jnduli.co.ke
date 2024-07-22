@@ -1,11 +1,15 @@
 # GUIX OS with GeneNetwork
 
-Disclaimer: I'm a newbie in guix and genenetwork.
+Title: GUIX OS with GeneNetwork
+Date: 2024-07-22
+Category: computer
+Slug: guix-os-with-genenetwork
+Author: John Nduli
+status: published
 
-Guix OS involves [downloading the iso](https://guix.gnu.org/download/); setting
-it on a flash disk with: `dd if=guix-system-install-1.4.0.x86_64-linux.iso
-of=/dev/sdX status=progress`; and using the graphical guide. Some quirks I got
-were:
+Guix OS install involves [downloading the iso](https://guix.gnu.org/download/);
+setting it on a flash disk with: `dd if=guix.iso of=/dev/sdX status=progress`;
+and using the graphical guide. Some quirks I got were:
 
 - I needed an internet connection but wifi didn't work out of the box. I used
   USB tethering though.
@@ -33,8 +37,8 @@ were:
     (keyboard-layout keyboard-layout)))
   ```
   and rebuild the OS with `sudo guix system reconfigure --allow-downgrades /etc/config.scm`
-- I experienced screen flickering in my terminal and fixed it with modify my
-  boot parameters:
+- I experienced screen flickering in my terminal and modified my boot parameters
+  to fix it:
   ```guile
   ;; ref: https://wiki.archlinux.org/title/Intel_graphics#Screen_flickering
   (bootloader (bootloader-configuration
@@ -66,8 +70,8 @@ Change `/etc/config.scm` to have:
             %base-user-accounts))
 ```
 
-When installing `oh-my-zsh` I also got an error: `ZSH not installed` so I also
-had to do an extra `guix install zsh`.
+When installing `oh-my-zsh` I also got an error: `ZSH not installed` and I had
+to do an extra `guix install zsh`.
 
 ### Non Guix
 [Ref](https://gitlab.com/nonguix/nonguix)
@@ -84,7 +88,8 @@ For wifi to work, I modified `/etc/config.scm` to have:
   (firmware (list linux-firmware))
 ```
 
-The README did most of the heavy lifting, but I couldn't figure out how to add the substitutes.
+The README did most of the heavy lifting, but I couldn't figure out how to add
+the substitutes.
 
 ```
 ;; what ended up in my services section
@@ -126,6 +131,7 @@ and running `locale -a` failed too. The root cause was that my applications were
 built on a different version of `glibc` and running `guix update` fixed this.
 
 # GeneNetwork Setup
+
 [Follow the instructions here to set up genenetwork](https://issues.genenetwork.org/topics/guix/guix-profiles)
 
 Small changes:
