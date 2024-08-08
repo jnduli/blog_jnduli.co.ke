@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ DEFAULT_LANG }}">
     <head>
+
         {% block head %}
 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% if article %}
         <title>{{ SITENAME }}: {{ article.title }}</title>
         {% else %}
@@ -38,7 +40,7 @@
         {% endblock head %}
         <link rel="stylesheet" href="{{  SITEURL  }}/theme/css/entireframework.min.css">
         <link rel="stylesheet" href="{{  SITEURL }}/theme/css/style.css">
-        <link rel="stylesheet" href="{{  SITEURL  }}/theme/css/bw.css">
+        <link rel="stylesheet" href="{{  SITEURL  }}/theme/css/pygment.css">
 
         {% include "include/googleanalytics.html" %}
 

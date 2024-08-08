@@ -1,17 +1,18 @@
 /** importing fonts to use in the site **/
 /** font for navigation bar **/
 @import url('https://fonts.googleapis.com/css?family=Oxygen');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
 
 body{
-    font-family: 'Oxygen', monospace;
-    background: #eeeeee;
-    color: #011627; 
+    font-family: 'Roboto Mono', monospace;
+    background: #2d2b28;
+    color: #eaeaea; 
     line-height: 1.5rem;
     text-align: left;
 }
 body a{
-    color: #0b2198;
+    color: #81a5dd;
 }
 
 /** formating the header **/
@@ -74,14 +75,14 @@ body a{
     width: auto;
 }
 .hentry .entry-title a{
-    color: #011627;
-    text-decoration: none;
+    color: #919eaa;
+    /* text-decoration: none; */
     line-height: 2.0rem;
     border: 2px solid transparent;
     /* border-bottom: 1px solid #333333; */
 }
 .hentry .entry-title a:hover{
-    border: 2px solid #333333;
+    border: 2px solid #c4c4c4;
 }
 .hentry .entry-content{
     font-family: 'Cormorant Garamond', serif;
@@ -110,7 +111,7 @@ body a{
     line-height: 1.5rem;
 }
 .article-content .entry-title a{
-    color: #011627;
+    color: #c4c4c4;
     text-decoration: none;
     border-bottom: 1px solid #333333;
     border: 2px solid transparent;
