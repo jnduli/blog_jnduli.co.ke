@@ -28,3 +28,11 @@ Things to fix:
 - how to mount actual code folder for use?
 
 [Ref](https://www.futurile.net/2023/04/29/guix-shell-virtual-environments-containers/)
+
+
+# Updateing Neovim
+
+```
+guix build neovim --with-source=neovim@0.10.1=./neovim --with-latest=tree-sitter
+guix package --install /output/path/from/previous/command
+```

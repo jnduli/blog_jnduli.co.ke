@@ -131,7 +131,7 @@ the substitutes.
 
 I couldn't get `tmux` to start, getting `tmux: invalid LC_ALL, LC_CTYPE or LANG`
 and running `locale -a` failed too. The root cause was that my applications were
-built on a different version of `glibc` and running `guix update` fixed this.
+built on a different version of `glibc` and running `guix upgrade` fixed this.
 
 # GeneNetwork Setup
 
@@ -143,20 +143,20 @@ Small changes:
 # pick the channels file from 
 curl https://ci.genenetwork.org/channels.scm > channels.scm
 # gn2 setup
-guix pull -C channels.scm -p ~/.guix-extra-channels/gn2
+guix pull -C channels.scm -p ~/.guix-extra-profiles/gn2
 GUIX_PROFILE=$HOME/.guix-extra-profiles/gn2
 . $GUIX_PROFILE/etc/profile
-guix install genenetwork2 -p ~/.guix-extra-channels/gn2
-guix install genenetwork3 -p ~/.guix-extra-channels/gn2 # setups an older version
+guix install genenetwork2 -p ~/.guix-extra-profiles/gn2
+guix install genenetwork3 -p ~/.guix-extra-profiles/gn2 # setups an older version
 
 # gn3 setup
-guix pull -C channels.scm -p ~/.guix-extra-channels/gn3
+guix pull -C channels.scm -p ~/.guix-extra-profiles/gn3
 GUIX_PROFILE=$HOME/.guix-extra-profiles/gn3
 . $GUIX_PROFILE/etc/profile
-guix install genenetwork3 -p ~/.guix-extra-channels/gn3
-guix install genenetwork2 -p ~/.guix-extra-channels/gn3
-guix package -i python-mysqlclient -p ~/.guix-extra-channels/gn3
-guix package -i python-pyld -p ~/.guix-extra-channels/gn3
+guix install genenetwork3 -p ~/.guix-extra-profiles/gn3
+guix install genenetwork2 -p ~/.guix-extra-profiles/gn3
+guix package -i python-mysqlclient -p ~/.guix-extra-profiles/gn3
+guix package -i python-pyld -p ~/.guix-extra-profiles/gn3
 pytest -k unit_tests # succeeds after this
 pytest # still fails
 FLASK_DEBUG=1 FLASK_APP="main.py" flask run --port=8080 # works
@@ -164,4 +164,11 @@ FLASK_DEBUG=1 FLASK_APP="main.py" flask run --port=8080 # works
 # gn-auth set up is a bit different from the above
 # the README is clear in this case
 # just make sure you have genenetwork2 and genetwork3 installed in the profile
+
+guix pull -C channels.scm -p ~/.guix-extra-profiles/gn-auth
+GUIX_PROFILE=$HOME/.guix-extra-profiles/gn-auth
+. $GUIX_PROFILE/etc/profile
+guix install genenetwork3 -p ~/.guix-extra-profiles/gn-auth
+guix install genenetwork2 -p ~/.guix-extra-profiles/gn-auth
+guix package --install-from-file=guix.scm -p ~/.guix-extra-profiles/gn-auth
 ```
