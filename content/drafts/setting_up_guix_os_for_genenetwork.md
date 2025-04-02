@@ -161,3 +161,14 @@ mysql set up
 ```
 sudo mysqld_safe --user root --datadir=/home/rookie/gn_data/mariadb/db_test
 ```
+
+
+For rust-analyzer to work in mason:
+
+```
+file binary_path # shows that it's using /lib64/ld-linux-x86-64.so.2
+sudo ln -sf /home/rookie/.guix-profile/lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2
+export LD_LIBRARY_PATH=/home/rookie/.guix-profile/lib/
+```
+
+I added this to `.zprofile`
